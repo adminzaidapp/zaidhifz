@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zaid — The Quran Never Forgets You</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; }
+  .hero { text-align: center; padding: 3.5rem 2rem 2.5rem; }
+  .badge { display: inline-block; background: #E1F5EE; color: #0F6E56; font-size: 12px; padding: 5px 14px; border-radius: 999px; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
+  .hero h1 { font-size: 44px; font-weight: 500; color: #1a1a1a; line-height: 1.15; margin-bottom: 1rem; }
+  .hero h1 span { color: #1D9E75; }
+  .hero p { font-size: 17px; color: #555; max-width: 420px; margin: 0 auto 1.75rem; line-height: 1.6; }
+  .cta-btn { display: inline-block; padding: 13px 32px; background: #1D9E75; color: #fff; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; }
+  .cta-btn:hover { background: #0F6E56; }
+  .note { font-size: 12px; color: #999; margin-top: 0.6rem; }
+  .hadith-bar { background: #1D9E75; padding: 1.25rem 2rem; text-align: center; }
+  .hadith-bar p { font-size: 15px; font-style: italic; color: #fff; margin-bottom: 3px; }
+  .hadith-bar span { font-size: 12px; color: rgba(255,255,255,0.75); }
+  .section { padding: 2.5rem 2rem; max-width: 800px; margin: 0 auto; }
+  .section-label { font-size: 11px; color: #999; letter-spacing: 0.08em; margin-bottom: 1.25rem; text-align: center; }
+  .path-top { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
+  @media(max-width: 600px) { .path-top { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
+  .path-card { border-radius: 12px; padding: 1.5rem; border: 0.5px solid #e0e0e0; background: #fff; }
+  .path-card.accent { background: #E1F5EE; border-color: #9FE1CB; }
+  .path-card.accent2 { background: #f0f7ff; border-color: #B5D4F4; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; }
+  .path-tag { font-size: 10px; letter-spacing: 0.08em; color: #1D9E75; font-weight: 500; margin-bottom: 0.6rem; }
+  .path-card.accent2 .path-tag { color: #185FA5; grid-column: 1 / -1; margin-bottom: 0; }
+  .path-card.accent2 h3 { color: #0C447C; grid-column: 1; margin-bottom: 0; }
+  .path-card.accent2 p { color: #185FA5; grid-column: 2 / -1; }
+  .path-card h3 { font-size: 17px; font-weight: 500; color: #1a1a1a; margin-bottom: 0.6rem; line-height: 1.3; }
+  .path-card.accent h3 { color: #085041; }
+  .path-card p { font-size: 13px; color: #555; line-height: 1.65; }
+  .path-card.accent p { color: #0F6E56; }
+  .divider { border: none; border-top: 0.5px solid #e0e0e0; margin: 0 2rem; }
+  .blessings-section { padding: 2.5rem 2rem; max-width: 800px; margin: 0 auto; }
+  .blessings-section h2 { font-size: 24px; font-weight: 500; margin-bottom: 0.4rem; }
+  .blessings-section .sub { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
+  .blessings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .b-card { border-radius: 12px; padding: 1.1rem; border: 0.5px solid #e0e0e0; background: #f9f9f9; }
+  .b-dot { width: 8px; height: 8px; border-radius: 50%; background: #1D9E75; margin-bottom: 10px; }
+  .b-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .b-card p { font-size: 12px; color: #666; line-height: 1.5; }
+  .features-section { padding: 2.5rem 2rem; max-width: 800px; margin: 0 auto; }
+  .features-section h2 { font-size: 24px; font-weight: 500; margin-bottom: 1.5rem; }
+  .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .f-card { border-radius: 12px; padding: 1.1rem; border: 0.5px solid #e0e0e0; background: #fff; }
+  .f-num { font-size: 11px; color: #1D9E75; font-weight: 500; margin-bottom: 8px; }
+  .f-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .f-card p { font-size: 12px; color: #666; line-height: 1.5; }
+  .founder-section { padding: 0 2rem 2rem; max-width: 800px; margin: 0 auto; }
+  .founder-inner { display: flex; gap: 16px; align-items: flex-start; background: #f9f9f9; border-radius: 12px; padding: 1.5rem; border: 0.5px solid #e0e0e0; }
+  .avatar { width: 44px; height: 44px; border-radius: 50%; background: #1D9E75; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; color: #fff; flex-shrink: 0; }
+  .founder-text p { font-size: 14px; font-style: italic; line-height: 1.7; margin-bottom: 6px; }
+  .founder-text span { font-size: 12px; color: #999; }
+  .founder-text strong { color: #555; font-weight: 500; }
+  .cta-section { padding: 2.5rem 2rem 3.5rem; text-align: center; background: #f9f9f9; border-top: 0.5px solid #e0e0e0; }
+  .cta-section h2 { font-size: 28px; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.2; }
+  .cta-section h2 span { color: #1D9E75; }
+  .cta-section p { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
+  .name-tag { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border: 0.5px solid #e0e0e0; border-radius: 999px; font-size: 11px; color: #999; margin-bottom: 1.75rem; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">Now accepting waitlist</div>
+  <h1>The Quran never<br><span>forgets you.</span></h1>
+  <p>Your AI companion for memorising and revising the Quran — wherever you are on the journey.</p>
+  <a class="cta-btn" href="http://eepurl.com/jDybL6" target="_blank">Join the waitlist</a>
+  <p class="note">Free to join. No spam, ever.</p>
+</div>
+<div class="hadith-bar">
+  <p>"The best of you are those who learn the Quran and teach it."</p>
+  <span>— Prophet Muhammad ﷺ (Sahih al-Bukhari)</span>
+</div>
+<div class="section">
+  <p class="section-label">WHO IS ZAID FOR</p>
+  <div class="path-top">
+    <div class="path-card accent">
+      <p class="path-tag">STARTING YOUR HIFZ</p>
+      <h3>It's never too late to begin.</h3>
+      <p>People memorise the Quran at 7. At 35. At 60. There is no age limit. Zaid gives you a personalised plan and guides you every step of the way.</p>
+    </div>
+    <div class="path-card">
+      <p class="path-tag">ALREADY A HAFIZ</p>
+      <h3>Life got busy. Your Hifz is still there.</h3>
+      <p>Work. Family. Life. But the Quran never left you — it just needs uncovering again. Zaid builds your revision around your life, not against it.</p>
+    </div>
+  </div>
+  <div class="path-card accent2">
+    <p class="path-tag">TEACHERS & PARENTS</p>
+    <h3>Support the ones you love.</h3>
+    <p>Track a child or student's progress, set revision goals, and celebrate every milestone together. Their journey becomes yours too.</p>
+  </div>
+</div>
+<hr class="divider" />
+<div class="blessings-section">
+  <h2>More than memorisation.</h2>
+  <p class="sub">This is a relationship with the words of Allah. The blessings are real.</p>
+  <div class="blessings-grid">
+    <div class="b-card"><div class="b-dot"></div><h4>A crown for your parents</h4><p>The Hafiz will be given a crown of light — and their parents crowned alongside them.</p></div>
+    <div class="b-card"><div class="b-dot"></div><h4>Raised in Jannah</h4><p>Every verse recited raises you a degree. Recite and ascend.</p></div>
+    <div class="b-card"><div class="b-dot"></div><h4>Peace of heart</h4><p>In a world that never stops, the Quran brings stillness nothing else can.</p></div>
+    <div class="b-card"><div class="b-dot"></div><h4>Yours forever</h4><p>Once you have it, no one can take it. It travels with you everywhere.</p></div>
+  </div>
+</div>
+<hr class="divider" />
+<div class="features-section">
+  <h2>How Zaid works.</h2>
+  <div class="f-grid">
+    <div class="f-card"><p class="f-num">01</p><h4>AI pronunciation feedback</h4><p>Recite into your phone. Get instant tajweed feedback in real time.</p></div>
+    <div class="f-card"><p class="f-num">02</p><h4>Personalised to you</h4><p>Your level, your pace, your schedule. Built around your life.</p></div>
+    <div class="f-card"><p class="f-num">03</p><h4>Smart revision</h4><p>Zaid learns where you need attention and keeps you consistent.</p></div>
+    <div class="f-card"><p class="f-num">04</p><h4>Progress that motivates</h4><p>Streaks and milestones that keep you going — not guilt you.</p></div>
+  </div>
+</div>
+<div class="founder-section">
+  <div class="founder-inner">
+    <div class="avatar">S</div>
+    <div class="founder-text">
+      <p>"I'm a Hafiz. I also know what it feels like to let your revision slip. Life happens. I built Zaid because I needed it — and I know I'm not alone."</p>
+      <span><strong>Shahid</strong> — Hafiz and founder of Zaid</span>
+    </div>
+  </div>
+</div>
+<div class="cta-section">
+  <div class="name-tag"><span class="dot"></span>Named after Zayd ibn Thabit — entrusted to preserve the Quran</div>
+  <h2>Your Hifz is<br/><span>worth protecting.</span></h2>
+  <p>Join the waitlist. Be first when Zaid launches.</p>
+  <a class="cta-btn" href="http://eepurl.com/jDybL6" target="_blank">Join the waitlist</a>
+  <p class="note">Free to join. No spam, ever.</p>
+</div>
+</body>
+</html>
