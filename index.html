@@ -15,7 +15,7 @@
   .status-bar h1 { color: #fff; font-size: 18px; font-weight: 500; }
   .status-bar span { color: rgba(255,255,255,0.8); font-size: 13px; }
   .screen-body { flex: 1; padding: 24px 20px; overflow-y: auto; }
-  .bottom-nav { border-top: 0.5px solid #e0e0e0; display: flex; background: #fff; }
+  .bottom-nav { border-top: 0.5px solid #e0e0e0; display: flex; background: #fff; flex-shrink: 0; }
   .nav-item { flex: 1; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border: none; background: none; }
   .nav-item svg { width: 20px; height: 20px; }
   .nav-item span { font-size: 10px; color: #999; }
@@ -28,6 +28,13 @@
   .option-btn { width: 100%; padding: 14px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; background: #fff; font-size: 15px; color: #1a1a1a; text-align: left; cursor: pointer; margin-bottom: 10px; transition: all 0.15s; }
   .option-btn:hover { border-color: #1D9E75; background: #f0fdf8; }
   .option-btn.selected { border-color: #1D9E75; background: #E1F5EE; color: #085041; font-weight: 500; }
+  .gender-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .gender-btn { padding: 24px 16px; border: 0.5px solid #e0e0e0; border-radius: 16px; background: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: all 0.15s; }
+  .gender-btn:hover { border-color: #1D9E75; background: #f0fdf8; }
+  .gender-btn.selected { border-color: #1D9E75; background: #E1F5EE; }
+  .gender-btn .icon { font-size: 40px; }
+  .gender-btn .label { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+  .gender-btn.selected .label { color: #085041; }
   .input-field { width: 100%; padding: 13px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; }
   .input-field:focus { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
   .btn-primary { width: 100%; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 8px; }
@@ -124,10 +131,10 @@
 </div>
 
 <div class="screen" id="screen-onboard-1">
-  <div class="status-bar"><h1>Zaid</h1><span>1 of 5</span></div>
+  <div class="status-bar"><h1>Zaid</h1><span>1 of 6</span></div>
   <div class="screen-body">
     <div class="progress-label">Setting up your profile</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:20%"></div></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:16%"></div></div>
     <h2>Let's get to know you</h2>
     <p class="sub">This takes less than 2 minutes.</p>
     <input class="input-field" type="text" id="ob-name" placeholder="Your full name" />
@@ -139,11 +146,33 @@
   </div>
 </div>
 
+<div class="screen" id="screen-onboard-gender">
+  <div class="status-bar"><h1>Zaid</h1><span>2 of 6</span></div>
+  <div class="screen-body">
+    <div class="progress-label">Your profile</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:33%"></div></div>
+    <h2>Are you male or female?</h2>
+    <p class="sub">This helps us personalise your experience.</p>
+    <div class="gender-grid">
+      <button class="gender-btn" id="gender-male" onclick="selectGender('male')">
+        <span class="icon">👨</span>
+        <span class="label">Male</span>
+      </button>
+      <button class="gender-btn" id="gender-female" onclick="selectGender('female')">
+        <span class="icon">👩</span>
+        <span class="label">Female</span>
+      </button>
+    </div>
+    <button class="btn-primary" onclick="nextOnboardGender()">Continue</button>
+    <p class="error-msg" id="ob-gender-error"></p>
+  </div>
+</div>
+
 <div class="screen" id="screen-onboard-2">
-  <div class="status-bar"><h1>Zaid</h1><span>2 of 5</span></div>
+  <div class="status-bar"><h1>Zaid</h1><span>3 of 6</span></div>
   <div class="screen-body">
     <div class="progress-label">Your Quran journey</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:40%"></div></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:50%"></div></div>
     <h2>Where are you on your journey?</h2>
     <p class="sub">Choose the option that best describes you.</p>
     <button class="option-btn" onclick="selectOption(this,'journey','hafiz')">I am already a Hafiz</button>
@@ -155,10 +184,10 @@
 </div>
 
 <div class="screen" id="screen-onboard-3">
-  <div class="status-bar"><h1>Zaid</h1><span>3 of 5</span></div>
+  <div class="status-bar"><h1>Zaid</h1><span>4 of 6</span></div>
   <div class="screen-body">
     <div class="progress-label">Your Hifz</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:60%"></div></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:66%"></div></div>
     <h2 id="ob3-title">When did you complete your Hifz?</h2>
     <p class="sub">This helps Zaid understand where to start.</p>
     <div id="ob3-hafiz">
@@ -171,16 +200,20 @@
       <button class="option-btn" onclick="selectOption(this,'learning-stage','halfway')">Halfway through</button>
       <button class="option-btn" onclick="selectOption(this,'learning-stage','nearly')">Nearly complete</button>
     </div>
+    <div id="ob3-parent" style="display:none;">
+      <button class="option-btn" onclick="selectOption(this,'parent-type','parent')">I am a parent</button>
+      <button class="option-btn" onclick="selectOption(this,'parent-type','teacher')">I am a teacher or Ustadh</button>
+    </div>
     <button class="btn-primary" onclick="nextOnboard3()" style="margin-top:16px;">Continue</button>
     <p class="error-msg" id="ob3-error"></p>
   </div>
 </div>
 
 <div class="screen" id="screen-onboard-4">
-  <div class="status-bar"><h1>Zaid</h1><span>4 of 5</span></div>
+  <div class="status-bar"><h1>Zaid</h1><span>5 of 6</span></div>
   <div class="screen-body">
     <div class="progress-label">Your revision habits</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:80%"></div></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:83%"></div></div>
     <h2>How often do you currently revise?</h2>
     <p class="sub">Be honest — Zaid won't judge you.</p>
     <button class="option-btn" onclick="selectOption(this,'revision-freq','daily')">Every day</button>
@@ -192,7 +225,7 @@
 </div>
 
 <div class="screen" id="screen-onboard-5">
-  <div class="status-bar"><h1>Zaid</h1><span>5 of 5</span></div>
+  <div class="status-bar"><h1>Zaid</h1><span>6 of 6</span></div>
   <div class="screen-body">
     <div class="progress-label">Almost done</div>
     <div class="progress-wrap"><div class="progress-fill" style="width:100%"></div></div>
@@ -217,7 +250,7 @@
       </div>
       <div style="font-size:28px;">🔥</div>
     </div>
-    <div class="today-card" onclick="showScreen('screen-recite')">
+    <div class="today-card" onclick="showTab('recite')">
       <div class="today-label">Today's revision</div>
       <div class="today-title">Surah An-Nas</div>
       <div class="today-sub">Tap to begin reciting</div>
@@ -236,19 +269,19 @@
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item active" onclick="showTab('dashboard')">
+    <button class="nav-item active" id="nav-dashboard" onclick="showTab('dashboard')">
       <svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg>
       <span>Home</span>
     </button>
-    <button class="nav-item" onclick="showTab('schedule')">
+    <button class="nav-item" id="nav-schedule" onclick="showTab('schedule')">
       <svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg>
       <span>Schedule</span>
     </button>
-    <button class="nav-item" onclick="showTab('recite')">
+    <button class="nav-item" id="nav-recite" onclick="showTab('recite')">
       <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg>
       <span>Recite</span>
     </button>
-    <button class="nav-item" onclick="showTab('progress')">
+    <button class="nav-item" id="nav-progress" onclick="showTab('progress')">
       <svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg>
       <span>Progress</span>
     </button>
@@ -310,6 +343,12 @@
       <div class="session-count" id="session-count">0 of 8 words</div>
     </div>
   </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
+    <button class="nav-item active" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Recite</span></button>
+    <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
+  </div>
 </div>
 
 <div class="screen" id="screen-progress">
@@ -328,7 +367,7 @@
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
     <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
-    <button class="nav-item active" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#1D9E75"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#1D9E75"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#1D9E75"/></svg><span>Progress</span></button>
+    <button class="nav-item active" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#1D9E75"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#1D9E75"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Progress</span></button>
   </div>
 </div>
 
@@ -356,6 +395,18 @@ function showTab(tab) {
   showScreen(map[tab]);
 }
 
+function selectGender(gender) {
+  userData.gender = gender;
+  document.getElementById('gender-male').classList.toggle('selected', gender === 'male');
+  document.getElementById('gender-female').classList.toggle('selected', gender === 'female');
+  document.getElementById('ob-gender-error').textContent = '';
+}
+
+function nextOnboardGender() {
+  if (!userData.gender) { document.getElementById('ob-gender-error').textContent = 'Please select an option.'; return; }
+  showScreen('screen-onboard-2');
+}
+
 function selectOption(el, group, val) {
   document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
@@ -370,7 +421,7 @@ function nextOnboard1() {
   if (!name || !email || !password || !dob) { document.getElementById('ob1-error').textContent = 'Please fill in all fields.'; return; }
   userData.name = name; userData.email = email; userData.password = password; userData.dob = dob;
   document.getElementById('ob1-error').textContent = '';
-  showScreen('screen-onboard-2');
+  showScreen('screen-onboard-gender');
 }
 
 function nextOnboard2() {
@@ -380,19 +431,33 @@ function nextOnboard2() {
     document.getElementById('ob3-title').textContent = 'When did you complete your Hifz?';
     document.getElementById('ob3-hafiz').style.display = 'block';
     document.getElementById('ob3-learning').style.display = 'none';
-  } else {
+    document.getElementById('ob3-parent').style.display = 'none';
+  } else if (userData.journey === 'learning') {
     document.getElementById('ob3-title').textContent = 'Where are you in your journey?';
     document.getElementById('ob3-hafiz').style.display = 'none';
     document.getElementById('ob3-learning').style.display = 'block';
+    document.getElementById('ob3-parent').style.display = 'none';
+  } else {
+    document.getElementById('ob3-title').textContent = 'What is your role?';
+    document.getElementById('ob3-hafiz').style.display = 'none';
+    document.getElementById('ob3-learning').style.display = 'none';
+    document.getElementById('ob3-parent').style.display = 'block';
   }
   showScreen('screen-onboard-3');
 }
 
 function nextOnboard3() {
-  const key = userData.journey === 'hafiz' ? 'hifz-when' : 'learning-stage';
+  let key = 'hifz-when';
+  if (userData.journey === 'learning') key = 'learning-stage';
+  if (userData.journey === 'parent') key = 'parent-type';
   if (!userData[key]) { document.getElementById('ob3-error').textContent = 'Please select an option.'; return; }
   document.getElementById('ob3-error').textContent = '';
-  showScreen('screen-onboard-4');
+  if (userData.journey === 'parent') {
+    buildJuzGrid();
+    showScreen('screen-onboard-5');
+  } else {
+    showScreen('screen-onboard-4');
+  }
 }
 
 function nextOnboard4() {
@@ -427,10 +492,10 @@ async function finishOnboarding() {
     const { data, error } = await sb.auth.signUp({
       email: userData.email,
       password: userData.password,
-      options: { data: { full_name: userData.name, dob: userData.dob, journey: userData.journey, revision_freq: userData['revision-freq'], weak_juz: userData['weak-juz'] || [] } }
+      options: { data: { full_name: userData.name, dob: userData.dob, gender: userData.gender, journey: userData.journey, revision_freq: userData['revision-freq'], weak_juz: userData['weak-juz'] || [] } }
     });
     if (error) throw error;
-    loadDashboard(userData.name, userData.journey);
+    loadDashboard(userData.name, userData.journey, userData.gender);
     showScreen('screen-dashboard');
   } catch(e) {
     document.getElementById('ob5-error').textContent = e.message || 'Something went wrong. Please try again.';
@@ -446,18 +511,20 @@ async function handleLogin() {
     const { data, error } = await sb.auth.signInWithPassword({ email, password });
     if (error) throw error;
     const meta = data.user.user_metadata;
-    loadDashboard(meta.full_name, meta.journey);
+    loadDashboard(meta.full_name, meta.journey, meta.gender);
     showScreen('screen-dashboard');
   } catch(e) {
     document.getElementById('login-error').textContent = 'Invalid email or password.';
   }
 }
 
-function loadDashboard(fullName, journey) {
+function loadDashboard(fullName, journey, gender) {
   const firstName = fullName ? fullName.split(' ')[0] : 'there';
+  const isFemale = gender === 'female';
+  const title = isFemale ? 'Hafiza' : 'Hafiz';
   const isHafiz = journey === 'hafiz';
-  document.getElementById('dash-name').textContent = `Assalamu Alaikum, Hafiz ${firstName}`;
-  document.getElementById('dash-sub').textContent = isHafiz ? 'Hafiz · Ready to revise' : 'On the path to becoming a Hafiz';
+  document.getElementById('dash-name').textContent = `Assalamu Alaikum, ${title} ${firstName}`;
+  document.getElementById('dash-sub').textContent = isHafiz ? `${title} · Ready to revise` : journey === 'parent' ? 'Supporting the next generation' : 'On the path to becoming a Hafiz';
   buildSchedule();
 }
 
@@ -540,13 +607,13 @@ function endSession() {
   document.getElementById('session-bar').style.width = '0%';
   document.getElementById('session-count').textContent = `0 of ${totalWords} words`;
   wordsRevealed = 0;
-  showScreen('screen-dashboard');
+  showTab('dashboard');
 }
 
 sb.auth.onAuthStateChange((event, session) => {
   if (session) {
     const meta = session.user.user_metadata;
-    loadDashboard(meta.full_name, meta.journey);
+    loadDashboard(meta.full_name, meta.journey, meta.gender);
     showScreen('screen-dashboard');
   }
 });
