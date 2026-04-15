@@ -20,7 +20,6 @@
   .nav-item svg { width: 20px; height: 20px; }
   .nav-item span { font-size: 10px; color: #999; }
   .nav-item.active span { color: #1D9E75; }
-  .nav-item.active svg path, .nav-item.active svg rect, .nav-item.active svg circle { fill: #1D9E75; }
   h2 { font-size: 22px; font-weight: 500; color: #1a1a1a; margin-bottom: 6px; }
   .sub { font-size: 14px; color: #666; margin-bottom: 24px; line-height: 1.5; }
   .progress-wrap { background: #e0e0e0; border-radius: 4px; height: 4px; margin-bottom: 28px; }
@@ -52,7 +51,7 @@
   .recite-header { background: #1D9E75; padding: 20px; text-align: center; }
   .recite-header h2 { color: #fff; font-size: 20px; margin-bottom: 4px; }
   .recite-header p { color: rgba(255,255,255,0.8); font-size: 13px; }
-  .blank-page { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; min-height: 160px; display: flex; align-items: center; justify-content: center; margin: 20px 0; padding: 20px; position: relative; }
+  .blank-page { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; min-height: 160px; display: flex; align-items: center; justify-content: center; margin: 20px 0; padding: 20px; }
   .arabic-text { font-size: 22px; color: #1a1a1a; text-align: center; line-height: 1.8; direction: rtl; }
   .arabic-text.hidden { color: transparent; user-select: none; }
   .word { display: inline-block; margin: 0 4px; transition: color 0.2s; }
@@ -250,7 +249,7 @@
       <span>Recite</span>
     </button>
     <button class="nav-item" onclick="showTab('progress')">
-      <svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/><rect x="17" y="8" width="1" height="1" fill="none"/></svg>
+      <svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg>
       <span>Progress</span>
     </button>
   </div>
@@ -377,8 +376,15 @@ function nextOnboard1() {
 function nextOnboard2() {
   if (!userData.journey) { document.getElementById('ob2-error').textContent = 'Please select an option.'; return; }
   document.getElementById('ob2-error').textContent = '';
-  if (userData.journey === 'hafiz') { document.getElementById('ob3-title').textContent = 'When did you complete your Hifz?'; document.getElementById('ob3-hafiz').style.display = 'block'; document.getElementById('ob3-learning').style.display = 'none'; }
-  else { document.getElementById('ob3-title').textContent = 'Where are you in your journey?'; document.getElementById('ob3-hafiz').style.display = 'none'; document.getElementById('ob3-learning').style.display = 'block'; }
+  if (userData.journey === 'hafiz') {
+    document.getElementById('ob3-title').textContent = 'When did you complete your Hifz?';
+    document.getElementById('ob3-hafiz').style.display = 'block';
+    document.getElementById('ob3-learning').style.display = 'none';
+  } else {
+    document.getElementById('ob3-title').textContent = 'Where are you in your journey?';
+    document.getElementById('ob3-hafiz').style.display = 'none';
+    document.getElementById('ob3-learning').style.display = 'block';
+  }
   showScreen('screen-onboard-3');
 }
 
@@ -418,9 +424,13 @@ async function finishOnboarding() {
   const btn = document.querySelector('#screen-onboard-5 .btn-primary');
   btn.disabled = true; btn.textContent = 'Creating your account...';
   try {
-    const { data, error } = await sb.auth.signUp({ email: userData.email, password: userData.password, options: { data: { full_name: userData.name, dob: userData.dob, journey: userData.journey, revision_freq: userData['revision-freq'], weak_juz: userData['weak-juz'] || [] } } });
+    const { data, error } = await sb.auth.signUp({
+      email: userData.email,
+      password: userData.password,
+      options: { data: { full_name: userData.name, dob: userData.dob, journey: userData.journey, revision_freq: userData['revision-freq'], weak_juz: userData['weak-juz'] || [] } }
+    });
     if (error) throw error;
-    loadDashboard();
+    loadDashboard(userData.name, userData.journey);
     showScreen('screen-dashboard');
   } catch(e) {
     document.getElementById('ob5-error').textContent = e.message || 'Something went wrong. Please try again.';
@@ -431,26 +441,24 @@ async function finishOnboarding() {
 async function handleLogin() {
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
+  document.getElementById('login-error').textContent = '';
   try {
     const { data, error } = await sb.auth.signInWithPassword({ email, password });
     if (error) throw error;
-    loadDashboard();
+    const meta = data.user.user_metadata;
+    loadDashboard(meta.full_name, meta.journey);
     showScreen('screen-dashboard');
   } catch(e) {
     document.getElementById('login-error').textContent = 'Invalid email or password.';
   }
 }
 
-function loadDashboard() {
-  sb.auth.getUser().then(({ data }) => {
-    if (data.user) {
-      const meta = data.user.user_metadata;
-      const name = meta.full_name || 'Hafiz';
-      document.getElementById('dash-name').textContent = `Assalamu Alaikum, ${name.split(' ')[0]}`;
-      document.getElementById('dash-sub').textContent = meta.journey === 'hafiz' ? 'Hafiz · Ready to revise' : 'On the path to becoming a Hafiz';
-      buildSchedule();
-    }
-  });
+function loadDashboard(fullName, journey) {
+  const firstName = fullName ? fullName.split(' ')[0] : 'there';
+  const isHafiz = journey === 'hafiz';
+  document.getElementById('dash-name').textContent = `Assalamu Alaikum, Hafiz ${firstName}`;
+  document.getElementById('dash-sub').textContent = isHafiz ? 'Hafiz · Ready to revise' : 'On the path to becoming a Hafiz';
+  buildSchedule();
 }
 
 function buildSchedule() {
@@ -536,7 +544,11 @@ function endSession() {
 }
 
 sb.auth.onAuthStateChange((event, session) => {
-  if (session) { loadDashboard(); showScreen('screen-dashboard'); }
+  if (session) {
+    const meta = session.user.user_metadata;
+    loadDashboard(meta.full_name, meta.journey);
+    showScreen('screen-dashboard');
+  }
 });
 </script>
 </body>
