@@ -14,6 +14,7 @@
   .status-bar { background: #1D9E75; padding: 14px 20px 12px; display: flex; align-items: center; justify-content: space-between; }
   .status-bar h1 { color: #fff; font-size: 18px; font-weight: 500; }
   .status-bar span { color: rgba(255,255,255,0.8); font-size: 13px; }
+  .back-btn { background: none; border: none; color: rgba(255,255,255,0.9); font-size: 14px; cursor: pointer; padding: 0; }
   .screen-body { flex: 1; padding: 24px 20px; overflow-y: auto; }
   .bottom-nav { border-top: 0.5px solid #e0e0e0; display: flex; background: #fff; flex-shrink: 0; }
   .nav-item { flex: 1; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border: none; background: none; }
@@ -101,6 +102,18 @@
   .splash-btn { padding: 16px 40px; background: #fff; color: #1D9E75; border: none; border-radius: 14px; font-size: 17px; font-weight: 500; cursor: pointer; margin-bottom: 12px; width: 100%; }
   .splash-link { color: rgba(255,255,255,0.8); font-size: 14px; cursor: pointer; text-decoration: underline; }
   .tag { display: inline-block; background: rgba(255,255,255,0.2); color: #fff; font-size: 11px; padding: 4px 12px; border-radius: 999px; margin-bottom: 20px; }
+  .link-card { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; padding: 20px; margin-bottom: 14px; text-align: center; }
+  .link-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+  .link-card p { font-size: 13px; color: #666; margin-bottom: 14px; line-height: 1.5; }
+  .link-code { font-size: 28px; font-weight: 500; color: #1D9E75; letter-spacing: 6px; margin: 10px 0; }
+  .student-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid #f0f0f0; }
+  .student-avatar { width: 36px; height: 36px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #0F6E56; flex-shrink: 0; }
+  .student-info { flex: 1; }
+  .student-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+  .student-detail { font-size: 12px; color: #999; }
+  .student-status { font-size: 11px; padding: 3px 8px; border-radius: 999px; }
+  .student-status.done { background: #E1F5EE; color: #0F6E56; }
+  .student-status.pending { background: #FCEBEB; color: #A32D2D; }
 </style>
 </head>
 <body>
@@ -131,10 +144,14 @@
 </div>
 
 <div class="screen" id="screen-onboard-1">
-  <div class="status-bar"><h1>Zaid</h1><span>1 of 6</span></div>
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-splash')">← Back</button>
+    <h1>Zaid</h1>
+    <span>1 of 5</span>
+  </div>
   <div class="screen-body">
     <div class="progress-label">Setting up your profile</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:16%"></div></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:20%"></div></div>
     <h2>Let's get to know you</h2>
     <p class="sub">This takes less than 2 minutes.</p>
     <input class="input-field" type="text" id="ob-name" placeholder="Your full name" />
@@ -147,11 +164,15 @@
 </div>
 
 <div class="screen" id="screen-onboard-gender">
-  <div class="status-bar"><h1>Zaid</h1><span>2 of 6</span></div>
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-onboard-1')">← Back</button>
+    <h1>Zaid</h1>
+    <span>2 of 5</span>
+  </div>
   <div class="screen-body">
     <div class="progress-label">Your profile</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:33%"></div></div>
-    <h2>Are you male or female?</h2>
+    <div class="progress-wrap"><div class="progress-fill" style="width:40%"></div></div>
+    <h2>Select your gender</h2>
     <p class="sub">This helps us personalise your experience.</p>
     <div class="gender-grid">
       <button class="gender-btn" id="gender-male" onclick="selectGender('male')">
@@ -169,10 +190,14 @@
 </div>
 
 <div class="screen" id="screen-onboard-2">
-  <div class="status-bar"><h1>Zaid</h1><span>3 of 6</span></div>
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-onboard-gender')">← Back</button>
+    <h1>Zaid</h1>
+    <span>3 of 5</span>
+  </div>
   <div class="screen-body">
     <div class="progress-label">Your Quran journey</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:50%"></div></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:60%"></div></div>
     <h2>Where are you on your journey?</h2>
     <p class="sub">Choose the option that best describes you.</p>
     <button class="option-btn" onclick="selectOption(this,'journey','hafiz')">I am already a Hafiz</button>
@@ -184,10 +209,14 @@
 </div>
 
 <div class="screen" id="screen-onboard-3">
-  <div class="status-bar"><h1>Zaid</h1><span>4 of 6</span></div>
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-onboard-2')">← Back</button>
+    <h1>Zaid</h1>
+    <span>4 of 5</span>
+  </div>
   <div class="screen-body">
-    <div class="progress-label">Your Hifz</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:66%"></div></div>
+    <div class="progress-label">A little more</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:80%"></div></div>
     <h2 id="ob3-title">When did you complete your Hifz?</h2>
     <p class="sub">This helps Zaid understand where to start.</p>
     <div id="ob3-hafiz">
@@ -200,32 +229,17 @@
       <button class="option-btn" onclick="selectOption(this,'learning-stage','halfway')">Halfway through</button>
       <button class="option-btn" onclick="selectOption(this,'learning-stage','nearly')">Nearly complete</button>
     </div>
-    <div id="ob3-parent" style="display:none;">
-      <button class="option-btn" onclick="selectOption(this,'parent-type','parent')">I am a parent</button>
-      <button class="option-btn" onclick="selectOption(this,'parent-type','teacher')">I am a teacher or Ustadh</button>
-    </div>
     <button class="btn-primary" onclick="nextOnboard3()" style="margin-top:16px;">Continue</button>
     <p class="error-msg" id="ob3-error"></p>
   </div>
 </div>
 
 <div class="screen" id="screen-onboard-4">
-  <div class="status-bar"><h1>Zaid</h1><span>5 of 6</span></div>
-  <div class="screen-body">
-    <div class="progress-label">Your revision habits</div>
-    <div class="progress-wrap"><div class="progress-fill" style="width:83%"></div></div>
-    <h2>How often do you currently revise?</h2>
-    <p class="sub">Be honest — Zaid won't judge you.</p>
-    <button class="option-btn" onclick="selectOption(this,'revision-freq','daily')">Every day</button>
-    <button class="option-btn" onclick="selectOption(this,'revision-freq','few')">A few times a week</button>
-    <button class="option-btn" onclick="selectOption(this,'revision-freq','rarely')">Rarely or not at all</button>
-    <button class="btn-primary" onclick="nextOnboard4()" style="margin-top:16px;">Continue</button>
-    <p class="error-msg" id="ob4-error"></p>
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-onboard-3')">← Back</button>
+    <h1>Zaid</h1>
+    <span>5 of 5</span>
   </div>
-</div>
-
-<div class="screen" id="screen-onboard-5">
-  <div class="status-bar"><h1>Zaid</h1><span>6 of 6</span></div>
   <div class="screen-body">
     <div class="progress-label">Almost done</div>
     <div class="progress-wrap"><div class="progress-fill" style="width:100%"></div></div>
@@ -233,8 +247,26 @@
     <p class="sub">Select all that apply. You can update this later.</p>
     <div id="juz-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;"></div>
     <button class="btn-primary" onclick="finishOnboarding()">Create my account</button>
-    <p class="error-msg" id="ob5-error"></p>
-    <p class="success-msg" id="ob5-success"></p>
+    <p class="error-msg" id="ob4-error"></p>
+    <p class="success-msg" id="ob4-success"></p>
+  </div>
+</div>
+
+<div class="screen" id="screen-onboard-parent">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-onboard-2')">← Back</button>
+    <h1>Zaid</h1>
+    <span>4 of 4</span>
+  </div>
+  <div class="screen-body">
+    <div class="progress-label">Almost done</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:100%"></div></div>
+    <h2>What is your role?</h2>
+    <p class="sub">This helps us set up your dashboard correctly.</p>
+    <button class="option-btn" onclick="selectOption(this,'parent-type','parent')">I am a parent</button>
+    <button class="option-btn" onclick="selectOption(this,'parent-type','teacher')">I am a teacher or Ustadh</button>
+    <button class="btn-primary" onclick="finishOnboarding()" style="margin-top:16px;">Create my account</button>
+    <p class="error-msg" id="ob-parent-error"></p>
   </div>
 </div>
 
@@ -256,35 +288,39 @@
       <div class="today-sub">Tap to begin reciting</div>
     </div>
     <div class="tile-grid">
-      <div class="tile">
-        <div class="tile-title">Juz revised</div>
-        <div class="tile-val">0</div>
-        <div class="tile-sub">this month</div>
-      </div>
-      <div class="tile">
-        <div class="tile-title">Sessions</div>
-        <div class="tile-val">0</div>
-        <div class="tile-sub">total</div>
-      </div>
+      <div class="tile"><div class="tile-title">Juz revised</div><div class="tile-val">0</div><div class="tile-sub">this month</div></div>
+      <div class="tile"><div class="tile-title">Sessions</div><div class="tile-val">0</div><div class="tile-sub">total</div></div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item active" id="nav-dashboard" onclick="showTab('dashboard')">
-      <svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg>
-      <span>Home</span>
-    </button>
-    <button class="nav-item" id="nav-schedule" onclick="showTab('schedule')">
-      <svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg>
-      <span>Schedule</span>
-    </button>
-    <button class="nav-item" id="nav-recite" onclick="showTab('recite')">
-      <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg>
-      <span>Recite</span>
-    </button>
-    <button class="nav-item" id="nav-progress" onclick="showTab('progress')">
-      <svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg>
-      <span>Progress</span>
-    </button>
+    <button class="nav-item active" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
+    <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-parent-dashboard">
+  <div class="status-bar"><h1>Zaid</h1></div>
+  <div class="screen-body">
+    <div class="greeting-name" id="parent-dash-name">Assalamu Alaikum</div>
+    <div class="greeting-sub" id="parent-dash-sub">Supporting the next generation</div>
+    <div class="link-card">
+      <h3>Link a student or child</h3>
+      <p>Share this code with your student or child. They enter it in their Zaid app to link your accounts.</p>
+      <div class="link-code" id="link-code">ZD-4821</div>
+      <button class="btn-primary" style="margin-top:0;" onclick="copyCode()">Copy code</button>
+    </div>
+    <h2 style="font-size:18px;margin-bottom:12px;">Your students</h2>
+    <div id="student-list">
+      <p style="font-size:14px;color:#999;text-align:center;padding:20px 0;">No students linked yet. Share your code to get started.</p>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item active" onclick="showTab('parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="14" cy="7" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
+    <button class="nav-item" onclick="showTab('parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
+    <button class="nav-item" onclick="showTab('parent-progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
   </div>
 </div>
 
@@ -357,10 +393,10 @@
     <h2>Your journey</h2>
     <p class="sub">Track your Hifz progress over time.</p>
     <div class="tile-grid">
-      <div class="tile"><div class="tile-title">Total sessions</div><div class="tile-val" id="prog-sessions">0</div></div>
-      <div class="tile"><div class="tile-title">Day streak</div><div class="tile-val" id="prog-streak">0</div></div>
+      <div class="tile"><div class="tile-title">Total sessions</div><div class="tile-val">0</div></div>
+      <div class="tile"><div class="tile-title">Day streak</div><div class="tile-val">0</div></div>
       <div class="tile"><div class="tile-title">Juz covered</div><div class="tile-val">0</div><div class="tile-sub">of 30</div></div>
-      <div class="tile"><div class="tile-title">Weak spots</div><div class="tile-val" id="prog-weak">—</div></div>
+      <div class="tile"><div class="tile-title">Weak spots</div><div class="tile-val">—</div></div>
     </div>
   </div>
   <div class="bottom-nav">
@@ -391,8 +427,17 @@ function showScreen(id) {
 }
 
 function showTab(tab) {
-  const map = { dashboard: 'screen-dashboard', schedule: 'screen-schedule', recite: 'screen-recite', progress: 'screen-progress' };
-  showScreen(map[tab]);
+  const map = {
+    dashboard: 'screen-dashboard',
+    schedule: 'screen-schedule',
+    recite: 'screen-recite',
+    progress: 'screen-progress',
+    'parent-dashboard': 'screen-parent-dashboard',
+    'parent-students': 'screen-parent-dashboard',
+    'parent-goals': 'screen-parent-dashboard',
+    'parent-progress': 'screen-parent-dashboard'
+  };
+  showScreen(map[tab] || 'screen-dashboard');
 }
 
 function selectGender(gender) {
@@ -427,44 +472,28 @@ function nextOnboard1() {
 function nextOnboard2() {
   if (!userData.journey) { document.getElementById('ob2-error').textContent = 'Please select an option.'; return; }
   document.getElementById('ob2-error').textContent = '';
+  if (userData.journey === 'parent') {
+    showScreen('screen-onboard-parent');
+    return;
+  }
   if (userData.journey === 'hafiz') {
     document.getElementById('ob3-title').textContent = 'When did you complete your Hifz?';
     document.getElementById('ob3-hafiz').style.display = 'block';
     document.getElementById('ob3-learning').style.display = 'none';
-    document.getElementById('ob3-parent').style.display = 'none';
-  } else if (userData.journey === 'learning') {
+  } else {
     document.getElementById('ob3-title').textContent = 'Where are you in your journey?';
     document.getElementById('ob3-hafiz').style.display = 'none';
     document.getElementById('ob3-learning').style.display = 'block';
-    document.getElementById('ob3-parent').style.display = 'none';
-  } else {
-    document.getElementById('ob3-title').textContent = 'What is your role?';
-    document.getElementById('ob3-hafiz').style.display = 'none';
-    document.getElementById('ob3-learning').style.display = 'none';
-    document.getElementById('ob3-parent').style.display = 'block';
   }
   showScreen('screen-onboard-3');
 }
 
 function nextOnboard3() {
-  let key = 'hifz-when';
-  if (userData.journey === 'learning') key = 'learning-stage';
-  if (userData.journey === 'parent') key = 'parent-type';
+  const key = userData.journey === 'hafiz' ? 'hifz-when' : 'learning-stage';
   if (!userData[key]) { document.getElementById('ob3-error').textContent = 'Please select an option.'; return; }
   document.getElementById('ob3-error').textContent = '';
-  if (userData.journey === 'parent') {
-    buildJuzGrid();
-    showScreen('screen-onboard-5');
-  } else {
-    showScreen('screen-onboard-4');
-  }
-}
-
-function nextOnboard4() {
-  if (!userData['revision-freq']) { document.getElementById('ob4-error').textContent = 'Please select an option.'; return; }
-  document.getElementById('ob4-error').textContent = '';
   buildJuzGrid();
-  showScreen('screen-onboard-5');
+  showScreen('screen-onboard-4');
 }
 
 function buildJuzGrid() {
@@ -486,20 +515,22 @@ function buildJuzGrid() {
 }
 
 async function finishOnboarding() {
-  const btn = document.querySelector('#screen-onboard-5 .btn-primary');
-  btn.disabled = true; btn.textContent = 'Creating your account...';
+  const isParent = userData.journey === 'parent';
+  const errorEl = isParent ? document.getElementById('ob-parent-error') : document.getElementById('ob4-error');
+  if (isParent && !userData['parent-type']) { errorEl.textContent = 'Please select your role.'; return; }
+  const btns = document.querySelectorAll('#screen-onboard-4 .btn-primary, #screen-onboard-parent .btn-primary');
+  btns.forEach(b => { b.disabled = true; b.textContent = 'Creating your account...'; });
   try {
     const { data, error } = await sb.auth.signUp({
       email: userData.email,
       password: userData.password,
-      options: { data: { full_name: userData.name, dob: userData.dob, gender: userData.gender, journey: userData.journey, revision_freq: userData['revision-freq'], weak_juz: userData['weak-juz'] || [] } }
+      options: { data: { full_name: userData.name, dob: userData.dob, gender: userData.gender, journey: userData.journey, parent_type: userData['parent-type'] || null, revision_freq: userData['revision-freq'] || null, weak_juz: userData['weak-juz'] || [] } }
     });
     if (error) throw error;
     loadDashboard(userData.name, userData.journey, userData.gender);
-    showScreen('screen-dashboard');
   } catch(e) {
-    document.getElementById('ob5-error').textContent = e.message || 'Something went wrong. Please try again.';
-    btn.disabled = false; btn.textContent = 'Create my account';
+    errorEl.textContent = e.message || 'Something went wrong. Please try again.';
+    btns.forEach(b => { b.disabled = false; b.textContent = 'Create my account'; });
   }
 }
 
@@ -512,7 +543,6 @@ async function handleLogin() {
     if (error) throw error;
     const meta = data.user.user_metadata;
     loadDashboard(meta.full_name, meta.journey, meta.gender);
-    showScreen('screen-dashboard');
   } catch(e) {
     document.getElementById('login-error').textContent = 'Invalid email or password.';
   }
@@ -522,10 +552,27 @@ function loadDashboard(fullName, journey, gender) {
   const firstName = fullName ? fullName.split(' ')[0] : 'there';
   const isFemale = gender === 'female';
   const title = isFemale ? 'Hafiza' : 'Hafiz';
-  const isHafiz = journey === 'hafiz';
-  document.getElementById('dash-name').textContent = `Assalamu Alaikum, ${title} ${firstName}`;
-  document.getElementById('dash-sub').textContent = isHafiz ? `${title} · Ready to revise` : journey === 'parent' ? 'Supporting the next generation' : 'On the path to becoming a Hafiz';
-  buildSchedule();
+  if (journey === 'parent') {
+    document.getElementById('parent-dash-name').textContent = `Assalamu Alaikum, ${firstName}`;
+    document.getElementById('parent-dash-sub').textContent = 'Supporting the next generation';
+    const code = 'ZD-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('link-code').textContent = code;
+    showScreen('screen-parent-dashboard');
+  } else {
+    document.getElementById('dash-name').textContent = `Assalamu Alaikum, ${title} ${firstName}`;
+    document.getElementById('dash-sub').textContent = journey === 'hafiz' ? `${title} · Ready to revise` : 'On the path to becoming a Hafiz';
+    buildSchedule();
+    showScreen('screen-dashboard');
+  }
+}
+
+function copyCode() {
+  const code = document.getElementById('link-code').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.querySelector('#screen-parent-dashboard .btn-primary');
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy code'; }, 2000);
+  });
 }
 
 function buildSchedule() {
@@ -543,8 +590,7 @@ function buildSchedule() {
 
 function togglePeek() {
   isPeeking = !isPeeking;
-  const display = document.getElementById('arabic-display');
-  display.classList.toggle('hidden', !isPeeking);
+  document.getElementById('arabic-display').classList.toggle('hidden', !isPeeking);
   document.querySelector('.peek-btn').textContent = isPeeking ? 'Hide' : 'Peek';
 }
 
@@ -602,7 +648,7 @@ function processRecitation(transcript) {
 
 function endSession() {
   stopListening();
-  document.querySelectorAll('.word').forEach(w => { w.classList.remove('correct','error','current'); });
+  document.querySelectorAll('.word').forEach(w => w.classList.remove('correct','error','current'));
   document.getElementById('arabic-display').classList.add('hidden');
   document.getElementById('session-bar').style.width = '0%';
   document.getElementById('session-count').textContent = `0 of ${totalWords} words`;
@@ -614,7 +660,6 @@ sb.auth.onAuthStateChange((event, session) => {
   if (session) {
     const meta = session.user.user_metadata;
     loadDashboard(meta.full_name, meta.journey, meta.gender);
-    showScreen('screen-dashboard');
   }
 });
 </script>
