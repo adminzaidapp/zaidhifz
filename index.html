@@ -2,135 +2,542 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <title>Zaid — The Quran Never Forgets You</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; }
-  .hero { text-align: center; padding: 3.5rem 2rem 2.5rem; }
-  .badge { display: inline-block; background: #E1F5EE; color: #0F6E56; font-size: 12px; padding: 5px 14px; border-radius: 999px; letter-spacing: 0.05em; margin-bottom: 1.25rem; }
-  .hero h1 { font-size: 44px; font-weight: 500; color: #1a1a1a; line-height: 1.15; margin-bottom: 1rem; }
-  .hero h1 span { color: #1D9E75; }
-  .hero p { font-size: 17px; color: #555; max-width: 420px; margin: 0 auto 1.75rem; line-height: 1.6; }
-  .cta-btn { display: inline-block; padding: 13px 32px; background: #1D9E75; color: #fff; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; }
-  .cta-btn:hover { background: #0F6E56; }
-  .note { font-size: 12px; color: #999; margin-top: 0.6rem; }
-  .hadith-bar { background: #1D9E75; padding: 1.25rem 2rem; text-align: center; }
-  .hadith-bar p { font-size: 15px; font-style: italic; color: #fff; margin-bottom: 3px; }
-  .hadith-bar span { font-size: 12px; color: rgba(255,255,255,0.75); }
-  .section { padding: 2.5rem 2rem; max-width: 800px; margin: 0 auto; }
-  .section-label { font-size: 11px; color: #999; letter-spacing: 0.08em; margin-bottom: 1.25rem; text-align: center; }
-  .path-top { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 14px; }
-  @media(max-width: 600px) { .path-top { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
-  .path-card { border-radius: 12px; padding: 1.5rem; border: 0.5px solid #e0e0e0; background: #fff; }
-  .path-card.accent { background: #E1F5EE; border-color: #9FE1CB; }
-  .path-card.accent2 { background: #f0f7ff; border-color: #B5D4F4; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; align-items: start; }
-  .path-tag { font-size: 10px; letter-spacing: 0.08em; color: #1D9E75; font-weight: 500; margin-bottom: 0.6rem; }
-  .path-card.accent2 .path-tag { color: #185FA5; grid-column: 1 / -1; margin-bottom: 0; }
-  .path-card.accent2 h3 { color: #0C447C; grid-column: 1; margin-bottom: 0; }
-  .path-card.accent2 p { color: #185FA5; grid-column: 2 / -1; }
-  .path-card h3 { font-size: 17px; font-weight: 500; color: #1a1a1a; margin-bottom: 0.6rem; line-height: 1.3; }
-  .path-card.accent h3 { color: #085041; }
-  .path-card p { font-size: 13px; color: #555; line-height: 1.65; }
-  .path-card.accent p { color: #0F6E56; }
-  .divider { border: none; border-top: 0.5px solid #e0e0e0; margin: 0 2rem; }
-  .blessings-section { padding: 2.5rem 2rem; max-width: 800px; margin: 0 auto; }
-  .blessings-section h2 { font-size: 24px; font-weight: 500; margin-bottom: 0.4rem; }
-  .blessings-section .sub { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
-  .blessings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-  .b-card { border-radius: 12px; padding: 1.1rem; border: 0.5px solid #e0e0e0; background: #f9f9f9; }
-  .b-dot { width: 8px; height: 8px; border-radius: 50%; background: #1D9E75; margin-bottom: 10px; }
-  .b-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
-  .b-card p { font-size: 12px; color: #666; line-height: 1.5; }
-  .features-section { padding: 2.5rem 2rem; max-width: 800px; margin: 0 auto; }
-  .features-section h2 { font-size: 24px; font-weight: 500; margin-bottom: 1.5rem; }
-  .f-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-  .f-card { border-radius: 12px; padding: 1.1rem; border: 0.5px solid #e0e0e0; background: #fff; }
-  .f-num { font-size: 11px; color: #1D9E75; font-weight: 500; margin-bottom: 8px; }
-  .f-card h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
-  .f-card p { font-size: 12px; color: #666; line-height: 1.5; }
-  .founder-section { padding: 0 2rem 2rem; max-width: 800px; margin: 0 auto; }
-  .founder-inner { display: flex; gap: 16px; align-items: flex-start; background: #f9f9f9; border-radius: 12px; padding: 1.5rem; border: 0.5px solid #e0e0e0; }
-  .avatar { width: 44px; height: 44px; border-radius: 50%; background: #1D9E75; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; color: #fff; flex-shrink: 0; }
-  .founder-text p { font-size: 14px; font-style: italic; line-height: 1.7; margin-bottom: 6px; }
-  .founder-text span { font-size: 12px; color: #999; }
-  .founder-text strong { color: #555; font-weight: 500; }
-  .cta-section { padding: 2.5rem 2rem 3.5rem; text-align: center; background: #f9f9f9; border-top: 0.5px solid #e0e0e0; }
-  .cta-section h2 { font-size: 28px; font-weight: 500; margin-bottom: 0.5rem; line-height: 1.2; }
-  .cta-section h2 span { color: #1D9E75; }
-  .cta-section p { font-size: 14px; color: #555; margin-bottom: 1.5rem; }
-  .name-tag { display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px; border: 0.5px solid #e0e0e0; border-radius: 999px; font-size: 11px; color: #999; margin-bottom: 1.75rem; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; }
+  .app { width: 100%; max-width: 430px; min-height: 100vh; background: #fff; display: flex; flex-direction: column; position: relative; }
+  .screen { display: none; flex-direction: column; flex: 1; }
+  .screen.active { display: flex; }
+  .status-bar { background: #1D9E75; padding: 14px 20px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .status-bar h1 { color: #fff; font-size: 18px; font-weight: 500; }
+  .status-bar span { color: rgba(255,255,255,0.8); font-size: 13px; }
+  .screen-body { flex: 1; padding: 24px 20px; overflow-y: auto; }
+  .bottom-nav { border-top: 0.5px solid #e0e0e0; display: flex; background: #fff; }
+  .nav-item { flex: 1; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border: none; background: none; }
+  .nav-item svg { width: 20px; height: 20px; }
+  .nav-item span { font-size: 10px; color: #999; }
+  .nav-item.active span { color: #1D9E75; }
+  .nav-item.active svg path, .nav-item.active svg rect, .nav-item.active svg circle { fill: #1D9E75; }
+  h2 { font-size: 22px; font-weight: 500; color: #1a1a1a; margin-bottom: 6px; }
+  .sub { font-size: 14px; color: #666; margin-bottom: 24px; line-height: 1.5; }
+  .progress-wrap { background: #e0e0e0; border-radius: 4px; height: 4px; margin-bottom: 28px; }
+  .progress-fill { background: #1D9E75; height: 4px; border-radius: 4px; transition: width 0.3s; }
+  .progress-label { font-size: 11px; color: #999; margin-bottom: 8px; }
+  .option-btn { width: 100%; padding: 14px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; background: #fff; font-size: 15px; color: #1a1a1a; text-align: left; cursor: pointer; margin-bottom: 10px; transition: all 0.15s; }
+  .option-btn:hover { border-color: #1D9E75; background: #f0fdf8; }
+  .option-btn.selected { border-color: #1D9E75; background: #E1F5EE; color: #085041; font-weight: 500; }
+  .input-field { width: 100%; padding: 13px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; }
+  .input-field:focus { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
+  .btn-primary { width: 100%; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 8px; }
+  .btn-primary:hover { background: #0F6E56; }
+  .btn-primary:disabled { background: #9FE1CB; cursor: not-allowed; }
+  .btn-secondary { width: 100%; padding: 14px; background: transparent; color: #1D9E75; border: 0.5px solid #1D9E75; border-radius: 12px; font-size: 15px; cursor: pointer; margin-top: 8px; }
+  .greeting-name { font-size: 26px; font-weight: 500; color: #1a1a1a; }
+  .greeting-sub { font-size: 14px; color: #666; margin-top: 2px; margin-bottom: 20px; }
+  .streak-card { background: #E1F5EE; border-radius: 14px; padding: 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .streak-num { font-size: 32px; font-weight: 500; color: #0F6E56; }
+  .streak-label { font-size: 12px; color: #1D9E75; }
+  .today-card { background: #1D9E75; border-radius: 14px; padding: 18px; margin-bottom: 16px; cursor: pointer; }
+  .today-label { font-size: 11px; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+  .today-title { font-size: 18px; font-weight: 500; color: #fff; }
+  .today-sub { font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 4px; }
+  .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .tile { background: #f9f9f9; border-radius: 12px; padding: 14px; border: 0.5px solid #e0e0e0; }
+  .tile-title { font-size: 12px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+  .tile-val { font-size: 20px; font-weight: 500; color: #1D9E75; }
+  .tile-sub { font-size: 11px; color: #999; }
+  .recite-header { background: #1D9E75; padding: 20px; text-align: center; }
+  .recite-header h2 { color: #fff; font-size: 20px; margin-bottom: 4px; }
+  .recite-header p { color: rgba(255,255,255,0.8); font-size: 13px; }
+  .blank-page { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; min-height: 160px; display: flex; align-items: center; justify-content: center; margin: 20px 0; padding: 20px; position: relative; }
+  .arabic-text { font-size: 22px; color: #1a1a1a; text-align: center; line-height: 1.8; direction: rtl; }
+  .arabic-text.hidden { color: transparent; user-select: none; }
+  .word { display: inline-block; margin: 0 4px; transition: color 0.2s; }
+  .word.correct { color: #1D9E75; }
+  .word.error { color: #E24B4A; }
+  .word.current { color: #1a1a1a; text-decoration: underline; text-decoration-color: #1D9E75; }
+  .error-flash { background: #FCEBEB; border-radius: 10px; padding: 10px 14px; text-align: center; margin-bottom: 10px; display: none; }
+  .error-flash.show { display: block; }
+  .error-flash p { font-size: 13px; color: #A32D2D; }
+  .mic-area { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 10px 0 20px; }
+  .mic-btn { width: 64px; height: 64px; border-radius: 50%; background: #1D9E75; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .mic-btn.listening { background: #E24B4A; }
+  .mic-btn svg { width: 28px; height: 28px; }
+  .peek-btn { padding: 10px 20px; border: 0.5px solid #1D9E75; border-radius: 10px; background: transparent; color: #1D9E75; font-size: 14px; cursor: pointer; }
+  .end-btn { padding: 10px 20px; border: 0.5px solid #e0e0e0; border-radius: 10px; background: transparent; color: #999; font-size: 14px; cursor: pointer; }
+  .session-progress { background: #f9f9f9; border-radius: 10px; padding: 12px 14px; }
+  .session-progress-label { font-size: 11px; color: #999; margin-bottom: 6px; }
+  .session-bar-wrap { background: #e0e0e0; border-radius: 4px; height: 4px; }
+  .session-bar-fill { background: #1D9E75; height: 4px; border-radius: 4px; width: 0%; transition: width 0.3s; }
+  .session-count { font-size: 11px; color: #666; margin-top: 4px; }
+  .sched-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid #f0f0f0; }
+  .sched-day { font-size: 11px; color: #999; min-width: 32px; }
+  .sched-content { flex: 1; }
+  .sched-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+  .sched-detail { font-size: 12px; color: #999; margin-top: 1px; }
+  .sched-status { width: 10px; height: 10px; border-radius: 50%; background: #e0e0e0; flex-shrink: 0; }
+  .sched-status.done { background: #1D9E75; }
+  .error-msg { color: #E24B4A; font-size: 13px; margin-top: 8px; text-align: center; }
+  .success-msg { color: #1D9E75; font-size: 13px; margin-top: 8px; text-align: center; }
+  .divider { text-align: center; color: #999; font-size: 13px; margin: 16px 0; }
+  .listening-indicator { display: none; align-items: center; gap: 6px; justify-content: center; margin-bottom: 8px; }
+  .listening-indicator.show { display: flex; }
+  .listening-dot { width: 8px; height: 8px; border-radius: 50%; background: #E24B4A; animation: pulse 1s infinite; }
+  .listening-dot:nth-child(2) { animation-delay: 0.2s; }
+  .listening-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .splash { background: #1D9E75; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; }
+  .splash h1 { font-size: 40px; font-weight: 500; color: #fff; margin-bottom: 8px; }
+  .splash p { font-size: 16px; color: rgba(255,255,255,0.85); margin-bottom: 40px; line-height: 1.6; }
+  .splash-btn { padding: 16px 40px; background: #fff; color: #1D9E75; border: none; border-radius: 14px; font-size: 17px; font-weight: 500; cursor: pointer; margin-bottom: 12px; width: 100%; }
+  .splash-link { color: rgba(255,255,255,0.8); font-size: 14px; cursor: pointer; text-decoration: underline; }
+  .tag { display: inline-block; background: rgba(255,255,255,0.2); color: #fff; font-size: 11px; padding: 4px 12px; border-radius: 999px; margin-bottom: 20px; }
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="badge">Now accepting waitlist</div>
-  <h1>The Quran never<br><span>forgets you.</span></h1>
-  <p>Your AI companion for memorising and revising the Quran — wherever you are on the journey.</p>
-  <a class="cta-btn" href="http://eepurl.com/jDybL6" target="_blank">Join the waitlist</a>
-  <p class="note">Free to join. No spam, ever.</p>
+<div class="app">
+
+<div class="screen active" id="screen-splash">
+  <div class="splash">
+    <div class="tag">Now in beta</div>
+    <h1>Zaid</h1>
+    <p>The Quran never forgets you.</p>
+    <button class="splash-btn" onclick="showScreen('screen-onboard-1')">Get started</button>
+    <span class="splash-link" onclick="showScreen('screen-login')">Already have an account? Sign in</span>
+  </div>
 </div>
-<div class="hadith-bar">
-  <p>"The best of you are those who learn the Quran and teach it."</p>
-  <span>— Prophet Muhammad ﷺ (Sahih al-Bukhari)</span>
+
+<div class="screen" id="screen-login">
+  <div class="status-bar"><h1>Zaid</h1></div>
+  <div class="screen-body">
+    <h2>Welcome back</h2>
+    <p class="sub">Sign in to continue your journey.</p>
+    <input class="input-field" type="email" id="login-email" placeholder="Email address" />
+    <input class="input-field" type="password" id="login-password" placeholder="Password" />
+    <button class="btn-primary" onclick="handleLogin()">Sign in</button>
+    <p class="error-msg" id="login-error"></p>
+    <div class="divider">or</div>
+    <button class="btn-secondary" onclick="showScreen('screen-splash')">Back</button>
+  </div>
 </div>
-<div class="section">
-  <p class="section-label">WHO IS ZAID FOR</p>
-  <div class="path-top">
-    <div class="path-card accent">
-      <p class="path-tag">STARTING YOUR HIFZ</p>
-      <h3>It's never too late to begin.</h3>
-      <p>People memorise the Quran at 7. At 35. At 60. There is no age limit. Zaid gives you a personalised plan and guides you every step of the way.</p>
+
+<div class="screen" id="screen-onboard-1">
+  <div class="status-bar"><h1>Zaid</h1><span>1 of 5</span></div>
+  <div class="screen-body">
+    <div class="progress-label">Setting up your profile</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:20%"></div></div>
+    <h2>Let's get to know you</h2>
+    <p class="sub">This takes less than 2 minutes.</p>
+    <input class="input-field" type="text" id="ob-name" placeholder="Your full name" />
+    <input class="input-field" type="email" id="ob-email" placeholder="Email address" />
+    <input class="input-field" type="password" id="ob-password" placeholder="Create a password" />
+    <input class="input-field" type="date" id="ob-dob" placeholder="Date of birth" />
+    <button class="btn-primary" onclick="nextOnboard1()">Continue</button>
+    <p class="error-msg" id="ob1-error"></p>
+  </div>
+</div>
+
+<div class="screen" id="screen-onboard-2">
+  <div class="status-bar"><h1>Zaid</h1><span>2 of 5</span></div>
+  <div class="screen-body">
+    <div class="progress-label">Your Quran journey</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:40%"></div></div>
+    <h2>Where are you on your journey?</h2>
+    <p class="sub">Choose the option that best describes you.</p>
+    <button class="option-btn" onclick="selectOption(this,'journey','hafiz')">I am already a Hafiz</button>
+    <button class="option-btn" onclick="selectOption(this,'journey','learning')">I am learning to become a Hafiz</button>
+    <button class="option-btn" onclick="selectOption(this,'journey','parent')">I am a parent or teacher supporting someone</button>
+    <button class="btn-primary" onclick="nextOnboard2()" style="margin-top:16px;">Continue</button>
+    <p class="error-msg" id="ob2-error"></p>
+  </div>
+</div>
+
+<div class="screen" id="screen-onboard-3">
+  <div class="status-bar"><h1>Zaid</h1><span>3 of 5</span></div>
+  <div class="screen-body">
+    <div class="progress-label">Your Hifz</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:60%"></div></div>
+    <h2 id="ob3-title">When did you complete your Hifz?</h2>
+    <p class="sub">This helps Zaid understand where to start.</p>
+    <div id="ob3-hafiz">
+      <button class="option-btn" onclick="selectOption(this,'hifz-when','recent')">Less than 1 year ago</button>
+      <button class="option-btn" onclick="selectOption(this,'hifz-when','few')">1–5 years ago</button>
+      <button class="option-btn" onclick="selectOption(this,'hifz-when','long')">More than 5 years ago</button>
     </div>
-    <div class="path-card">
-      <p class="path-tag">ALREADY A HAFIZ</p>
-      <h3>Life got busy. Your Hifz is still there.</h3>
-      <p>Work. Family. Life. But the Quran never left you — it just needs uncovering again. Zaid builds your revision around your life, not against it.</p>
+    <div id="ob3-learning" style="display:none;">
+      <button class="option-btn" onclick="selectOption(this,'learning-stage','just')">Just started</button>
+      <button class="option-btn" onclick="selectOption(this,'learning-stage','halfway')">Halfway through</button>
+      <button class="option-btn" onclick="selectOption(this,'learning-stage','nearly')">Nearly complete</button>
+    </div>
+    <button class="btn-primary" onclick="nextOnboard3()" style="margin-top:16px;">Continue</button>
+    <p class="error-msg" id="ob3-error"></p>
+  </div>
+</div>
+
+<div class="screen" id="screen-onboard-4">
+  <div class="status-bar"><h1>Zaid</h1><span>4 of 5</span></div>
+  <div class="screen-body">
+    <div class="progress-label">Your revision habits</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:80%"></div></div>
+    <h2>How often do you currently revise?</h2>
+    <p class="sub">Be honest — Zaid won't judge you.</p>
+    <button class="option-btn" onclick="selectOption(this,'revision-freq','daily')">Every day</button>
+    <button class="option-btn" onclick="selectOption(this,'revision-freq','few')">A few times a week</button>
+    <button class="option-btn" onclick="selectOption(this,'revision-freq','rarely')">Rarely or not at all</button>
+    <button class="btn-primary" onclick="nextOnboard4()" style="margin-top:16px;">Continue</button>
+    <p class="error-msg" id="ob4-error"></p>
+  </div>
+</div>
+
+<div class="screen" id="screen-onboard-5">
+  <div class="status-bar"><h1>Zaid</h1><span>5 of 5</span></div>
+  <div class="screen-body">
+    <div class="progress-label">Almost done</div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:100%"></div></div>
+    <h2>Which Juz do you struggle with most?</h2>
+    <p class="sub">Select all that apply. You can update this later.</p>
+    <div id="juz-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;"></div>
+    <button class="btn-primary" onclick="finishOnboarding()">Create my account</button>
+    <p class="error-msg" id="ob5-error"></p>
+    <p class="success-msg" id="ob5-success"></p>
+  </div>
+</div>
+
+<div class="screen" id="screen-dashboard">
+  <div class="status-bar"><h1>Zaid</h1></div>
+  <div class="screen-body">
+    <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
+    <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
+    <div class="streak-card">
+      <div>
+        <div class="streak-label">Current streak</div>
+        <div class="streak-num" id="dash-streak">0 days</div>
+      </div>
+      <div style="font-size:28px;">🔥</div>
+    </div>
+    <div class="today-card" onclick="showScreen('screen-recite')">
+      <div class="today-label">Today's revision</div>
+      <div class="today-title">Surah An-Nas</div>
+      <div class="today-sub">Tap to begin reciting</div>
+    </div>
+    <div class="tile-grid">
+      <div class="tile">
+        <div class="tile-title">Juz revised</div>
+        <div class="tile-val">0</div>
+        <div class="tile-sub">this month</div>
+      </div>
+      <div class="tile">
+        <div class="tile-title">Sessions</div>
+        <div class="tile-val">0</div>
+        <div class="tile-sub">total</div>
+      </div>
     </div>
   </div>
-  <div class="path-card accent2">
-    <p class="path-tag">TEACHERS & PARENTS</p>
-    <h3>Support the ones you love.</h3>
-    <p>Track a child or student's progress, set revision goals, and celebrate every milestone together. Their journey becomes yours too.</p>
+  <div class="bottom-nav">
+    <button class="nav-item active" onclick="showTab('dashboard')">
+      <svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="nav-item" onclick="showTab('schedule')">
+      <svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg>
+      <span>Schedule</span>
+    </button>
+    <button class="nav-item" onclick="showTab('recite')">
+      <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg>
+      <span>Recite</span>
+    </button>
+    <button class="nav-item" onclick="showTab('progress')">
+      <svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/><rect x="17" y="8" width="1" height="1" fill="none"/></svg>
+      <span>Progress</span>
+    </button>
   </div>
 </div>
-<hr class="divider" />
-<div class="blessings-section">
-  <h2>More than memorisation.</h2>
-  <p class="sub">This is a relationship with the words of Allah. The blessings are real.</p>
-  <div class="blessings-grid">
-    <div class="b-card"><div class="b-dot"></div><h4>A crown for your parents</h4><p>The Hafiz will be given a crown of light — and their parents crowned alongside them.</p></div>
-    <div class="b-card"><div class="b-dot"></div><h4>Raised in Jannah</h4><p>Every verse recited raises you a degree. Recite and ascend.</p></div>
-    <div class="b-card"><div class="b-dot"></div><h4>Peace of heart</h4><p>In a world that never stops, the Quran brings stillness nothing else can.</p></div>
-    <div class="b-card"><div class="b-dot"></div><h4>Yours forever</h4><p>Once you have it, no one can take it. It travels with you everywhere.</p></div>
+
+<div class="screen" id="screen-schedule">
+  <div class="status-bar"><h1>Schedule</h1></div>
+  <div class="screen-body">
+    <h2>This week</h2>
+    <p class="sub">Your personalised revision plan.</p>
+    <div id="schedule-list"></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item active" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#1D9E75"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
+    <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
   </div>
 </div>
-<hr class="divider" />
-<div class="features-section">
-  <h2>How Zaid works.</h2>
-  <div class="f-grid">
-    <div class="f-card"><p class="f-num">01</p><h4>AI pronunciation feedback</h4><p>Recite into your phone. Get instant tajweed feedback in real time.</p></div>
-    <div class="f-card"><p class="f-num">02</p><h4>Personalised to you</h4><p>Your level, your pace, your schedule. Built around your life.</p></div>
-    <div class="f-card"><p class="f-num">03</p><h4>Smart revision</h4><p>Zaid learns where you need attention and keeps you consistent.</p></div>
-    <div class="f-card"><p class="f-num">04</p><h4>Progress that motivates</h4><p>Streaks and milestones that keep you going — not guilt you.</p></div>
+
+<div class="screen" id="screen-recite">
+  <div class="recite-header">
+    <h2>Surah An-Nas</h2>
+    <p>Recite from memory</p>
   </div>
-</div>
-<div class="founder-section">
-  <div class="founder-inner">
-    <div class="avatar">S</div>
-    <div class="founder-text">
-      <p>"I'm a Hafiz. I also know what it feels like to let your revision slip. Life happens. I built Zaid because I needed it — and I know I'm not alone."</p>
-      <span><strong>Shahid</strong> — Hafiz and founder of Zaid</span>
+  <div class="screen-body">
+    <div class="blank-page" id="recite-page">
+      <div class="arabic-text hidden" id="arabic-display">
+        <span class="word" data-index="0">بِسْمِ</span>
+        <span class="word" data-index="1">اللَّهِ</span>
+        <span class="word" data-index="2">الرَّحْمَٰنِ</span>
+        <span class="word" data-index="3">الرَّحِيمِ</span>
+        <span class="word" data-index="4">قُلْ</span>
+        <span class="word" data-index="5">أَعُوذُ</span>
+        <span class="word" data-index="6">بِرَبِّ</span>
+        <span class="word" data-index="7">النَّاسِ</span>
+      </div>
+    </div>
+    <div class="listening-indicator" id="listening-indicator">
+      <div class="listening-dot"></div>
+      <div class="listening-dot"></div>
+      <div class="listening-dot"></div>
+      <span style="font-size:12px;color:#E24B4A;margin-left:4px;">Listening...</span>
+    </div>
+    <div class="error-flash" id="error-flash">
+      <p>Mistake detected — keep going or peek for help</p>
+    </div>
+    <div class="mic-area">
+      <button class="peek-btn" onclick="togglePeek()">Peek</button>
+      <button class="mic-btn" id="mic-btn" onclick="toggleMic()">
+        <svg viewBox="0 0 28 28" fill="none"><rect x="9" y="2" width="10" height="16" rx="5" fill="white"/><path d="M4 14c0 5.52 4.48 10 10 10s10-4.48 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="14" y1="24" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="end-btn" onclick="endSession()">End</button>
+    </div>
+    <div class="session-progress">
+      <div class="session-progress-label">Session progress</div>
+      <div class="session-bar-wrap"><div class="session-bar-fill" id="session-bar"></div></div>
+      <div class="session-count" id="session-count">0 of 8 words</div>
     </div>
   </div>
 </div>
-<div class="cta-section">
-  <div class="name-tag"><span class="dot"></span>Named after Zayd ibn Thabit — entrusted to preserve the Quran</div>
-  <h2>Your Hifz is<br/><span>worth protecting.</span></h2>
-  <p>Join the waitlist. Be first when Zaid launches.</p>
-  <a class="cta-btn" href="http://eepurl.com/jDybL6" target="_blank">Join the waitlist</a>
-  <p class="note">Free to join. No spam, ever.</p>
+
+<div class="screen" id="screen-progress">
+  <div class="status-bar"><h1>Progress</h1></div>
+  <div class="screen-body">
+    <h2>Your journey</h2>
+    <p class="sub">Track your Hifz progress over time.</p>
+    <div class="tile-grid">
+      <div class="tile"><div class="tile-title">Total sessions</div><div class="tile-val" id="prog-sessions">0</div></div>
+      <div class="tile"><div class="tile-title">Day streak</div><div class="tile-val" id="prog-streak">0</div></div>
+      <div class="tile"><div class="tile-title">Juz covered</div><div class="tile-val">0</div><div class="tile-sub">of 30</div></div>
+      <div class="tile"><div class="tile-title">Weak spots</div><div class="tile-val" id="prog-weak">—</div></div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
+    <button class="nav-item active" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#1D9E75"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#1D9E75"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#1D9E75"/></svg><span>Progress</span></button>
+  </div>
 </div>
+
+</div>
+<script>
+const SUPABASE_URL = 'https://xsnaoaxzpwabcqhwtlvh.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbmFvYXh6cHdhYmNxaHd0bHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODI3OTUsImV4cCI6MjA5MTY1ODc5NX0.cnX_mZJxhcd8bz4bGFBQUnmtapsLyBlLOfar3RdbTyw';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+let userData = {};
+let isListening = false;
+let isPeeking = false;
+let recognition = null;
+let wordsRevealed = 0;
+const totalWords = 8;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showTab(tab) {
+  const map = { dashboard: 'screen-dashboard', schedule: 'screen-schedule', recite: 'screen-recite', progress: 'screen-progress' };
+  showScreen(map[tab]);
+}
+
+function selectOption(el, group, val) {
+  document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  userData[group] = val;
+}
+
+function nextOnboard1() {
+  const name = document.getElementById('ob-name').value.trim();
+  const email = document.getElementById('ob-email').value.trim();
+  const password = document.getElementById('ob-password').value;
+  const dob = document.getElementById('ob-dob').value;
+  if (!name || !email || !password || !dob) { document.getElementById('ob1-error').textContent = 'Please fill in all fields.'; return; }
+  userData.name = name; userData.email = email; userData.password = password; userData.dob = dob;
+  document.getElementById('ob1-error').textContent = '';
+  showScreen('screen-onboard-2');
+}
+
+function nextOnboard2() {
+  if (!userData.journey) { document.getElementById('ob2-error').textContent = 'Please select an option.'; return; }
+  document.getElementById('ob2-error').textContent = '';
+  if (userData.journey === 'hafiz') { document.getElementById('ob3-title').textContent = 'When did you complete your Hifz?'; document.getElementById('ob3-hafiz').style.display = 'block'; document.getElementById('ob3-learning').style.display = 'none'; }
+  else { document.getElementById('ob3-title').textContent = 'Where are you in your journey?'; document.getElementById('ob3-hafiz').style.display = 'none'; document.getElementById('ob3-learning').style.display = 'block'; }
+  showScreen('screen-onboard-3');
+}
+
+function nextOnboard3() {
+  const key = userData.journey === 'hafiz' ? 'hifz-when' : 'learning-stage';
+  if (!userData[key]) { document.getElementById('ob3-error').textContent = 'Please select an option.'; return; }
+  document.getElementById('ob3-error').textContent = '';
+  showScreen('screen-onboard-4');
+}
+
+function nextOnboard4() {
+  if (!userData['revision-freq']) { document.getElementById('ob4-error').textContent = 'Please select an option.'; return; }
+  document.getElementById('ob4-error').textContent = '';
+  buildJuzGrid();
+  showScreen('screen-onboard-5');
+}
+
+function buildJuzGrid() {
+  const grid = document.getElementById('juz-grid');
+  grid.innerHTML = '';
+  for (let i = 1; i <= 30; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.style.cssText = 'padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
+    btn.onclick = function() {
+      this.classList.toggle('selected');
+      if (this.classList.contains('selected')) { this.style.background = '#E1F5EE'; this.style.borderColor = '#1D9E75'; this.style.color = '#085041'; }
+      else { this.style.background = '#fff'; this.style.borderColor = '#e0e0e0'; this.style.color = '#1a1a1a'; }
+      const selected = Array.from(document.querySelectorAll('#juz-grid button.selected')).map(b => b.textContent);
+      userData['weak-juz'] = selected;
+    };
+    grid.appendChild(btn);
+  }
+}
+
+async function finishOnboarding() {
+  const btn = document.querySelector('#screen-onboard-5 .btn-primary');
+  btn.disabled = true; btn.textContent = 'Creating your account...';
+  try {
+    const { data, error } = await sb.auth.signUp({ email: userData.email, password: userData.password, options: { data: { full_name: userData.name, dob: userData.dob, journey: userData.journey, revision_freq: userData['revision-freq'], weak_juz: userData['weak-juz'] || [] } } });
+    if (error) throw error;
+    loadDashboard();
+    showScreen('screen-dashboard');
+  } catch(e) {
+    document.getElementById('ob5-error').textContent = e.message || 'Something went wrong. Please try again.';
+    btn.disabled = false; btn.textContent = 'Create my account';
+  }
+}
+
+async function handleLogin() {
+  const email = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value;
+  try {
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    loadDashboard();
+    showScreen('screen-dashboard');
+  } catch(e) {
+    document.getElementById('login-error').textContent = 'Invalid email or password.';
+  }
+}
+
+function loadDashboard() {
+  sb.auth.getUser().then(({ data }) => {
+    if (data.user) {
+      const meta = data.user.user_metadata;
+      const name = meta.full_name || 'Hafiz';
+      document.getElementById('dash-name').textContent = `Assalamu Alaikum, ${name.split(' ')[0]}`;
+      document.getElementById('dash-sub').textContent = meta.journey === 'hafiz' ? 'Hafiz · Ready to revise' : 'On the path to becoming a Hafiz';
+      buildSchedule();
+    }
+  });
+}
+
+function buildSchedule() {
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const surahs = ['Surah An-Nas','Surah Al-Falaq','Surah Al-Ikhlas','Surah Al-Masad','Surah An-Nasr','Juz 30 revision','Surah Al-Kafirun'];
+  const list = document.getElementById('schedule-list');
+  list.innerHTML = '';
+  days.forEach((day, i) => {
+    const div = document.createElement('div');
+    div.className = 'sched-item';
+    div.innerHTML = `<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i < 2 ? 'done' : ''}"></div>`;
+    list.appendChild(div);
+  });
+}
+
+function togglePeek() {
+  isPeeking = !isPeeking;
+  const display = document.getElementById('arabic-display');
+  display.classList.toggle('hidden', !isPeeking);
+  document.querySelector('.peek-btn').textContent = isPeeking ? 'Hide' : 'Peek';
+}
+
+function toggleMic() {
+  if (isListening) { stopListening(); } else { startListening(); }
+}
+
+function startListening() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert('Speech recognition is not supported in this browser. Please use Chrome.');
+    return;
+  }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = 'ar-SA';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.onresult = (e) => {
+    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
+    processRecitation(transcript);
+  };
+  recognition.onerror = () => { stopListening(); };
+  recognition.onend = () => { if (isListening) recognition.start(); };
+  recognition.start();
+  isListening = true;
+  document.getElementById('mic-btn').classList.add('listening');
+  document.getElementById('listening-indicator').classList.add('show');
+  document.getElementById('arabic-display').classList.remove('hidden');
+}
+
+function stopListening() {
+  if (recognition) recognition.stop();
+  isListening = false;
+  document.getElementById('mic-btn').classList.remove('listening');
+  document.getElementById('listening-indicator').classList.remove('show');
+}
+
+function processRecitation(transcript) {
+  const words = document.querySelectorAll('.word');
+  const spokenWords = transcript.trim().split(/\s+/);
+  const currentIndex = spokenWords.length - 1;
+  if (currentIndex < totalWords) {
+    wordsRevealed = currentIndex + 1;
+    words.forEach((w, i) => {
+      w.classList.remove('correct','error','current');
+      if (i < currentIndex) w.classList.add('correct');
+      else if (i === currentIndex) w.classList.add('current');
+    });
+    const pct = Math.round((wordsRevealed / totalWords) * 100);
+    document.getElementById('session-bar').style.width = pct + '%';
+    document.getElementById('session-count').textContent = `${wordsRevealed} of ${totalWords} words`;
+    document.getElementById('error-flash').classList.remove('show');
+  }
+}
+
+function endSession() {
+  stopListening();
+  document.querySelectorAll('.word').forEach(w => { w.classList.remove('correct','error','current'); });
+  document.getElementById('arabic-display').classList.add('hidden');
+  document.getElementById('session-bar').style.width = '0%';
+  document.getElementById('session-count').textContent = `0 of ${totalWords} words`;
+  wordsRevealed = 0;
+  showScreen('screen-dashboard');
+}
+
+sb.auth.onAuthStateChange((event, session) => {
+  if (session) { loadDashboard(); showScreen('screen-dashboard'); }
+});
+</script>
 </body>
 </html>
