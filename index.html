@@ -8,10 +8,10 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; }
-  .app { width: 100%; max-width: 430px; min-height: 100vh; background: #fff; display: flex; flex-direction: column; position: relative; }
+  .app { width: 100%; max-width: 430px; min-height: 100vh; background: #fff; display: flex; flex-direction: column; }
   .screen { display: none; flex-direction: column; flex: 1; }
   .screen.active { display: flex; }
-  .status-bar { background: #1D9E75; padding: 14px 20px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .status-bar { background: #1D9E75; padding: 14px 20px 12px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
   .status-bar h1 { color: #fff; font-size: 18px; font-weight: 500; }
   .status-bar span { color: rgba(255,255,255,0.8); font-size: 13px; }
   .back-btn { background: none; border: none; color: rgba(255,255,255,0.9); font-size: 14px; cursor: pointer; padding: 0; }
@@ -56,22 +56,42 @@
   .tile-title { font-size: 12px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
   .tile-val { font-size: 20px; font-weight: 500; color: #1D9E75; }
   .tile-sub { font-size: 11px; color: #999; }
-  .recite-header { background: #1D9E75; padding: 20px; text-align: center; }
-  .recite-header h2 { color: #fff; font-size: 20px; margin-bottom: 4px; }
-  .recite-header p { color: rgba(255,255,255,0.8); font-size: 13px; }
-  .blank-page { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; min-height: 160px; display: flex; align-items: center; justify-content: center; margin: 20px 0; padding: 20px; }
-  .arabic-text { font-size: 22px; color: #1a1a1a; text-align: center; line-height: 1.8; direction: rtl; }
-  .arabic-text.hidden { color: transparent; user-select: none; }
-  .word { display: inline-block; margin: 0 4px; transition: color 0.2s; }
-  .word.correct { color: #1D9E75; }
-  .word.error { color: #E24B4A; }
-  .word.current { color: #1a1a1a; text-decoration: underline; text-decoration-color: #1D9E75; }
-  .error-flash { background: #FCEBEB; border-radius: 10px; padding: 10px 14px; text-align: center; margin-bottom: 10px; display: none; }
+  .surah-list-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 0.5px solid #f0f0f0; cursor: pointer; }
+  .surah-num { width: 36px; height: 36px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: #0F6E56; flex-shrink: 0; }
+  .surah-info { flex: 1; }
+  .surah-name-en { font-size: 14px; font-weight: 500; color: #1a1a1a; }
+  .surah-name-ar { font-size: 16px; color: #555; margin-top: 2px; direction: rtl; }
+  .surah-meta { font-size: 11px; color: #999; }
+  .blank-page { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; min-height: 180px; display: flex; align-items: center; justify-content: center; margin: 16px 0; padding: 20px; }
+  .arabic-text { font-size: 24px; text-align: center; line-height: 2.2; direction: rtl; width: 100%; }
+  .arabic-text.hidden .word { color: transparent !important; }
+  .word { display: inline; margin: 0 2px; transition: opacity 0.2s; cursor: default; }
+  .word.correct { opacity: 0.4; }
+  .word.current { text-decoration: underline; text-decoration-color: #1D9E75; text-decoration-thickness: 2px; }
+  .tj-normal { color: #1a1a1a; }
+  .tj-ikhfa { color: #2196F3; }
+  .tj-ghunnah { color: #FF9800; }
+  .tj-ikhfa-meem { color: #E91E8C; }
+  .tj-idgham { color: #1B5E20; }
+  .tj-qalqalah { color: #E53935; }
+  .tj-qalb { color: #7B1FA2; }
+  .tj-idgham-meem { color: #4CAF50; }
+  .tj-madd { color: #1a1a1a; }
+  .tajweed-key { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .tj-badge { font-size: 10px; padding: 4px 10px; border-radius: 999px; font-weight: 500; cursor: pointer; }
+  .tj-badge.ikhfa { background: #E3F2FD; color: #2196F3; }
+  .tj-badge.ghunnah { background: #FFF3E0; color: #FF9800; }
+  .tj-badge.ikhfa-meem { background: #FCE4EC; color: #E91E8C; }
+  .tj-badge.idgham { background: #E8F5E9; color: #1B5E20; }
+  .tj-badge.qalqalah { background: #FFEBEE; color: #E53935; }
+  .tj-badge.qalb { background: #F3E5F5; color: #7B1FA2; }
+  .tj-badge.idgham-meem { background: #E8F5E9; color: #4CAF50; }
+  .error-flash { background: #FFEBEE; border-radius: 10px; padding: 10px 14px; text-align: center; margin-bottom: 10px; display: none; }
   .error-flash.show { display: block; }
-  .error-flash p { font-size: 13px; color: #A32D2D; }
-  .mic-area { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 10px 0 20px; }
+  .error-flash p { font-size: 13px; color: #E53935; }
+  .mic-area { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 8px 0 16px; }
   .mic-btn { width: 64px; height: 64px; border-radius: 50%; background: #1D9E75; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-  .mic-btn.listening { background: #E24B4A; }
+  .mic-btn.listening { background: #E53935; }
   .mic-btn svg { width: 28px; height: 28px; }
   .peek-btn { padding: 10px 20px; border: 0.5px solid #1D9E75; border-radius: 10px; background: transparent; color: #1D9E75; font-size: 14px; cursor: pointer; }
   .end-btn { padding: 10px 20px; border: 0.5px solid #e0e0e0; border-radius: 10px; background: transparent; color: #999; font-size: 14px; cursor: pointer; }
@@ -87,15 +107,15 @@
   .sched-detail { font-size: 12px; color: #999; margin-top: 1px; }
   .sched-status { width: 10px; height: 10px; border-radius: 50%; background: #e0e0e0; flex-shrink: 0; }
   .sched-status.done { background: #1D9E75; }
-  .error-msg { color: #E24B4A; font-size: 13px; margin-top: 8px; text-align: center; }
+  .error-msg { color: #E53935; font-size: 13px; margin-top: 8px; text-align: center; }
   .success-msg { color: #1D9E75; font-size: 13px; margin-top: 8px; text-align: center; }
   .divider { text-align: center; color: #999; font-size: 13px; margin: 16px 0; }
   .listening-indicator { display: none; align-items: center; gap: 6px; justify-content: center; margin-bottom: 8px; }
   .listening-indicator.show { display: flex; }
-  .listening-dot { width: 8px; height: 8px; border-radius: 50%; background: #E24B4A; animation: pulse 1s infinite; }
+  .listening-dot { width: 8px; height: 8px; border-radius: 50%; background: #E53935; animation: pulse 1s infinite; }
   .listening-dot:nth-child(2) { animation-delay: 0.2s; }
   .listening-dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:0.3;} }
   .splash { background: #1D9E75; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; }
   .splash h1 { font-size: 40px; font-weight: 500; color: #fff; margin-bottom: 8px; }
   .splash p { font-size: 16px; color: rgba(255,255,255,0.85); margin-bottom: 40px; line-height: 1.6; }
@@ -106,14 +126,11 @@
   .link-card h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
   .link-card p { font-size: 13px; color: #666; margin-bottom: 14px; line-height: 1.5; }
   .link-code { font-size: 28px; font-weight: 500; color: #1D9E75; letter-spacing: 6px; margin: 10px 0; }
-  .student-item { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0.5px solid #f0f0f0; }
-  .student-avatar { width: 36px; height: 36px; border-radius: 50%; background: #E1F5EE; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: #0F6E56; flex-shrink: 0; }
-  .student-info { flex: 1; }
-  .student-name { font-size: 14px; font-weight: 500; color: #1a1a1a; }
-  .student-detail { font-size: 12px; color: #999; }
-  .student-status { font-size: 11px; padding: 3px 8px; border-radius: 999px; }
-  .student-status.done { background: #E1F5EE; color: #0F6E56; }
-  .student-status.pending { background: #FCEBEB; color: #A32D2D; }
+  .tj-rule-card { border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; border: 0.5px solid #e0e0e0; }
+  .tj-rule-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .tj-rule-desc { font-size: 13px; color: #555; line-height: 1.5; }
+  .tj-rule-example { font-size: 18px; direction: rtl; margin-top: 6px; }
+  .info-btn { background: none; border: none; color: rgba(255,255,255,0.9); font-size: 18px; cursor: pointer; padding: 0; }
 </style>
 </head>
 <body>
@@ -146,8 +163,7 @@
 <div class="screen" id="screen-onboard-1">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-splash')">← Back</button>
-    <h1>Zaid</h1>
-    <span>1 of 5</span>
+    <h1>Zaid</h1><span>1 of 5</span>
   </div>
   <div class="screen-body">
     <div class="progress-label">Setting up your profile</div>
@@ -157,7 +173,7 @@
     <input class="input-field" type="text" id="ob-name" placeholder="Your full name" />
     <input class="input-field" type="email" id="ob-email" placeholder="Email address" />
     <input class="input-field" type="password" id="ob-password" placeholder="Create a password" />
-    <input class="input-field" type="date" id="ob-dob" placeholder="Date of birth" />
+    <input class="input-field" type="date" id="ob-dob" />
     <button class="btn-primary" onclick="nextOnboard1()">Continue</button>
     <p class="error-msg" id="ob1-error"></p>
   </div>
@@ -166,8 +182,7 @@
 <div class="screen" id="screen-onboard-gender">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-onboard-1')">← Back</button>
-    <h1>Zaid</h1>
-    <span>2 of 5</span>
+    <h1>Zaid</h1><span>2 of 5</span>
   </div>
   <div class="screen-body">
     <div class="progress-label">Your profile</div>
@@ -175,14 +190,8 @@
     <h2>Select your gender</h2>
     <p class="sub">This helps us personalise your experience.</p>
     <div class="gender-grid">
-      <button class="gender-btn" id="gender-male" onclick="selectGender('male')">
-        <span class="icon">👨</span>
-        <span class="label">Male</span>
-      </button>
-      <button class="gender-btn" id="gender-female" onclick="selectGender('female')">
-        <span class="icon">👩</span>
-        <span class="label">Female</span>
-      </button>
+      <button class="gender-btn" id="gender-male" onclick="selectGender('male')"><span class="icon">👨</span><span class="label">Male</span></button>
+      <button class="gender-btn" id="gender-female" onclick="selectGender('female')"><span class="icon">👩</span><span class="label">Female</span></button>
     </div>
     <button class="btn-primary" onclick="nextOnboardGender()">Continue</button>
     <p class="error-msg" id="ob-gender-error"></p>
@@ -192,8 +201,7 @@
 <div class="screen" id="screen-onboard-2">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-onboard-gender')">← Back</button>
-    <h1>Zaid</h1>
-    <span>3 of 5</span>
+    <h1>Zaid</h1><span>3 of 5</span>
   </div>
   <div class="screen-body">
     <div class="progress-label">Your Quran journey</div>
@@ -211,8 +219,7 @@
 <div class="screen" id="screen-onboard-3">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-onboard-2')">← Back</button>
-    <h1>Zaid</h1>
-    <span>4 of 5</span>
+    <h1>Zaid</h1><span>4 of 5</span>
   </div>
   <div class="screen-body">
     <div class="progress-label">A little more</div>
@@ -237,8 +244,7 @@
 <div class="screen" id="screen-onboard-4">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-onboard-3')">← Back</button>
-    <h1>Zaid</h1>
-    <span>5 of 5</span>
+    <h1>Zaid</h1><span>5 of 5</span>
   </div>
   <div class="screen-body">
     <div class="progress-label">Almost done</div>
@@ -248,15 +254,13 @@
     <div id="juz-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;"></div>
     <button class="btn-primary" onclick="finishOnboarding()">Create my account</button>
     <p class="error-msg" id="ob4-error"></p>
-    <p class="success-msg" id="ob4-success"></p>
   </div>
 </div>
 
 <div class="screen" id="screen-onboard-parent">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-onboard-2')">← Back</button>
-    <h1>Zaid</h1>
-    <span>4 of 4</span>
+    <h1>Zaid</h1><span>4 of 4</span>
   </div>
   <div class="screen-body">
     <div class="progress-label">Almost done</div>
@@ -276,10 +280,7 @@
     <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
     <div class="streak-card">
-      <div>
-        <div class="streak-label">Current streak</div>
-        <div class="streak-num" id="dash-streak">0 days</div>
-      </div>
+      <div><div class="streak-label">Current streak</div><div class="streak-num" id="dash-streak">0 days</div></div>
       <div style="font-size:28px;">🔥</div>
     </div>
     <div class="today-card" onclick="showTab('recite')">
@@ -304,7 +305,7 @@
   <div class="status-bar"><h1>Zaid</h1></div>
   <div class="screen-body">
     <div class="greeting-name" id="parent-dash-name">Assalamu Alaikum</div>
-    <div class="greeting-sub" id="parent-dash-sub">Supporting the next generation</div>
+    <div class="greeting-sub">Supporting the next generation</div>
     <div class="link-card">
       <h3>Link a student or child</h3>
       <p>Share this code with your student or child. They enter it in their Zaid app to link your accounts.</p>
@@ -312,15 +313,130 @@
       <button class="btn-primary" style="margin-top:0;" onclick="copyCode()">Copy code</button>
     </div>
     <h2 style="font-size:18px;margin-bottom:12px;">Your students</h2>
-    <div id="student-list">
-      <p style="font-size:14px;color:#999;text-align:center;padding:20px 0;">No students linked yet. Share your code to get started.</p>
+    <p style="font-size:14px;color:#999;text-align:center;padding:20px 0;">No students linked yet. Share your code to get started.</p>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item active" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
+    <button class="nav-item"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
+    <button class="nav-item"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
+    <button class="nav-item"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-tajweed-guide">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-surah-list')">← Back</button>
+    <h1>Tajweed Guide</h1><span></span>
+  </div>
+  <div class="screen-body">
+    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran. Each colour represents a different rule of recitation.</p>
+    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;">
+      <div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div>
+      <div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters. The sound is neither fully pronounced nor fully merged.</div>
+      <div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div>
+    </div>
+    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;">
+      <div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div>
+      <div class="tj-rule-desc">A nasal humming sound held for two counts, occurring on a shaddah over noon or meem, or on noon and meem sakinah in certain situations.</div>
+      <div class="tj-rule-example" style="color:#FF9800;">إِنَّ — مِنَ النَّاسِ</div>
+    </div>
+    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;">
+      <div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div>
+      <div class="tj-rule-desc">When a meem saakin is followed by the letter ba, the meem is hidden with a nasal sound held for two counts.</div>
+      <div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div>
+    </div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;">
+      <div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div>
+      <div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter. The noon disappears and the following letter is doubled in sound.</div>
+      <div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div>
+    </div>
+    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;">
+      <div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div>
+      <div class="tj-rule-desc">A slight echoing or bouncing sound applied to the letters ق ط ب ج د when they appear with sukoon. Especially strong at the end of an ayah.</div>
+      <div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div>
+    </div>
+    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;">
+      <div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div>
+      <div class="tj-rule-desc">When noon sakinah or tanween is followed by the letter ba, the noon is converted into a meem sound with ghunnah.</div>
+      <div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div>
+    </div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;">
+      <div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div>
+      <div class="tj-rule-desc">When a meem saakin is followed by another meem, the two meems merge together with a ghunnah of two counts.</div>
+      <div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div>
+    </div>
+    <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
+  </div>
+</div>
+
+<div class="screen" id="screen-surah-list">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showTab('dashboard')">← Back</button>
+    <h1>Choose Surah</h1>
+    <button class="info-btn" onclick="showScreen('screen-tajweed-guide')">?</button>
+  </div>
+  <div class="screen-body">
+    <div class="tajweed-key">
+      <span class="tj-badge ikhfa">Ikhfa</span>
+      <span class="tj-badge ghunnah">Ghunnah</span>
+      <span class="tj-badge ikhfa-meem">Ikhfa Meem</span>
+      <span class="tj-badge idgham">Idgham</span>
+      <span class="tj-badge qalqalah">Qalqalah</span>
+      <span class="tj-badge qalb">Qalb</span>
+      <span class="tj-badge idgham-meem">Idgham Meem</span>
+    </div>
+    <p style="font-size:12px;color:#999;margin-bottom:16px;">Tap <strong>?</strong> above to learn what each colour means</p>
+    <div id="surah-list"></div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Recite</span></button>
+    <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-recite">
+  <div class="status-bar">
+    <button class="back-btn" onclick="endSession()">← Back</button>
+    <h1 id="recite-title">Surah An-Nas</h1><span></span>
+  </div>
+  <div class="screen-body">
+    <div class="tajweed-key">
+      <span class="tj-badge ikhfa">Ikhfa</span>
+      <span class="tj-badge ghunnah">Ghunnah</span>
+      <span class="tj-badge ikhfa-meem">Ikhfa Meem</span>
+      <span class="tj-badge idgham">Idgham</span>
+      <span class="tj-badge qalqalah">Qalqalah</span>
+      <span class="tj-badge qalb">Qalb</span>
+      <span class="tj-badge idgham-meem">Idgham Meem</span>
+    </div>
+    <div class="blank-page">
+      <div class="arabic-text hidden" id="arabic-display"></div>
+    </div>
+    <div class="listening-indicator" id="listening-indicator">
+      <div class="listening-dot"></div><div class="listening-dot"></div><div class="listening-dot"></div>
+      <span style="font-size:12px;color:#E53935;margin-left:4px;">Listening...</span>
+    </div>
+    <div class="error-flash" id="error-flash"><p>Mistake detected — keep going or peek for help</p></div>
+    <div class="mic-area">
+      <button class="peek-btn" onclick="togglePeek()">Peek</button>
+      <button class="mic-btn" id="mic-btn" onclick="toggleMic()">
+        <svg viewBox="0 0 28 28" fill="none"><rect x="9" y="2" width="10" height="16" rx="5" fill="white"/><path d="M4 14c0 5.52 4.48 10 10 10s10-4.48 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="14" y1="24" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </button>
+      <button class="end-btn" onclick="endSession()">End</button>
+    </div>
+    <div class="session-progress">
+      <div class="session-progress-label">Session progress</div>
+      <div class="session-bar-wrap"><div class="session-bar-fill" id="session-bar"></div></div>
+      <div class="session-count" id="session-count">0 words</div>
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item active" onclick="showTab('parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="14" cy="7" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
-    <button class="nav-item" onclick="showTab('parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
-    <button class="nav-item" onclick="showTab('parent-progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
+    <button class="nav-item" onclick="endSession()"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Recite</span></button>
+    <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
   </div>
 </div>
 
@@ -333,56 +449,8 @@
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
-    <button class="nav-item active" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#1D9E75"/></svg><span>Schedule</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#1D9E75"/></svg><span>Schedule</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
-    <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
-  </div>
-</div>
-
-<div class="screen" id="screen-recite">
-  <div class="recite-header">
-    <h2>Surah An-Nas</h2>
-    <p>Recite from memory</p>
-  </div>
-  <div class="screen-body">
-    <div class="blank-page" id="recite-page">
-      <div class="arabic-text hidden" id="arabic-display">
-        <span class="word" data-index="0">بِسْمِ</span>
-        <span class="word" data-index="1">اللَّهِ</span>
-        <span class="word" data-index="2">الرَّحْمَٰنِ</span>
-        <span class="word" data-index="3">الرَّحِيمِ</span>
-        <span class="word" data-index="4">قُلْ</span>
-        <span class="word" data-index="5">أَعُوذُ</span>
-        <span class="word" data-index="6">بِرَبِّ</span>
-        <span class="word" data-index="7">النَّاسِ</span>
-      </div>
-    </div>
-    <div class="listening-indicator" id="listening-indicator">
-      <div class="listening-dot"></div>
-      <div class="listening-dot"></div>
-      <div class="listening-dot"></div>
-      <span style="font-size:12px;color:#E24B4A;margin-left:4px;">Listening...</span>
-    </div>
-    <div class="error-flash" id="error-flash">
-      <p>Mistake detected — keep going or peek for help</p>
-    </div>
-    <div class="mic-area">
-      <button class="peek-btn" onclick="togglePeek()">Peek</button>
-      <button class="mic-btn" id="mic-btn" onclick="toggleMic()">
-        <svg viewBox="0 0 28 28" fill="none"><rect x="9" y="2" width="10" height="16" rx="5" fill="white"/><path d="M4 14c0 5.52 4.48 10 10 10s10-4.48 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="14" y1="24" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
-      </button>
-      <button class="end-btn" onclick="endSession()">End</button>
-    </div>
-    <div class="session-progress">
-      <div class="session-progress-label">Session progress</div>
-      <div class="session-bar-wrap"><div class="session-bar-fill" id="session-bar"></div></div>
-      <div class="session-count" id="session-count">0 of 8 words</div>
-    </div>
-  </div>
-  <div class="bottom-nav">
-    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
-    <button class="nav-item active" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Recite</span></button>
     <button class="nav-item" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
   </div>
 </div>
@@ -403,264 +471,315 @@
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
     <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
-    <button class="nav-item active" onclick="showTab('progress')"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#1D9E75"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#1D9E75"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Progress</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#1D9E75"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#1D9E75"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Progress</span></button>
   </div>
 </div>
 
 </div>
 <script>
-const SUPABASE_URL = 'https://xsnaoaxzpwabcqhwtlvh.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbmFvYXh6cHdhYmNxaHd0bHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODI3OTUsImV4cCI6MjA5MTY1ODc5NX0.cnX_mZJxhcd8bz4bGFBQUnmtapsLyBlLOfar3RdbTyw';
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_URL='https://xsnaoaxzpwabcqhwtlvh.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbmFvYXh6cHdhYmNxaHd0bHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODI3OTUsImV4cCI6MjA5MTY1ODc5NX0.cnX_mZJxhcd8bz4bGFBQUnmtapsLyBlLOfar3RdbTyw';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-let userData = {};
-let isListening = false;
-let isPeeking = false;
-let recognition = null;
-let wordsRevealed = 0;
-const totalWords = 8;
+const SURAHS=[
+  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},
+    {t:'مَلِكِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'إِلَٰهِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},
+    {t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'الْوَسْوَاسِ',tj:'normal'},{t:'الْخَنَّاسِ',tj:'ghunnah'},
+    {t:'الَّذِي',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'صُدُورِ',tj:'normal'},
+    {t:'النَّاسِ',tj:'ghunnah'},{t:'مِنَ',tj:'normal'},{t:'الْجِنَّةِ',tj:'ghunnah'},{t:'وَالنَّاسِ',tj:'ghunnah'}
+  ]},
+  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'الْفَلَقِ',tj:'qalqalah'},
+    {t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},
+    {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'غَاسِقٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'وَقَبَ',tj:'qalqalah'},
+    {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'النَّفَّاثَاتِ',tj:'ghunnah'},{t:'فِي',tj:'normal'},{t:'الْعُقَدِ',tj:'normal'},
+    {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'}
+  ]},
+  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},
+    {t:'اللَّهُ',tj:'normal'},{t:'الصَّمَدُ',tj:'normal'},
+    {t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},
+    {t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌ',tj:'normal'}
+  ]},
+  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'تَبَّتْ',tj:'normal'},{t:'يَدَا',tj:'normal'},{t:'أَبِي',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},
+    {t:'مَا',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},
+    {t:'سَيَصْلَىٰ',tj:'normal'},{t:'نَارًا',tj:'normal'},{t:'ذَاتَ',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},
+    {t:'وَامْرَأَتُهُ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'الْحَطَبِ',tj:'qalqalah'},
+    {t:'فِي',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍ',tj:'idgham'}
+  ]},
+  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'إِذَا',tj:'normal'},{t:'جَاءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'وَالْفَتْحُ',tj:'normal'},
+    {t:'وَرَأَيْتَ',tj:'normal'},{t:'النَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},
+    {t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَاسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًا',tj:'ghunnah'}
+  ]},
+  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'قُلْ',tj:'qalqalah'},{t:'يَا',tj:'normal'},{t:'أَيُّهَا',tj:'normal'},{t:'الْكَافِرُونَ',tj:'normal'},
+    {t:'لَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},
+    {t:'وَلَا',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَابِدُونَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},
+    {t:'وَلَا',tj:'normal'},{t:'أَنَا',tj:'normal'},{t:'عَابِدٌ',tj:'normal'},{t:'مَّا',tj:'idgham'},{t:'عَبَدتُّمْ',tj:'normal'},
+    {t:'وَلَا',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَابِدُونَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},
+    {t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِيَ',tj:'normal'},{t:'دِينِ',tj:'normal'}
+  ]},
+  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'إِنَّا',tj:'ghunnah'},{t:'أَعْطَيْنَاكَ',tj:'normal'},{t:'الْكَوْثَرَ',tj:'normal'},
+    {t:'فَصَلِّ',tj:'normal'},{t:'لِرَبِّكَ',tj:'normal'},{t:'وَانْحَرْ',tj:'normal'},
+    {t:'إِنَّ',tj:'ghunnah'},{t:'شَانِئَكَ',tj:'normal'},{t:'هُوَ',tj:'normal'},{t:'الْأَبْتَرُ',tj:'normal'}
+  ]},
+  {num:107,nameEn:'Surah Al-Maun',nameAr:'سورة الماعون',ayahs:7,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'أَرَأَيْتَ',tj:'normal'},{t:'الَّذِي',tj:'normal'},{t:'يُكَذِّبُ',tj:'normal'},{t:'بِالدِّينِ',tj:'normal'},
+    {t:'فَذَٰلِكَ',tj:'normal'},{t:'الَّذِي',tj:'normal'},{t:'يَدُعُّ',tj:'normal'},{t:'الْيَتِيمَ',tj:'normal'},
+    {t:'وَلَا',tj:'normal'},{t:'يَحُضُّ',tj:'normal'},{t:'عَلَىٰ',tj:'normal'},{t:'طَعَامِ',tj:'normal'},{t:'الْمِسْكِينِ',tj:'normal'},
+    {t:'فَوَيْلٌ',tj:'normal'},{t:'لِّلْمُصَلِّينَ',tj:'idgham'},
+    {t:'الَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'عَن',tj:'normal'},{t:'صَلَاتِهِمْ',tj:'normal'},{t:'سَاهُونَ',tj:'normal'},
+    {t:'الَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'يُرَاءُونَ',tj:'normal'},
+    {t:'وَيَمْنَعُونَ',tj:'normal'},{t:'الْمَاعُونَ',tj:'normal'}
+  ]},
+  {num:106,nameEn:'Surah Quraysh',nameAr:'سورة قريش',ayahs:4,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'لِإِيلَافِ',tj:'normal'},{t:'قُرَيْشٍ',tj:'normal'},
+    {t:'إِيلَافِهِمْ',tj:'normal'},{t:'رِحْلَةَ',tj:'normal'},{t:'الشِّتَاءِ',tj:'normal'},{t:'وَالصَّيْفِ',tj:'normal'},
+    {t:'فَلْيَعْبُدُوا',tj:'normal'},{t:'رَبَّ',tj:'normal'},{t:'هَٰذَا',tj:'normal'},{t:'الْبَيْتِ',tj:'normal'},
+    {t:'الَّذِي',tj:'normal'},{t:'أَطْعَمَهُم',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'جُوعٍ',tj:'normal'},{t:'وَآمَنَهُم',tj:'normal'},{t:'مِّنْ',tj:'ghunnah'},{t:'خَوْفٍ',tj:'normal'}
+  ]},
+  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},
+    {t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَابِ',tj:'normal'},{t:'الْفِيلِ',tj:'normal'},
+    {t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},
+    {t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},
+    {t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},
+    {t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍ',tj:'idgham'}
+  ]}
+];
 
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
+let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed=0,currentSurah=null;
+
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+
+function showTab(tab){
+  const map={dashboard:'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',progress:'screen-progress'};
+  if(tab==='recite')buildSurahList();
+  showScreen(map[tab]||'screen-dashboard');
 }
 
-function showTab(tab) {
-  const map = {
-    dashboard: 'screen-dashboard',
-    schedule: 'screen-schedule',
-    recite: 'screen-recite',
-    progress: 'screen-progress',
-    'parent-dashboard': 'screen-parent-dashboard',
-    'parent-students': 'screen-parent-dashboard',
-    'parent-goals': 'screen-parent-dashboard',
-    'parent-progress': 'screen-parent-dashboard'
-  };
-  showScreen(map[tab] || 'screen-dashboard');
+function buildSurahList(){
+  const list=document.getElementById('surah-list');
+  list.innerHTML='';
+  SURAHS.forEach((s,i)=>{
+    const div=document.createElement('div');
+    div.className='surah-list-item';
+    div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;
+    div.onclick=()=>startSurah(i);
+    list.appendChild(div);
+  });
 }
 
-function selectGender(gender) {
-  userData.gender = gender;
-  document.getElementById('gender-male').classList.toggle('selected', gender === 'male');
-  document.getElementById('gender-female').classList.toggle('selected', gender === 'female');
-  document.getElementById('ob-gender-error').textContent = '';
+function startSurah(index){
+  currentSurah=SURAHS[index];
+  wordsRevealed=0;isPeeking=false;
+  document.getElementById('recite-title').textContent=currentSurah.nameEn;
+  const display=document.getElementById('arabic-display');
+  display.innerHTML='';display.classList.add('hidden');
+  currentSurah.words.forEach((w,i)=>{
+    const span=document.createElement('span');
+    span.className=`word tj-${w.tj}`;
+    span.dataset.index=i;
+    span.textContent=w.t+' ';
+    display.appendChild(span);
+  });
+  document.getElementById('session-bar').style.width='0%';
+  document.getElementById('session-count').textContent=`0 of ${currentSurah.words.length} words`;
+  document.getElementById('error-flash').classList.remove('show');
+  document.getElementById('listening-indicator').classList.remove('show');
+  document.querySelector('.peek-btn').textContent='Peek';
+  if(isListening)stopListening();
+  showScreen('screen-recite');
 }
 
-function nextOnboardGender() {
-  if (!userData.gender) { document.getElementById('ob-gender-error').textContent = 'Please select an option.'; return; }
+function selectGender(gender){
+  userData.gender=gender;
+  document.getElementById('gender-male').classList.toggle('selected',gender==='male');
+  document.getElementById('gender-female').classList.toggle('selected',gender==='female');
+  document.getElementById('ob-gender-error').textContent='';
+}
+
+function nextOnboardGender(){
+  if(!userData.gender){document.getElementById('ob-gender-error').textContent='Please select an option.';return;}
   showScreen('screen-onboard-2');
 }
 
-function selectOption(el, group, val) {
-  document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b => b.classList.remove('selected'));
-  el.classList.add('selected');
-  userData[group] = val;
+function selectOption(el,group,val){
+  document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b=>b.classList.remove('selected'));
+  el.classList.add('selected');userData[group]=val;
 }
 
-function nextOnboard1() {
-  const name = document.getElementById('ob-name').value.trim();
-  const email = document.getElementById('ob-email').value.trim();
-  const password = document.getElementById('ob-password').value;
-  const dob = document.getElementById('ob-dob').value;
-  if (!name || !email || !password || !dob) { document.getElementById('ob1-error').textContent = 'Please fill in all fields.'; return; }
-  userData.name = name; userData.email = email; userData.password = password; userData.dob = dob;
-  document.getElementById('ob1-error').textContent = '';
+function nextOnboard1(){
+  const name=document.getElementById('ob-name').value.trim();
+  const email=document.getElementById('ob-email').value.trim();
+  const password=document.getElementById('ob-password').value;
+  const dob=document.getElementById('ob-dob').value;
+  if(!name||!email||!password||!dob){document.getElementById('ob1-error').textContent='Please fill in all fields.';return;}
+  userData.name=name;userData.email=email;userData.password=password;userData.dob=dob;
+  document.getElementById('ob1-error').textContent='';
   showScreen('screen-onboard-gender');
 }
 
-function nextOnboard2() {
-  if (!userData.journey) { document.getElementById('ob2-error').textContent = 'Please select an option.'; return; }
-  document.getElementById('ob2-error').textContent = '';
-  if (userData.journey === 'parent') {
-    showScreen('screen-onboard-parent');
-    return;
-  }
-  if (userData.journey === 'hafiz') {
-    document.getElementById('ob3-title').textContent = 'When did you complete your Hifz?';
-    document.getElementById('ob3-hafiz').style.display = 'block';
-    document.getElementById('ob3-learning').style.display = 'none';
-  } else {
-    document.getElementById('ob3-title').textContent = 'Where are you in your journey?';
-    document.getElementById('ob3-hafiz').style.display = 'none';
-    document.getElementById('ob3-learning').style.display = 'block';
+function nextOnboard2(){
+  if(!userData.journey){document.getElementById('ob2-error').textContent='Please select an option.';return;}
+  document.getElementById('ob2-error').textContent='';
+  if(userData.journey==='parent'){showScreen('screen-onboard-parent');return;}
+  if(userData.journey==='hafiz'){
+    document.getElementById('ob3-title').textContent='When did you complete your Hifz?';
+    document.getElementById('ob3-hafiz').style.display='block';
+    document.getElementById('ob3-learning').style.display='none';
+  }else{
+    document.getElementById('ob3-title').textContent='Where are you in your journey?';
+    document.getElementById('ob3-hafiz').style.display='none';
+    document.getElementById('ob3-learning').style.display='block';
   }
   showScreen('screen-onboard-3');
 }
 
-function nextOnboard3() {
-  const key = userData.journey === 'hafiz' ? 'hifz-when' : 'learning-stage';
-  if (!userData[key]) { document.getElementById('ob3-error').textContent = 'Please select an option.'; return; }
-  document.getElementById('ob3-error').textContent = '';
-  buildJuzGrid();
-  showScreen('screen-onboard-4');
+function nextOnboard3(){
+  const key=userData.journey==='hafiz'?'hifz-when':'learning-stage';
+  if(!userData[key]){document.getElementById('ob3-error').textContent='Please select an option.';return;}
+  document.getElementById('ob3-error').textContent='';
+  buildJuzGrid();showScreen('screen-onboard-4');
 }
 
-function buildJuzGrid() {
-  const grid = document.getElementById('juz-grid');
-  grid.innerHTML = '';
-  for (let i = 1; i <= 30; i++) {
-    const btn = document.createElement('button');
-    btn.textContent = i;
-    btn.style.cssText = 'padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
-    btn.onclick = function() {
+function buildJuzGrid(){
+  const grid=document.getElementById('juz-grid');grid.innerHTML='';
+  for(let i=1;i<=30;i++){
+    const btn=document.createElement('button');
+    btn.textContent=i;
+    btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
+    btn.onclick=function(){
       this.classList.toggle('selected');
-      if (this.classList.contains('selected')) { this.style.background = '#E1F5EE'; this.style.borderColor = '#1D9E75'; this.style.color = '#085041'; }
-      else { this.style.background = '#fff'; this.style.borderColor = '#e0e0e0'; this.style.color = '#1a1a1a'; }
-      const selected = Array.from(document.querySelectorAll('#juz-grid button.selected')).map(b => b.textContent);
-      userData['weak-juz'] = selected;
+      if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}
+      else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}
+      userData['weak-juz']=Array.from(document.querySelectorAll('#juz-grid button.selected')).map(b=>b.textContent);
     };
     grid.appendChild(btn);
   }
 }
 
-async function finishOnboarding() {
-  const isParent = userData.journey === 'parent';
-  const errorEl = isParent ? document.getElementById('ob-parent-error') : document.getElementById('ob4-error');
-  if (isParent && !userData['parent-type']) { errorEl.textContent = 'Please select your role.'; return; }
-  const btns = document.querySelectorAll('#screen-onboard-4 .btn-primary, #screen-onboard-parent .btn-primary');
-  btns.forEach(b => { b.disabled = true; b.textContent = 'Creating your account...'; });
-  try {
-    const { data, error } = await sb.auth.signUp({
-      email: userData.email,
-      password: userData.password,
-      options: { data: { full_name: userData.name, dob: userData.dob, gender: userData.gender, journey: userData.journey, parent_type: userData['parent-type'] || null, revision_freq: userData['revision-freq'] || null, weak_juz: userData['weak-juz'] || [] } }
-    });
-    if (error) throw error;
-    loadDashboard(userData.name, userData.journey, userData.gender);
-  } catch(e) {
-    errorEl.textContent = e.message || 'Something went wrong. Please try again.';
-    btns.forEach(b => { b.disabled = false; b.textContent = 'Create my account'; });
+async function finishOnboarding(){
+  const isParent=userData.journey==='parent';
+  const errorEl=isParent?document.getElementById('ob-parent-error'):document.getElementById('ob4-error');
+  if(isParent&&!userData['parent-type']){errorEl.textContent='Please select your role.';return;}
+  const btns=document.querySelectorAll('#screen-onboard-4 .btn-primary,#screen-onboard-parent .btn-primary');
+  btns.forEach(b=>{b.disabled=true;b.textContent='Creating your account...';});
+  try{
+    const{data,error}=await sb.auth.signUp({email:userData.email,password:userData.password,options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,parent_type:userData['parent-type']||null,revision_freq:userData['revision-freq']||null,weak_juz:userData['weak-juz']||[]}}});
+    if(error)throw error;
+    loadDashboard(userData.name,userData.journey,userData.gender);
+  }catch(e){
+    errorEl.textContent=e.message||'Something went wrong.';
+    btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});
   }
 }
 
-async function handleLogin() {
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
-  document.getElementById('login-error').textContent = '';
-  try {
-    const { data, error } = await sb.auth.signInWithPassword({ email, password });
-    if (error) throw error;
-    const meta = data.user.user_metadata;
-    loadDashboard(meta.full_name, meta.journey, meta.gender);
-  } catch(e) {
-    document.getElementById('login-error').textContent = 'Invalid email or password.';
-  }
+async function handleLogin(){
+  const email=document.getElementById('login-email').value.trim();
+  const password=document.getElementById('login-password').value;
+  document.getElementById('login-error').textContent='';
+  try{
+    const{data,error}=await sb.auth.signInWithPassword({email,password});
+    if(error)throw error;
+    const meta=data.user.user_metadata;
+    loadDashboard(meta.full_name,meta.journey,meta.gender);
+  }catch(e){document.getElementById('login-error').textContent='Invalid email or password.';}
 }
 
-function loadDashboard(fullName, journey, gender) {
-  const firstName = fullName ? fullName.split(' ')[0] : 'there';
-  const isFemale = gender === 'female';
-  const title = isFemale ? 'Hafiza' : 'Hafiz';
-  if (journey === 'parent') {
-    document.getElementById('parent-dash-name').textContent = `Assalamu Alaikum, ${firstName}`;
-    document.getElementById('parent-dash-sub').textContent = 'Supporting the next generation';
-    const code = 'ZD-' + Math.floor(1000 + Math.random() * 9000);
-    document.getElementById('link-code').textContent = code;
+function loadDashboard(fullName,journey,gender){
+  const firstName=fullName?fullName.split(' ')[0]:'there';
+  const title=gender==='female'?'Hafiza':'Hafiz';
+  if(journey==='parent'){
+    document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
+    document.getElementById('link-code').textContent='ZD-'+Math.floor(1000+Math.random()*9000);
     showScreen('screen-parent-dashboard');
-  } else {
-    document.getElementById('dash-name').textContent = `Assalamu Alaikum, ${title} ${firstName}`;
-    document.getElementById('dash-sub').textContent = journey === 'hafiz' ? `${title} · Ready to revise` : 'On the path to becoming a Hafiz';
-    buildSchedule();
-    showScreen('screen-dashboard');
+  }else{
+    document.getElementById('dash-name').textContent=`Assalamu Alaikum, ${title} ${firstName}`;
+    document.getElementById('dash-sub').textContent=journey==='hafiz'?`${title} · Ready to revise`:'On the path to becoming a Hafiz';
+    buildSchedule();showScreen('screen-dashboard');
   }
 }
 
-function copyCode() {
-  const code = document.getElementById('link-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.querySelector('#screen-parent-dashboard .btn-primary');
-    btn.textContent = 'Copied!';
-    setTimeout(() => { btn.textContent = 'Copy code'; }, 2000);
+function copyCode(){
+  const code=document.getElementById('link-code').textContent;
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn=document.querySelector('#screen-parent-dashboard .btn-primary');
+    btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy code';},2000);
   });
 }
 
-function buildSchedule() {
-  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const surahs = ['Surah An-Nas','Surah Al-Falaq','Surah Al-Ikhlas','Surah Al-Masad','Surah An-Nasr','Juz 30 revision','Surah Al-Kafirun'];
-  const list = document.getElementById('schedule-list');
-  list.innerHTML = '';
-  days.forEach((day, i) => {
-    const div = document.createElement('div');
-    div.className = 'sched-item';
-    div.innerHTML = `<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i < 2 ? 'done' : ''}"></div>`;
+function buildSchedule(){
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const surahs=['Surah An-Nas','Surah Al-Falaq','Surah Al-Ikhlas','Surah Al-Masad','Surah An-Nasr','Juz 30 revision','Surah Al-Kafirun'];
+  const list=document.getElementById('schedule-list');list.innerHTML='';
+  days.forEach((day,i)=>{
+    const div=document.createElement('div');div.className='sched-item';
+    div.innerHTML=`<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i<2?'done':''}"></div>`;
     list.appendChild(div);
   });
 }
 
-function togglePeek() {
-  isPeeking = !isPeeking;
-  document.getElementById('arabic-display').classList.toggle('hidden', !isPeeking);
-  document.querySelector('.peek-btn').textContent = isPeeking ? 'Hide' : 'Peek';
+function togglePeek(){
+  isPeeking=!isPeeking;
+  document.getElementById('arabic-display').classList.toggle('hidden',!isPeeking);
+  document.querySelector('.peek-btn').textContent=isPeeking?'Hide':'Peek';
 }
 
-function toggleMic() {
-  if (isListening) { stopListening(); } else { startListening(); }
-}
+function toggleMic(){if(isListening)stopListening();else startListening();}
 
-function startListening() {
-  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-    alert('Speech recognition is not supported in this browser. Please use Chrome.');
-    return;
-  }
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  recognition = new SR();
-  recognition.lang = 'ar-SA';
-  recognition.continuous = true;
-  recognition.interimResults = true;
-  recognition.onresult = (e) => {
-    const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
-    processRecitation(transcript);
-  };
-  recognition.onerror = () => { stopListening(); };
-  recognition.onend = () => { if (isListening) recognition.start(); };
-  recognition.start();
-  isListening = true;
+function startListening(){
+  if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert('Please use Chrome for speech recognition.');return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  recognition=new SR();recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;
+  recognition.onresult=e=>{const transcript=Array.from(e.results).map(r=>r[0].transcript).join('');processRecitation(transcript);};
+  recognition.onerror=()=>stopListening();
+  recognition.onend=()=>{if(isListening)recognition.start();};
+  recognition.start();isListening=true;
   document.getElementById('mic-btn').classList.add('listening');
   document.getElementById('listening-indicator').classList.add('show');
   document.getElementById('arabic-display').classList.remove('hidden');
 }
 
-function stopListening() {
-  if (recognition) recognition.stop();
-  isListening = false;
+function stopListening(){
+  if(recognition)recognition.stop();isListening=false;
   document.getElementById('mic-btn').classList.remove('listening');
   document.getElementById('listening-indicator').classList.remove('show');
 }
 
-function processRecitation(transcript) {
-  const words = document.querySelectorAll('.word');
-  const spokenWords = transcript.trim().split(/\s+/);
-  const currentIndex = spokenWords.length - 1;
-  if (currentIndex < totalWords) {
-    wordsRevealed = currentIndex + 1;
-    words.forEach((w, i) => {
-      w.classList.remove('correct','error','current');
-      if (i < currentIndex) w.classList.add('correct');
-      else if (i === currentIndex) w.classList.add('current');
-    });
-    const pct = Math.round((wordsRevealed / totalWords) * 100);
-    document.getElementById('session-bar').style.width = pct + '%';
-    document.getElementById('session-count').textContent = `${wordsRevealed} of ${totalWords} words`;
-    document.getElementById('error-flash').classList.remove('show');
-  }
+function processRecitation(transcript){
+  if(!currentSurah)return;
+  const words=document.querySelectorAll('.word');
+  const spokenWords=transcript.trim().split(/\s+/);
+  const currentIndex=Math.min(spokenWords.length-1,currentSurah.words.length-1);
+  wordsRevealed=currentIndex+1;
+  words.forEach((w,i)=>{
+    w.classList.remove('correct','current');
+    if(i<currentIndex)w.classList.add('correct');
+    else if(i===currentIndex)w.classList.add('current');
+  });
+  const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
+  document.getElementById('session-bar').style.width=pct+'%';
+  document.getElementById('session-count').textContent=`${wordsRevealed} of ${currentSurah.words.length} words`;
 }
 
-function endSession() {
-  stopListening();
-  document.querySelectorAll('.word').forEach(w => w.classList.remove('correct','error','current'));
-  document.getElementById('arabic-display').classList.add('hidden');
-  document.getElementById('session-bar').style.width = '0%';
-  document.getElementById('session-count').textContent = `0 of ${totalWords} words`;
-  wordsRevealed = 0;
-  showTab('dashboard');
-}
+function endSession(){stopListening();showTab('dashboard');}
 
-sb.auth.onAuthStateChange((event, session) => {
-  if (session) {
-    const meta = session.user.user_metadata;
-    loadDashboard(meta.full_name, meta.journey, meta.gender);
-  }
+sb.auth.onAuthStateChange((event,session)=>{
+  if(session){const meta=session.user.user_metadata;loadDashboard(meta.full_name,meta.journey,meta.gender);}
 });
 </script>
 </body>
