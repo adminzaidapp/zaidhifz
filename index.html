@@ -42,7 +42,6 @@
   .input-field.error { border-color: #E53935; }
   .input-error { font-size: 12px; color: #E53935; margin-top: 4px; display: none; }
   .input-error.show { display: block; }
-  .input-hint { font-size: 12px; color: #999; margin-top: 4px; }
   .select-field { width: 100%; padding: 13px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; background: #fff; }
   .select-field:focus { border-color: #1D9E75; }
   .btn-primary { width: 100%; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 8px; }
@@ -141,12 +140,17 @@
   .account-avatar { width: 64px; height: 64px; border-radius: 50%; background: #1D9E75; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; color: #fff; margin: 0 auto 12px; }
   .account-name { font-size: 20px; font-weight: 500; color: #1a1a1a; text-align: center; }
   .account-email { font-size: 14px; color: #999; text-align: center; margin-bottom: 24px; }
+  .detail-card { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; overflow: hidden; }
+  .detail-row { padding: 14px 16px; border-bottom: 0.5px solid #e0e0e0; }
+  .detail-row:last-child { border-bottom: none; }
+  .detail-label { font-size: 11px; color: #999; margin-bottom: 2px; }
+  .detail-value { font-size: 15px; color: #1a1a1a; }
   .tj-rule-card { border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; border: 0.5px solid #e0e0e0; }
   .tj-rule-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
   .tj-rule-desc { font-size: 13px; color: #555; line-height: 1.5; }
   .tj-rule-example { font-size: 18px; direction: rtl; margin-top: 6px; }
   .info-btn { background: none; border: none; color: rgba(255,255,255,0.9); font-size: 18px; cursor: pointer; padding: 0; }
-  .pw-req { font-size: 12px; color: #999; margin-top: 4px; line-height: 1.6; }
+  .pw-req { font-size: 12px; color: #999; margin-top: 4px; line-height: 1.8; }
   .pw-req span { display: block; }
   .pw-req span.met { color: #1D9E75; }
 </style>
@@ -388,9 +392,15 @@
   <div class="status-bar"><h1>Settings</h1></div>
   <div class="screen-body">
     <div class="account-avatar" id="settings-avatar">S</div>
-    <div class="account-name" id="settings-name">Shahid</div>
-    <div class="account-email" id="settings-email">your@email.com</div>
-
+    <div class="account-name" id="settings-name"></div>
+    <div class="account-email" id="settings-email"></div>
+    <div class="settings-row" onclick="showScreen('screen-account-details')">
+      <div class="settings-row-left">
+        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div>
+        <span class="settings-label">Account details</span>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
     <div class="settings-row" onclick="showScreen('screen-change-password')">
       <div class="settings-row-left">
         <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>
@@ -398,7 +408,6 @@
       </div>
       <span class="settings-arrow">›</span>
     </div>
-
     <div class="settings-row" onclick="showScreen('screen-tajweed-guide')">
       <div class="settings-row-left">
         <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><line x1="10" y1="9" x2="10" y2="14" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="6.5" r="1" fill="#1D9E75"/></svg></div>
@@ -406,15 +415,6 @@
       </div>
       <span class="settings-arrow">›</span>
     </div>
-
-    <div class="settings-row">
-      <div class="settings-row-left">
-        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div>
-        <span class="settings-label">Account details</span>
-      </div>
-      <span class="settings-arrow">›</span>
-    </div>
-
     <button class="btn-danger" style="margin-top:24px;" onclick="handleLogout()">Log out</button>
   </div>
   <div class="bottom-nav">
@@ -422,7 +422,37 @@
     <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Schedule</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#999"/></svg><span>Recite</span></button>
     <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#999" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#999"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#999"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#999"/></svg><span>Quran</span></button>
-    <button class="nav-item active" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg><span style="color:#1D9E75;">Settings</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg><span style="color:#1D9E75;">Settings</span></button>
+  </div>
+</div>
+
+<div class="screen" id="screen-account-details">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
+    <h1>Account Details</h1><span></span>
+  </div>
+  <div class="screen-body">
+    <div class="account-avatar" id="details-avatar">S</div>
+    <div class="account-name" id="details-name" style="margin-bottom:4px;"></div>
+    <div class="account-email" id="details-email"></div>
+    <div class="detail-card">
+      <div class="detail-row">
+        <div class="detail-label">Full name</div>
+        <div class="detail-value" id="details-name-field">—</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Email address</div>
+        <div class="detail-value" id="details-email-field">—</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Date of birth</div>
+        <div class="detail-value" id="details-dob-field">—</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-label">Journey</div>
+        <div class="detail-value" id="details-journey-field">—</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -433,10 +463,7 @@
   </div>
   <div class="screen-body">
     <h2>Update your password</h2>
-    <p class="sub">Enter your current password then choose a new one.</p>
-    <div class="input-wrap">
-      <input class="input-field" type="password" id="old-password" placeholder="Current password" />
-    </div>
+    <p class="sub">Choose a new password for your account.</p>
     <div class="input-wrap">
       <input class="input-field" type="password" id="new-password" placeholder="New password" oninput="checkNewPassword()" />
       <div class="pw-req">
@@ -461,41 +488,13 @@
   </div>
   <div class="screen-body">
     <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
-    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;">
-      <div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div>
-      <div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div>
-      <div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div>
-    </div>
-    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;">
-      <div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div>
-      <div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div>
-      <div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div>
-    </div>
-    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;">
-      <div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div>
-      <div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div>
-      <div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div>
-    </div>
-    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;">
-      <div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div>
-      <div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div>
-      <div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div>
-    </div>
-    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;">
-      <div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div>
-      <div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div>
-      <div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div>
-    </div>
-    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;">
-      <div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div>
-      <div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div>
-      <div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div>
-    </div>
-    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;">
-      <div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div>
-      <div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div>
-      <div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div>
-    </div>
+    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
+    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div></div>
+    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;"><div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div><div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div><div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div><div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
+    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
+    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
     <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
   </div>
 </div>
@@ -508,13 +507,7 @@
   </div>
   <div class="screen-body">
     <div class="tajweed-key">
-      <span class="tj-badge ikhfa">Ikhfa</span>
-      <span class="tj-badge ghunnah">Ghunnah</span>
-      <span class="tj-badge ikhfa-meem">Ikhfa Meem</span>
-      <span class="tj-badge idgham">Idgham</span>
-      <span class="tj-badge qalqalah">Qalqalah</span>
-      <span class="tj-badge qalb">Qalb</span>
-      <span class="tj-badge idgham-meem">Idgham Meem</span>
+      <span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span>
     </div>
     <p style="font-size:12px;color:#999;margin-bottom:16px;">Tap <strong>?</strong> above to learn what each colour means</p>
     <div id="surah-list"></div>
@@ -535,13 +528,7 @@
   </div>
   <div class="screen-body">
     <div class="tajweed-key">
-      <span class="tj-badge ikhfa">Ikhfa</span>
-      <span class="tj-badge ghunnah">Ghunnah</span>
-      <span class="tj-badge ikhfa-meem">Ikhfa Meem</span>
-      <span class="tj-badge idgham">Idgham</span>
-      <span class="tj-badge qalqalah">Qalqalah</span>
-      <span class="tj-badge qalb">Qalb</span>
-      <span class="tj-badge idgham-meem">Idgham Meem</span>
+      <span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span>
     </div>
     <div class="blank-page">
       <div class="arabic-text hidden" id="arabic-display"></div>
@@ -664,27 +651,20 @@ function checkEmail(){
 
 function checkPassword(){
   const pw=document.getElementById('ob-password').value;
-  const lenOk=pw.length>=6;
-  const upperOk=/[A-Z]/.test(pw);
-  const numOk=/[0-9]/.test(pw);
-  const lenEl=document.getElementById('pw-len');
-  const upperEl=document.getElementById('pw-upper');
-  const numEl=document.getElementById('pw-num');
-  lenEl.textContent=(lenOk?'✓':'✗')+' At least 6 characters';
-  lenEl.className=lenOk?'met':'';
-  upperEl.textContent=(upperOk?'✓':'✗')+' At least one uppercase letter';
-  upperEl.className=upperOk?'met':'';
-  numEl.textContent=(numOk?'✓':'✗')+' At least one number';
-  numEl.className=numOk?'met':'';
+  const lenOk=pw.length>=6,upperOk=/[A-Z]/.test(pw),numOk=/[0-9]/.test(pw);
+  const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
+  upd('pw-len',lenOk,'At least 6 characters');
+  upd('pw-upper',upperOk,'At least one uppercase letter');
+  upd('pw-num',numOk,'At least one number');
 }
 
 function checkNewPassword(){
   const pw=document.getElementById('new-password').value;
-  const lenOk=pw.length>=6;const upperOk=/[A-Z]/.test(pw);const numOk=/[0-9]/.test(pw);
-  const lenEl=document.getElementById('new-pw-len');const upperEl=document.getElementById('new-pw-upper');const numEl=document.getElementById('new-pw-num');
-  lenEl.textContent=(lenOk?'✓':'✗')+' At least 6 characters';lenEl.className=lenOk?'met':'';
-  upperEl.textContent=(upperOk?'✓':'✗')+' At least one uppercase letter';upperEl.className=upperOk?'met':'';
-  numEl.textContent=(numOk?'✓':'✗')+' At least one number';numEl.className=numOk?'met':'';
+  const lenOk=pw.length>=6,upperOk=/[A-Z]/.test(pw),numOk=/[0-9]/.test(pw);
+  const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
+  upd('new-pw-len',lenOk,'At least 6 characters');
+  upd('new-pw-upper',upperOk,'At least one uppercase letter');
+  upd('new-pw-num',numOk,'At least one number');
 }
 
 function nextOnboard1(){
@@ -693,16 +673,12 @@ function nextOnboard1(){
   const password=document.getElementById('ob-password').value;
   const dob=document.getElementById('ob-dob').value;
   let valid=true;
-  if(!name){document.getElementById('ob-name-error').classList.add('show');valid=false;}
-  else{document.getElementById('ob-name-error').classList.remove('show');}
+  if(!name){document.getElementById('ob-name-error').classList.add('show');valid=false;}else{document.getElementById('ob-name-error').classList.remove('show');}
   const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if(!emailOk){document.getElementById('ob-email-error').classList.add('show');document.getElementById('ob-email').classList.add('error');valid=false;}
-  else{document.getElementById('ob-email-error').classList.remove('show');document.getElementById('ob-email').classList.remove('error');}
+  if(!emailOk){document.getElementById('ob-email-error').classList.add('show');document.getElementById('ob-email').classList.add('error');valid=false;}else{document.getElementById('ob-email-error').classList.remove('show');document.getElementById('ob-email').classList.remove('error');}
   const pwOk=password.length>=6&&/[A-Z]/.test(password)&&/[0-9]/.test(password);
-  if(!pwOk){document.getElementById('ob-pw-error').classList.add('show');valid=false;}
-  else{document.getElementById('ob-pw-error').classList.remove('show');}
-  if(!dob){document.getElementById('ob-dob-error').classList.add('show');valid=false;}
-  else{document.getElementById('ob-dob-error').classList.remove('show');}
+  if(!pwOk){document.getElementById('ob-pw-error').classList.add('show');valid=false;}else{document.getElementById('ob-pw-error').classList.remove('show');}
+  if(!dob){document.getElementById('ob-dob-error').classList.add('show');valid=false;}else{document.getElementById('ob-dob-error').classList.remove('show');}
   if(!valid)return;
   userData.name=name;userData.email=email;userData.password=password;userData.dob=dob;
   showScreen('screen-onboard-gender');
@@ -746,13 +722,12 @@ function nextOnboard2(){
 function nextOnboard3(){
   if(userData.journey==='hafiz'){
     if(!userData['hifz-when']){document.getElementById('ob3-error').textContent='Please select an option.';return;}
-    document.getElementById('ob3-error').textContent='';
     buildFinalStep('hafiz');
   }else{
     if(!userData['learning-stage']){document.getElementById('ob3-error').textContent='Please select an option.';return;}
-    document.getElementById('ob3-error').textContent='';
     buildFinalStep(userData['learning-stage']);
   }
+  document.getElementById('ob3-error').textContent='';
   showScreen('screen-onboard-4');
 }
 
@@ -783,13 +758,13 @@ function buildFinalStep(stage){
     sub.textContent='This helps Zaid build the perfect plan for you.';
     [{val:'full',label:'Become a full Hafiz (memorise the entire Quran)'},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{
       const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;
-      btn.onclick=function(){content.querySelectorAll('.option-btn.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};
+      btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};
       content.appendChild(btn);
     });
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:16px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
     [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{
       const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;
-      btn.onclick=function(){content.querySelectorAll('.option-btn.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};
+      btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};
       content.appendChild(btn);
     });
   }else if(stage==='halfway'){
@@ -847,10 +822,8 @@ async function handleLogin(){
   const email=document.getElementById('login-email').value.trim();
   const password=document.getElementById('login-password').value;
   let valid=true;
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('login-email-error').classList.add('show');valid=false;}
-  else{document.getElementById('login-email-error').classList.remove('show');}
-  if(!password){document.getElementById('login-pw-error').classList.add('show');valid=false;}
-  else{document.getElementById('login-pw-error').classList.remove('show');}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('login-email-error').classList.add('show');valid=false;}else{document.getElementById('login-email-error').classList.remove('show');}
+  if(!password){document.getElementById('login-pw-error').classList.add('show');valid=false;}else{document.getElementById('login-pw-error').classList.remove('show');}
   if(!valid)return;
   document.getElementById('login-error').textContent='';
   try{
@@ -872,20 +845,17 @@ async function handleForgotPassword(){
 }
 
 async function handleChangePassword(){
-  const oldPw=document.getElementById('old-password').value;
   const newPw=document.getElementById('new-password').value;
   const confirmPw=document.getElementById('confirm-password').value;
   const errorEl=document.getElementById('change-pw-error');
   const successEl=document.getElementById('change-pw-success');
   errorEl.textContent='';successEl.textContent='';
-  if(!oldPw){errorEl.textContent='Please enter your current password.';return;}
   if(newPw.length<6||!/[A-Z]/.test(newPw)||!/[0-9]/.test(newPw)){errorEl.textContent='New password does not meet requirements.';return;}
   if(newPw!==confirmPw){errorEl.textContent='Passwords do not match.';return;}
   try{
     const{error}=await sb.auth.updateUser({password:newPw});
     if(error)throw error;
     successEl.textContent='Password updated successfully.';
-    document.getElementById('old-password').value='';
     document.getElementById('new-password').value='';
     document.getElementById('confirm-password').value='';
   }catch(e){errorEl.textContent='Something went wrong. Please try again.';}
@@ -903,7 +873,18 @@ function loadDashboard(fullName,journey,gender){
   document.getElementById('settings-avatar').textContent=initials;
   document.getElementById('settings-name').textContent=fullName||'';
   sb.auth.getUser().then(({data})=>{
-    if(data.user)document.getElementById('settings-email').textContent=data.user.email;
+    if(data.user){
+      const u=data.user;const meta=u.user_metadata;
+      document.getElementById('settings-email').textContent=u.email;
+      document.getElementById('details-avatar').textContent=initials;
+      document.getElementById('details-name').textContent=meta.full_name||'';
+      document.getElementById('details-email').textContent=u.email;
+      document.getElementById('details-name-field').textContent=meta.full_name||'—';
+      document.getElementById('details-email-field').textContent=u.email;
+      document.getElementById('details-dob-field').textContent=meta.dob||'—';
+      const j=meta.journey;
+      document.getElementById('details-journey-field').textContent=j==='hafiz'?'Hafiz / Revision':j==='learning'?'Learning to become a Hafiz':j==='parent'?'Parent or Teacher':'—';
+    }
   });
   if(journey==='parent'){
     document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
