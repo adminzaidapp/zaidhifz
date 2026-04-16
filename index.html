@@ -338,6 +338,7 @@
   </div>
 </div>
 
+<!-- STUDENT DASHBOARD -->
 <div class="screen" id="screen-dashboard">
   <div class="status-bar"><h1>Zaid</h1></div>
   <div class="screen-body">
@@ -366,6 +367,7 @@
   </div>
 </div>
 
+<!-- PARENT DASHBOARD -->
 <div class="screen" id="screen-parent-dashboard">
   <div class="status-bar"><h1>Zaid</h1></div>
   <div class="screen-body">
@@ -381,13 +383,122 @@
     <p style="font-size:14px;color:#999;text-align:center;padding:20px 0;">No students linked yet. Share your code to get started.</p>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
-    <button class="nav-item"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
-    <button class="nav-item"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
-    <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+    <button class="nav-item active" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="15" cy="7" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M13 17c0-2 1-3.5 3-4" stroke="#999" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><span>Students</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
 </div>
 
+<!-- PARENT STUDENTS PLACEHOLDER -->
+<div class="screen" id="screen-parent-students">
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Students</h1><span></span></div>
+  <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">👥</div>
+    <h2>Your students</h2>
+    <p class="sub">Once a student links their account using your code, they'll appear here. You'll be able to see their progress and set goals.</p>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#1D9E75" stroke-width="1.5" fill="none"/><circle cx="15" cy="7" r="3" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M13 17c0-2 1-3.5 3-4" stroke="#1D9E75" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><span style="color:#1D9E75;">Students</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+  </div>
+</div>
+
+<!-- PARENT GOALS PLACEHOLDER -->
+<div class="screen" id="screen-parent-goals">
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Goals</h1><span></span></div>
+  <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+    <div style="font-size:48px;margin-bottom:16px;">🎯</div>
+    <h2>Set goals</h2>
+    <p class="sub">Once students are linked, you'll be able to set revision goals, homework and targets for them here.</p>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#1D9E75"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#1D9E75"/></svg><span style="color:#1D9E75;">Goals</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+  </div>
+</div>
+
+<!-- PARENT SETTINGS — clean, no student features -->
+<div class="screen" id="screen-parent-settings">
+  <div class="status-bar"><h1>Settings</h1></div>
+  <div class="screen-body">
+    <div class="account-avatar" id="parent-settings-avatar">S</div>
+    <div class="account-name" id="parent-settings-name"></div>
+    <div class="account-email" id="parent-settings-email"></div>
+    <div class="settings-row" onclick="showScreen('screen-parent-account-details')">
+      <div class="settings-row-left">
+        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div>
+        <span class="settings-label">Account details</span>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+    <div class="settings-row" onclick="showScreen('screen-parent-change-password')">
+      <div class="settings-row-left">
+        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>
+        <span class="settings-label">Change password</span>
+      </div>
+      <span class="settings-arrow">›</span>
+    </div>
+    <button class="btn-danger" style="margin-top:24px;" onclick="handleLogout()">Log out</button>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg><span style="color:#1D9E75;">Settings</span></button>
+  </div>
+</div>
+
+<!-- PARENT ACCOUNT DETAILS -->
+<div class="screen" id="screen-parent-account-details">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-parent-settings')">← Back</button>
+    <h1>Account Details</h1><span></span>
+  </div>
+  <div class="screen-body">
+    <div class="account-avatar" id="parent-details-avatar">S</div>
+    <div class="account-name" id="parent-details-name" style="margin-bottom:4px;"></div>
+    <div class="account-email" id="parent-details-email"></div>
+    <div class="detail-card">
+      <div class="detail-row"><div class="detail-label">Full name</div><div class="detail-value" id="parent-details-name-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Email address</div><div class="detail-value" id="parent-details-email-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Date of birth</div><div class="detail-value" id="parent-details-dob-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Role</div><div class="detail-value" id="parent-details-role-field">—</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PARENT CHANGE PASSWORD -->
+<div class="screen" id="screen-parent-change-password">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-parent-settings')">← Back</button>
+    <h1>Change Password</h1><span></span>
+  </div>
+  <div class="screen-body">
+    <h2>Update your password</h2>
+    <p class="sub">Choose a new password for your account.</p>
+    <div class="input-wrap">
+      <input class="input-field" type="password" id="parent-new-password" placeholder="New password" oninput="checkParentNewPassword()" />
+      <div class="pw-req">
+        <span id="parent-new-pw-len">✗ At least 6 characters</span>
+        <span id="parent-new-pw-upper">✗ At least one uppercase letter</span>
+        <span id="parent-new-pw-num">✗ At least one number</span>
+      </div>
+    </div>
+    <div class="input-wrap">
+      <input class="input-field" type="password" id="parent-confirm-password" placeholder="Confirm new password" />
+    </div>
+    <button class="btn-primary" onclick="handleParentChangePassword()">Update password</button>
+    <p class="error-msg" id="parent-change-pw-error"></p>
+    <p class="success-msg" id="parent-change-pw-success"></p>
+  </div>
+</div>
+
+<!-- STUDENT SETTINGS -->
 <div class="screen" id="screen-settings">
   <div class="status-bar"><h1>Settings</h1></div>
   <div class="screen-body">
@@ -426,6 +537,7 @@
   </div>
 </div>
 
+<!-- STUDENT ACCOUNT DETAILS -->
 <div class="screen" id="screen-account-details">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
@@ -436,26 +548,15 @@
     <div class="account-name" id="details-name" style="margin-bottom:4px;"></div>
     <div class="account-email" id="details-email"></div>
     <div class="detail-card">
-      <div class="detail-row">
-        <div class="detail-label">Full name</div>
-        <div class="detail-value" id="details-name-field">—</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Email address</div>
-        <div class="detail-value" id="details-email-field">—</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Date of birth</div>
-        <div class="detail-value" id="details-dob-field">—</div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-label">Journey</div>
-        <div class="detail-value" id="details-journey-field">—</div>
-      </div>
+      <div class="detail-row"><div class="detail-label">Full name</div><div class="detail-value" id="details-name-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Email address</div><div class="detail-value" id="details-email-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Date of birth</div><div class="detail-value" id="details-dob-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Journey</div><div class="detail-value" id="details-journey-field">—</div></div>
     </div>
   </div>
 </div>
 
+<!-- STUDENT CHANGE PASSWORD -->
 <div class="screen" id="screen-change-password">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
@@ -481,9 +582,10 @@
   </div>
 </div>
 
+<!-- TAJWEED GUIDE — back goes to settings -->
 <div class="screen" id="screen-tajweed-guide">
   <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-surah-list')">← Back</button>
+    <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
     <h1>Tajweed Guide</h1><span></span>
   </div>
   <div class="screen-body">
@@ -495,15 +597,16 @@
     <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
     <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
     <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
-    <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
+    <button class="btn-primary" onclick="showScreen('screen-settings')" style="margin-top:8px;">Back to settings</button>
   </div>
 </div>
 
+<!-- SURAH LIST -->
 <div class="screen" id="screen-surah-list">
   <div class="status-bar">
     <button class="back-btn" onclick="showTab('dashboard')">← Back</button>
     <h1>Choose Surah</h1>
-    <button class="info-btn" onclick="showScreen('screen-tajweed-guide')">?</button>
+    <button class="info-btn" onclick="showScreen('screen-tajweed-guide-recite')">?</button>
   </div>
   <div class="screen-body">
     <div class="tajweed-key">
@@ -521,6 +624,26 @@
   </div>
 </div>
 
+<!-- TAJWEED GUIDE FROM RECITE — back goes to surah list -->
+<div class="screen" id="screen-tajweed-guide-recite">
+  <div class="status-bar">
+    <button class="back-btn" onclick="showScreen('screen-surah-list')">← Back</button>
+    <h1>Tajweed Guide</h1><span></span>
+  </div>
+  <div class="screen-body">
+    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
+    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
+    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div></div>
+    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;"><div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div><div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div><div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div><div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
+    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
+    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
+    <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
+  </div>
+</div>
+
+<!-- RECITE SCREEN -->
 <div class="screen" id="screen-recite">
   <div class="status-bar">
     <button class="back-btn" onclick="endSession()">← Back</button>
@@ -560,6 +683,7 @@
   </div>
 </div>
 
+<!-- QURAN PLACEHOLDER -->
 <div class="screen" id="screen-quran">
   <div class="status-bar"><h1>Quran</h1></div>
   <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
@@ -576,6 +700,7 @@
   </div>
 </div>
 
+<!-- SCHEDULE -->
 <div class="screen" id="screen-schedule">
   <div class="status-bar"><h1>Schedule</h1></div>
   <div class="screen-body">
@@ -592,6 +717,7 @@
   </div>
 </div>
 
+<!-- PROGRESS -->
 <div class="screen" id="screen-progress">
   <div class="status-bar"><h1>Progress</h1></div>
   <div class="screen-body">
@@ -633,11 +759,12 @@ const SURAHS=[
 ];
 
 let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed=0,currentSurah=null;
+let currentUserJourney='';
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
 function showTab(tab){
-  const map={dashboard:'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',progress:'screen-progress',quran:'screen-quran',settings:'screen-settings'};
+  const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',progress:'screen-progress',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
   if(tab==='recite')buildSurahList();
   showScreen(map[tab]||'screen-dashboard');
 }
@@ -651,20 +778,26 @@ function checkEmail(){
 
 function checkPassword(){
   const pw=document.getElementById('ob-password').value;
-  const lenOk=pw.length>=6,upperOk=/[A-Z]/.test(pw),numOk=/[0-9]/.test(pw);
   const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
-  upd('pw-len',lenOk,'At least 6 characters');
-  upd('pw-upper',upperOk,'At least one uppercase letter');
-  upd('pw-num',numOk,'At least one number');
+  upd('pw-len',pw.length>=6,'At least 6 characters');
+  upd('pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');
+  upd('pw-num',/[0-9]/.test(pw),'At least one number');
 }
 
 function checkNewPassword(){
   const pw=document.getElementById('new-password').value;
-  const lenOk=pw.length>=6,upperOk=/[A-Z]/.test(pw),numOk=/[0-9]/.test(pw);
   const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
-  upd('new-pw-len',lenOk,'At least 6 characters');
-  upd('new-pw-upper',upperOk,'At least one uppercase letter');
-  upd('new-pw-num',numOk,'At least one number');
+  upd('new-pw-len',pw.length>=6,'At least 6 characters');
+  upd('new-pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');
+  upd('new-pw-num',/[0-9]/.test(pw),'At least one number');
+}
+
+function checkParentNewPassword(){
+  const pw=document.getElementById('parent-new-password').value;
+  const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
+  upd('parent-new-pw-len',pw.length>=6,'At least 6 characters');
+  upd('parent-new-pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');
+  upd('parent-new-pw-num',/[0-9]/.test(pw),'At least one number');
 }
 
 function nextOnboard1(){
@@ -754,8 +887,7 @@ function buildFinalStep(stage){
     }
     content.appendChild(grid);
   }else if(stage==='just'){
-    title.textContent='What is your goal?';
-    sub.textContent='This helps Zaid build the perfect plan for you.';
+    title.textContent='What is your goal?';sub.textContent='This helps Zaid build the perfect plan for you.';
     [{val:'full',label:'Become a full Hafiz (memorise the entire Quran)'},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{
       const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;
       btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};
@@ -856,36 +988,64 @@ async function handleChangePassword(){
     const{error}=await sb.auth.updateUser({password:newPw});
     if(error)throw error;
     successEl.textContent='Password updated successfully.';
-    document.getElementById('new-password').value='';
-    document.getElementById('confirm-password').value='';
+    document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';
   }catch(e){errorEl.textContent='Something went wrong. Please try again.';}
 }
 
-async function handleLogout(){
-  await sb.auth.signOut();
-  showScreen('screen-splash');
+async function handleParentChangePassword(){
+  const newPw=document.getElementById('parent-new-password').value;
+  const confirmPw=document.getElementById('parent-confirm-password').value;
+  const errorEl=document.getElementById('parent-change-pw-error');
+  const successEl=document.getElementById('parent-change-pw-success');
+  errorEl.textContent='';successEl.textContent='';
+  if(newPw.length<6||!/[A-Z]/.test(newPw)||!/[0-9]/.test(newPw)){errorEl.textContent='New password does not meet requirements.';return;}
+  if(newPw!==confirmPw){errorEl.textContent='Passwords do not match.';return;}
+  try{
+    const{error}=await sb.auth.updateUser({password:newPw});
+    if(error)throw error;
+    successEl.textContent='Password updated successfully.';
+    document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';
+  }catch(e){errorEl.textContent='Something went wrong. Please try again.';}
 }
 
+async function handleLogout(){await sb.auth.signOut();showScreen('screen-splash');}
+
 function loadDashboard(fullName,journey,gender){
+  currentUserJourney=journey;
   const firstName=fullName?fullName.split(' ')[0]:'there';
   const title=gender==='female'?'Hafiza':'Hafiz';
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
-  document.getElementById('settings-avatar').textContent=initials;
-  document.getElementById('settings-name').textContent=fullName||'';
+
   sb.auth.getUser().then(({data})=>{
     if(data.user){
       const u=data.user;const meta=u.user_metadata;
-      document.getElementById('settings-email').textContent=u.email;
-      document.getElementById('details-avatar').textContent=initials;
-      document.getElementById('details-name').textContent=meta.full_name||'';
-      document.getElementById('details-email').textContent=u.email;
-      document.getElementById('details-name-field').textContent=meta.full_name||'—';
-      document.getElementById('details-email-field').textContent=u.email;
-      document.getElementById('details-dob-field').textContent=meta.dob||'—';
-      const j=meta.journey;
-      document.getElementById('details-journey-field').textContent=j==='hafiz'?'Hafiz / Revision':j==='learning'?'Learning to become a Hafiz':j==='parent'?'Parent or Teacher':'—';
+      if(journey==='parent'){
+        document.getElementById('parent-settings-avatar').textContent=initials;
+        document.getElementById('parent-settings-name').textContent=meta.full_name||'';
+        document.getElementById('parent-settings-email').textContent=u.email;
+        document.getElementById('parent-details-avatar').textContent=initials;
+        document.getElementById('parent-details-name').textContent=meta.full_name||'';
+        document.getElementById('parent-details-email').textContent=u.email;
+        document.getElementById('parent-details-name-field').textContent=meta.full_name||'—';
+        document.getElementById('parent-details-email-field').textContent=u.email;
+        document.getElementById('parent-details-dob-field').textContent=meta.dob||'—';
+        document.getElementById('parent-details-role-field').textContent=meta.parent_type==='teacher'?'Teacher / Ustadh':'Parent';
+      }else{
+        document.getElementById('settings-avatar').textContent=initials;
+        document.getElementById('settings-name').textContent=meta.full_name||'';
+        document.getElementById('settings-email').textContent=u.email;
+        document.getElementById('details-avatar').textContent=initials;
+        document.getElementById('details-name').textContent=meta.full_name||'';
+        document.getElementById('details-email').textContent=u.email;
+        document.getElementById('details-name-field').textContent=meta.full_name||'—';
+        document.getElementById('details-email-field').textContent=u.email;
+        document.getElementById('details-dob-field').textContent=meta.dob||'—';
+        const j=meta.journey;
+        document.getElementById('details-journey-field').textContent=j==='hafiz'?'Hafiz / Revision':j==='learning'?'Learning to become a Hafiz':'—';
+      }
     }
   });
+
   if(journey==='parent'){
     document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
     document.getElementById('link-code').textContent='ZD-'+Math.floor(1000+Math.random()*9000);
