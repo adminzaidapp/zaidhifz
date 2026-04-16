@@ -38,6 +38,8 @@
   .gender-btn.selected .label { color: #085041; }
   .input-field { width: 100%; padding: 13px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; }
   .input-field:focus { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.1); }
+  .select-field { width: 100%; padding: 13px 16px; border: 0.5px solid #e0e0e0; border-radius: 12px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; background: #fff; }
+  .select-field:focus { border-color: #1D9E75; }
   .btn-primary { width: 100%; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 8px; }
   .btn-primary:hover { background: #0F6E56; }
   .btn-primary:disabled { background: #9FE1CB; cursor: not-allowed; }
@@ -65,7 +67,7 @@
   .blank-page { background: #f9f9f9; border-radius: 14px; border: 0.5px solid #e0e0e0; min-height: 180px; display: flex; align-items: center; justify-content: center; margin: 16px 0; padding: 20px; }
   .arabic-text { font-size: 24px; text-align: center; line-height: 2.2; direction: rtl; width: 100%; }
   .arabic-text.hidden .word { color: transparent !important; }
-  .word { display: inline; margin: 0 2px; transition: opacity 0.2s; cursor: default; }
+  .word { display: inline; margin: 0 2px; transition: opacity 0.2s; }
   .word.correct { opacity: 0.4; }
   .word.current { text-decoration: underline; text-decoration-color: #1D9E75; text-decoration-thickness: 2px; }
   .tj-normal { color: #1a1a1a; }
@@ -76,9 +78,8 @@
   .tj-qalqalah { color: #E53935; }
   .tj-qalb { color: #7B1FA2; }
   .tj-idgham-meem { color: #4CAF50; }
-  .tj-madd { color: #1a1a1a; }
   .tajweed-key { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-  .tj-badge { font-size: 10px; padding: 4px 10px; border-radius: 999px; font-weight: 500; cursor: pointer; }
+  .tj-badge { font-size: 10px; padding: 4px 10px; border-radius: 999px; font-weight: 500; }
   .tj-badge.ikhfa { background: #E3F2FD; color: #2196F3; }
   .tj-badge.ghunnah { background: #FFF3E0; color: #FF9800; }
   .tj-badge.ikhfa-meem { background: #FCE4EC; color: #E91E8C; }
@@ -108,7 +109,6 @@
   .sched-status { width: 10px; height: 10px; border-radius: 50%; background: #e0e0e0; flex-shrink: 0; }
   .sched-status.done { background: #1D9E75; }
   .error-msg { color: #E53935; font-size: 13px; margin-top: 8px; text-align: center; }
-  .success-msg { color: #1D9E75; font-size: 13px; margin-top: 8px; text-align: center; }
   .divider { text-align: center; color: #999; font-size: 13px; margin: 16px 0; }
   .listening-indicator { display: none; align-items: center; gap: 6px; justify-content: center; margin-bottom: 8px; }
   .listening-indicator.show { display: flex; }
@@ -225,7 +225,7 @@
     <div class="progress-label">A little more</div>
     <div class="progress-wrap"><div class="progress-fill" style="width:80%"></div></div>
     <h2 id="ob3-title">When did you complete your Hifz?</h2>
-    <p class="sub">This helps Zaid understand where to start.</p>
+    <p class="sub" id="ob3-sub">This helps Zaid understand where to start.</p>
     <div id="ob3-hafiz">
       <button class="option-btn" onclick="selectOption(this,'hifz-when','recent')">Less than 1 year ago</button>
       <button class="option-btn" onclick="selectOption(this,'hifz-when','few')">1–5 years ago</button>
@@ -249,9 +249,9 @@
   <div class="screen-body">
     <div class="progress-label">Almost done</div>
     <div class="progress-wrap"><div class="progress-fill" style="width:100%"></div></div>
-    <h2>Which Juz do you struggle with most?</h2>
-    <p class="sub">Select all that apply. You can update this later.</p>
-    <div id="juz-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;"></div>
+    <h2 id="ob4-title">Which Juz do you struggle with most?</h2>
+    <p class="sub" id="ob4-sub">Select all that apply. You can update this later.</p>
+    <div id="ob4-content"></div>
     <button class="btn-primary" onclick="finishOnboarding()">Create my account</button>
     <p class="error-msg" id="ob4-error"></p>
   </div>
@@ -280,7 +280,7 @@
     <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
     <div class="streak-card">
-      <div><div class="streak-label">Current streak</div><div class="streak-num" id="dash-streak">0 days</div></div>
+      <div><div class="streak-label">Current streak</div><div class="streak-num">0 days</div></div>
       <div style="font-size:28px;">🔥</div>
     </div>
     <div class="today-card" onclick="showTab('recite')">
@@ -316,7 +316,7 @@
     <p style="font-size:14px;color:#999;text-align:center;padding:20px 0;">No students linked yet. Share your code to get started.</p>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item active" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#1D9E75"/></svg><span>Home</span></button>
     <button class="nav-item"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#999" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#999" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
     <button class="nav-item"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
     <button class="nav-item"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="#999"/><rect x="7" y="6" width="3" height="12" rx="1" fill="#999"/><rect x="12" y="3" width="3" height="15" rx="1" fill="#999"/></svg><span>Progress</span></button>
@@ -329,40 +329,40 @@
     <h1>Tajweed Guide</h1><span></span>
   </div>
   <div class="screen-body">
-    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran. Each colour represents a different rule of recitation.</p>
+    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
     <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;">
       <div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div>
-      <div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters. The sound is neither fully pronounced nor fully merged.</div>
+      <div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div>
       <div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div>
     </div>
     <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;">
       <div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div>
-      <div class="tj-rule-desc">A nasal humming sound held for two counts, occurring on a shaddah over noon or meem, or on noon and meem sakinah in certain situations.</div>
-      <div class="tj-rule-example" style="color:#FF9800;">إِنَّ — مِنَ النَّاسِ</div>
+      <div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div>
+      <div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div>
     </div>
     <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;">
       <div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div>
-      <div class="tj-rule-desc">When a meem saakin is followed by the letter ba, the meem is hidden with a nasal sound held for two counts.</div>
+      <div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div>
       <div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div>
     </div>
     <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;">
       <div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div>
-      <div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter. The noon disappears and the following letter is doubled in sound.</div>
+      <div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div>
       <div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div>
     </div>
     <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;">
       <div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div>
-      <div class="tj-rule-desc">A slight echoing or bouncing sound applied to the letters ق ط ب ج د when they appear with sukoon. Especially strong at the end of an ayah.</div>
+      <div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div>
       <div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div>
     </div>
     <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;">
       <div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div>
-      <div class="tj-rule-desc">When noon sakinah or tanween is followed by the letter ba, the noon is converted into a meem sound with ghunnah.</div>
+      <div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div>
       <div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div>
     </div>
     <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;">
       <div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div>
-      <div class="tj-rule-desc">When a meem saakin is followed by another meem, the two meems merge together with a ghunnah of two counts.</div>
+      <div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div>
       <div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div>
     </div>
     <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
@@ -572,28 +572,23 @@ function showTab(tab){
 }
 
 function buildSurahList(){
-  const list=document.getElementById('surah-list');
-  list.innerHTML='';
+  const list=document.getElementById('surah-list');list.innerHTML='';
   SURAHS.forEach((s,i)=>{
-    const div=document.createElement('div');
-    div.className='surah-list-item';
+    const div=document.createElement('div');div.className='surah-list-item';
     div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;
-    div.onclick=()=>startSurah(i);
-    list.appendChild(div);
+    div.onclick=()=>startSurah(i);list.appendChild(div);
   });
 }
 
 function startSurah(index){
-  currentSurah=SURAHS[index];
-  wordsRevealed=0;isPeeking=false;
+  currentSurah=SURAHS[index];wordsRevealed=0;isPeeking=false;
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
   const display=document.getElementById('arabic-display');
   display.innerHTML='';display.classList.add('hidden');
   currentSurah.words.forEach((w,i)=>{
     const span=document.createElement('span');
     span.className=`word tj-${w.tj}`;
-    span.dataset.index=i;
-    span.textContent=w.t+' ';
+    span.dataset.index=i;span.textContent=w.t+' ';
     display.appendChild(span);
   });
   document.getElementById('session-bar').style.width='0%';
@@ -629,8 +624,7 @@ function nextOnboard1(){
   const dob=document.getElementById('ob-dob').value;
   if(!name||!email||!password||!dob){document.getElementById('ob1-error').textContent='Please fill in all fields.';return;}
   userData.name=name;userData.email=email;userData.password=password;userData.dob=dob;
-  document.getElementById('ob1-error').textContent='';
-  showScreen('screen-onboard-gender');
+  document.getElementById('ob1-error').textContent='';showScreen('screen-onboard-gender');
 }
 
 function nextOnboard2(){
@@ -639,10 +633,12 @@ function nextOnboard2(){
   if(userData.journey==='parent'){showScreen('screen-onboard-parent');return;}
   if(userData.journey==='hafiz'){
     document.getElementById('ob3-title').textContent='When did you complete your Hifz?';
+    document.getElementById('ob3-sub').textContent='This helps Zaid understand where to start.';
     document.getElementById('ob3-hafiz').style.display='block';
     document.getElementById('ob3-learning').style.display='none';
   }else{
-    document.getElementById('ob3-title').textContent='Where are you in your journey?';
+    document.getElementById('ob3-title').textContent='Where are you in your memorisation?';
+    document.getElementById('ob3-sub').textContent='This helps Zaid build the right plan for you.';
     document.getElementById('ob3-hafiz').style.display='none';
     document.getElementById('ob3-learning').style.display='block';
   }
@@ -650,25 +646,134 @@ function nextOnboard2(){
 }
 
 function nextOnboard3(){
-  const key=userData.journey==='hafiz'?'hifz-when':'learning-stage';
-  if(!userData[key]){document.getElementById('ob3-error').textContent='Please select an option.';return;}
-  document.getElementById('ob3-error').textContent='';
-  buildJuzGrid();showScreen('screen-onboard-4');
+  if(userData.journey==='hafiz'){
+    const key='hifz-when';
+    if(!userData[key]){document.getElementById('ob3-error').textContent='Please select an option.';return;}
+    document.getElementById('ob3-error').textContent='';
+    buildFinalStep('hafiz');
+  }else{
+    const key='learning-stage';
+    if(!userData[key]){document.getElementById('ob3-error').textContent='Please select an option.';return;}
+    document.getElementById('ob3-error').textContent='';
+    buildFinalStep(userData['learning-stage']);
+  }
+  showScreen('screen-onboard-4');
 }
 
-function buildJuzGrid(){
-  const grid=document.getElementById('juz-grid');grid.innerHTML='';
-  for(let i=1;i<=30;i++){
-    const btn=document.createElement('button');
-    btn.textContent=i;
-    btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
-    btn.onclick=function(){
-      this.classList.toggle('selected');
-      if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}
-      else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}
-      userData['weak-juz']=Array.from(document.querySelectorAll('#juz-grid button.selected')).map(b=>b.textContent);
-    };
-    grid.appendChild(btn);
+function buildFinalStep(stage){
+  const title=document.getElementById('ob4-title');
+  const sub=document.getElementById('ob4-sub');
+  const content=document.getElementById('ob4-content');
+  content.innerHTML='';
+
+  if(stage==='hafiz'){
+    title.textContent='Which Juz do you struggle with most?';
+    sub.textContent='Select all that apply. You can update this later.';
+    const grid=document.createElement('div');
+    grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
+    for(let i=1;i<=30;i++){
+      const btn=document.createElement('button');
+      btn.textContent=i;
+      btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
+      btn.onclick=function(){
+        this.classList.toggle('selected');
+        if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}
+        else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}
+        userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);
+      };
+      grid.appendChild(btn);
+    }
+    content.appendChild(grid);
+
+  }else if(stage==='just'){
+    title.textContent='What is your goal?';
+    sub.textContent='This helps Zaid build the perfect plan for you.';
+    const goals=[
+      {val:'full',label:'Become a full Hafiz (memorise the entire Quran)'},
+      {val:'juz30',label:'Memorise Juz 30 to start'},
+      {val:'surahs',label:'Memorise specific surahs'}
+    ];
+    goals.forEach(g=>{
+      const btn=document.createElement('button');
+      btn.className='option-btn';btn.textContent=g.label;
+      btn.onclick=function(){
+        content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
+        this.classList.add('selected');userData['learning-goal']=g.val;
+      };
+      content.appendChild(btn);
+    });
+    const timeLabel=document.createElement('p');
+    timeLabel.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:16px 0 8px;';
+    timeLabel.textContent='How much time can you dedicate daily?';
+    content.appendChild(timeLabel);
+    const times=[
+      {val:'15',label:'15 minutes'},
+      {val:'30',label:'30 minutes'},
+      {val:'60',label:'1 hour or more'}
+    ];
+    times.forEach(t=>{
+      const btn=document.createElement('button');
+      btn.className='option-btn';btn.textContent=t.label;
+      btn.onclick=function(){
+        content.querySelectorAll('.option-btn.time-btn').forEach(b=>b.classList.remove('selected'));
+        this.classList.add('selected','time-btn');userData['daily-time']=t.val;
+      };
+      content.appendChild(btn);
+    });
+
+  }else if(stage==='halfway'){
+    title.textContent='A couple more questions';
+    sub.textContent='Help Zaid understand exactly where you are.';
+    const juzLabel=document.createElement('p');
+    juzLabel.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:8px;';
+    juzLabel.textContent='Which Juz are you currently on?';
+    content.appendChild(juzLabel);
+    const sel=document.createElement('select');
+    sel.className='select-field';
+    sel.innerHTML='<option value="">Select Juz</option>';
+    for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}
+    sel.onchange=function(){userData['current-juz']=this.value;};
+    content.appendChild(sel);
+    const timeLabel=document.createElement('p');
+    timeLabel.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:12px 0 8px;';
+    timeLabel.textContent='How much time can you dedicate daily?';
+    content.appendChild(timeLabel);
+    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{
+      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;
+      btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=t.val;};
+      content.appendChild(btn);
+    });
+
+  }else if(stage==='nearly'){
+    title.textContent='Almost there — a couple more questions';
+    sub.textContent='Help Zaid fine tune your plan.';
+    const juzLabel=document.createElement('p');
+    juzLabel.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:8px;';
+    juzLabel.textContent='Which Juz are you currently on?';
+    content.appendChild(juzLabel);
+    const sel=document.createElement('select');sel.className='select-field';
+    sel.innerHTML='<option value="">Select Juz</option>';
+    for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}
+    sel.onchange=function(){userData['current-juz']=this.value;};
+    content.appendChild(sel);
+    const weakLabel=document.createElement('p');
+    weakLabel.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:12px 0 8px;';
+    weakLabel.textContent='Which Juz do you struggle with most?';
+    content.appendChild(weakLabel);
+    const grid=document.createElement('div');
+    grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
+    for(let i=1;i<=30;i++){
+      const btn=document.createElement('button');btn.textContent=i;
+      btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
+      btn.onclick=function(){
+        this.classList.toggle('selected');
+        if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}
+        else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}
+        userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);
+      };
+      grid.appendChild(btn);
+    }
+    content.appendChild(grid);
   }
 }
 
@@ -679,7 +784,10 @@ async function finishOnboarding(){
   const btns=document.querySelectorAll('#screen-onboard-4 .btn-primary,#screen-onboard-parent .btn-primary');
   btns.forEach(b=>{b.disabled=true;b.textContent='Creating your account...';});
   try{
-    const{data,error}=await sb.auth.signUp({email:userData.email,password:userData.password,options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,parent_type:userData['parent-type']||null,revision_freq:userData['revision-freq']||null,weak_juz:userData['weak-juz']||[]}}});
+    const{data,error}=await sb.auth.signUp({
+      email:userData.email,password:userData.password,
+      options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,learning_stage:userData['learning-stage']||null,learning_goal:userData['learning-goal']||null,daily_time:userData['daily-time']||null,current_juz:userData['current-juz']||null,parent_type:userData['parent-type']||null,weak_juz:userData['weak-juz']||[]}}
+    });
     if(error)throw error;
     loadDashboard(userData.name,userData.journey,userData.gender);
   }catch(e){
