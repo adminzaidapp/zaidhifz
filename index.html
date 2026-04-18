@@ -154,24 +154,27 @@
   .pw-req span { display: block; }
   .pw-req span.met { color: #1D9E75; }
 
-  /* WALKTHROUGH SLIDES */
-  .walkthrough { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-  .slides-container { flex: 1; display: flex; overflow: hidden; position: relative; }
-  .slide { min-width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; transition: transform 0.4s ease; }
-  .slide-icon { font-size: 64px; margin-bottom: 24px; }
-  .slide-title { font-size: 26px; font-weight: 500; color: #1a1a1a; margin-bottom: 14px; line-height: 1.3; }
-  .slide-text { font-size: 16px; color: #666; line-height: 1.7; max-width: 300px; }
+  /* WALKTHROUGH */
+  .walkthrough-screen { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  .slides-wrapper { flex: 1; overflow: hidden; position: relative; }
+  .slides-track { display: flex; height: 100%; transition: transform 0.4s ease; }
+  .slide { min-width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; }
   .slide-1 { background: linear-gradient(160deg, #E1F5EE 0%, #fff 60%); }
   .slide-2 { background: linear-gradient(160deg, #FFF8E7 0%, #fff 60%); }
   .slide-3 { background: linear-gradient(160deg, #EEF4FF 0%, #fff 60%); }
   .slide-4 { background: linear-gradient(160deg, #F3E5F5 0%, #fff 60%); }
-  .slide-dots { display: flex; justify-content: center; gap: 8px; padding: 16px 0; }
+  .slide-icon { font-size: 64px; margin-bottom: 24px; }
+  .slide-title { font-size: 26px; font-weight: 500; color: #1a1a1a; margin-bottom: 14px; line-height: 1.3; }
+  .slide-text { font-size: 16px; color: #555; line-height: 1.7; max-width: 300px; }
+  .walkthrough-footer { padding: 20px 24px 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; flex-shrink: 0; background: #fff; }
+  .slide-dots { display: flex; gap: 8px; }
   .slide-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0; transition: all 0.3s; }
   .slide-dot.active { background: #1D9E75; width: 24px; border-radius: 4px; }
-  .walkthrough-footer { padding: 16px 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .skip-btn { background: none; border: none; color: #999; font-size: 14px; cursor: pointer; padding: 8px; }
-  .next-btn { flex: 1; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; }
-  .next-btn:hover { background: #0F6E56; }
+  .walkthrough-btns { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px; }
+  .wt-back-btn { background: none; border: 0.5px solid #e0e0e0; color: #999; font-size: 14px; cursor: pointer; padding: 12px 20px; border-radius: 10px; }
+  .wt-skip-btn { background: none; border: none; color: #999; font-size: 14px; cursor: pointer; padding: 12px; }
+  .wt-next-btn { flex: 1; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; }
+  .wt-next-btn:hover { background: #0F6E56; }
 </style>
 </head>
 <body>
@@ -183,45 +186,50 @@
     <div class="tag">Now in beta</div>
     <h1>Zaid</h1>
     <p>The Quran never forgets you.</p>
-    <button class="splash-btn" onclick="showScreen('screen-walkthrough')">Get started</button>
+    <button class="splash-btn" onclick="showScreen('screen-onboard-1')">Get started</button>
     <span class="splash-link" onclick="showScreen('screen-login')">Already have an account? Sign in</span>
   </div>
 </div>
 
-<!-- WALKTHROUGH SLIDES -->
+<!-- WALKTHROUGH — shown after account creation -->
 <div class="screen" id="screen-walkthrough">
-  <div class="walkthrough">
-    <div class="slides-container" id="slides-container">
-      <div class="slide slide-1">
-        <div class="slide-icon">📖</div>
-        <div class="slide-title">The Quran never forgets you.</div>
-        <div class="slide-text">Zaid is your daily companion for Quran memorisation and revision. Built with care, for those who carry the Quran in their hearts.</div>
+  <div class="walkthrough-screen">
+    <div class="slides-wrapper">
+      <div class="slides-track" id="slides-track">
+        <div class="slide slide-1">
+          <div class="slide-icon">📖</div>
+          <div class="slide-title">Welcome to Zaid.</div>
+          <div class="slide-text">The Quran never forgets you. Zaid is your daily companion for memorisation and revision — built with care, for those who carry the Quran in their hearts.</div>
+        </div>
+        <div class="slide slide-2">
+          <div class="slide-icon">🎯</div>
+          <div class="slide-title">For every stage of your journey.</div>
+          <div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts completely to where you are.</div>
+        </div>
+        <div class="slide slide-3">
+          <div class="slide-icon">🎙️</div>
+          <div class="slide-title">Recite. Track. Improve.</div>
+          <div class="slide-text">Recite your surah and Zaid listens. Words appear as you go, helping you identify exactly where to focus your revision.</div>
+        </div>
+        <div class="slide slide-4">
+          <div class="slide-icon">💚</div>
+          <div class="slide-title">Made by a Hafiz, for Huffaz.</div>
+          <div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div>
+        </div>
       </div>
-      <div class="slide slide-2">
-        <div class="slide-icon">🎯</div>
-        <div class="slide-title">For every stage of your journey.</div>
-        <div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts to where you are.</div>
-      </div>
-      <div class="slide slide-3">
-        <div class="slide-icon">🎙️</div>
-        <div class="slide-title">Recite. Track. Improve.</div>
-        <div class="slide-text">Recite your surah and Zaid listens. Words appear as you go, helping you identify exactly where to focus.</div>
-      </div>
-      <div class="slide slide-4">
-        <div class="slide-icon">💚</div>
-        <div class="slide-title">Made by a Hafiz, for Huffaz.</div>
-        <div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div>
-      </div>
-    </div>
-    <div class="slide-dots">
-      <div class="slide-dot active" id="dot-0"></div>
-      <div class="slide-dot" id="dot-1"></div>
-      <div class="slide-dot" id="dot-2"></div>
-      <div class="slide-dot" id="dot-3"></div>
     </div>
     <div class="walkthrough-footer">
-      <button class="skip-btn" onclick="showScreen('screen-onboard-1')">Skip</button>
-      <button class="next-btn" id="walkthrough-next-btn" onclick="nextSlide()">Next</button>
+      <div class="slide-dots">
+        <div class="slide-dot active" id="wt-dot-0"></div>
+        <div class="slide-dot" id="wt-dot-1"></div>
+        <div class="slide-dot" id="wt-dot-2"></div>
+        <div class="slide-dot" id="wt-dot-3"></div>
+      </div>
+      <div class="walkthrough-btns">
+        <button class="wt-back-btn" id="wt-back-btn" style="display:none;" onclick="prevSlide()">← Back</button>
+        <button class="wt-skip-btn" id="wt-skip-btn" onclick="goToDashboard()">Skip</button>
+        <button class="wt-next-btn" id="wt-next-btn" onclick="nextSlide()">Next</button>
+      </div>
     </div>
   </div>
 </div>
@@ -269,7 +277,7 @@
 <!-- ONBOARDING -->
 <div class="screen" id="screen-onboard-1">
   <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-walkthrough')">← Back</button>
+    <button class="back-btn" onclick="showScreen('screen-splash')">← Back</button>
     <h1>Zaid</h1><span>1 of 5</span>
   </div>
   <div class="screen-body">
@@ -767,7 +775,8 @@ const SURAHS=[
 
 let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed=0,currentSurah=null,currentUserJourney='';
 let currentSlide=0;
-const totalSlides=4;
+let pendingDashboardData=null;
+const TOTAL_SLIDES=4;
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
@@ -777,14 +786,50 @@ function showTab(tab){
   showScreen(map[tab]||'screen-dashboard');
 }
 
+function resetWalkthrough(){
+  currentSlide=0;
+  document.getElementById('slides-track').style.transform='translateX(0)';
+  document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
+  document.getElementById('wt-back-btn').style.display='none';
+  document.getElementById('wt-skip-btn').style.display='inline-block';
+  document.getElementById('wt-next-btn').textContent='Next';
+  document.getElementById('wt-next-btn').onclick=nextSlide;
+}
+
+function updateWalkthroughButtons(){
+  const backBtn=document.getElementById('wt-back-btn');
+  const skipBtn=document.getElementById('wt-skip-btn');
+  const nextBtn=document.getElementById('wt-next-btn');
+  backBtn.style.display=currentSlide>0?'inline-block':'none';
+  skipBtn.style.display=currentSlide<TOTAL_SLIDES-1?'inline-block':'none';
+  nextBtn.textContent=currentSlide===TOTAL_SLIDES-1?'Go to my dashboard':'Next';
+}
+
 function nextSlide(){
-  if(currentSlide<totalSlides-1){
+  if(currentSlide<TOTAL_SLIDES-1){
     currentSlide++;
-    const container=document.getElementById('slides-container');
-    container.style.transform=`translateX(-${currentSlide*100}%)`;
+    document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;
     document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
-    if(currentSlide===totalSlides-1){document.getElementById('walkthrough-next-btn').textContent='Get started';document.getElementById('walkthrough-next-btn').onclick=()=>showScreen('screen-onboard-1');}
-  }else{showScreen('screen-onboard-1');}
+    updateWalkthroughButtons();
+  }else{
+    goToDashboard();
+  }
+}
+
+function prevSlide(){
+  if(currentSlide>0){
+    currentSlide--;
+    document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;
+    document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+    updateWalkthroughButtons();
+  }
+}
+
+function goToDashboard(){
+  if(pendingDashboardData){
+    const{name,journey,gender}=pendingDashboardData;
+    renderDashboard(name,journey,gender);
+  }
 }
 
 function checkEmail(){
@@ -890,21 +935,13 @@ function buildFinalStep(stage){
   if(stage==='hafiz'){
     title.textContent='Which Juz do you struggle with most?';sub.textContent='Select all that apply. You can update this later.';
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
-    for(let i=1;i<=30;i++){
-      const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
-      btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};
-      grid.appendChild(btn);
-    }
+    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
   }else if(stage==='just'){
     title.textContent='What is your goal?';sub.textContent='This helps Zaid build the perfect plan for you.';
-    [{val:'full',label:'Become a full Hafiz (memorise the entire Quran)'},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{
-      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);
-    });
+    [{val:'full',label:'Become a full Hafiz (memorise the entire Quran)'},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:16px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
-    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{
-      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};content.appendChild(btn);
-    });
+    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};content.appendChild(btn);});
   }else if(stage==='halfway'){
     title.textContent='A couple more questions';sub.textContent='Help Zaid understand exactly where you are.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
@@ -931,8 +968,15 @@ async function finishOnboarding(){
   try{
     const{data,error}=await sb.auth.signUp({email:userData.email,password:userData.password,options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,learning_stage:userData['learning-stage']||null,learning_goal:userData['learning-goal']||null,daily_time:userData['daily-time']||null,current_juz:userData['current-juz']||null,parent_type:userData['parent-type']||null,weak_juz:userData['weak-juz']||[]}}});
     if(error)throw error;
-    loadDashboard(userData.name,userData.journey,userData.gender);
-  }catch(e){errorEl.textContent=e.message||'Something went wrong.';btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});}
+    // Store dashboard data and show walkthrough first
+    pendingDashboardData={name:userData.name,journey:userData.journey,gender:userData.gender};
+    populateDashboardData(userData.name,userData.journey,userData.gender);
+    resetWalkthrough();
+    showScreen('screen-walkthrough');
+  }catch(e){
+    errorEl.textContent=e.message||'Something went wrong.';
+    btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});
+  }
 }
 
 async function handleLogin(){
@@ -946,7 +990,8 @@ async function handleLogin(){
   try{
     const{data,error}=await sb.auth.signInWithPassword({email,password});
     if(error)throw error;
-    const meta=data.user.user_metadata;loadDashboard(meta.full_name,meta.journey,meta.gender);
+    const meta=data.user.user_metadata;
+    loadDashboard(meta.full_name,meta.journey,meta.gender);
   }catch(e){document.getElementById('login-error').textContent='Invalid email or password.';}
 }
 
@@ -978,9 +1023,9 @@ async function handleParentChangePassword(){
   catch(e){errorEl.textContent='Something went wrong. Please try again.';}
 }
 
-async function handleLogout(){await sb.auth.signOut();currentSlide=0;document.getElementById('slides-container').style.transform='translateX(0)';document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));document.getElementById('walkthrough-next-btn').textContent='Next';document.getElementById('walkthrough-next-btn').onclick=nextSlide;showScreen('screen-splash');}
+async function handleLogout(){await sb.auth.signOut();pendingDashboardData=null;showScreen('screen-splash');}
 
-function loadDashboard(fullName,journey,gender){
+function populateDashboardData(fullName,journey,gender){
   currentUserJourney=journey;
   const firstName=fullName?fullName.split(' ')[0]:'there';
   const title=gender==='female'?'Hafiza':'Hafiz';
@@ -1017,12 +1062,21 @@ function loadDashboard(fullName,journey,gender){
   if(journey==='parent'){
     document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
     document.getElementById('link-code').textContent='ZD-'+Math.floor(1000+Math.random()*9000);
-    showScreen('screen-parent-dashboard');
   }else{
     document.getElementById('dash-name').textContent=`Assalamu Alaikum, ${title} ${firstName}`;
     document.getElementById('dash-sub').textContent=journey==='hafiz'?`${title} · Ready to revise`:'On the path to becoming a Hafiz';
-    buildSchedule();showScreen('screen-dashboard');
+    buildSchedule();
   }
+}
+
+function renderDashboard(fullName,journey,gender){
+  if(journey==='parent'){showScreen('screen-parent-dashboard');}
+  else{showScreen('screen-dashboard');}
+}
+
+function loadDashboard(fullName,journey,gender){
+  populateDashboardData(fullName,journey,gender);
+  renderDashboard(fullName,journey,gender);
 }
 
 function copyCode(){
