@@ -153,21 +153,80 @@
   .pw-req { font-size: 12px; color: #999; margin-top: 4px; line-height: 1.8; }
   .pw-req span { display: block; }
   .pw-req span.met { color: #1D9E75; }
+
+  /* WALKTHROUGH SLIDES */
+  .walkthrough { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .slides-container { flex: 1; display: flex; overflow: hidden; position: relative; }
+  .slide { min-width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; transition: transform 0.4s ease; }
+  .slide-icon { font-size: 64px; margin-bottom: 24px; }
+  .slide-title { font-size: 26px; font-weight: 500; color: #1a1a1a; margin-bottom: 14px; line-height: 1.3; }
+  .slide-text { font-size: 16px; color: #666; line-height: 1.7; max-width: 300px; }
+  .slide-1 { background: linear-gradient(160deg, #E1F5EE 0%, #fff 60%); }
+  .slide-2 { background: linear-gradient(160deg, #FFF8E7 0%, #fff 60%); }
+  .slide-3 { background: linear-gradient(160deg, #EEF4FF 0%, #fff 60%); }
+  .slide-4 { background: linear-gradient(160deg, #F3E5F5 0%, #fff 60%); }
+  .slide-dots { display: flex; justify-content: center; gap: 8px; padding: 16px 0; }
+  .slide-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0; transition: all 0.3s; }
+  .slide-dot.active { background: #1D9E75; width: 24px; border-radius: 4px; }
+  .walkthrough-footer { padding: 16px 24px 32px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .skip-btn { background: none; border: none; color: #999; font-size: 14px; cursor: pointer; padding: 8px; }
+  .next-btn { flex: 1; padding: 15px; background: #1D9E75; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 500; cursor: pointer; }
+  .next-btn:hover { background: #0F6E56; }
 </style>
 </head>
 <body>
 <div class="app">
 
+<!-- SPLASH -->
 <div class="screen active" id="screen-splash">
   <div class="splash">
     <div class="tag">Now in beta</div>
     <h1>Zaid</h1>
     <p>The Quran never forgets you.</p>
-    <button class="splash-btn" onclick="showScreen('screen-onboard-1')">Get started</button>
+    <button class="splash-btn" onclick="showScreen('screen-walkthrough')">Get started</button>
     <span class="splash-link" onclick="showScreen('screen-login')">Already have an account? Sign in</span>
   </div>
 </div>
 
+<!-- WALKTHROUGH SLIDES -->
+<div class="screen" id="screen-walkthrough">
+  <div class="walkthrough">
+    <div class="slides-container" id="slides-container">
+      <div class="slide slide-1">
+        <div class="slide-icon">📖</div>
+        <div class="slide-title">The Quran never forgets you.</div>
+        <div class="slide-text">Zaid is your daily companion for Quran memorisation and revision. Built with care, for those who carry the Quran in their hearts.</div>
+      </div>
+      <div class="slide slide-2">
+        <div class="slide-icon">🎯</div>
+        <div class="slide-title">For every stage of your journey.</div>
+        <div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts to where you are.</div>
+      </div>
+      <div class="slide slide-3">
+        <div class="slide-icon">🎙️</div>
+        <div class="slide-title">Recite. Track. Improve.</div>
+        <div class="slide-text">Recite your surah and Zaid listens. Words appear as you go, helping you identify exactly where to focus.</div>
+      </div>
+      <div class="slide slide-4">
+        <div class="slide-icon">💚</div>
+        <div class="slide-title">Made by a Hafiz, for Huffaz.</div>
+        <div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div>
+      </div>
+    </div>
+    <div class="slide-dots">
+      <div class="slide-dot active" id="dot-0"></div>
+      <div class="slide-dot" id="dot-1"></div>
+      <div class="slide-dot" id="dot-2"></div>
+      <div class="slide-dot" id="dot-3"></div>
+    </div>
+    <div class="walkthrough-footer">
+      <button class="skip-btn" onclick="showScreen('screen-onboard-1')">Skip</button>
+      <button class="next-btn" id="walkthrough-next-btn" onclick="nextSlide()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
 <div class="screen" id="screen-login">
   <div class="status-bar"><h1>Zaid</h1></div>
   <div class="screen-body">
@@ -189,6 +248,7 @@
   </div>
 </div>
 
+<!-- FORGOT PASSWORD -->
 <div class="screen" id="screen-forgot">
   <div class="status-bar">
     <button class="back-btn" onclick="showScreen('screen-login')">← Back</button>
@@ -206,9 +266,10 @@
   </div>
 </div>
 
+<!-- ONBOARDING -->
 <div class="screen" id="screen-onboard-1">
   <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-splash')">← Back</button>
+    <button class="back-btn" onclick="showScreen('screen-walkthrough')">← Back</button>
     <h1>Zaid</h1><span>1 of 5</span>
   </div>
   <div class="screen-body">
@@ -390,29 +451,29 @@
   </div>
 </div>
 
-<!-- PARENT STUDENTS PLACEHOLDER -->
+<!-- PARENT STUDENTS -->
 <div class="screen" id="screen-parent-students">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Students</h1><span></span></div>
   <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
     <div style="font-size:48px;margin-bottom:16px;">👥</div>
     <h2>Your students</h2>
-    <p class="sub">Once a student links their account using your code, they'll appear here. You'll be able to see their progress and set goals.</p>
+    <p class="sub">Once a student links their account using your code, they'll appear here.</p>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
-    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#1D9E75" stroke-width="1.5" fill="none"/><circle cx="15" cy="7" r="3" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M13 17c0-2 1-3.5 3-4" stroke="#1D9E75" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><span style="color:#1D9E75;">Students</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#1D9E75" stroke-width="1.5" fill="none"/></svg><span style="color:#1D9E75;">Students</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#999"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#999"/></svg><span>Goals</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#999" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
 </div>
 
-<!-- PARENT GOALS PLACEHOLDER -->
+<!-- PARENT GOALS -->
 <div class="screen" id="screen-parent-goals">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Goals</h1><span></span></div>
   <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
     <div style="font-size:48px;margin-bottom:16px;">🎯</div>
     <h2>Set goals</h2>
-    <p class="sub">Once students are linked, you'll be able to set revision goals, homework and targets for them here.</p>
+    <p class="sub">Once students are linked, you'll be able to set revision goals and targets for them here.</p>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
@@ -422,7 +483,7 @@
   </div>
 </div>
 
-<!-- PARENT SETTINGS — clean, no student features -->
+<!-- PARENT SETTINGS -->
 <div class="screen" id="screen-parent-settings">
   <div class="status-bar"><h1>Settings</h1></div>
   <div class="screen-body">
@@ -430,17 +491,11 @@
     <div class="account-name" id="parent-settings-name"></div>
     <div class="account-email" id="parent-settings-email"></div>
     <div class="settings-row" onclick="showScreen('screen-parent-account-details')">
-      <div class="settings-row-left">
-        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div>
-        <span class="settings-label">Account details</span>
-      </div>
+      <div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div><span class="settings-label">Account details</span></div>
       <span class="settings-arrow">›</span>
     </div>
     <div class="settings-row" onclick="showScreen('screen-parent-change-password')">
-      <div class="settings-row-left">
-        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>
-        <span class="settings-label">Change password</span>
-      </div>
+      <div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div><span class="settings-label">Change password</span></div>
       <span class="settings-arrow">›</span>
     </div>
     <button class="btn-danger" style="margin-top:24px;" onclick="handleLogout()">Log out</button>
@@ -455,10 +510,7 @@
 
 <!-- PARENT ACCOUNT DETAILS -->
 <div class="screen" id="screen-parent-account-details">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-parent-settings')">← Back</button>
-    <h1>Account Details</h1><span></span>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-settings')">← Back</button><h1>Account Details</h1><span></span></div>
   <div class="screen-body">
     <div class="account-avatar" id="parent-details-avatar">S</div>
     <div class="account-name" id="parent-details-name" style="margin-bottom:4px;"></div>
@@ -474,24 +526,15 @@
 
 <!-- PARENT CHANGE PASSWORD -->
 <div class="screen" id="screen-parent-change-password">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-parent-settings')">← Back</button>
-    <h1>Change Password</h1><span></span>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-settings')">← Back</button><h1>Change Password</h1><span></span></div>
   <div class="screen-body">
     <h2>Update your password</h2>
     <p class="sub">Choose a new password for your account.</p>
     <div class="input-wrap">
       <input class="input-field" type="password" id="parent-new-password" placeholder="New password" oninput="checkParentNewPassword()" />
-      <div class="pw-req">
-        <span id="parent-new-pw-len">✗ At least 6 characters</span>
-        <span id="parent-new-pw-upper">✗ At least one uppercase letter</span>
-        <span id="parent-new-pw-num">✗ At least one number</span>
-      </div>
+      <div class="pw-req"><span id="parent-new-pw-len">✗ At least 6 characters</span><span id="parent-new-pw-upper">✗ At least one uppercase letter</span><span id="parent-new-pw-num">✗ At least one number</span></div>
     </div>
-    <div class="input-wrap">
-      <input class="input-field" type="password" id="parent-confirm-password" placeholder="Confirm new password" />
-    </div>
+    <div class="input-wrap"><input class="input-field" type="password" id="parent-confirm-password" placeholder="Confirm new password" /></div>
     <button class="btn-primary" onclick="handleParentChangePassword()">Update password</button>
     <p class="error-msg" id="parent-change-pw-error"></p>
     <p class="success-msg" id="parent-change-pw-success"></p>
@@ -506,24 +549,15 @@
     <div class="account-name" id="settings-name"></div>
     <div class="account-email" id="settings-email"></div>
     <div class="settings-row" onclick="showScreen('screen-account-details')">
-      <div class="settings-row-left">
-        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div>
-        <span class="settings-label">Account details</span>
-      </div>
+      <div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="#1D9E75"/></svg></div><span class="settings-label">Account details</span></div>
       <span class="settings-arrow">›</span>
     </div>
     <div class="settings-row" onclick="showScreen('screen-change-password')">
-      <div class="settings-row-left">
-        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>
-        <span class="settings-label">Change password</span>
-      </div>
+      <div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="#1D9E75" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div><span class="settings-label">Change password</span></div>
       <span class="settings-arrow">›</span>
     </div>
     <div class="settings-row" onclick="showScreen('screen-tajweed-guide')">
-      <div class="settings-row-left">
-        <div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><line x1="10" y1="9" x2="10" y2="14" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="6.5" r="1" fill="#1D9E75"/></svg></div>
-        <span class="settings-label">Tajweed colour guide</span>
-      </div>
+      <div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><circle cx="10" cy="10" r="8" stroke="#1D9E75" stroke-width="1.5" fill="none"/><line x1="10" y1="9" x2="10" y2="14" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="6.5" r="1" fill="#1D9E75"/></svg></div><span class="settings-label">Tajweed colour guide</span></div>
       <span class="settings-arrow">›</span>
     </div>
     <button class="btn-danger" style="margin-top:24px;" onclick="handleLogout()">Log out</button>
@@ -539,10 +573,7 @@
 
 <!-- STUDENT ACCOUNT DETAILS -->
 <div class="screen" id="screen-account-details">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
-    <h1>Account Details</h1><span></span>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Account Details</h1><span></span></div>
   <div class="screen-body">
     <div class="account-avatar" id="details-avatar">S</div>
     <div class="account-name" id="details-name" style="margin-bottom:4px;"></div>
@@ -558,36 +589,24 @@
 
 <!-- STUDENT CHANGE PASSWORD -->
 <div class="screen" id="screen-change-password">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
-    <h1>Change Password</h1><span></span>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Change Password</h1><span></span></div>
   <div class="screen-body">
     <h2>Update your password</h2>
     <p class="sub">Choose a new password for your account.</p>
     <div class="input-wrap">
       <input class="input-field" type="password" id="new-password" placeholder="New password" oninput="checkNewPassword()" />
-      <div class="pw-req">
-        <span id="new-pw-len">✗ At least 6 characters</span>
-        <span id="new-pw-upper">✗ At least one uppercase letter</span>
-        <span id="new-pw-num">✗ At least one number</span>
-      </div>
+      <div class="pw-req"><span id="new-pw-len">✗ At least 6 characters</span><span id="new-pw-upper">✗ At least one uppercase letter</span><span id="new-pw-num">✗ At least one number</span></div>
     </div>
-    <div class="input-wrap">
-      <input class="input-field" type="password" id="confirm-password" placeholder="Confirm new password" />
-    </div>
+    <div class="input-wrap"><input class="input-field" type="password" id="confirm-password" placeholder="Confirm new password" /></div>
     <button class="btn-primary" onclick="handleChangePassword()">Update password</button>
     <p class="error-msg" id="change-pw-error"></p>
     <p class="success-msg" id="change-pw-success"></p>
   </div>
 </div>
 
-<!-- TAJWEED GUIDE — back goes to settings -->
+<!-- TAJWEED GUIDE FROM SETTINGS -->
 <div class="screen" id="screen-tajweed-guide">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-settings')">← Back</button>
-    <h1>Tajweed Guide</h1><span></span>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Tajweed Guide</h1><span></span></div>
   <div class="screen-body">
     <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
     <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
@@ -601,13 +620,25 @@
   </div>
 </div>
 
+<!-- TAJWEED GUIDE FROM RECITE -->
+<div class="screen" id="screen-tajweed-guide-recite">
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-surah-list')">← Back</button><h1>Tajweed Guide</h1><span></span></div>
+  <div class="screen-body">
+    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
+    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
+    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div></div>
+    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;"><div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div><div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div><div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div><div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
+    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
+    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
+    <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
+  </div>
+</div>
+
 <!-- SURAH LIST -->
 <div class="screen" id="screen-surah-list">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showTab('dashboard')">← Back</button>
-    <h1>Choose Surah</h1>
-    <button class="info-btn" onclick="showScreen('screen-tajweed-guide-recite')">?</button>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="showTab('dashboard')">← Back</button><h1>Choose Surah</h1><button class="info-btn" onclick="showScreen('screen-tajweed-guide-recite')">?</button></div>
   <div class="screen-body">
     <div class="tajweed-key">
       <span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span>
@@ -624,38 +655,14 @@
   </div>
 </div>
 
-<!-- TAJWEED GUIDE FROM RECITE — back goes to surah list -->
-<div class="screen" id="screen-tajweed-guide-recite">
-  <div class="status-bar">
-    <button class="back-btn" onclick="showScreen('screen-surah-list')">← Back</button>
-    <h1>Tajweed Guide</h1><span></span>
-  </div>
-  <div class="screen-body">
-    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
-    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
-    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div></div>
-    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;"><div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div><div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div><div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div></div>
-    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div><div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
-    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
-    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
-    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah of two counts.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
-    <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
-  </div>
-</div>
-
-<!-- RECITE SCREEN -->
+<!-- RECITE -->
 <div class="screen" id="screen-recite">
-  <div class="status-bar">
-    <button class="back-btn" onclick="endSession()">← Back</button>
-    <h1 id="recite-title">Surah An-Nas</h1><span></span>
-  </div>
+  <div class="status-bar"><button class="back-btn" onclick="endSession()">← Back</button><h1 id="recite-title">Surah An-Nas</h1><span></span></div>
   <div class="screen-body">
     <div class="tajweed-key">
       <span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span>
     </div>
-    <div class="blank-page">
-      <div class="arabic-text hidden" id="arabic-display"></div>
-    </div>
+    <div class="blank-page"><div class="arabic-text hidden" id="arabic-display"></div></div>
     <div class="listening-indicator" id="listening-indicator">
       <div class="listening-dot"></div><div class="listening-dot"></div><div class="listening-dot"></div>
       <span style="font-size:12px;color:#E53935;margin-left:4px;">Listening...</span>
@@ -683,13 +690,13 @@
   </div>
 </div>
 
-<!-- QURAN PLACEHOLDER -->
+<!-- QURAN -->
 <div class="screen" id="screen-quran">
   <div class="status-bar"><h1>Quran</h1></div>
   <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
     <div style="font-size:48px;margin-bottom:16px;">📖</div>
     <h2>Full Quran</h2>
-    <p class="sub">Browse all 30 Juz and 604 pages of the Quran with full tajweed colour coding. Coming very soon.</p>
+    <p class="sub">Browse all 30 Juz and 604 pages with full tajweed colour coding. Coming very soon.</p>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#999"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#999"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#999"/></svg><span>Home</span></button>
@@ -758,8 +765,9 @@ const SURAHS=[
   {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَابِ',tj:'normal'},{t:'الْفِيلِ',tj:'normal'},{t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},{t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},{t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍ',tj:'idgham'}]}
 ];
 
-let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed=0,currentSurah=null;
-let currentUserJourney='';
+let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed=0,currentSurah=null,currentUserJourney='';
+let currentSlide=0;
+const totalSlides=4;
 
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
@@ -767,6 +775,16 @@ function showTab(tab){
   const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',progress:'screen-progress',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
   if(tab==='recite')buildSurahList();
   showScreen(map[tab]||'screen-dashboard');
+}
+
+function nextSlide(){
+  if(currentSlide<totalSlides-1){
+    currentSlide++;
+    const container=document.getElementById('slides-container');
+    container.style.transform=`translateX(-${currentSlide*100}%)`;
+    document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));
+    if(currentSlide===totalSlides-1){document.getElementById('walkthrough-next-btn').textContent='Get started';document.getElementById('walkthrough-next-btn').onclick=()=>showScreen('screen-onboard-1');}
+  }else{showScreen('screen-onboard-1');}
 }
 
 function checkEmail(){
@@ -870,66 +888,36 @@ function buildFinalStep(stage){
   const content=document.getElementById('ob4-content');
   content.innerHTML='';
   if(stage==='hafiz'){
-    title.textContent='Which Juz do you struggle with most?';
-    sub.textContent='Select all that apply. You can update this later.';
-    const grid=document.createElement('div');
-    grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
+    title.textContent='Which Juz do you struggle with most?';sub.textContent='Select all that apply. You can update this later.';
+    const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
     for(let i=1;i<=30;i++){
-      const btn=document.createElement('button');btn.textContent=i;
-      btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
-      btn.onclick=function(){
-        this.classList.toggle('selected');
-        if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}
-        else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}
-        userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);
-      };
+      const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
+      btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};
       grid.appendChild(btn);
     }
     content.appendChild(grid);
   }else if(stage==='just'){
     title.textContent='What is your goal?';sub.textContent='This helps Zaid build the perfect plan for you.';
     [{val:'full',label:'Become a full Hafiz (memorise the entire Quran)'},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{
-      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;
-      btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};
-      content.appendChild(btn);
+      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);
     });
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:16px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
     [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{
-      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;
-      btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};
-      content.appendChild(btn);
+      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};content.appendChild(btn);
     });
   }else if(stage==='halfway'){
     title.textContent='A couple more questions';sub.textContent='Help Zaid understand exactly where you are.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
-    const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';
-    for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}
-    sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
+    const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:12px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
-    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{
-      const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;
-      btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=t.val;};
-      content.appendChild(btn);
-    });
+    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=t.val;};content.appendChild(btn);});
   }else if(stage==='nearly'){
     title.textContent='Almost there — a couple more questions';sub.textContent='Help Zaid fine tune your plan.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
-    const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';
-    for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}
-    sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
+    const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
     const wl=document.createElement('p');wl.style.cssText='font-size:14px;font-weight:500;color:#1a1a1a;margin:12px 0 8px;';wl.textContent='Which Juz do you struggle with most?';content.appendChild(wl);
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
-    for(let i=1;i<=30;i++){
-      const btn=document.createElement('button');btn.textContent=i;
-      btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';
-      btn.onclick=function(){
-        this.classList.toggle('selected');
-        if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}
-        else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}
-        userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);
-      };
-      grid.appendChild(btn);
-    }
+    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:0.5px solid #e0e0e0;border-radius:8px;background:#fff;font-size:13px;cursor:pointer;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.background='#E1F5EE';this.style.borderColor='#1D9E75';this.style.color='#085041';}else{this.style.background='#fff';this.style.borderColor='#e0e0e0';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
   }
 }
@@ -944,10 +932,7 @@ async function finishOnboarding(){
     const{data,error}=await sb.auth.signUp({email:userData.email,password:userData.password,options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,learning_stage:userData['learning-stage']||null,learning_goal:userData['learning-goal']||null,daily_time:userData['daily-time']||null,current_juz:userData['current-juz']||null,parent_type:userData['parent-type']||null,weak_juz:userData['weak-juz']||[]}}});
     if(error)throw error;
     loadDashboard(userData.name,userData.journey,userData.gender);
-  }catch(e){
-    errorEl.textContent=e.message||'Something went wrong.';
-    btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});
-  }
+  }catch(e){errorEl.textContent=e.message||'Something went wrong.';btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});}
 }
 
 async function handleLogin(){
@@ -961,8 +946,7 @@ async function handleLogin(){
   try{
     const{data,error}=await sb.auth.signInWithPassword({email,password});
     if(error)throw error;
-    const meta=data.user.user_metadata;
-    loadDashboard(meta.full_name,meta.journey,meta.gender);
+    const meta=data.user.user_metadata;loadDashboard(meta.full_name,meta.journey,meta.gender);
   }catch(e){document.getElementById('login-error').textContent='Invalid email or password.';}
 }
 
@@ -970,52 +954,37 @@ async function handleForgotPassword(){
   const email=document.getElementById('forgot-email').value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('forgot-error').classList.add('show');return;}
   document.getElementById('forgot-error').classList.remove('show');
-  try{
-    await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});
-    document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';
-  }catch(e){document.getElementById('forgot-error').classList.add('show');}
+  try{await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';}
+  catch(e){document.getElementById('forgot-error').classList.add('show');}
 }
 
 async function handleChangePassword(){
-  const newPw=document.getElementById('new-password').value;
-  const confirmPw=document.getElementById('confirm-password').value;
-  const errorEl=document.getElementById('change-pw-error');
-  const successEl=document.getElementById('change-pw-success');
+  const newPw=document.getElementById('new-password').value;const confirmPw=document.getElementById('confirm-password').value;
+  const errorEl=document.getElementById('change-pw-error');const successEl=document.getElementById('change-pw-success');
   errorEl.textContent='';successEl.textContent='';
   if(newPw.length<6||!/[A-Z]/.test(newPw)||!/[0-9]/.test(newPw)){errorEl.textContent='New password does not meet requirements.';return;}
   if(newPw!==confirmPw){errorEl.textContent='Passwords do not match.';return;}
-  try{
-    const{error}=await sb.auth.updateUser({password:newPw});
-    if(error)throw error;
-    successEl.textContent='Password updated successfully.';
-    document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';
-  }catch(e){errorEl.textContent='Something went wrong. Please try again.';}
+  try{const{error}=await sb.auth.updateUser({password:newPw});if(error)throw error;successEl.textContent='Password updated successfully.';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}
+  catch(e){errorEl.textContent='Something went wrong. Please try again.';}
 }
 
 async function handleParentChangePassword(){
-  const newPw=document.getElementById('parent-new-password').value;
-  const confirmPw=document.getElementById('parent-confirm-password').value;
-  const errorEl=document.getElementById('parent-change-pw-error');
-  const successEl=document.getElementById('parent-change-pw-success');
+  const newPw=document.getElementById('parent-new-password').value;const confirmPw=document.getElementById('parent-confirm-password').value;
+  const errorEl=document.getElementById('parent-change-pw-error');const successEl=document.getElementById('parent-change-pw-success');
   errorEl.textContent='';successEl.textContent='';
   if(newPw.length<6||!/[A-Z]/.test(newPw)||!/[0-9]/.test(newPw)){errorEl.textContent='New password does not meet requirements.';return;}
   if(newPw!==confirmPw){errorEl.textContent='Passwords do not match.';return;}
-  try{
-    const{error}=await sb.auth.updateUser({password:newPw});
-    if(error)throw error;
-    successEl.textContent='Password updated successfully.';
-    document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';
-  }catch(e){errorEl.textContent='Something went wrong. Please try again.';}
+  try{const{error}=await sb.auth.updateUser({password:newPw});if(error)throw error;successEl.textContent='Password updated successfully.';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
+  catch(e){errorEl.textContent='Something went wrong. Please try again.';}
 }
 
-async function handleLogout(){await sb.auth.signOut();showScreen('screen-splash');}
+async function handleLogout(){await sb.auth.signOut();currentSlide=0;document.getElementById('slides-container').style.transform='translateX(0)';document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));document.getElementById('walkthrough-next-btn').textContent='Next';document.getElementById('walkthrough-next-btn').onclick=nextSlide;showScreen('screen-splash');}
 
 function loadDashboard(fullName,journey,gender){
   currentUserJourney=journey;
   const firstName=fullName?fullName.split(' ')[0]:'there';
   const title=gender==='female'?'Hafiza':'Hafiz';
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
-
   sb.auth.getUser().then(({data})=>{
     if(data.user){
       const u=data.user;const meta=u.user_metadata;
@@ -1045,7 +1014,6 @@ function loadDashboard(fullName,journey,gender){
       }
     }
   });
-
   if(journey==='parent'){
     document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
     document.getElementById('link-code').textContent='ZD-'+Math.floor(1000+Math.random()*9000);
@@ -1059,42 +1027,26 @@ function loadDashboard(fullName,journey,gender){
 
 function copyCode(){
   const code=document.getElementById('link-code').textContent;
-  navigator.clipboard.writeText(code).then(()=>{
-    const btn=document.querySelector('#screen-parent-dashboard .btn-primary');
-    btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy code';},2000);
-  });
+  navigator.clipboard.writeText(code).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy code';},2000);});
 }
 
 function buildSchedule(){
   const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const surahs=['Surah An-Nas','Surah Al-Falaq','Surah Al-Ikhlas','Surah Al-Masad','Surah An-Nasr','Juz 30 revision','Surah Al-Kafirun'];
   const list=document.getElementById('schedule-list');list.innerHTML='';
-  days.forEach((day,i)=>{
-    const div=document.createElement('div');div.className='sched-item';
-    div.innerHTML=`<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i<2?'done':''}"></div>`;
-    list.appendChild(div);
-  });
+  days.forEach((day,i)=>{const div=document.createElement('div');div.className='sched-item';div.innerHTML=`<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i<2?'done':''}"></div>`;list.appendChild(div);});
 }
 
 function buildSurahList(){
   const list=document.getElementById('surah-list');list.innerHTML='';
-  SURAHS.forEach((s,i)=>{
-    const div=document.createElement('div');div.className='surah-list-item';
-    div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;
-    div.onclick=()=>startSurah(i);list.appendChild(div);
-  });
+  SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});
 }
 
 function startSurah(index){
   currentSurah=SURAHS[index];wordsRevealed=0;isPeeking=false;
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
-  const display=document.getElementById('arabic-display');
-  display.innerHTML='';display.classList.add('hidden');
-  currentSurah.words.forEach((w,i)=>{
-    const span=document.createElement('span');
-    span.className=`word tj-${w.tj}`;span.dataset.index=i;span.textContent=w.t+' ';
-    display.appendChild(span);
-  });
+  const display=document.getElementById('arabic-display');display.innerHTML='';display.classList.add('hidden');
+  currentSurah.words.forEach((w,i)=>{const span=document.createElement('span');span.className=`word tj-${w.tj}`;span.dataset.index=i;span.textContent=w.t+' ';display.appendChild(span);});
   document.getElementById('session-bar').style.width='0%';
   document.getElementById('session-count').textContent=`0 of ${currentSurah.words.length} words`;
   document.getElementById('error-flash').classList.remove('show');
@@ -1104,12 +1056,7 @@ function startSurah(index){
   showScreen('screen-recite');
 }
 
-function togglePeek(){
-  isPeeking=!isPeeking;
-  document.getElementById('arabic-display').classList.toggle('hidden',!isPeeking);
-  document.querySelector('.peek-btn').textContent=isPeeking?'Hide':'Peek';
-}
-
+function togglePeek(){isPeeking=!isPeeking;document.getElementById('arabic-display').classList.toggle('hidden',!isPeeking);document.querySelector('.peek-btn').textContent=isPeeking?'Hide':'Peek';}
 function toggleMic(){if(isListening)stopListening();else startListening();}
 
 function startListening(){
@@ -1117,19 +1064,14 @@ function startListening(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   recognition=new SR();recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;
   recognition.onresult=e=>{const transcript=Array.from(e.results).map(r=>r[0].transcript).join('');processRecitation(transcript);};
-  recognition.onerror=()=>stopListening();
-  recognition.onend=()=>{if(isListening)recognition.start();};
+  recognition.onerror=()=>stopListening();recognition.onend=()=>{if(isListening)recognition.start();};
   recognition.start();isListening=true;
   document.getElementById('mic-btn').classList.add('listening');
   document.getElementById('listening-indicator').classList.add('show');
   document.getElementById('arabic-display').classList.remove('hidden');
 }
 
-function stopListening(){
-  if(recognition)recognition.stop();isListening=false;
-  document.getElementById('mic-btn').classList.remove('listening');
-  document.getElementById('listening-indicator').classList.remove('show');
-}
+function stopListening(){if(recognition)recognition.stop();isListening=false;document.getElementById('mic-btn').classList.remove('listening');document.getElementById('listening-indicator').classList.remove('show');}
 
 function processRecitation(transcript){
   if(!currentSurah)return;
@@ -1137,11 +1079,7 @@ function processRecitation(transcript){
   const spokenWords=transcript.trim().split(/\s+/);
   const currentIndex=Math.min(spokenWords.length-1,currentSurah.words.length-1);
   wordsRevealed=currentIndex+1;
-  words.forEach((w,i)=>{
-    w.classList.remove('correct','current');
-    if(i<currentIndex)w.classList.add('correct');
-    else if(i===currentIndex)w.classList.add('current');
-  });
+  words.forEach((w,i)=>{w.classList.remove('correct','current');if(i<currentIndex)w.classList.add('correct');else if(i===currentIndex)w.classList.add('current');});
   const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
   document.getElementById('session-bar').style.width=pct+'%';
   document.getElementById('session-count').textContent=`${wordsRevealed} of ${currentSurah.words.length} words`;
