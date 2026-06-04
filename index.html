@@ -24,13 +24,13 @@
     --primary-text: #085041;
   }
   .theme-purple {
-    --primary: #9B59B6;
-    --primary-dark: #7D3C98;
-    --primary-light: #F5EEF8;
-    --primary-lighter: #E8DAEF;
-    --primary-shadow: rgba(155,89,182,0.35);
-    --primary-shadow-light: rgba(155,89,182,0.1);
-    --primary-text: #5B2C6F;
+    --primary: #A855C8;
+    --primary-dark: #8B3DAF;
+    --primary-light: #F8F0FD;
+    --primary-lighter: #EDD9F7;
+    --primary-shadow: rgba(168,85,200,0.25);
+    --primary-shadow-light: rgba(168,85,200,0.1);
+    --primary-text: #6B2F8A;
   }
   .theme-gold {
     --primary: #B8860B;
@@ -140,8 +140,7 @@
   .mic-btn svg { width: 28px; height: 28px; }
   .peek-btn { padding: 12px 22px; border: 1.5px solid var(--primary); border-radius: 12px; background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
   .peek-btn:active { background: var(--primary-light); transform: scale(0.96); }
-  .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
-  .end-btn:active { background: #f5f5f5; transform: scale(0.96); }
+  .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; }
   .session-progress { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
   .session-progress-label { font-size: 11px; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
   .session-bar-wrap { background: #e0ebe6; border-radius: 6px; height: 6px; }
@@ -153,7 +152,7 @@
   .sched-name { font-size: 14px; font-weight: 600; color: #111; }
   .sched-detail { font-size: 12px; color: #aaa; margin-top: 2px; }
   .sched-status { width: 10px; height: 10px; border-radius: 50%; background: #e0e0e0; flex-shrink: 0; }
-  .sched-status.done { background: var(--primary); box-shadow: 0 0 6px var(--primary-shadow-light); }
+  .sched-status.done { background: var(--primary); }
   .error-msg { color: #E53935; font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .success-msg { color: var(--primary); font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .divider { text-align: center; color: #bbb; font-size: 13px; margin: 16px 0; }
@@ -168,7 +167,7 @@
   .splash::after { content:''; position:absolute; bottom:-80px; left:-80px; width:250px; height:250px; border-radius:50%; background:rgba(255,255,255,0.04); }
   .splash h1 { font-size: 52px; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: -2px; }
   .splash p { font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 48px; line-height: 1.6; max-width: 260px; }
-  .splash-btn { padding: 17px 40px; background: #fff; color: var(--primary); border: none; border-radius: 16px; font-size: 17px; font-weight: 700; cursor: pointer; margin-bottom: 14px; width: 100%; transition: all 0.2s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.15); letter-spacing: -0.2px; }
+  .splash-btn { padding: 17px 40px; background: #fff; color: var(--primary); border: none; border-radius: 16px; font-size: 17px; font-weight: 700; cursor: pointer; margin-bottom: 14px; width: 100%; transition: all 0.2s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
   .splash-btn:active { transform: scale(0.97); }
   .splash-link { color: rgba(255,255,255,0.7); font-size: 14px; cursor: pointer; text-decoration: underline; font-weight: 500; }
   .tag { display: inline-block; background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; padding: 5px 14px; border-radius: 999px; margin-bottom: 24px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); }
@@ -197,22 +196,21 @@
   .pw-req { font-size: 12px; color: #aaa; margin-top: 6px; line-height: 1.9; }
   .pw-req span { display: block; font-weight: 500; }
   .pw-req span.met { color: var(--primary); }
-  .theme-options { display: flex; gap: 14px; margin-top: 8px; }
   .theme-swatch { width: 44px; height: 44px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: all 0.2s ease; }
   .theme-swatch:active { transform: scale(0.9); }
   .theme-swatch.selected { border-color: #111; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #111; }
   .theme-swatch.green { background: linear-gradient(135deg, #0D8A6A, #0A7459); }
-  .theme-swatch.purple { background: linear-gradient(135deg, #9B59B6, #7D3C98); }
+  .theme-swatch.purple { background: linear-gradient(135deg, #A855C8, #8B3DAF); }
   .theme-swatch.gold { background: linear-gradient(135deg, #B8860B, #9A6F09); }
-  .walkthrough-screen { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-  .slides-wrapper { flex: 1; overflow: hidden; position: relative; }
+  .walkthrough-screen { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .slides-wrapper { flex: 1; overflow: hidden; }
   .slides-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
   .slide { min-width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 32px; text-align: center; }
   .slide-1 { background: linear-gradient(160deg, var(--primary-light) 0%, #fafafa 65%); }
   .slide-2 { background: linear-gradient(160deg, #FFF5E6 0%, #fafafa 65%); }
   .slide-3 { background: linear-gradient(160deg, #EEF4FF 0%, #fafafa 65%); }
   .slide-4 { background: linear-gradient(160deg, #F3E5F5 0%, #fafafa 65%); }
-  .slide-icon { font-size: 72px; margin-bottom: 28px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1)); }
+  .slide-icon { font-size: 72px; margin-bottom: 28px; }
   .slide-title { font-size: 28px; font-weight: 700; color: #111; margin-bottom: 16px; line-height: 1.2; letter-spacing: -0.5px; }
   .slide-text { font-size: 16px; color: #666; line-height: 1.7; max-width: 300px; }
   .walkthrough-footer { padding: 20px 24px 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; flex-shrink: 0; background: #fafafa; }
@@ -220,11 +218,9 @@
   .slide-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; transition: all 0.3s ease; }
   .slide-dot.active { background: var(--primary); width: 28px; border-radius: 4px; }
   .walkthrough-btns { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 12px; }
-  .wt-back-btn { background: none; border: 1.5px solid #e0e0e0; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px 20px; border-radius: 12px; transition: all 0.2s ease; }
-  .wt-back-btn:active { transform: scale(0.96); }
+  .wt-back-btn { background: none; border: 1.5px solid #e0e0e0; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px 20px; border-radius: 12px; }
   .wt-skip-btn { background: none; border: none; color: #bbb; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px; }
-  .wt-next-btn { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 16px var(--primary-shadow); letter-spacing: -0.2px; }
-  .wt-next-btn:active { transform: scale(0.97); }
+  .wt-next-btn { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px var(--primary-shadow); }
 </style>
 </head>
 <body>
@@ -431,7 +427,7 @@
   </div>
   <div class="bottom-nav">
     <button class="nav-item active" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="15" cy="7" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M13 17c0-2 1-3.5 3-4" stroke="#bbb" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg><span>Students</span></button>
+    <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Goals</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
@@ -526,7 +522,7 @@
     <div class="account-avatar" id="settings-avatar">S</div>
     <div class="account-name" id="settings-name"></div>
     <div class="account-email" id="settings-email"></div>
-    <div class="settings-row" onclick="showScreen('screen-account-details')"><div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="var(--primary)"/></svg></div><span class="settings-label">Account details</span></div><span class="settings-arrow">›</span></div>
+    <div class="settings-row" onclick="showScreen('screen-account-details')"><div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm0 10c-2 0-3.78-1.03-4.83-2.59C6.06 12.56 8 12 10 12s3.94.56 4.83 1.41C13.78 14.97 12 16 10 16z" fill="var(--primary)"/></svg></div><span class="settings-label">Account details</span></div><span class="settings-arrow">›</span></div>
     <div class="settings-row" onclick="showScreen('screen-change-password')"><div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><rect x="4" y="9" width="12" height="9" rx="2" stroke="var(--primary)" stroke-width="1.5" fill="none"/><path d="M7 9V6a3 3 0 0 1 6 0v3" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div><span class="settings-label">Change password</span></div><span class="settings-arrow">›</span></div>
     <div class="settings-row" onclick="showScreen('screen-tajweed-guide')"><div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><circle cx="10" cy="10" r="8" stroke="var(--primary)" stroke-width="1.5" fill="none"/><line x1="10" y1="9" x2="10" y2="14" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="6.5" r="1" fill="var(--primary)"/></svg></div><span class="settings-label">Tajweed colour guide</span></div><span class="settings-arrow">›</span></div>
     <div class="settings-row" onclick="showScreen('screen-theme')"><div class="settings-row-left"><div class="settings-icon"><svg viewBox="0 0 20 20" width="18" height="18"><circle cx="10" cy="10" r="8" fill="var(--primary)" opacity="0.2"/><circle cx="10" cy="10" r="5" fill="var(--primary)"/></svg></div><span class="settings-label">App theme</span></div><span class="settings-arrow">›</span></div>
@@ -553,7 +549,7 @@
         <div class="theme-swatch green selected" id="swatch-green" onclick="applyTheme('green')"></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f0f4f2;">
-        <div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#9B59B6,#7D3C98);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Royal Purple</div><div style="font-size:12px;color:#aaa;margin-top:2px;">Elegant and refined</div></div></div>
+        <div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#A855C8,#8B3DAF);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Royal Purple</div><div style="font-size:12px;color:#aaa;margin-top:2px;">Elegant and refined</div></div></div>
         <div class="theme-swatch purple" id="swatch-purple" onclick="applyTheme('purple')"></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;">
@@ -736,7 +732,7 @@ const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const SURAHS=[
   {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مَلِكِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'إِلَٰهِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'الْوَسْوَاسِ',tj:'normal'},{t:'الْخَنَّاسِ',tj:'ghunnah'},{t:'الَّذِي',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مِنَ',tj:'normal'},{t:'الْجِنَّةِ',tj:'ghunnah'},{t:'وَالنَّاسِ',tj:'ghunnah'}]},
   {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'الْفَلَقِ',tj:'qalqalah'},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'غَاسِقٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'وَقَبَ',tj:'qalqalah'},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'النَّفَّاثَاتِ',tj:'ghunnah'},{t:'فِي',tj:'normal'},{t:'الْعُقَدِ',tj:'normal'},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'}]},
-  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الRَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'الصَّمَدُ',tj:'normal'},{t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌ',tj:'normal'}]},
+  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'الصَّمَدُ',tj:'normal'},{t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌ',tj:'normal'}]},
   {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'تَبَّتْ',tj:'normal'},{t:'يَدَا',tj:'normal'},{t:'أَبِي',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},{t:'سَيَصْلَىٰ',tj:'normal'},{t:'نَارًا',tj:'normal'},{t:'ذَاتَ',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَامْرَأَتُهُ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'الْحَطَبِ',tj:'qalqalah'},{t:'فِي',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍ',tj:'idgham'}]},
   {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'جَاءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'وَالْفَتْحُ',tj:'normal'},{t:'وَرَأَيْتَ',tj:'normal'},{t:'النَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},{t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَاسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًا',tj:'ghunnah'}]},
   {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'يَا',tj:'normal'},{t:'أَيُّهَا',tj:'normal'},{t:'الْكَافِرُونَ',tj:'normal'},{t:'لَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَابِدُونَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'أَنَا',tj:'normal'},{t:'عَابِدٌ',tj:'normal'},{t:'مَّا',tj:'idgham'},{t:'عَبَدتُّمْ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَابِدُونَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِيَ',tj:'normal'},{t:'دِينِ',tj:'normal'}]},
@@ -750,8 +746,9 @@ let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed
 let currentSlide=0,pendingDashboardData=null,currentTheme='green';
 const TOTAL_SLIDES=4;
 
-// Helper — returns Hafiz or Hafiza based on stored gender
-function hafizTitle(){return userData.gender==='female'||pendingDashboardData?.gender==='female'?'Hafiza':'Hafiz';}
+function isFemale(){return userData.gender==='female';}
+function hTitle(){return isFemale()?'Hafiza':'Hafiz';}
+function hTitleFromMeta(gender){return gender==='female'?'Hafiza':'Hafiz';}
 
 function applyTheme(theme){
   currentTheme=theme;
@@ -769,11 +766,11 @@ function applyTheme(theme){
 function loadSavedTheme(){try{const s=localStorage.getItem('zaid-theme');if(s)applyTheme(s);}catch(e){}}
 
 function updateJourneyButtons(){
-  const isFemale=userData.gender==='female';
+  const female=isFemale();
   const hafizBtn=document.getElementById('journey-hafiz-btn');
   const learningBtn=document.getElementById('journey-learning-btn');
-  if(hafizBtn)hafizBtn.textContent=isFemale?'I am already a Hafiza':'I am already a Hafiz';
-  if(learningBtn)learningBtn.textContent=isFemale?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
+  if(hafizBtn)hafizBtn.textContent=female?'I am already a Hafiza':'I am already a Hafiz';
+  if(learningBtn)learningBtn.textContent=female?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
 }
 
 function showScreen(id){
@@ -788,9 +785,12 @@ function showTab(tab){
 }
 
 function resetWalkthrough(){
-  currentSlide=0;document.getElementById('slides-track').style.transform='translateX(0)';
+  currentSlide=0;
+  document.getElementById('slides-track').style.transform='translateX(0)';
   document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
-  document.getElementById('wt-back-btn').style.display='none';document.getElementById('wt-skip-btn').style.display='inline-block';document.getElementById('wt-next-btn').textContent='Next';
+  document.getElementById('wt-back-btn').style.display='none';
+  document.getElementById('wt-skip-btn').style.display='inline-block';
+  document.getElementById('wt-next-btn').textContent='Next';
 }
 
 function updateWalkthroughButtons(){
@@ -834,10 +834,8 @@ function nextOnboard1(){
   const name=document.getElementById('ob-name').value.trim();const email=document.getElementById('ob-email').value.trim();const password=document.getElementById('ob-password').value;const dob=document.getElementById('ob-dob').value;
   let valid=true;
   if(!name){document.getElementById('ob-name-error').classList.add('show');valid=false;}else{document.getElementById('ob-name-error').classList.remove('show');}
-  const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  if(!emailOk){document.getElementById('ob-email-error').classList.add('show');document.getElementById('ob-email').classList.add('error');valid=false;}else{document.getElementById('ob-email-error').classList.remove('show');document.getElementById('ob-email').classList.remove('error');}
-  const pwOk=password.length>=6&&/[A-Z]/.test(password)&&/[0-9]/.test(password);
-  if(!pwOk){document.getElementById('ob-pw-error').classList.add('show');valid=false;}else{document.getElementById('ob-pw-error').classList.remove('show');}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('ob-email-error').classList.add('show');document.getElementById('ob-email').classList.add('error');valid=false;}else{document.getElementById('ob-email-error').classList.remove('show');document.getElementById('ob-email').classList.remove('error');}
+  if(!(password.length>=6&&/[A-Z]/.test(password)&&/[0-9]/.test(password))){document.getElementById('ob-pw-error').classList.add('show');valid=false;}else{document.getElementById('ob-pw-error').classList.remove('show');}
   if(!dob){document.getElementById('ob-dob-error').classList.add('show');valid=false;}else{document.getElementById('ob-dob-error').classList.remove('show');}
   if(!valid)return;
   userData.name=name;userData.email=email;userData.password=password;userData.dob=dob;showScreen('screen-onboard-gender');
@@ -862,9 +860,8 @@ function nextOnboard2(){
   if(!userData.journey){document.getElementById('ob2-error').textContent='Please select an option.';return;}
   document.getElementById('ob2-error').textContent='';
   if(userData.journey==='parent'){showScreen('screen-onboard-parent');return;}
-  const isFemale=userData.gender==='female';
   if(userData.journey==='hafiz'){
-    document.getElementById('ob3-title').textContent=isFemale?'When did you complete your Hifz, Hafiza?':'When did you complete your Hifz?';
+    document.getElementById('ob3-title').textContent='When did you complete your Hifz?';
     document.getElementById('ob3-sub').textContent='This helps Zaid understand where to start.';
     document.getElementById('ob3-hafiz').style.display='block';document.getElementById('ob3-learning').style.display='none';
   }else{
@@ -882,27 +879,28 @@ function nextOnboard3(){
 }
 
 function buildFinalStep(stage){
-  const title=document.getElementById('ob4-title');const sub=document.getElementById('ob4-sub');const content=document.getElementById('ob4-content');content.innerHTML='';
-  const isFemale=userData.gender==='female';
-  const hTitle=isFemale?'Hafiza':'Hafiz';
+  const content=document.getElementById('ob4-content');content.innerHTML='';
+  const t=hTitle();
+  const ob4title=document.getElementById('ob4-title');
+  const ob4sub=document.getElementById('ob4-sub');
   if(stage==='hafiz'){
-    title.textContent=`Which Juz do you struggle with most?`;sub.textContent='Select all that apply. You can update this later.';
+    ob4title.textContent=`Which Juz do you struggle with most?`;ob4sub.textContent='Select all that apply. You can update this later.';
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
-    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;transition:all 0.15s;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';this.style.color='var(--primary-text)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
+    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';this.style.color='var(--primary-text)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
   }else if(stage==='just'){
-    title.textContent='What is your goal?';sub.textContent='This helps Zaid build the perfect plan for you.';
-    [{val:'full',label:`Become a full ${hTitle} (memorise the entire Quran)`},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
+    ob4title.textContent='What is your goal?';ob4sub.textContent='This helps Zaid build the perfect plan for you.';
+    [{val:'full',label:`Become a full ${t} (memorise the entire Quran)`},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:16px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
     [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};content.appendChild(btn);});
   }else if(stage==='halfway'){
-    title.textContent='A couple more questions';sub.textContent='Help Zaid understand exactly where you are.';
+    ob4title.textContent='A couple more questions';ob4sub.textContent='Help Zaid understand exactly where you are.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:600;color:#111;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
     const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:12px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
     [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=t.val;};content.appendChild(btn);});
   }else if(stage==='nearly'){
-    title.textContent='Almost there — a couple more questions';sub.textContent='Help Zaid fine tune your plan.';
+    ob4title.textContent='Almost there — a couple more questions';ob4sub.textContent='Help Zaid fine tune your plan.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:600;color:#111;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
     const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
     const wl=document.createElement('p');wl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:12px 0 8px;';wl.textContent='Which Juz do you struggle with most?';content.appendChild(wl);
@@ -971,12 +969,12 @@ async function handleLogout(){await sb.auth.signOut();pendingDashboardData=null;
 function populateDashboardData(fullName,journey,gender){
   currentUserJourney=journey;
   const firstName=fullName?fullName.split(' ')[0]:'there';
-  const title=gender==='female'?'Hafiza':'Hafiz';
+  const t=hTitleFromMeta(gender);
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
   sb.auth.getUser().then(({data})=>{
     if(data.user){
       const u=data.user;const meta=u.user_metadata;
-      const t=meta.gender==='female'?'Hafiza':'Hafiz';
+      const mt=hTitleFromMeta(meta.gender);
       if(journey==='parent'){
         document.getElementById('parent-settings-avatar').textContent=initials;document.getElementById('parent-settings-name').textContent=meta.full_name||'';document.getElementById('parent-settings-email').textContent=u.email;
         document.getElementById('parent-details-avatar').textContent=initials;document.getElementById('parent-details-name').textContent=meta.full_name||'';document.getElementById('parent-details-email').textContent=u.email;
@@ -986,7 +984,7 @@ function populateDashboardData(fullName,journey,gender){
         document.getElementById('settings-avatar').textContent=initials;document.getElementById('settings-name').textContent=meta.full_name||'';document.getElementById('settings-email').textContent=u.email;
         document.getElementById('details-avatar').textContent=initials;document.getElementById('details-name').textContent=meta.full_name||'';document.getElementById('details-email').textContent=u.email;
         document.getElementById('details-name-field').textContent=meta.full_name||'—';document.getElementById('details-email-field').textContent=u.email;document.getElementById('details-dob-field').textContent=meta.dob||'—';
-        const j=meta.journey;document.getElementById('details-journey-field').textContent=j==='hafiz'?`${t} / Revision`:j==='learning'?`Learning to become a ${t}`:'—';
+        const j=meta.journey;document.getElementById('details-journey-field').textContent=j==='hafiz'?`${mt} / Revision`:j==='learning'?`Learning to become a ${mt}`:'—';
       }
     }
   });
@@ -994,8 +992,8 @@ function populateDashboardData(fullName,journey,gender){
     document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
     document.getElementById('link-code').textContent='ZD-'+Math.floor(1000+Math.random()*9000);
   }else{
-    document.getElementById('dash-name').textContent=`Assalamu Alaikum, ${title} ${firstName}`;
-    document.getElementById('dash-sub').textContent=journey==='hafiz'?`${title} · Ready to revise`:`On the path to becoming a ${title}`;
+    document.getElementById('dash-name').textContent=`Assalamu Alaikum, ${t} ${firstName}`;
+    document.getElementById('dash-sub').textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;
     buildSchedule();
   }
 }
