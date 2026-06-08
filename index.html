@@ -13,35 +13,12 @@
   .screen.active { display: flex; opacity: 1; }
   .screen.fade-in { animation: fadeIn 0.3s ease forwards; }
   @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-
   :root {
-    --primary: #0D8A6A;
-    --primary-dark: #0A7459;
-    --primary-light: #E8F7F2;
-    --primary-lighter: #D4EFE7;
-    --primary-shadow: rgba(13,138,106,0.35);
-    --primary-shadow-light: rgba(13,138,106,0.1);
-    --primary-text: #085041;
+    --primary: #0D8A6A; --primary-dark: #0A7459; --primary-light: #E8F7F2; --primary-lighter: #D4EFE7;
+    --primary-shadow: rgba(13,138,106,0.35); --primary-shadow-light: rgba(13,138,106,0.1); --primary-text: #085041;
   }
-  .theme-purple {
-    --primary: #A855C8;
-    --primary-dark: #8B3DAF;
-    --primary-light: #F8F0FD;
-    --primary-lighter: #EDD9F7;
-    --primary-shadow: rgba(168,85,200,0.25);
-    --primary-shadow-light: rgba(168,85,200,0.1);
-    --primary-text: #6B2F8A;
-  }
-  .theme-gold {
-    --primary: #B8860B;
-    --primary-dark: #9A6F09;
-    --primary-light: #FFF8E1;
-    --primary-lighter: #FDEDB5;
-    --primary-shadow: rgba(184,134,11,0.35);
-    --primary-shadow-light: rgba(184,134,11,0.1);
-    --primary-text: #6B4E08;
-  }
-
+  .theme-purple { --primary: #A855C8; --primary-dark: #8B3DAF; --primary-light: #F8F0FD; --primary-lighter: #EDD9F7; --primary-shadow: rgba(168,85,200,0.25); --primary-shadow-light: rgba(168,85,200,0.1); --primary-text: #6B2F8A; }
+  .theme-gold { --primary: #B8860B; --primary-dark: #9A6F09; --primary-light: #FFF8E1; --primary-lighter: #FDEDB5; --primary-shadow: rgba(184,134,11,0.35); --primary-shadow-light: rgba(184,134,11,0.1); --primary-text: #6B4E08; }
   .status-bar { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); padding: 16px 20px 14px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; box-shadow: 0 2px 12px var(--primary-shadow); }
   .status-bar h1 { color: #fff; font-size: 18px; font-weight: 600; letter-spacing: -0.3px; }
   .status-bar span { color: rgba(255,255,255,0.75); font-size: 13px; }
@@ -72,14 +49,14 @@
   .input-wrap { position: relative; margin-bottom: 14px; }
   .input-field { width: 100%; padding: 14px 16px; border: 1.5px solid #e8ede9; border-radius: 14px; font-size: 15px; color: #1a1a1a; outline: none; background: #fff; transition: all 0.2s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
   .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-shadow-light); }
-  .input-field.error { border-color: #E53935; box-shadow: 0 0 0 4px rgba(229,57,53,0.08); }
+  .input-field.error { border-color: #E53935; }
   .input-error { font-size: 12px; color: #E53935; margin-top: 5px; display: none; font-weight: 500; }
   .input-error.show { display: block; }
   .select-field { width: 100%; padding: 14px 16px; border: 1.5px solid #e8ede9; border-radius: 14px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; background: #fff; }
   .select-field:focus { border-color: var(--primary); }
   .btn-primary { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s ease; box-shadow: 0 4px 16px var(--primary-shadow); letter-spacing: -0.2px; }
-  .btn-primary:hover { box-shadow: 0 6px 20px var(--primary-shadow); transform: translateY(-1px); }
-  .btn-primary:active { transform: scale(0.97) translateY(0); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--primary-shadow); }
+  .btn-primary:active { transform: scale(0.97); }
   .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   .btn-secondary { width: 100%; padding: 15px; background: transparent; color: var(--primary); border: 1.5px solid var(--primary); border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s ease; }
   .btn-secondary:active { transform: scale(0.97); background: var(--primary-light); }
@@ -107,12 +84,13 @@
   .surah-name-en { font-size: 14px; font-weight: 600; color: #111; }
   .surah-name-ar { font-size: 16px; color: #666; margin-top: 2px; direction: rtl; }
   .surah-meta { font-size: 11px; color: #aaa; font-weight: 500; }
-  .blank-page { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; min-height: 180px; display: flex; align-items: center; justify-content: center; margin: 16px 0; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-  .arabic-text { font-size: 26px; text-align: center; line-height: 2.4; direction: rtl; width: 100%; }
-  .arabic-text.hidden .word { color: transparent !important; }
-  .word { display: inline; margin: 0 2px; transition: opacity 0.2s; }
-  .word.correct { opacity: 0.35; }
-  .word.current { text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 2px; }
+  .blank-page { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; min-height: 200px; display: flex; align-items: center; justify-content: center; margin: 16px 0; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .arabic-text { font-size: 26px; text-align: center; line-height: 2.6; direction: rtl; width: 100%; font-family: 'Traditional Arabic', 'Arial Unicode MS', serif; }
+  .word { display: inline; margin: 0 3px; transition: all 0.3s ease; cursor: default; }
+  .word.hidden { color: transparent; }
+  .word.revealed { color: inherit; }
+  .word.current { color: inherit; text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 2px; }
+  .word.correct { opacity: 0.4; }
   .tj-normal { color: #1a1a1a; }
   .tj-ikhfa { color: #2196F3; }
   .tj-ghunnah { color: #FF9800; }
@@ -134,18 +112,23 @@
   .error-flash.show { display: block; }
   .error-flash p { font-size: 13px; color: #E53935; font-weight: 500; }
   .mic-area { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 8px 0 16px; }
-  .mic-btn { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px var(--primary-shadow); transition: all 0.2s ease; }
+  .mic-btn { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px var(--primary-shadow); transition: all 0.2s ease; position: relative; }
   .mic-btn:active { transform: scale(0.93); }
-  .mic-btn.listening { background: linear-gradient(135deg, #E53935 0%, #C62828 100%); box-shadow: 0 6px 20px rgba(229,57,53,0.4); }
-  .mic-btn svg { width: 28px; height: 28px; }
+  .mic-btn.listening { background: linear-gradient(135deg, #E53935 0%, #C62828 100%); box-shadow: 0 6px 20px rgba(229,57,53,0.5); animation: micPulse 1.5s infinite; }
+  @keyframes micPulse { 0%,100%{box-shadow:0 6px 20px rgba(229,57,53,0.5);}50%{box-shadow:0 6px 32px rgba(229,57,53,0.8);} }
+  .mic-btn svg { width: 30px; height: 30px; }
   .peek-btn { padding: 12px 22px; border: 1.5px solid var(--primary); border-radius: 12px; background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
   .peek-btn:active { background: var(--primary-light); transform: scale(0.96); }
-  .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+  .end-btn:active { background: #f5f5f5; transform: scale(0.96); }
   .session-progress { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
   .session-progress-label { font-size: 11px; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
   .session-bar-wrap { background: #e0ebe6; border-radius: 6px; height: 6px; }
-  .session-bar-fill { background: linear-gradient(90deg, var(--primary), var(--primary-dark)); height: 6px; border-radius: 6px; width: 0%; transition: width 0.4s ease; }
+  .session-bar-fill { background: linear-gradient(90deg, var(--primary), var(--primary-dark)); height: 6px; border-radius: 6px; width: 0%; transition: width 0.5s ease; }
   .session-count { font-size: 12px; color: #888; margin-top: 6px; font-weight: 500; }
+  .recite-status { text-align: center; font-size: 13px; color: #888; margin-bottom: 8px; min-height: 20px; font-weight: 500; }
+  .recite-status.listening { color: #E53935; }
+  .recite-status.processing { color: var(--primary); }
   .sched-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f4f2; }
   .sched-day { font-size: 11px; color: #aaa; min-width: 32px; font-weight: 600; text-transform: uppercase; }
   .sched-content { flex: 1; }
@@ -156,12 +139,6 @@
   .error-msg { color: #E53935; font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .success-msg { color: var(--primary); font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .divider { text-align: center; color: #bbb; font-size: 13px; margin: 16px 0; }
-  .listening-indicator { display: none; align-items: center; gap: 6px; justify-content: center; margin-bottom: 8px; }
-  .listening-indicator.show { display: flex; }
-  .listening-dot { width: 8px; height: 8px; border-radius: 50%; background: #E53935; animation: pulse 1s infinite; }
-  .listening-dot:nth-child(2) { animation-delay: 0.2s; }
-  .listening-dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:0.3;} }
   .splash { background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; position: relative; overflow: hidden; }
   .splash::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.04); }
   .splash::after { content:''; position:absolute; bottom:-80px; left:-80px; width:250px; height:250px; border-radius:50%; background:rgba(255,255,255,0.04); }
@@ -189,7 +166,7 @@
   .detail-row:last-child { border-bottom: none; }
   .detail-label { font-size: 11px; color: #aaa; margin-bottom: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
   .detail-value { font-size: 15px; color: #111; font-weight: 500; }
-  .tj-rule-card { border-radius: 14px; padding: 16px; margin-bottom: 10px; border: 1px solid #e0e0e0; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .tj-rule-card { border-radius: 14px; padding: 16px; margin-bottom: 10px; border: 1px solid #e0e0e0; }
   .tj-rule-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; }
   .tj-rule-desc { font-size: 13px; color: #555; line-height: 1.6; }
   .tj-rule-example { font-size: 20px; direction: rtl; margin-top: 8px; }
@@ -221,6 +198,18 @@
   .wt-back-btn { background: none; border: 1.5px solid #e0e0e0; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px 20px; border-radius: 12px; }
   .wt-skip-btn { background: none; border: none; color: #bbb; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px; }
   .wt-next-btn { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px var(--primary-shadow); }
+
+  /* SESSION SUMMARY */
+  .summary-screen { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; text-align: center; }
+  .summary-icon { font-size: 64px; margin-bottom: 16px; }
+  .summary-title { font-size: 26px; font-weight: 700; color: #111; margin-bottom: 6px; letter-spacing: -0.4px; }
+  .summary-sub { font-size: 14px; color: #888; margin-bottom: 28px; }
+  .summary-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-bottom: 24px; }
+  .summary-stat { background: #fff; border-radius: 16px; padding: 18px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .summary-stat-val { font-size: 28px; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
+  .summary-stat-label { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .streak-badge { background: linear-gradient(135deg, var(--primary-light), var(--primary-lighter)); border-radius: 14px; padding: 14px 20px; width: 100%; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--primary-shadow-light); }
+  .streak-badge-text { font-size: 16px; font-weight: 600; color: var(--primary-dark); }
 </style>
 </head>
 <body>
@@ -394,11 +383,11 @@
   <div class="screen-body">
     <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
-    <div class="streak-card"><div><div class="streak-label">Current streak</div><div class="streak-num">0 days</div></div><div style="font-size:32px;">🔥</div></div>
+    <div class="streak-card"><div><div class="streak-label">Current streak</div><div class="streak-num" id="dash-streak">0 days</div></div><div style="font-size:32px;">🔥</div></div>
     <div class="today-card" onclick="showTab('recite')"><div class="today-label">Today's revision</div><div class="today-title">Surah An-Nas</div><div class="today-sub">Tap to begin reciting →</div></div>
     <div class="tile-grid">
-      <div class="tile"><div class="tile-title">Juz revised</div><div class="tile-val">0</div><div class="tile-sub">this month</div></div>
-      <div class="tile"><div class="tile-title">Sessions</div><div class="tile-val">0</div><div class="tile-sub">total</div></div>
+      <div class="tile"><div class="tile-title">Sessions</div><div class="tile-val" id="dash-sessions">0</div><div class="tile-sub">total</div></div>
+      <div class="tile"><div class="tile-title">Words recited</div><div class="tile-val" id="dash-words">0</div><div class="tile-sub">all time</div></div>
     </div>
   </div>
   <div class="bottom-nav">
@@ -437,8 +426,7 @@
 <div class="screen" id="screen-parent-students">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Students</h1><span></span></div>
   <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-    <div style="font-size:56px;margin-bottom:20px;">👥</div>
-    <h2>Your students</h2>
+    <div style="font-size:56px;margin-bottom:20px;">👥</div><h2>Your students</h2>
     <p class="sub">Once a student links their account using your code, they'll appear here.</p>
   </div>
   <div class="bottom-nav">
@@ -453,8 +441,7 @@
 <div class="screen" id="screen-parent-goals">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Goals</h1><span></span></div>
   <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-    <div style="font-size:56px;margin-bottom:20px;">🎯</div>
-    <h2>Set goals</h2>
+    <div style="font-size:56px;margin-bottom:20px;">🎯</div><h2>Set goals</h2>
     <p class="sub">Once students are linked, you'll be able to set revision goals and targets for them here.</p>
   </div>
   <div class="bottom-nav">
@@ -644,11 +631,11 @@
   <div class="status-bar"><button class="back-btn" onclick="endSession()">← Back</button><h1 id="recite-title">Surah An-Nas</h1><span></span></div>
   <div class="screen-body">
     <div class="tajweed-key"><span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span></div>
-    <div class="blank-page"><div class="arabic-text hidden" id="arabic-display"></div></div>
-    <div class="listening-indicator" id="listening-indicator"><div class="listening-dot"></div><div class="listening-dot"></div><div class="listening-dot"></div><span style="font-size:12px;color:#E53935;margin-left:4px;font-weight:600;">Listening...</span></div>
-    <div class="error-flash" id="error-flash"><p>Mistake detected — keep going or peek for help</p></div>
+    <div class="blank-page"><div class="arabic-text" id="arabic-display"></div></div>
+    <div class="recite-status" id="recite-status">Press the mic to begin reciting</div>
+    <div class="error-flash" id="error-flash"><p id="error-flash-text">Keep going — Zaid is listening</p></div>
     <div class="mic-area">
-      <button class="peek-btn" onclick="togglePeek()">Peek</button>
+      <button class="peek-btn" onclick="togglePeek()" id="peek-btn">Peek</button>
       <button class="mic-btn" id="mic-btn" onclick="toggleMic()"><svg viewBox="0 0 28 28" fill="none"><rect x="9" y="2" width="10" height="16" rx="5" fill="white"/><path d="M4 14c0 5.52 4.48 10 10 10s10-4.48 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="14" y1="24" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg></button>
       <button class="end-btn" onclick="endSession()">End</button>
     </div>
@@ -664,6 +651,27 @@
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="var(--primary)" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="var(--primary)"/></svg><span style="color:var(--primary);">Recite</span></button>
     <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
     <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+  </div>
+</div>
+
+<!-- SESSION SUMMARY -->
+<div class="screen" id="screen-summary">
+  <div class="status-bar"><h1>Session Complete</h1></div>
+  <div class="screen-body">
+    <div class="summary-screen">
+      <div class="summary-icon">✅</div>
+      <div class="summary-title" id="summary-title">MashaAllah!</div>
+      <div class="summary-sub" id="summary-sub">Surah An-Nas complete</div>
+      <div class="summary-stats">
+        <div class="summary-stat"><div class="summary-stat-val" id="summary-words">0</div><div class="summary-stat-label">Words</div></div>
+        <div class="summary-stat"><div class="summary-stat-val" id="summary-time">0s</div><div class="summary-stat-label">Time</div></div>
+        <div class="summary-stat"><div class="summary-stat-val" id="summary-accuracy">0%</div><div class="summary-stat-label">Completion</div></div>
+        <div class="summary-stat"><div class="summary-stat-val" id="summary-sessions">0</div><div class="summary-stat-label">Total sessions</div></div>
+      </div>
+      <div class="streak-badge"><span style="font-size:24px;">🔥</span><span class="streak-badge-text" id="summary-streak">0 day streak</span></div>
+      <button class="btn-primary" onclick="showTab('recite')" style="margin-bottom:10px;">Recite again</button>
+      <button class="btn-secondary" onclick="showTab('dashboard')">Back to home</button>
+    </div>
   </div>
 </div>
 
@@ -701,33 +709,12 @@
   </div>
 </div>
 
-<!-- PROGRESS -->
-<div class="screen" id="screen-progress">
-  <div class="status-bar"><h1>Progress</h1></div>
-  <div class="screen-body">
-    <h2>Your journey</h2>
-    <p class="sub">Track your Hifz progress over time.</p>
-    <div class="tile-grid">
-      <div class="tile"><div class="tile-title">Total sessions</div><div class="tile-val">0</div></div>
-      <div class="tile"><div class="tile-title">Day streak</div><div class="tile-val">0</div></div>
-      <div class="tile"><div class="tile-title">Juz covered</div><div class="tile-val">0</div><div class="tile-sub">of 30</div></div>
-      <div class="tile"><div class="tile-title">Weak spots</div><div class="tile-val">—</div></div>
-    </div>
-  </div>
-  <div class="bottom-nav">
-    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Schedule</span></button>
-    <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#bbb"/></svg><span>Recite</span></button>
-    <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
-    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="10" width="3" height="8" rx="1" fill="var(--primary)"/><rect x="7" y="6" width="3" height="12" rx="1" fill="var(--primary)"/><rect x="12" y="3" width="3" height="15" rx="1" fill="var(--primary)"/></svg><span style="color:var(--primary);">Progress</span></button>
-  </div>
-</div>
-
 </div>
 <script>
 const SUPABASE_URL='https://xsnaoaxzpwabcqhwtlvh.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbmFvYXh6cHdhYmNxaHd0bHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODI3OTUsImV4cCI6MjA5MTY1ODc5NX0.cnX_mZJxhcd8bz4bGFBQUnmtapsLyBlLOfar3RdbTyw';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const ENGINE_URL='https://zaid-engine.onrender.com';
 
 const SURAHS=[
   {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مَلِكِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'إِلَٰهِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'الْوَسْوَاسِ',tj:'normal'},{t:'الْخَنَّاسِ',tj:'ghunnah'},{t:'الَّذِي',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مِنَ',tj:'normal'},{t:'الْجِنَّةِ',tj:'ghunnah'},{t:'وَالنَّاسِ',tj:'ghunnah'}]},
@@ -742,12 +729,14 @@ const SURAHS=[
   {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَابِ',tj:'normal'},{t:'الْفِيلِ',tj:'normal'},{t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},{t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},{t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍ',tj:'idgham'}]}
 ];
 
-let userData={},isListening=false,isPeeking=false,recognition=null,wordsRevealed=0,currentSurah=null,currentUserJourney='';
+let userData={},currentSurah=null,currentUserJourney='';
 let currentSlide=0,pendingDashboardData=null,currentTheme='green';
+let mediaRecorder=null,audioChunks=[],isRecording=false,isPeeking=false;
+let sessionStartTime=null,wordsRevealed=0,totalSessions=0,totalWords=0;
+let sessionTimer=null,currentWordIndex=0;
 const TOTAL_SLIDES=4;
 
 function isFemale(){return userData.gender==='female';}
-function hTitle(){return isFemale()?'Hafiza':'Hafiz';}
 function hTitleFromMeta(gender){return gender==='female'?'Hafiza':'Hafiz';}
 
 function applyTheme(theme){
@@ -762,7 +751,6 @@ function applyTheme(theme){
   if(backBtn)backBtn.onclick=()=>showScreen(currentUserJourney==='parent'?'screen-parent-settings':'screen-settings');
   try{localStorage.setItem('zaid-theme',theme);}catch(e){}
 }
-
 function loadSavedTheme(){try{const s=localStorage.getItem('zaid-theme');if(s)applyTheme(s);}catch(e){}}
 
 function updateJourneyButtons(){
@@ -779,51 +767,41 @@ function showScreen(id){
 }
 
 function showTab(tab){
-  const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',progress:'screen-progress',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
+  const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
   if(tab==='recite')buildSurahList();
   showScreen(map[tab]||'screen-dashboard');
 }
 
 function resetWalkthrough(){
-  currentSlide=0;
-  document.getElementById('slides-track').style.transform='translateX(0)';
+  currentSlide=0;document.getElementById('slides-track').style.transform='translateX(0)';
   document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
-  document.getElementById('wt-back-btn').style.display='none';
-  document.getElementById('wt-skip-btn').style.display='inline-block';
-  document.getElementById('wt-next-btn').textContent='Next';
+  document.getElementById('wt-back-btn').style.display='none';document.getElementById('wt-skip-btn').style.display='inline-block';document.getElementById('wt-next-btn').textContent='Next';
 }
-
 function updateWalkthroughButtons(){
   document.getElementById('wt-back-btn').style.display=currentSlide>0?'inline-block':'none';
   document.getElementById('wt-skip-btn').style.display=currentSlide<TOTAL_SLIDES-1?'inline-block':'none';
   document.getElementById('wt-next-btn').textContent=currentSlide===TOTAL_SLIDES-1?'Go to my dashboard':'Next';
 }
-
 function nextSlide(){
   if(currentSlide<TOTAL_SLIDES-1){currentSlide++;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}
   else{goToDashboard();}
 }
-
 function prevSlide(){
   if(currentSlide>0){currentSlide--;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}
 }
-
 function goToDashboard(){if(pendingDashboardData){renderDashboard(pendingDashboardData.name,pendingDashboardData.journey,pendingDashboardData.gender);}}
 
 function checkEmail(){const email=document.getElementById('ob-email').value;const valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);document.getElementById('ob-email').classList.toggle('error',email.length>0&&!valid);document.getElementById('ob-email-error').classList.toggle('show',email.length>0&&!valid);}
-
 function checkPassword(){
   const pw=document.getElementById('ob-password').value;
   const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
   upd('pw-len',pw.length>=6,'At least 6 characters');upd('pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');upd('pw-num',/[0-9]/.test(pw),'At least one number');
 }
-
 function checkNewPassword(){
   const pw=document.getElementById('new-password').value;
   const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
   upd('new-pw-len',pw.length>=6,'At least 6 characters');upd('new-pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');upd('new-pw-num',/[0-9]/.test(pw),'At least one number');
 }
-
 function checkParentNewPassword(){
   const pw=document.getElementById('parent-new-password').value;
   const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
@@ -840,51 +818,36 @@ function nextOnboard1(){
   if(!valid)return;
   userData.name=name;userData.email=email;userData.password=password;userData.dob=dob;showScreen('screen-onboard-gender');
 }
-
 function selectGender(gender){
   userData.gender=gender;
   document.getElementById('gender-male').classList.toggle('selected',gender==='male');
   document.getElementById('gender-female').classList.toggle('selected',gender==='female');
   document.getElementById('ob-gender-error').textContent='';
 }
-
 function nextOnboardGender(){
   if(!userData.gender){document.getElementById('ob-gender-error').textContent='Please select an option.';return;}
-  updateJourneyButtons();
-  showScreen('screen-onboard-2');
+  updateJourneyButtons();showScreen('screen-onboard-2');
 }
-
 function selectOption(el,group,val){document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b=>b.classList.remove('selected'));el.classList.add('selected');userData[group]=val;}
-
 function nextOnboard2(){
   if(!userData.journey){document.getElementById('ob2-error').textContent='Please select an option.';return;}
   document.getElementById('ob2-error').textContent='';
   if(userData.journey==='parent'){showScreen('screen-onboard-parent');return;}
-  if(userData.journey==='hafiz'){
-    document.getElementById('ob3-title').textContent='When did you complete your Hifz?';
-    document.getElementById('ob3-sub').textContent='This helps Zaid understand where to start.';
-    document.getElementById('ob3-hafiz').style.display='block';document.getElementById('ob3-learning').style.display='none';
-  }else{
-    document.getElementById('ob3-title').textContent='Where are you in your memorisation?';
-    document.getElementById('ob3-sub').textContent='This helps Zaid build the right plan for you.';
-    document.getElementById('ob3-hafiz').style.display='none';document.getElementById('ob3-learning').style.display='block';
-  }
+  if(userData.journey==='hafiz'){document.getElementById('ob3-title').textContent='When did you complete your Hifz?';document.getElementById('ob3-sub').textContent='This helps Zaid understand where to start.';document.getElementById('ob3-hafiz').style.display='block';document.getElementById('ob3-learning').style.display='none';}
+  else{document.getElementById('ob3-title').textContent='Where are you in your memorisation?';document.getElementById('ob3-sub').textContent='This helps Zaid build the right plan for you.';document.getElementById('ob3-hafiz').style.display='none';document.getElementById('ob3-learning').style.display='block';}
   showScreen('screen-onboard-3');
 }
-
 function nextOnboard3(){
   if(userData.journey==='hafiz'){if(!userData['hifz-when']){document.getElementById('ob3-error').textContent='Please select an option.';return;}buildFinalStep('hafiz');}
   else{if(!userData['learning-stage']){document.getElementById('ob3-error').textContent='Please select an option.';return;}buildFinalStep(userData['learning-stage']);}
   document.getElementById('ob3-error').textContent='';showScreen('screen-onboard-4');
 }
-
 function buildFinalStep(stage){
   const content=document.getElementById('ob4-content');content.innerHTML='';
-  const t=hTitle();
-  const ob4title=document.getElementById('ob4-title');
-  const ob4sub=document.getElementById('ob4-sub');
+  const t=isFemale()?'Hafiza':'Hafiz';
+  const ob4title=document.getElementById('ob4-title');const ob4sub=document.getElementById('ob4-sub');
   if(stage==='hafiz'){
-    ob4title.textContent=`Which Juz do you struggle with most?`;ob4sub.textContent='Select all that apply. You can update this later.';
+    ob4title.textContent='Which Juz do you struggle with most?';ob4sub.textContent='Select all that apply. You can update this later.';
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
     for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';this.style.color='var(--primary-text)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
@@ -973,8 +936,7 @@ function populateDashboardData(fullName,journey,gender){
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
   sb.auth.getUser().then(({data})=>{
     if(data.user){
-      const u=data.user;const meta=u.user_metadata;
-      const mt=hTitleFromMeta(meta.gender);
+      const u=data.user;const meta=u.user_metadata;const mt=hTitleFromMeta(meta.gender);
       if(journey==='parent'){
         document.getElementById('parent-settings-avatar').textContent=initials;document.getElementById('parent-settings-name').textContent=meta.full_name||'';document.getElementById('parent-settings-email').textContent=u.email;
         document.getElementById('parent-details-avatar').textContent=initials;document.getElementById('parent-details-name').textContent=meta.full_name||'';document.getElementById('parent-details-email').textContent=u.email;
@@ -994,8 +956,38 @@ function populateDashboardData(fullName,journey,gender){
   }else{
     document.getElementById('dash-name').textContent=`Assalamu Alaikum, ${t} ${firstName}`;
     document.getElementById('dash-sub').textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;
-    buildSchedule();
+    loadStats();buildSchedule();
   }
+}
+
+function loadStats(){
+  try{
+    const sessions=parseInt(localStorage.getItem('zaid-sessions')||'0');
+    const words=parseInt(localStorage.getItem('zaid-words')||'0');
+    const streak=parseInt(localStorage.getItem('zaid-streak')||'0');
+    totalSessions=sessions;totalWords=words;
+    document.getElementById('dash-sessions').textContent=sessions;
+    document.getElementById('dash-words').textContent=words;
+    document.getElementById('dash-streak').textContent=streak+' day'+(streak!==1?'s':'');
+  }catch(e){}
+}
+
+function saveStats(wordsInSession){
+  try{
+    totalSessions++;totalWords+=wordsInSession;
+    localStorage.setItem('zaid-sessions',totalSessions);
+    localStorage.setItem('zaid-words',totalWords);
+    const today=new Date().toDateString();
+    const lastSession=localStorage.getItem('zaid-last-session');
+    const yesterday=new Date(Date.now()-86400000).toDateString();
+    let streak=parseInt(localStorage.getItem('zaid-streak')||'0');
+    if(lastSession===today){/* same day, no change */}
+    else if(lastSession===yesterday){streak++;}
+    else{streak=1;}
+    localStorage.setItem('zaid-streak',streak);
+    localStorage.setItem('zaid-last-session',today);
+    return streak;
+  }catch(e){return 0;}
 }
 
 function renderDashboard(fullName,journey,gender){if(journey==='parent')showScreen('screen-parent-dashboard');else showScreen('screen-dashboard');}
@@ -1015,43 +1007,157 @@ function buildSurahList(){
 }
 
 function startSurah(index){
-  currentSurah=SURAHS[index];wordsRevealed=0;isPeeking=false;
+  currentSurah=SURAHS[index];isPeeking=false;wordsRevealed=0;currentWordIndex=0;
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
-  const display=document.getElementById('arabic-display');display.innerHTML='';display.classList.add('hidden');
-  currentSurah.words.forEach((w,i)=>{const span=document.createElement('span');span.className=`word tj-${w.tj}`;span.dataset.index=i;span.textContent=w.t+' ';display.appendChild(span);});
-  document.getElementById('session-bar').style.width='0%';document.getElementById('session-count').textContent=`0 of ${currentSurah.words.length} words`;
-  document.getElementById('error-flash').classList.remove('show');document.getElementById('listening-indicator').classList.remove('show');document.querySelector('.peek-btn').textContent='Peek';
-  if(isListening)stopListening();showScreen('screen-recite');
+  const display=document.getElementById('arabic-display');display.innerHTML='';
+  currentSurah.words.forEach((w,i)=>{
+    const span=document.createElement('span');
+    span.className=`word hidden tj-${w.tj}`;
+    span.id=`word-${i}`;
+    span.textContent=w.t+' ';
+    display.appendChild(span);
+  });
+  document.getElementById('session-bar').style.width='0%';
+  document.getElementById('session-count').textContent=`0 of ${currentSurah.words.length} words`;
+  document.getElementById('recite-status').textContent='Press the mic to begin reciting';
+  document.getElementById('recite-status').className='recite-status';
+  document.getElementById('error-flash').classList.remove('show');
+  document.getElementById('peek-btn').textContent='Peek';
+  showScreen('screen-recite');
 }
 
-function togglePeek(){isPeeking=!isPeeking;document.getElementById('arabic-display').classList.toggle('hidden',!isPeeking);document.querySelector('.peek-btn').textContent=isPeeking?'Hide':'Peek';}
-function toggleMic(){if(isListening)stopListening();else startListening();}
-
-function startListening(){
-  if(!('webkitSpeechRecognition'in window)&&!('SpeechRecognition'in window)){alert('Please use Chrome for speech recognition.');return;}
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  recognition=new SR();recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;
-  recognition.onresult=e=>{const transcript=Array.from(e.results).map(r=>r[0].transcript).join('');processRecitation(transcript);};
-  recognition.onerror=()=>stopListening();recognition.onend=()=>{if(isListening)recognition.start();};
-  recognition.start();isListening=true;
-  document.getElementById('mic-btn').classList.add('listening');document.getElementById('listening-indicator').classList.add('show');document.getElementById('arabic-display').classList.remove('hidden');
+function togglePeek(){
+  isPeeking=!isPeeking;
+  const words=document.querySelectorAll('.word');
+  words.forEach(w=>{
+    if(isPeeking){w.classList.remove('hidden');}
+    else{if(parseInt(w.id.split('-')[1])>=currentWordIndex)w.classList.add('hidden');}
+  });
+  document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
 }
 
-function stopListening(){if(recognition)recognition.stop();isListening=false;document.getElementById('mic-btn').classList.remove('listening');document.getElementById('listening-indicator').classList.remove('show');}
+async function toggleMic(){
+  if(isRecording){stopRecording();}
+  else{await startRecording();}
+}
 
-function processRecitation(transcript){
+async function startRecording(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    mediaRecorder=new MediaRecorder(stream,{mimeType:'audio/webm'});
+    audioChunks=[];
+    mediaRecorder.ondataavailable=e=>{if(e.data.size>0)audioChunks.push(e.data);};
+    mediaRecorder.onstop=async()=>{
+      const blob=new Blob(audioChunks,{type:'audio/webm'});
+      await sendAudioToEngine(blob);
+      if(isRecording){
+        audioChunks=[];
+        mediaRecorder.start();
+        setTimeout(()=>{if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();},3000);
+      }
+    };
+    mediaRecorder.start();
+    setTimeout(()=>{if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();},3000);
+    isRecording=true;sessionStartTime=Date.now();
+    document.getElementById('mic-btn').classList.add('listening');
+    document.getElementById('recite-status').textContent='Listening...';
+    document.getElementById('recite-status').className='recite-status listening';
+    if(!isPeeking){document.querySelectorAll('.word').forEach(w=>w.classList.add('hidden'));}
+  }catch(e){
+    document.getElementById('recite-status').textContent='Microphone access needed';
+    console.error(e);
+  }
+}
+
+function stopRecording(){
+  isRecording=false;
+  if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();
+  if(mediaRecorder&&mediaRecorder.stream)mediaRecorder.stream.getTracks().forEach(t=>t.stop());
+  document.getElementById('mic-btn').classList.remove('listening');
+  document.getElementById('recite-status').textContent='Press the mic to continue';
+  document.getElementById('recite-status').className='recite-status';
+}
+
+async function sendAudioToEngine(blob){
+  if(!isRecording)return;
+  document.getElementById('recite-status').textContent='Processing...';
+  document.getElementById('recite-status').className='recite-status processing';
+  try{
+    const formData=new FormData();formData.append('audio',blob,'audio.webm');
+    const response=await fetch(`${ENGINE_URL}/transcribe`,{method:'POST',body:formData});
+    const data=await response.json();
+    if(data.text){processTranscription(data.text);}
+    if(isRecording){
+      document.getElementById('recite-status').textContent='Listening...';
+      document.getElementById('recite-status').className='recite-status listening';
+    }
+  }catch(e){
+    console.error('Engine error:',e);
+    if(isRecording){
+      document.getElementById('recite-status').textContent='Listening...';
+      document.getElementById('recite-status').className='recite-status listening';
+    }
+  }
+}
+
+function normaliseArabic(text){
+  return text.replace(/[\u064B-\u065F\u0670]/g,'').replace(/أ|إ|آ/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').trim();
+}
+
+function processTranscription(transcript){
   if(!currentSurah)return;
-  const words=document.querySelectorAll('.word');const spokenWords=transcript.trim().split(/\s+/);const currentIndex=Math.min(spokenWords.length-1,currentSurah.words.length-1);
-  wordsRevealed=currentIndex+1;
-  words.forEach((w,i)=>{w.classList.remove('correct','current');if(i<currentIndex)w.classList.add('correct');else if(i===currentIndex)w.classList.add('current');});
-  const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
-  document.getElementById('session-bar').style.width=pct+'%';document.getElementById('session-count').textContent=`${wordsRevealed} of ${currentSurah.words.length} words`;
+  const transcriptWords=transcript.trim().split(/\s+/).filter(w=>w.length>0);
+  let bestMatch=currentWordIndex;
+  for(let t=0;t<transcriptWords.length;t++){
+    const transcriptNorm=normaliseArabic(transcriptWords[t]);
+    for(let s=currentWordIndex;s<Math.min(currentWordIndex+8,currentSurah.words.length);s++){
+      const surahNorm=normaliseArabic(currentSurah.words[s].t);
+      if(transcriptNorm===surahNorm||surahNorm.includes(transcriptNorm)||transcriptNorm.includes(surahNorm)){
+        bestMatch=s+1;break;
+      }
+    }
+  }
+  if(bestMatch>currentWordIndex){
+    for(let i=currentWordIndex;i<bestMatch;i++){
+      const wordEl=document.getElementById(`word-${i}`);
+      if(wordEl){wordEl.classList.remove('hidden','current');wordEl.classList.add('revealed','correct');}
+    }
+    if(bestMatch<currentSurah.words.length){
+      const nextEl=document.getElementById(`word-${bestMatch}`);
+      if(nextEl){nextEl.classList.remove('hidden');nextEl.classList.add('current');}
+    }
+    currentWordIndex=bestMatch;wordsRevealed=bestMatch;
+    const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
+    document.getElementById('session-bar').style.width=pct+'%';
+    document.getElementById('session-count').textContent=`${wordsRevealed} of ${currentSurah.words.length} words`;
+    if(wordsRevealed>=currentSurah.words.length){setTimeout(()=>completeSession(),500);}
+  }
 }
 
-function endSession(){stopListening();showTab('dashboard');}
+function completeSession(){
+  stopRecording();
+  const elapsed=sessionStartTime?Math.round((Date.now()-sessionStartTime)/1000):0;
+  const mins=Math.floor(elapsed/60);const secs=elapsed%60;
+  const timeStr=mins>0?`${mins}m ${secs}s`:`${secs}s`;
+  const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
+  const streak=saveStats(wordsRevealed);
+  document.getElementById('summary-title').textContent=pct===100?'MashaAllah! 🌟':'Well done! Keep going';
+  document.getElementById('summary-sub').textContent=`${currentSurah.nameEn} — ${pct}% complete`;
+  document.getElementById('summary-words').textContent=wordsRevealed;
+  document.getElementById('summary-time').textContent=timeStr;
+  document.getElementById('summary-accuracy').textContent=pct+'%';
+  document.getElementById('summary-sessions').textContent=totalSessions;
+  document.getElementById('summary-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
+  showScreen('screen-summary');
+}
+
+function endSession(){
+  stopRecording();
+  if(wordsRevealed>0){completeSession();}
+  else{showTab('dashboard');}
+}
 
 loadSavedTheme();
-
 sb.auth.onAuthStateChange((event,session)=>{
   if(session){const meta=session.user.user_metadata;loadDashboard(meta.full_name,meta.journey,meta.gender);}
 });
