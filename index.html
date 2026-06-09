@@ -85,19 +85,26 @@
   .surah-name-ar { font-size: 16px; color: #666; margin-top: 2px; direction: rtl; }
   .surah-meta { font-size: 11px; color: #aaa; font-weight: 500; }
 
-  /* RECITE SCREEN */
+  /* RECITE */
   .recite-arabic-box { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; min-height: 160px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 12px; direction: rtl; text-align: right; line-height: 2.8; font-size: 22px; font-family: 'Traditional Arabic', 'Arial Unicode MS', serif; }
   .rword { display: inline; margin: 0 2px; transition: all 0.25s ease; }
-  .rword.pending { color: #ccc; }
-  .rword.current { color: #111; font-weight: 600; text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 3px; animation: wordPulse 1s infinite; }
-  .rword.correct { opacity: 0.45; }
-  .rword.mistake { color: #E53935 !important; font-weight: 700; animation: mistakeShake 0.4s ease; }
-  .rword.peeked { color: inherit; opacity: 1; }
+  .rword.hidden { color: transparent !important; text-shadow: 0 0 8px rgba(0,0,0,0.15); }
+  .rword.current { text-shadow: none !important; color: #111 !important; font-weight: 700; text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 3px; animation: wordPulse 1.2s infinite; }
+  .rword.correct { text-shadow: none !important; opacity: 0.5; }
+  .rword.mistake { color: #E53935 !important; text-shadow: none !important; font-weight: 700; animation: mistakeShake 0.4s ease; }
+  .rword.peeked { text-shadow: none !important; }
   @keyframes wordPulse { 0%,100%{text-decoration-color:var(--primary);}50%{text-decoration-color:transparent;} }
   @keyframes mistakeShake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);} }
-  .ayah-marker { color: var(--primary); font-size: 14px; margin: 0 3px; opacity: 0.8; }
+  .ayah-marker { color: var(--primary); font-size: 13px; margin: 0 4px; opacity: 0.9; }
 
-  /* TAJWEED COLOURS — always visible */
+  /* TAJWEED — colours preserved always */
+  .rword.hidden.tj-ikhfa { color: transparent !important; text-shadow: 0 0 8px rgba(33,150,243,0.3); }
+  .rword.hidden.tj-ghunnah { color: transparent !important; text-shadow: 0 0 8px rgba(255,152,0,0.3); }
+  .rword.hidden.tj-qalqalah { color: transparent !important; text-shadow: 0 0 8px rgba(229,57,53,0.3); }
+  .rword.hidden.tj-idgham { color: transparent !important; text-shadow: 0 0 8px rgba(27,94,32,0.3); }
+  .rword.hidden.tj-ikhfa-meem { color: transparent !important; text-shadow: 0 0 8px rgba(233,30,140,0.3); }
+  .rword.hidden.tj-qalb { color: transparent !important; text-shadow: 0 0 8px rgba(123,31,162,0.3); }
+  .rword.hidden.tj-idgham-meem { color: transparent !important; text-shadow: 0 0 8px rgba(76,175,80,0.3); }
   .tj-normal { color: #1a1a1a; }
   .tj-ikhfa { color: #2196F3; }
   .tj-ghunnah { color: #FF9800; }
@@ -107,7 +114,7 @@
   .tj-qalb { color: #7B1FA2; }
   .tj-idgham-meem { color: #4CAF50; }
 
-  .recite-feedback { min-height: 44px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .recite-feedback { min-height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .feedback-pill { padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; display: none; }
   .feedback-pill.show { display: inline-block; }
   .feedback-pill.correct { background: var(--primary-light); color: var(--primary-dark); }
@@ -156,7 +163,6 @@
   .splash-btn:active { transform: scale(0.97); }
   .splash-link { color: rgba(255,255,255,0.7); font-size: 14px; cursor: pointer; text-decoration: underline; font-weight: 500; }
   .tag { display: inline-block; background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; padding: 5px 14px; border-radius: 999px; margin-bottom: 24px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); }
-
   .link-card { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; padding: 22px; margin-bottom: 16px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .link-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #111; }
   .link-card p { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.6; }
@@ -209,19 +215,34 @@
   .wt-next-btn { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px var(--primary-shadow); }
 
   /* SESSION SUMMARY */
-  .summary-hero { text-align: center; padding: 24px 0 16px; }
-  .summary-emoji { font-size: 56px; margin-bottom: 12px; }
+  .summary-hero { text-align: center; padding: 20px 0 16px; }
+  .summary-emoji { font-size: 52px; margin-bottom: 10px; }
   .summary-title { font-size: 26px; font-weight: 700; color: #111; letter-spacing: -0.4px; }
-  .summary-sub { font-size: 14px; color: #888; margin-top: 4px; margin-bottom: 20px; }
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-  .summary-card { background: #fff; border-radius: 16px; padding: 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
-  .summary-val { font-size: 26px; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
+  .summary-sub { font-size: 14px; color: #888; margin-top: 4px; margin-bottom: 18px; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .summary-card { background: #fff; border-radius: 16px; padding: 14px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+  .summary-val { font-size: 24px; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
   .summary-lbl { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  .streak-banner { background: linear-gradient(135deg, var(--primary-light), var(--primary-lighter)); border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; border: 1px solid var(--primary-shadow-light); }
-  .streak-banner-text { font-size: 16px; font-weight: 600; color: var(--primary-dark); }
-  .mistake-review { background: #fff; border-radius: 14px; padding: 16px; border: 1px solid #edf2ef; margin-bottom: 16px; }
-  .mistake-review-title { font-size: 13px; font-weight: 700; color: #E53935; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .streak-banner { background: linear-gradient(135deg, var(--primary-light), var(--primary-lighter)); border-radius: 14px; padding: 12px 20px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 14px; border: 1px solid var(--primary-shadow-light); }
+  .streak-banner-text { font-size: 15px; font-weight: 600; color: var(--primary-dark); }
+  .mistake-review { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; margin-bottom: 14px; }
+  .mistake-review-title { font-size: 12px; font-weight: 700; color: #E53935; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
   .mistake-word { display: inline-block; background: #FFEBEE; color: #E53935; border-radius: 8px; padding: 4px 10px; font-size: 18px; margin: 3px; direction: rtl; font-family: 'Traditional Arabic', serif; }
+
+  /* AI FEEDBACK */
+  .ai-feedback-card { background: linear-gradient(135deg, #f8fff9 0%, #f0fdf4 100%); border-radius: 18px; border: 1.5px solid var(--primary-shadow-light); padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 16px var(--primary-shadow-light); }
+  .ai-feedback-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .ai-feedback-icon { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .ai-feedback-title { font-size: 15px; font-weight: 700; color: #111; }
+  .ai-feedback-subtitle { font-size: 12px; color: #888; margin-top: 1px; }
+  .ai-feedback-text { font-size: 14px; color: #333; line-height: 1.8; }
+  .ai-feedback-loading { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+  .ai-loading-dots { display: flex; gap: 5px; }
+  .ai-loading-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--primary); animation: dotPulse 1.2s infinite; }
+  .ai-loading-dot:nth-child(2) { animation-delay: 0.2s; }
+  .ai-loading-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotPulse { 0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1);} }
+  .ai-loading-text { font-size: 13px; color: #888; font-weight: 500; }
 
   .sched-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f4f2; }
   .sched-day { font-size: 11px; color: #aaa; min-width: 32px; font-weight: 600; text-transform: uppercase; }
@@ -253,7 +274,7 @@
       <div class="slides-track" id="slides-track">
         <div class="slide slide-1"><div class="slide-icon">📖</div><div class="slide-title">Welcome to Zaid.</div><div class="slide-text">The Quran never forgets you. Zaid is your daily companion for memorisation and revision — built with care, for those who carry the Quran in their hearts.</div></div>
         <div class="slide slide-2"><div class="slide-icon">🎯</div><div class="slide-title">For every stage of your journey.</div><div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts completely to where you are.</div></div>
-        <div class="slide slide-3"><div class="slide-icon">🎙️</div><div class="slide-title">Recite. Track. Improve.</div><div class="slide-text">Recite your surah and Zaid listens in real time. Every word is checked — Zaid knows instantly if you're on track or need help.</div></div>
+        <div class="slide slide-3"><div class="slide-icon">🤖</div><div class="slide-title">AI that knows the Quran.</div><div class="slide-text">After every session, Zaid's AI gives you personalised feedback — just like an Ustadh would. Know exactly what to improve and how.</div></div>
         <div class="slide slide-4"><div class="slide-icon">💚</div><div class="slide-title">Made by a Hafiz, for Huffaz.</div><div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div></div>
       </div>
     </div>
@@ -689,7 +710,7 @@
     <div class="summary-hero">
       <div class="summary-emoji" id="summary-emoji">✅</div>
       <div class="summary-title" id="summary-title">MashaAllah!</div>
-      <div class="summary-sub" id="summary-sub">Surah An-Nas complete</div>
+      <div class="summary-sub" id="summary-sub">Session complete</div>
     </div>
     <div class="summary-grid">
       <div class="summary-card"><div class="summary-val" id="sum-words">0</div><div class="summary-lbl">Words</div></div>
@@ -702,6 +723,28 @@
       <div class="mistake-review-title">Words to review</div>
       <div id="mistake-words"></div>
     </div>
+
+    <!-- AI FEEDBACK -->
+    <div class="ai-feedback-card" id="ai-feedback-card">
+      <div class="ai-feedback-header">
+        <div class="ai-feedback-icon">🤖</div>
+        <div>
+          <div class="ai-feedback-title">Zaid's Feedback</div>
+          <div class="ai-feedback-subtitle">AI-powered analysis from your session</div>
+        </div>
+      </div>
+      <div id="ai-feedback-content">
+        <div class="ai-feedback-loading">
+          <div class="ai-loading-dots">
+            <div class="ai-loading-dot"></div>
+            <div class="ai-loading-dot"></div>
+            <div class="ai-loading-dot"></div>
+          </div>
+          <span class="ai-loading-text">Zaid is analysing your recitation...</span>
+        </div>
+      </div>
+    </div>
+
     <button class="btn-primary" onclick="showTab('recite')" style="margin-bottom:10px;">Recite again</button>
     <button class="btn-secondary" onclick="showTab('dashboard')">Back to home</button>
   </div>
@@ -746,10 +789,12 @@
 const SUPABASE_URL='https://xsnaoaxzpwabcqhwtlvh.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbmFvYXh6cHdhYmNxaHd0bHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODI3OTUsImV4cCI6MjA5MTY1ODc5NX0.cnX_mZJxhcd8bz4bGFBQUnmtapsLyBlLOfar3RdbTyw';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const ENGINE_URL='https://zaid-engine.onrender.com';
 
-// SURAH DATA — words with tajweed + ayah markers
 const SURAHS=[
-  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,words:[
+  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,
+   tajweedRules:['Ghunnah on النَّاسِ (3 times)','Ikhfa on مِن','Ghunnah on الْخَنَّاسِ','Ghunnah on الْجِنَّةِ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:1},
     {t:'مَلِكِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:2},
@@ -758,7 +803,9 @@ const SURAHS=[
     {t:'ٱلَّذِى',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:5},
     {t:'مِنَ',tj:'normal'},{t:'ٱلْجِنَّةِ',tj:'ghunnah'},{t:'وَٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:6}
   ]},
-  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,words:[
+  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,
+   tajweedRules:['Qalqalah on قُلْ','Qalqalah on ٱلْفَلَقِ','Ikhfa on مِن','Qalqalah on وَقَبَ','Ghunnah on ٱلنَّفَّٰثَٰتِ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلْفَلَقِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:1},
     {t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
@@ -766,14 +813,18 @@ const SURAHS=[
     {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'ٱلنَّفَّٰثَٰتِ',tj:'ghunnah'},{t:'فِى',tj:'normal'},{t:'ٱلْعُقَدِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},
     {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'},{t:'۝',tj:'marker',ayah:5}
   ]},
-  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,words:[
+  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,
+   tajweedRules:['Qalqalah on قُلْ','Qalqalah on يَلِدْ','Qalqalah on يُولَدْ','Idgham on لَّهُۥ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'ٱللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'ٱللَّهُ',tj:'normal'},{t:'ٱلصَّمَدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
     {t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},
     {t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُۥ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌۢ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}
   ]},
-  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,words:[
+  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,
+   tajweedRules:['Ghunnah on حَمَّالَةَ','Qalqalah on ٱلْحَطَبِ','Ghunnah on مِّن','Idgham on مَّسَدٍۭ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'تَبَّتْ',tj:'normal'},{t:'يَدَآ',tj:'normal'},{t:'أَبِى',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'مَآ',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُۥ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
@@ -781,13 +832,17 @@ const SURAHS=[
     {t:'وَٱمْرَأَتُهُۥ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'ٱلْحَطَبِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:4},
     {t:'فِى',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}
   ]},
-  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,words:[
+  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,
+   tajweedRules:['Ghunnah on ٱلنَّاسَ','Ghunnah on إِنَّهُۥ','Ghunnah on تَوَّابًۢا'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'إِذَا',tj:'normal'},{t:'جَآءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'وَٱلْفَتْحُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'وَرَأَيْتَ',tj:'normal'},{t:'ٱلنَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
     {t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَٱسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُۥ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًۢا',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3}
   ]},
-  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,words:[
+  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,
+   tajweedRules:['Qalqalah on قُلْ','Idgham on مَّا'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'قُلْ',tj:'qalqalah'},{t:'يَٰٓأَيُّهَا',tj:'normal'},{t:'ٱلْكَٰفِرُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'لَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
@@ -796,13 +851,17 @@ const SURAHS=[
     {t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},
     {t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِىَ',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:6}
   ]},
-  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,words:[
+  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,
+   tajweedRules:['Ghunnah on إِنَّآ','Ghunnah on إِنَّ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'إِنَّآ',tj:'ghunnah'},{t:'أَعْطَيْنَٰكَ',tj:'normal'},{t:'ٱلْكَوْثَرَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'فَصَلِّ',tj:'normal'},{t:'لِرَبِّكَ',tj:'normal'},{t:'وَٱنْحَرْ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
     {t:'إِنَّ',tj:'ghunnah'},{t:'شَانِئَكَ',tj:'normal'},{t:'هُوَ',tj:'normal'},{t:'ٱلْأَبْتَرُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3}
   ]},
-  {num:107,nameEn:'Surah Al-Maun',nameAr:'سورة الماعون',ayahs:7,words:[
+  {num:107,nameEn:'Surah Al-Maun',nameAr:'سورة الماعون',ayahs:7,
+   tajweedRules:['Idgham on لِّلْمُصَلِّينَ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'أَرَءَيْتَ',tj:'normal'},{t:'ٱلَّذِى',tj:'normal'},{t:'يُكَذِّبُ',tj:'normal'},{t:'بِٱلدِّينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'فَذَٰلِكَ',tj:'normal'},{t:'ٱلَّذِى',tj:'normal'},{t:'يَدُعُّ',tj:'normal'},{t:'ٱلْيَتِيمَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
@@ -812,14 +871,18 @@ const SURAHS=[
     {t:'ٱلَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'يُرَآءُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},
     {t:'وَيَمْنَعُونَ',tj:'normal'},{t:'ٱلْمَاعُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:7}
   ]},
-  {num:106,nameEn:'Surah Quraysh',nameAr:'سورة قريش',ayahs:4,words:[
+  {num:106,nameEn:'Surah Quraysh',nameAr:'سورة قريش',ayahs:4,
+   tajweedRules:['Ghunnah on مِّن (twice)'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'لِإِيلَٰفِ',tj:'normal'},{t:'قُرَيْشٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'إِۦلَٰفِهِمْ',tj:'normal'},{t:'رِحْلَةَ',tj:'normal'},{t:'ٱلشِّتَآءِ',tj:'normal'},{t:'وَٱلصَّيْفِ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
     {t:'فَلْيَعْبُدُوا',tj:'normal'},{t:'رَبَّ',tj:'normal'},{t:'هَٰذَا',tj:'normal'},{t:'ٱلْبَيْتِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},
     {t:'ٱلَّذِىٓ',tj:'normal'},{t:'أَطْعَمَهُم',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'جُوعٍ',tj:'normal'},{t:'وَءَامَنَهُم',tj:'normal'},{t:'مِّنْ',tj:'ghunnah'},{t:'خَوْفٍۭ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}
   ]},
-  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,words:[
+  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,
+   tajweedRules:['Ghunnah on مِّن','Ghunnah on سِجِّيلٍ','Idgham on مَّأْكُولٍۭ'],
+   words:[
     {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
     {t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَٰبِ',tj:'normal'},{t:'ٱلْفِيلِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
     {t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
@@ -935,7 +998,7 @@ function buildFinalStep(stage){
     content.appendChild(grid);
   }else if(stage==='just'){
     ob4title.textContent='What is your goal?';ob4sub.textContent='This helps Zaid build the perfect plan for you.';
-    [{val:'full',label:`Become a full ${t} (memorise the entire Quran)`},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
+    [{val:'full',label:`Become a full ${t}`},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:16px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
     [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};content.appendChild(btn);});
   }else if(stage==='halfway'){
@@ -1081,116 +1144,104 @@ function buildSurahList(){
   SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});
 }
 
-// RECITATION ENGINE — Web Speech API
+// ── RECITATION ENGINE ──────────────────────────────────────────────
 function startSurah(index){
   currentSurah=SURAHS[index];
-  currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];isPeeking=false;
-  sessionStartTime=Date.now();
+  currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];
+  isPeeking=false;sessionStartTime=Date.now();
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
-  renderSurahText();
-  updateSessionStats();
-  hideFeedback();
+  renderSurahText();updateSessionStats();hideFeedback();
   document.getElementById('peek-btn').textContent='Peek';
   document.getElementById('mic-btn').classList.remove('listening');
   if(recognition){try{recognition.stop();}catch(e){}}isListening=false;
   showScreen('screen-recite');
 }
 
-function getRecitableWords(){
-  return currentSurah.words.filter(w=>w.tj!=='marker');
-}
+function getRecitableWords(){return currentSurah.words.filter(w=>w.tj!=='marker');}
 
 function renderSurahText(){
-  const display=document.getElementById('arabic-display');
-  display.innerHTML='';
-  const recitableIdx=[];
+  const display=document.getElementById('arabic-display');display.innerHTML='';
   let ri=0;
-  currentSurah.words.forEach((w,i)=>{
+  currentSurah.words.forEach(w=>{
     if(w.tj==='marker'){
       const span=document.createElement('span');
       span.className='ayah-marker';
-      span.textContent=' ۝'+w.ayah+' ';
+      span.textContent=w.ayah>0?' ۝'+w.ayah+' ':' ۝ ';
       display.appendChild(span);
     }else{
       const span=document.createElement('span');
       span.id=`rw-${ri}`;
-      span.className=`rword pending tj-${w.tj}`;
+      // Start hidden — completely invisible, slight glow hint of colour
+      span.className=`rword hidden tj-${w.tj}`;
       span.textContent=w.t+' ';
       display.appendChild(span);
-      recitableIdx.push(ri);
       ri++;
     }
   });
-  highlightCurrentWord();
+  // Highlight first word
+  const first=document.getElementById('rw-0');
+  if(first){first.classList.remove('hidden');first.classList.add('current');}
 }
 
 function highlightCurrentWord(){
   const recitable=getRecitableWords();
   recitable.forEach((w,i)=>{
-    const el=document.getElementById(`rw-${i}`);
-    if(!el)return;
+    const el=document.getElementById(`rw-${i}`);if(!el)return;
+    el.classList.remove('hidden','current','correct','mistake');
     if(i<currentWordIndex){
-      el.classList.remove('pending','current','mistake');
       el.classList.add('correct');
     }else if(i===currentWordIndex){
-      el.classList.remove('pending','correct','mistake');
       el.classList.add('current');
       el.scrollIntoView({behavior:'smooth',block:'nearest'});
     }else{
-      el.classList.remove('correct','current','mistake');
-      el.classList.add('pending');
-      if(!isPeeking)el.style.color='';
+      if(!isPeeking)el.classList.add('hidden');
     }
   });
 }
 
 function normalise(text){
   return text
-    .replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED]/g,'')
+    .replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0640]/g,'')
     .replace(/[أإآٱ]/g,'ا')
     .replace(/[ىئ]/g,'ي')
     .replace(/ة/g,'ه')
+    .replace(/[ۥۦ]/g,'')
     .replace(/\s+/g,' ')
     .trim();
 }
 
-function toggleMic(){
-  if(isListening)stopListening();
-  else startListening();
+function wordsMatch(spoken,expected){
+  const ns=normalise(spoken);const ne=normalise(expected);
+  if(ns===ne)return true;
+  if(ns.length>=2&&ne.includes(ns))return true;
+  if(ne.length>=2&&ns.includes(ne))return true;
+  // Handle common speech API variations
+  if(ns.length>=3&&ne.length>=3){
+    let matches=0;
+    for(let i=0;i<Math.min(ns.length,ne.length);i++){if(ns[i]===ne[i])matches++;}
+    if(matches/Math.max(ns.length,ne.length)>=0.7)return true;
+  }
+  return false;
 }
+
+function toggleMic(){if(isListening)stopListening();else startListening();}
 
 function startListening(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){alert('Please use Chrome or Safari for the recitation feature.');return;}
   recognition=new SR();
-  recognition.lang='ar-SA';
-  recognition.continuous=true;
-  recognition.interimResults=true;
-  recognition.maxAlternatives=3;
-  recognition.onstart=()=>{
-    isListening=true;
-    document.getElementById('mic-btn').classList.add('listening');
-    showFeedback('listening');
-    startWaitingTimer();
-  };
+  recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=5;
+  recognition.onstart=()=>{isListening=true;document.getElementById('mic-btn').classList.add('listening');showFeedback('listening');startWaitingTimer();};
   recognition.onresult=e=>{
     clearWaitingTimer();
-    const results=e.results;
-    for(let i=e.resultIndex;i<results.length;i++){
-      if(results[i].isFinal){
-        processFinalResult(results[i]);
-      }else{
-        processInterimResult(results[i][0].transcript);
-      }
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      if(e.results[i].isFinal)processFinalResult(e.results[i]);
+      else processInterimResult(e.results[i][0].transcript);
     }
     startWaitingTimer();
   };
-  recognition.onerror=e=>{
-    if(e.error!=='no-speech')stopListening();
-  };
-  recognition.onend=()=>{
-    if(isListening)recognition.start();
-  };
+  recognition.onerror=e=>{if(e.error!=='no-speech')stopListening();};
+  recognition.onend=()=>{if(isListening)recognition.start();};
   recognition.start();
 }
 
@@ -1198,69 +1249,54 @@ function stopListening(){
   isListening=false;
   if(recognition){try{recognition.stop();}catch(e){}}
   document.getElementById('mic-btn').classList.remove('listening');
-  clearWaitingTimer();
-  hideFeedback();
+  clearWaitingTimer();hideFeedback();
 }
 
-function startWaitingTimer(){
-  clearWaitingTimer();
-  waitingTimer=setTimeout(()=>{
-    if(isListening)showFeedback('waiting');
-  },4000);
-}
+function startWaitingTimer(){clearWaitingTimer();waitingTimer=setTimeout(()=>{if(isListening)showFeedback('waiting');},4000);}
 function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
 
 function processInterimResult(transcript){
   const recitable=getRecitableWords();
   if(currentWordIndex>=recitable.length)return;
-  const expected=recitable[currentWordIndex];
   const words=transcript.trim().split(/\s+/);
   const lastWord=words[words.length-1];
-  if(normalise(lastWord)===normalise(expected.t)||
-     normalise(expected.t).startsWith(normalise(lastWord))||
-     normalise(lastWord).startsWith(normalise(expected.t))){
-    showFeedback('correct');
-  }
+  if(wordsMatch(lastWord,recitable[currentWordIndex].t))showFeedback('correct');
 }
 
 function processFinalResult(result){
   const recitable=getRecitableWords();
   if(currentWordIndex>=recitable.length)return;
-  const transcripts=[];
-  for(let i=0;i<result.length;i++)transcripts.push(result[i].transcript);
-  const words=transcripts[0].trim().split(/\s+/).filter(w=>w.length>0);
-  words.forEach(spokenWord=>{
+  // Collect all alternatives
+  const allTranscripts=[];
+  for(let i=0;i<result.length;i++)allTranscripts.push(result[i].transcript);
+  const primaryWords=allTranscripts[0].trim().split(/\s+/).filter(w=>w.length>0);
+  primaryWords.forEach(spokenWord=>{
     if(currentWordIndex>=recitable.length)return;
     const expected=recitable[currentWordIndex];
-    const normSpoken=normalise(spokenWord);
-    const normExpected=normalise(expected.t);
-    // Check across all alternatives for this word
+    // Check across all alternatives
     let matched=false;
-    for(const t of transcripts){
-      const tw=t.trim().split(/\s+/);
-      for(const tw_word of tw){
-        const n=normalise(tw_word);
-        if(n===normExpected||normExpected.includes(n)||n.includes(normExpected)){matched=true;break;}
+    for(const t of allTranscripts){
+      for(const tw of t.trim().split(/\s+/)){
+        if(wordsMatch(tw,expected.t)){matched=true;break;}
       }
       if(matched)break;
     }
-    if(matched||normSpoken===normExpected||normExpected.includes(normSpoken)||normSpoken.includes(normExpected)){
-      // Correct
+    if(matched){
       const el=document.getElementById(`rw-${currentWordIndex}`);
-      if(el){el.classList.remove('pending','current','mistake');el.classList.add('correct');}
+      if(el){el.classList.remove('hidden','current','mistake');el.classList.add('correct');}
       totalCorrect++;currentWordIndex++;
-      highlightCurrentWord();
-      updateSessionStats();
-      showFeedback('correct');
-      if(currentWordIndex>=recitable.length){setTimeout(()=>completeSession(),800);}
+      // Show next word
+      const nextEl=document.getElementById(`rw-${currentWordIndex}`);
+      if(nextEl&&!isPeeking){nextEl.classList.remove('hidden');nextEl.classList.add('current');}
+      else if(nextEl){nextEl.classList.add('current');}
+      updateSessionStats();showFeedback('correct');
+      if(currentWordIndex>=recitable.length)setTimeout(()=>completeSession(),800);
     }else{
-      // Mistake
       const el=document.getElementById(`rw-${currentWordIndex}`);
-      if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},600);}
+      if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},500);}
       totalMistakes++;
       if(!mistakeWords.includes(expected.t))mistakeWords.push(expected.t);
-      updateSessionStats();
-      showFeedback('mistake');
+      updateSessionStats();showFeedback('mistake');
     }
   });
 }
@@ -1288,12 +1324,10 @@ function togglePeek(){
   isPeeking=!isPeeking;
   const recitable=getRecitableWords();
   recitable.forEach((w,i)=>{
-    if(i>=currentWordIndex){
-      const el=document.getElementById(`rw-${i}`);
-      if(el){
-        if(isPeeking){el.style.color='';el.classList.remove('pending');}
-        else{el.style.color='';el.classList.add('pending');}
-      }
+    const el=document.getElementById(`rw-${i}`);if(!el)return;
+    if(i>currentWordIndex){
+      if(isPeeking){el.classList.remove('hidden');}
+      else{el.classList.add('hidden');}
     }
   });
   document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
@@ -1318,11 +1352,42 @@ function completeSession(){
   document.getElementById('sum-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
   const mw=document.getElementById('mistake-words');
   const mr=document.getElementById('mistake-review');
-  if(mistakeWords.length>0){
-    mw.innerHTML=mistakeWords.map(w=>`<span class="mistake-word">${w}</span>`).join('');
-    mr.style.display='block';
-  }else{mr.style.display='none';}
+  if(mistakeWords.length>0){mw.innerHTML=mistakeWords.map(w=>`<span class="mistake-word">${w}</span>`).join('');mr.style.display='block';}
+  else mr.style.display='none';
+  // Reset AI feedback
+  document.getElementById('ai-feedback-content').innerHTML=`<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>`;
   showScreen('screen-summary');
+  // Fetch AI feedback
+  fetchAIFeedback(acc,timeStr);
+}
+
+async function fetchAIFeedback(accuracy,timeTaken){
+  try{
+    const recitable=getRecitableWords();
+    const surahArabic=recitable.map(w=>w.t).join(' ');
+    const response=await fetch(`${ENGINE_URL}/feedback`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        surahName:currentSurah.nameEn,
+        surahArabic:surahArabic,
+        wordsRecited:currentWordIndex,
+        totalWords:recitable.length,
+        mistakes:mistakeWords,
+        accuracy:accuracy,
+        tajweedRules:currentSurah.tajweedRules||[],
+        timeTaken:timeTaken
+      })
+    });
+    const data=await response.json();
+    if(data.feedback){
+      document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>`;
+    }else{
+      document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable. Please try again.</p>`;
+    }
+  }catch(e){
+    document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable. Please check your connection.</p>`;
+  }
 }
 
 function endSession(){
