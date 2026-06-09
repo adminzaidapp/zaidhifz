@@ -9,7 +9,7 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f2; color: #1a1a1a; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; }
   .app { width: 100%; max-width: 430px; min-height: 100vh; background: #fafafa; display: flex; flex-direction: column; }
-  .screen { display: none; flex-direction: column; flex: 1; opacity: 0; transition: opacity 0.3s ease; }
+  .screen { display: none; flex-direction: column; flex: 1; opacity: 0; }
   .screen.active { display: flex; opacity: 1; }
   .screen.fade-in { animation: fadeIn 0.3s ease forwards; }
   @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
@@ -26,7 +26,7 @@
   .info-btn { background: none; border: none; color: rgba(255,255,255,0.9); font-size: 18px; cursor: pointer; padding: 0; }
   .screen-body { flex: 1; padding: 24px 20px; overflow-y: auto; }
   .bottom-nav { border-top: 0.5px solid #e8ede9; display: flex; background: #fff; flex-shrink: 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.06); }
-  .nav-item { flex: 1; padding: 10px 4px 10px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border: none; background: none; transition: transform 0.15s ease; }
+  .nav-item { flex: 1; padding: 10px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border: none; background: none; transition: transform 0.15s ease; }
   .nav-item:active { transform: scale(0.92); }
   .nav-item svg { width: 20px; height: 20px; }
   .nav-item span { font-size: 10px; color: #999; font-weight: 500; }
@@ -38,30 +38,30 @@
   .progress-label { font-size: 11px; color: #888; margin-bottom: 8px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
   .option-btn { width: 100%; padding: 15px 16px; border: 1.5px solid #e8ede9; border-radius: 14px; background: #fff; font-size: 15px; color: #1a1a1a; text-align: left; cursor: pointer; margin-bottom: 10px; transition: all 0.2s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
   .option-btn:active { transform: scale(0.98); }
-  .option-btn.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary-text); font-weight: 600; box-shadow: 0 2px 8px var(--primary-shadow-light); }
+  .option-btn.selected { border-color: var(--primary); background: var(--primary-light); color: var(--primary-text); font-weight: 600; }
   .gender-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
   .gender-btn { padding: 28px 16px; border: 1.5px solid #e8ede9; border-radius: 18px; background: #fff; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 12px; transition: all 0.2s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
   .gender-btn:active { transform: scale(0.96); }
-  .gender-btn.selected { border-color: var(--primary); background: var(--primary-light); box-shadow: 0 4px 16px var(--primary-shadow-light); }
+  .gender-btn.selected { border-color: var(--primary); background: var(--primary-light); }
   .gender-btn .icon { font-size: 42px; }
   .gender-btn .label { font-size: 15px; font-weight: 600; color: #1a1a1a; }
   .gender-btn.selected .label { color: var(--primary-text); }
   .input-wrap { position: relative; margin-bottom: 14px; }
-  .input-field { width: 100%; padding: 14px 16px; border: 1.5px solid #e8ede9; border-radius: 14px; font-size: 15px; color: #1a1a1a; outline: none; background: #fff; transition: all 0.2s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.04); }
+  .input-field { width: 100%; padding: 14px 16px; border: 1.5px solid #e8ede9; border-radius: 14px; font-size: 15px; color: #1a1a1a; outline: none; background: #fff; transition: all 0.2s ease; }
   .input-field:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-shadow-light); }
   .input-field.error { border-color: #E53935; }
   .input-error { font-size: 12px; color: #E53935; margin-top: 5px; display: none; font-weight: 500; }
   .input-error.show { display: block; }
   .select-field { width: 100%; padding: 14px 16px; border: 1.5px solid #e8ede9; border-radius: 14px; font-size: 15px; color: #1a1a1a; margin-bottom: 14px; outline: none; background: #fff; }
   .select-field:focus { border-color: var(--primary); }
-  .btn-primary { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s ease; box-shadow: 0 4px 16px var(--primary-shadow); letter-spacing: -0.2px; }
-  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--primary-shadow); }
+  .btn-primary { width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s ease; box-shadow: 0 4px 16px var(--primary-shadow); }
+  .btn-primary:hover { transform: translateY(-1px); }
   .btn-primary:active { transform: scale(0.97); }
   .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   .btn-secondary { width: 100%; padding: 15px; background: transparent; color: var(--primary); border: 1.5px solid var(--primary); border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s ease; }
   .btn-secondary:active { transform: scale(0.97); background: var(--primary-light); }
   .btn-danger { width: 100%; padding: 15px; background: transparent; color: #E53935; border: 1.5px solid #E53935; border-radius: 14px; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s ease; }
-  .btn-danger:active { transform: scale(0.97); background: #FFEBEE; }
+  .btn-danger:active { transform: scale(0.97); }
   .greeting-name { font-size: 27px; font-weight: 700; color: #111; letter-spacing: -0.5px; }
   .greeting-sub { font-size: 14px; color: #888; margin-top: 3px; margin-bottom: 22px; }
   .streak-card { background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-lighter) 100%); border-radius: 18px; padding: 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; box-shadow: 0 2px 12px var(--primary-shadow-light); border: 1px solid var(--primary-shadow-light); }
@@ -70,7 +70,7 @@
   .today-card { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: 18px; padding: 20px; margin-bottom: 14px; cursor: pointer; box-shadow: 0 6px 24px var(--primary-shadow); transition: all 0.2s ease; }
   .today-card:active { transform: scale(0.98); }
   .today-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-bottom: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-  .today-title { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .today-title { font-size: 20px; font-weight: 700; color: #fff; }
   .today-sub { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 5px; }
   .tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
   .tile { background: #fff; border-radius: 16px; padding: 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -84,13 +84,20 @@
   .surah-name-en { font-size: 14px; font-weight: 600; color: #111; }
   .surah-name-ar { font-size: 16px; color: #666; margin-top: 2px; direction: rtl; }
   .surah-meta { font-size: 11px; color: #aaa; font-weight: 500; }
-  .blank-page { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; min-height: 200px; display: flex; align-items: center; justify-content: center; margin: 16px 0; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-  .arabic-text { font-size: 26px; text-align: center; line-height: 2.6; direction: rtl; width: 100%; font-family: 'Traditional Arabic', 'Arial Unicode MS', serif; }
-  .word { display: inline; margin: 0 3px; transition: all 0.3s ease; cursor: default; }
-  .word.hidden { color: transparent; }
-  .word.revealed { color: inherit; }
-  .word.current { color: inherit; text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 2px; }
-  .word.correct { opacity: 0.4; }
+
+  /* RECITE SCREEN */
+  .recite-arabic-box { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; min-height: 160px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 12px; direction: rtl; text-align: right; line-height: 2.8; font-size: 22px; font-family: 'Traditional Arabic', 'Arial Unicode MS', serif; }
+  .rword { display: inline; margin: 0 2px; transition: all 0.25s ease; }
+  .rword.pending { color: #ccc; }
+  .rword.current { color: #111; font-weight: 600; text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 3px; animation: wordPulse 1s infinite; }
+  .rword.correct { opacity: 0.45; }
+  .rword.mistake { color: #E53935 !important; font-weight: 700; animation: mistakeShake 0.4s ease; }
+  .rword.peeked { color: inherit; opacity: 1; }
+  @keyframes wordPulse { 0%,100%{text-decoration-color:var(--primary);}50%{text-decoration-color:transparent;} }
+  @keyframes mistakeShake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);} }
+  .ayah-marker { color: var(--primary); font-size: 14px; margin: 0 3px; opacity: 0.8; }
+
+  /* TAJWEED COLOURS — always visible */
   .tj-normal { color: #1a1a1a; }
   .tj-ikhfa { color: #2196F3; }
   .tj-ghunnah { color: #FF9800; }
@@ -99,7 +106,34 @@
   .tj-qalqalah { color: #E53935; }
   .tj-qalb { color: #7B1FA2; }
   .tj-idgham-meem { color: #4CAF50; }
-  .tajweed-key { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+
+  .recite-feedback { min-height: 44px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .feedback-pill { padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; display: none; }
+  .feedback-pill.show { display: inline-block; }
+  .feedback-pill.correct { background: var(--primary-light); color: var(--primary-dark); }
+  .feedback-pill.mistake { background: #FFEBEE; color: #E53935; }
+  .feedback-pill.waiting { background: #FFF8E1; color: #F57C00; }
+  .feedback-pill.listening { background: var(--primary-light); color: var(--primary-dark); }
+
+  .mic-area { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 4px 0 14px; }
+  .mic-btn { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px var(--primary-shadow); transition: all 0.2s ease; }
+  .mic-btn:active { transform: scale(0.93); }
+  .mic-btn.listening { background: linear-gradient(135deg, #E53935 0%, #C62828 100%); box-shadow: 0 6px 20px rgba(229,57,53,0.5); animation: micPulse 1.5s infinite; }
+  @keyframes micPulse { 0%,100%{box-shadow:0 6px 20px rgba(229,57,53,0.4);}50%{box-shadow:0 6px 32px rgba(229,57,53,0.7);} }
+  .mic-btn svg { width: 30px; height: 30px; }
+  .peek-btn { padding: 12px 22px; border: 1.5px solid var(--primary); border-radius: 12px; background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+  .peek-btn:active { background: var(--primary-light); transform: scale(0.96); }
+  .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+  .session-progress { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .session-progress-label { font-size: 11px; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .session-bar-wrap { background: #e0ebe6; border-radius: 6px; height: 6px; }
+  .session-bar-fill { background: linear-gradient(90deg, var(--primary), var(--primary-dark)); height: 6px; border-radius: 6px; width: 0%; transition: width 0.5s ease; }
+  .session-stats-row { display: flex; justify-content: space-between; margin-top: 8px; }
+  .session-stat { font-size: 11px; color: #888; font-weight: 500; }
+  .session-stat span { color: var(--primary); font-weight: 700; }
+
+  .tajweed-key { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
   .tj-badge { font-size: 10px; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
   .tj-badge.ikhfa { background: #E3F2FD; color: #2196F3; }
   .tj-badge.ghunnah { background: #FFF3E0; color: #FF9800; }
@@ -108,37 +142,11 @@
   .tj-badge.qalqalah { background: #FFEBEE; color: #E53935; }
   .tj-badge.qalb { background: #F3E5F5; color: #7B1FA2; }
   .tj-badge.idgham-meem { background: #E8F5E9; color: #4CAF50; }
-  .error-flash { background: #FFEBEE; border-radius: 12px; padding: 12px 16px; text-align: center; margin-bottom: 10px; display: none; border: 1px solid rgba(229,57,53,0.15); }
-  .error-flash.show { display: block; }
-  .error-flash p { font-size: 13px; color: #E53935; font-weight: 500; }
-  .mic-area { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 8px 0 16px; }
-  .mic-btn { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px var(--primary-shadow); transition: all 0.2s ease; position: relative; }
-  .mic-btn:active { transform: scale(0.93); }
-  .mic-btn.listening { background: linear-gradient(135deg, #E53935 0%, #C62828 100%); box-shadow: 0 6px 20px rgba(229,57,53,0.5); animation: micPulse 1.5s infinite; }
-  @keyframes micPulse { 0%,100%{box-shadow:0 6px 20px rgba(229,57,53,0.5);}50%{box-shadow:0 6px 32px rgba(229,57,53,0.8);} }
-  .mic-btn svg { width: 30px; height: 30px; }
-  .peek-btn { padding: 12px 22px; border: 1.5px solid var(--primary); border-radius: 12px; background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
-  .peek-btn:active { background: var(--primary-light); transform: scale(0.96); }
-  .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
-  .end-btn:active { background: #f5f5f5; transform: scale(0.96); }
-  .session-progress { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-  .session-progress-label { font-size: 11px; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-  .session-bar-wrap { background: #e0ebe6; border-radius: 6px; height: 6px; }
-  .session-bar-fill { background: linear-gradient(90deg, var(--primary), var(--primary-dark)); height: 6px; border-radius: 6px; width: 0%; transition: width 0.5s ease; }
-  .session-count { font-size: 12px; color: #888; margin-top: 6px; font-weight: 500; }
-  .recite-status { text-align: center; font-size: 13px; color: #888; margin-bottom: 8px; min-height: 20px; font-weight: 500; }
-  .recite-status.listening { color: #E53935; }
-  .recite-status.processing { color: var(--primary); }
-  .sched-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f4f2; }
-  .sched-day { font-size: 11px; color: #aaa; min-width: 32px; font-weight: 600; text-transform: uppercase; }
-  .sched-content { flex: 1; }
-  .sched-name { font-size: 14px; font-weight: 600; color: #111; }
-  .sched-detail { font-size: 12px; color: #aaa; margin-top: 2px; }
-  .sched-status { width: 10px; height: 10px; border-radius: 50%; background: #e0e0e0; flex-shrink: 0; }
-  .sched-status.done { background: var(--primary); }
+
   .error-msg { color: #E53935; font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .success-msg { color: var(--primary); font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .divider { text-align: center; color: #bbb; font-size: 13px; margin: 16px 0; }
+
   .splash { background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; position: relative; overflow: hidden; }
   .splash::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.04); }
   .splash::after { content:''; position:absolute; bottom:-80px; left:-80px; width:250px; height:250px; border-radius:50%; background:rgba(255,255,255,0.04); }
@@ -148,6 +156,7 @@
   .splash-btn:active { transform: scale(0.97); }
   .splash-link { color: rgba(255,255,255,0.7); font-size: 14px; cursor: pointer; text-decoration: underline; font-weight: 500; }
   .tag { display: inline-block; background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; padding: 5px 14px; border-radius: 999px; margin-bottom: 24px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); }
+
   .link-card { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; padding: 22px; margin-bottom: 16px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   .link-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #111; }
   .link-card p { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.6; }
@@ -200,16 +209,27 @@
   .wt-next-btn { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px var(--primary-shadow); }
 
   /* SESSION SUMMARY */
-  .summary-screen { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 20px; text-align: center; }
-  .summary-icon { font-size: 64px; margin-bottom: 16px; }
-  .summary-title { font-size: 26px; font-weight: 700; color: #111; margin-bottom: 6px; letter-spacing: -0.4px; }
-  .summary-sub { font-size: 14px; color: #888; margin-bottom: 28px; }
-  .summary-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-bottom: 24px; }
-  .summary-stat { background: #fff; border-radius: 16px; padding: 18px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-  .summary-stat-val { font-size: 28px; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
-  .summary-stat-label { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  .streak-badge { background: linear-gradient(135deg, var(--primary-light), var(--primary-lighter)); border-radius: 14px; padding: 14px 20px; width: 100%; margin-bottom: 24px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--primary-shadow-light); }
-  .streak-badge-text { font-size: 16px; font-weight: 600; color: var(--primary-dark); }
+  .summary-hero { text-align: center; padding: 24px 0 16px; }
+  .summary-emoji { font-size: 56px; margin-bottom: 12px; }
+  .summary-title { font-size: 26px; font-weight: 700; color: #111; letter-spacing: -0.4px; }
+  .summary-sub { font-size: 14px; color: #888; margin-top: 4px; margin-bottom: 20px; }
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .summary-card { background: #fff; border-radius: 16px; padding: 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-align: center; }
+  .summary-val { font-size: 26px; font-weight: 700; color: var(--primary); letter-spacing: -0.5px; }
+  .summary-lbl { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .streak-banner { background: linear-gradient(135deg, var(--primary-light), var(--primary-lighter)); border-radius: 14px; padding: 14px 20px; display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 20px; border: 1px solid var(--primary-shadow-light); }
+  .streak-banner-text { font-size: 16px; font-weight: 600; color: var(--primary-dark); }
+  .mistake-review { background: #fff; border-radius: 14px; padding: 16px; border: 1px solid #edf2ef; margin-bottom: 16px; }
+  .mistake-review-title { font-size: 13px; font-weight: 700; color: #E53935; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .mistake-word { display: inline-block; background: #FFEBEE; color: #E53935; border-radius: 8px; padding: 4px 10px; font-size: 18px; margin: 3px; direction: rtl; font-family: 'Traditional Arabic', serif; }
+
+  .sched-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f4f2; }
+  .sched-day { font-size: 11px; color: #aaa; min-width: 32px; font-weight: 600; text-transform: uppercase; }
+  .sched-content { flex: 1; }
+  .sched-name { font-size: 14px; font-weight: 600; color: #111; }
+  .sched-detail { font-size: 12px; color: #aaa; margin-top: 2px; }
+  .sched-status { width: 10px; height: 10px; border-radius: 50%; background: #e0e0e0; flex-shrink: 0; }
+  .sched-status.done { background: var(--primary); }
 </style>
 </head>
 <body>
@@ -233,7 +253,7 @@
       <div class="slides-track" id="slides-track">
         <div class="slide slide-1"><div class="slide-icon">📖</div><div class="slide-title">Welcome to Zaid.</div><div class="slide-text">The Quran never forgets you. Zaid is your daily companion for memorisation and revision — built with care, for those who carry the Quran in their hearts.</div></div>
         <div class="slide slide-2"><div class="slide-icon">🎯</div><div class="slide-title">For every stage of your journey.</div><div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts completely to where you are.</div></div>
-        <div class="slide slide-3"><div class="slide-icon">🎙️</div><div class="slide-title">Recite. Track. Improve.</div><div class="slide-text">Recite your surah and Zaid listens. Words appear as you go, helping you identify exactly where to focus your revision.</div></div>
+        <div class="slide slide-3"><div class="slide-icon">🎙️</div><div class="slide-title">Recite. Track. Improve.</div><div class="slide-text">Recite your surah and Zaid listens in real time. Every word is checked — Zaid knows instantly if you're on track or need help.</div></div>
         <div class="slide slide-4"><div class="slide-icon">💚</div><div class="slide-title">Made by a Hafiz, for Huffaz.</div><div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div></div>
       </div>
     </div>
@@ -626,23 +646,31 @@
   </div>
 </div>
 
-<!-- RECITE -->
+<!-- RECITE SCREEN -->
 <div class="screen" id="screen-recite">
-  <div class="status-bar"><button class="back-btn" onclick="endSession()">← Back</button><h1 id="recite-title">Surah An-Nas</h1><span></span></div>
+  <div class="status-bar"><button class="back-btn" onclick="endSession()">← Back</button><h1 id="recite-title">Recite</h1><button class="info-btn" onclick="showScreen('screen-tajweed-guide-recite')">?</button></div>
   <div class="screen-body">
     <div class="tajweed-key"><span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span></div>
-    <div class="blank-page"><div class="arabic-text" id="arabic-display"></div></div>
-    <div class="recite-status" id="recite-status">Press the mic to begin reciting</div>
-    <div class="error-flash" id="error-flash"><p id="error-flash-text">Keep going — Zaid is listening</p></div>
+    <div class="recite-arabic-box" id="arabic-display"></div>
+    <div class="recite-feedback">
+      <span class="feedback-pill listening" id="feedback-listening">🎙️ Listening...</span>
+      <span class="feedback-pill correct" id="feedback-correct">✓ Keep going</span>
+      <span class="feedback-pill mistake" id="feedback-mistake">✗ Check this word</span>
+      <span class="feedback-pill waiting" id="feedback-waiting">⏳ Tap Peek for help</span>
+    </div>
     <div class="mic-area">
-      <button class="peek-btn" onclick="togglePeek()" id="peek-btn">Peek</button>
+      <button class="peek-btn" id="peek-btn" onclick="togglePeek()">Peek</button>
       <button class="mic-btn" id="mic-btn" onclick="toggleMic()"><svg viewBox="0 0 28 28" fill="none"><rect x="9" y="2" width="10" height="16" rx="5" fill="white"/><path d="M4 14c0 5.52 4.48 10 10 10s10-4.48 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="14" y1="24" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg></button>
       <button class="end-btn" onclick="endSession()">End</button>
     </div>
     <div class="session-progress">
-      <div class="session-progress-label">Session progress</div>
+      <div class="session-progress-label">Progress</div>
       <div class="session-bar-wrap"><div class="session-bar-fill" id="session-bar"></div></div>
-      <div class="session-count" id="session-count">0 words</div>
+      <div class="session-stats-row">
+        <span class="session-stat"><span id="stat-words">0</span> words</span>
+        <span class="session-stat"><span id="stat-mistakes">0</span> mistakes</span>
+        <span class="session-stat"><span id="stat-accuracy">100</span>% accuracy</span>
+      </div>
     </div>
   </div>
   <div class="bottom-nav">
@@ -658,20 +686,24 @@
 <div class="screen" id="screen-summary">
   <div class="status-bar"><h1>Session Complete</h1></div>
   <div class="screen-body">
-    <div class="summary-screen">
-      <div class="summary-icon">✅</div>
+    <div class="summary-hero">
+      <div class="summary-emoji" id="summary-emoji">✅</div>
       <div class="summary-title" id="summary-title">MashaAllah!</div>
       <div class="summary-sub" id="summary-sub">Surah An-Nas complete</div>
-      <div class="summary-stats">
-        <div class="summary-stat"><div class="summary-stat-val" id="summary-words">0</div><div class="summary-stat-label">Words</div></div>
-        <div class="summary-stat"><div class="summary-stat-val" id="summary-time">0s</div><div class="summary-stat-label">Time</div></div>
-        <div class="summary-stat"><div class="summary-stat-val" id="summary-accuracy">0%</div><div class="summary-stat-label">Completion</div></div>
-        <div class="summary-stat"><div class="summary-stat-val" id="summary-sessions">0</div><div class="summary-stat-label">Total sessions</div></div>
-      </div>
-      <div class="streak-badge"><span style="font-size:24px;">🔥</span><span class="streak-badge-text" id="summary-streak">0 day streak</span></div>
-      <button class="btn-primary" onclick="showTab('recite')" style="margin-bottom:10px;">Recite again</button>
-      <button class="btn-secondary" onclick="showTab('dashboard')">Back to home</button>
     </div>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="summary-val" id="sum-words">0</div><div class="summary-lbl">Words</div></div>
+      <div class="summary-card"><div class="summary-val" id="sum-accuracy">100%</div><div class="summary-lbl">Accuracy</div></div>
+      <div class="summary-card"><div class="summary-val" id="sum-mistakes">0</div><div class="summary-lbl">Mistakes</div></div>
+      <div class="summary-card"><div class="summary-val" id="sum-time">0s</div><div class="summary-lbl">Time</div></div>
+    </div>
+    <div class="streak-banner"><span style="font-size:24px;">🔥</span><span class="streak-banner-text" id="sum-streak">0 day streak</span></div>
+    <div class="mistake-review" id="mistake-review" style="display:none;">
+      <div class="mistake-review-title">Words to review</div>
+      <div id="mistake-words"></div>
+    </div>
+    <button class="btn-primary" onclick="showTab('recite')" style="margin-bottom:10px;">Recite again</button>
+    <button class="btn-secondary" onclick="showTab('dashboard')">Back to home</button>
   </div>
 </div>
 
@@ -714,30 +746,99 @@
 const SUPABASE_URL='https://xsnaoaxzpwabcqhwtlvh.supabase.co';
 const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhzbmFvYXh6cHdhYmNxaHd0bHZoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODI3OTUsImV4cCI6MjA5MTY1ODc5NX0.cnX_mZJxhcd8bz4bGFBQUnmtapsLyBlLOfar3RdbTyw';
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-const ENGINE_URL='https://zaid-engine.onrender.com';
 
+// SURAH DATA — words with tajweed + ayah markers
 const SURAHS=[
-  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مَلِكِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'إِلَٰهِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'الْوَسْوَاسِ',tj:'normal'},{t:'الْخَنَّاسِ',tj:'ghunnah'},{t:'الَّذِي',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'النَّاسِ',tj:'ghunnah'},{t:'مِنَ',tj:'normal'},{t:'الْجِنَّةِ',tj:'ghunnah'},{t:'وَالنَّاسِ',tj:'ghunnah'}]},
-  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'الْفَلَقِ',tj:'qalqalah'},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'غَاسِقٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'وَقَبَ',tj:'qalqalah'},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'النَّفَّاثَاتِ',tj:'ghunnah'},{t:'فِي',tj:'normal'},{t:'الْعُقَدِ',tj:'normal'},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'}]},
-  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'اللَّهُ',tj:'normal'},{t:'الصَّمَدُ',tj:'normal'},{t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌ',tj:'normal'}]},
-  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'تَبَّتْ',tj:'normal'},{t:'يَدَا',tj:'normal'},{t:'أَبِي',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},{t:'سَيَصْلَىٰ',tj:'normal'},{t:'نَارًا',tj:'normal'},{t:'ذَاتَ',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَامْرَأَتُهُ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'الْحَطَبِ',tj:'qalqalah'},{t:'فِي',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍ',tj:'idgham'}]},
-  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'جَاءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'وَالْفَتْحُ',tj:'normal'},{t:'وَرَأَيْتَ',tj:'normal'},{t:'النَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},{t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَاسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًا',tj:'ghunnah'}]},
-  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'قُلْ',tj:'qalqalah'},{t:'يَا',tj:'normal'},{t:'أَيُّهَا',tj:'normal'},{t:'الْكَافِرُونَ',tj:'normal'},{t:'لَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَابِدُونَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'أَنَا',tj:'normal'},{t:'عَابِدٌ',tj:'normal'},{t:'مَّا',tj:'idgham'},{t:'عَبَدتُّمْ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَابِدُونَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِيَ',tj:'normal'},{t:'دِينِ',tj:'normal'}]},
-  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'إِنَّا',tj:'ghunnah'},{t:'أَعْطَيْنَاكَ',tj:'normal'},{t:'الْكَوْثَرَ',tj:'normal'},{t:'فَصَلِّ',tj:'normal'},{t:'لِرَبِّكَ',tj:'normal'},{t:'وَانْحَرْ',tj:'normal'},{t:'إِنَّ',tj:'ghunnah'},{t:'شَانِئَكَ',tj:'normal'},{t:'هُوَ',tj:'normal'},{t:'الْأَبْتَرُ',tj:'normal'}]},
-  {num:107,nameEn:'Surah Al-Maun',nameAr:'سورة الماعون',ayahs:7,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'أَرَأَيْتَ',tj:'normal'},{t:'الَّذِي',tj:'normal'},{t:'يُكَذِّبُ',tj:'normal'},{t:'بِالدِّينِ',tj:'normal'},{t:'فَذَٰلِكَ',tj:'normal'},{t:'الَّذِي',tj:'normal'},{t:'يَدُعُّ',tj:'normal'},{t:'الْيَتِيمَ',tj:'normal'},{t:'وَلَا',tj:'normal'},{t:'يَحُضُّ',tj:'normal'},{t:'عَلَىٰ',tj:'normal'},{t:'طَعَامِ',tj:'normal'},{t:'الْمِسْكِينِ',tj:'normal'},{t:'فَوَيْلٌ',tj:'normal'},{t:'لِّلْمُصَلِّينَ',tj:'idgham'},{t:'الَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'عَن',tj:'normal'},{t:'صَلَاتِهِمْ',tj:'normal'},{t:'سَاهُونَ',tj:'normal'},{t:'الَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'يُرَاءُونَ',tj:'normal'},{t:'وَيَمْنَعُونَ',tj:'normal'},{t:'الْمَاعُونَ',tj:'normal'}]},
-  {num:106,nameEn:'Surah Quraysh',nameAr:'سورة قريش',ayahs:4,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'لِإِيلَافِ',tj:'normal'},{t:'قُرَيْشٍ',tj:'normal'},{t:'إِيلَافِهِمْ',tj:'normal'},{t:'رِحْلَةَ',tj:'normal'},{t:'الشِّتَاءِ',tj:'normal'},{t:'وَالصَّيْفِ',tj:'normal'},{t:'فَلْيَعْبُدُوا',tj:'normal'},{t:'رَبَّ',tj:'normal'},{t:'هَٰذَا',tj:'normal'},{t:'الْبَيْتِ',tj:'normal'},{t:'الَّذِي',tj:'normal'},{t:'أَطْعَمَهُم',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'جُوعٍ',tj:'normal'},{t:'وَآمَنَهُم',tj:'normal'},{t:'مِّنْ',tj:'ghunnah'},{t:'خَوْفٍ',tj:'normal'}]},
-  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,words:[{t:'بِسْمِ',tj:'normal'},{t:'اللَّهِ',tj:'normal'},{t:'الرَّحْمَٰنِ',tj:'normal'},{t:'الرَّحِيمِ',tj:'normal'},{t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَابِ',tj:'normal'},{t:'الْفِيلِ',tj:'normal'},{t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِي',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},{t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},{t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍ',tj:'idgham'}]}
+  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:1},
+    {t:'مَلِكِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:2},
+    {t:'إِلَٰهِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3},
+    {t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'ٱلْوَسْوَاسِ',tj:'normal'},{t:'ٱلْخَنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:4},
+    {t:'ٱلَّذِى',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:5},
+    {t:'مِنَ',tj:'normal'},{t:'ٱلْجِنَّةِ',tj:'ghunnah'},{t:'وَٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:6}
+  ]},
+  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلْفَلَقِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:1},
+    {t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'غَاسِقٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'وَقَبَ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},
+    {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'ٱلنَّفَّٰثَٰتِ',tj:'ghunnah'},{t:'فِى',tj:'normal'},{t:'ٱلْعُقَدِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},
+    {t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'},{t:'۝',tj:'marker',ayah:5}
+  ]},
+  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'ٱللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'ٱللَّهُ',tj:'normal'},{t:'ٱلصَّمَدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},
+    {t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُۥ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌۢ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}
+  ]},
+  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'تَبَّتْ',tj:'normal'},{t:'يَدَآ',tj:'normal'},{t:'أَبِى',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'مَآ',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُۥ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'سَيَصْلَىٰ',tj:'normal'},{t:'نَارًا',tj:'normal'},{t:'ذَاتَ',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},
+    {t:'وَٱمْرَأَتُهُۥ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'ٱلْحَطَبِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:4},
+    {t:'فِى',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}
+  ]},
+  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'إِذَا',tj:'normal'},{t:'جَآءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'وَٱلْفَتْحُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'وَرَأَيْتَ',tj:'normal'},{t:'ٱلنَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَٱسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُۥ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًۢا',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3}
+  ]},
+  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'قُلْ',tj:'qalqalah'},{t:'يَٰٓأَيُّهَا',tj:'normal'},{t:'ٱلْكَٰفِرُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'لَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},
+    {t:'وَلَآ',tj:'normal'},{t:'أَنَا۠',tj:'normal'},{t:'عَابِدٌ',tj:'normal'},{t:'مَّا',tj:'idgham'},{t:'عَبَدتُّمْ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},
+    {t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},
+    {t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِىَ',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:6}
+  ]},
+  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'إِنَّآ',tj:'ghunnah'},{t:'أَعْطَيْنَٰكَ',tj:'normal'},{t:'ٱلْكَوْثَرَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'فَصَلِّ',tj:'normal'},{t:'لِرَبِّكَ',tj:'normal'},{t:'وَٱنْحَرْ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'إِنَّ',tj:'ghunnah'},{t:'شَانِئَكَ',tj:'normal'},{t:'هُوَ',tj:'normal'},{t:'ٱلْأَبْتَرُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3}
+  ]},
+  {num:107,nameEn:'Surah Al-Maun',nameAr:'سورة الماعون',ayahs:7,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'أَرَءَيْتَ',tj:'normal'},{t:'ٱلَّذِى',tj:'normal'},{t:'يُكَذِّبُ',tj:'normal'},{t:'بِٱلدِّينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'فَذَٰلِكَ',tj:'normal'},{t:'ٱلَّذِى',tj:'normal'},{t:'يَدُعُّ',tj:'normal'},{t:'ٱلْيَتِيمَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'وَلَا',tj:'normal'},{t:'يَحُضُّ',tj:'normal'},{t:'عَلَىٰ',tj:'normal'},{t:'طَعَامِ',tj:'normal'},{t:'ٱلْمِسْكِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},
+    {t:'فَوَيْلٌ',tj:'normal'},{t:'لِّلْمُصَلِّينَ',tj:'idgham'},{t:'۝',tj:'marker',ayah:4},
+    {t:'ٱلَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'عَن',tj:'normal'},{t:'صَلَاتِهِمْ',tj:'normal'},{t:'سَاهُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},
+    {t:'ٱلَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'يُرَآءُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},
+    {t:'وَيَمْنَعُونَ',tj:'normal'},{t:'ٱلْمَاعُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:7}
+  ]},
+  {num:106,nameEn:'Surah Quraysh',nameAr:'سورة قريش',ayahs:4,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'لِإِيلَٰفِ',tj:'normal'},{t:'قُرَيْشٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'إِۦلَٰفِهِمْ',tj:'normal'},{t:'رِحْلَةَ',tj:'normal'},{t:'ٱلشِّتَآءِ',tj:'normal'},{t:'وَٱلصَّيْفِ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'فَلْيَعْبُدُوا',tj:'normal'},{t:'رَبَّ',tj:'normal'},{t:'هَٰذَا',tj:'normal'},{t:'ٱلْبَيْتِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},
+    {t:'ٱلَّذِىٓ',tj:'normal'},{t:'أَطْعَمَهُم',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'جُوعٍ',tj:'normal'},{t:'وَءَامَنَهُم',tj:'normal'},{t:'مِّنْ',tj:'ghunnah'},{t:'خَوْفٍۭ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}
+  ]},
+  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,words:[
+    {t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},
+    {t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَٰبِ',tj:'normal'},{t:'ٱلْفِيلِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},
+    {t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},
+    {t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},
+    {t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:4},
+    {t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}
+  ]}
 ];
 
 let userData={},currentSurah=null,currentUserJourney='';
 let currentSlide=0,pendingDashboardData=null,currentTheme='green';
-let mediaRecorder=null,audioChunks=[],isRecording=false,isPeeking=false;
-let sessionStartTime=null,wordsRevealed=0,totalSessions=0,totalWords=0;
-let sessionTimer=null,currentWordIndex=0;
+let recognition=null,isListening=false,isPeeking=false;
+let currentWordIndex=0,totalCorrect=0,totalMistakes=0,mistakeWords=[];
+let sessionStartTime=null,waitingTimer=null;
+let totalSessions=0,totalWords=0;
 const TOTAL_SLIDES=4;
 
 function isFemale(){return userData.gender==='female';}
-function hTitleFromMeta(gender){return gender==='female'?'Hafiza':'Hafiz';}
+function hTitleFromMeta(g){return g==='female'?'Hafiza':'Hafiz';}
 
 function applyTheme(theme){
   currentTheme=theme;
@@ -747,25 +848,24 @@ function applyTheme(theme){
   if(theme==='gold')app.classList.add('theme-gold');
   document.querySelectorAll('.theme-swatch').forEach(s=>s.classList.remove('selected'));
   const el=document.getElementById('swatch-'+theme);if(el)el.classList.add('selected');
-  const backBtn=document.getElementById('theme-back-btn');
-  if(backBtn)backBtn.onclick=()=>showScreen(currentUserJourney==='parent'?'screen-parent-settings':'screen-settings');
+  const bb=document.getElementById('theme-back-btn');
+  if(bb)bb.onclick=()=>showScreen(currentUserJourney==='parent'?'screen-parent-settings':'screen-settings');
   try{localStorage.setItem('zaid-theme',theme);}catch(e){}
 }
 function loadSavedTheme(){try{const s=localStorage.getItem('zaid-theme');if(s)applyTheme(s);}catch(e){}}
 
 function updateJourneyButtons(){
-  const female=isFemale();
-  const hafizBtn=document.getElementById('journey-hafiz-btn');
-  const learningBtn=document.getElementById('journey-learning-btn');
-  if(hafizBtn)hafizBtn.textContent=female?'I am already a Hafiza':'I am already a Hafiz';
-  if(learningBtn)learningBtn.textContent=female?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
+  const f=isFemale();
+  const h=document.getElementById('journey-hafiz-btn');
+  const l=document.getElementById('journey-learning-btn');
+  if(h)h.textContent=f?'I am already a Hafiza':'I am already a Hafiz';
+  if(l)l.textContent=f?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
 }
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','fade-in'));
   const el=document.getElementById(id);el.classList.add('active','fade-in');window.scrollTo(0,0);
 }
-
 function showTab(tab){
   const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
   if(tab==='recite')buildSurahList();
@@ -775,7 +875,9 @@ function showTab(tab){
 function resetWalkthrough(){
   currentSlide=0;document.getElementById('slides-track').style.transform='translateX(0)';
   document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
-  document.getElementById('wt-back-btn').style.display='none';document.getElementById('wt-skip-btn').style.display='inline-block';document.getElementById('wt-next-btn').textContent='Next';
+  document.getElementById('wt-back-btn').style.display='none';
+  document.getElementById('wt-skip-btn').style.display='inline-block';
+  document.getElementById('wt-next-btn').textContent='Next';
 }
 function updateWalkthroughButtons(){
   document.getElementById('wt-back-btn').style.display=currentSlide>0?'inline-block':'none';
@@ -784,50 +886,30 @@ function updateWalkthroughButtons(){
 }
 function nextSlide(){
   if(currentSlide<TOTAL_SLIDES-1){currentSlide++;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}
-  else{goToDashboard();}
+  else goToDashboard();
 }
 function prevSlide(){
   if(currentSlide>0){currentSlide--;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}
 }
-function goToDashboard(){if(pendingDashboardData){renderDashboard(pendingDashboardData.name,pendingDashboardData.journey,pendingDashboardData.gender);}}
+function goToDashboard(){if(pendingDashboardData)renderDashboard(pendingDashboardData.name,pendingDashboardData.journey,pendingDashboardData.gender);}
 
-function checkEmail(){const email=document.getElementById('ob-email').value;const valid=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);document.getElementById('ob-email').classList.toggle('error',email.length>0&&!valid);document.getElementById('ob-email-error').classList.toggle('show',email.length>0&&!valid);}
-function checkPassword(){
-  const pw=document.getElementById('ob-password').value;
-  const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
-  upd('pw-len',pw.length>=6,'At least 6 characters');upd('pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');upd('pw-num',/[0-9]/.test(pw),'At least one number');
-}
-function checkNewPassword(){
-  const pw=document.getElementById('new-password').value;
-  const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
-  upd('new-pw-len',pw.length>=6,'At least 6 characters');upd('new-pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');upd('new-pw-num',/[0-9]/.test(pw),'At least one number');
-}
-function checkParentNewPassword(){
-  const pw=document.getElementById('parent-new-password').value;
-  const upd=(id,ok,txt)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+txt;el.className=ok?'met':'';}
-  upd('parent-new-pw-len',pw.length>=6,'At least 6 characters');upd('parent-new-pw-upper',/[A-Z]/.test(pw),'At least one uppercase letter');upd('parent-new-pw-num',/[0-9]/.test(pw),'At least one number');
-}
+function checkEmail(){const e=document.getElementById('ob-email').value;const v=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);document.getElementById('ob-email').classList.toggle('error',e.length>0&&!v);document.getElementById('ob-email-error').classList.toggle('show',e.length>0&&!v);}
+function checkPassword(){const p=document.getElementById('ob-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('pw-len',p.length>=6,'At least 6 characters');u('pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('pw-num',/[0-9]/.test(p),'At least one number');}
+function checkNewPassword(){const p=document.getElementById('new-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('new-pw-len',p.length>=6,'At least 6 characters');u('new-pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('new-pw-num',/[0-9]/.test(p),'At least one number');}
+function checkParentNewPassword(){const p=document.getElementById('parent-new-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('parent-new-pw-len',p.length>=6,'At least 6 characters');u('parent-new-pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('parent-new-pw-num',/[0-9]/.test(p),'At least one number');}
 
 function nextOnboard1(){
-  const name=document.getElementById('ob-name').value.trim();const email=document.getElementById('ob-email').value.trim();const password=document.getElementById('ob-password').value;const dob=document.getElementById('ob-dob').value;
-  let valid=true;
-  if(!name){document.getElementById('ob-name-error').classList.add('show');valid=false;}else{document.getElementById('ob-name-error').classList.remove('show');}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('ob-email-error').classList.add('show');document.getElementById('ob-email').classList.add('error');valid=false;}else{document.getElementById('ob-email-error').classList.remove('show');document.getElementById('ob-email').classList.remove('error');}
-  if(!(password.length>=6&&/[A-Z]/.test(password)&&/[0-9]/.test(password))){document.getElementById('ob-pw-error').classList.add('show');valid=false;}else{document.getElementById('ob-pw-error').classList.remove('show');}
-  if(!dob){document.getElementById('ob-dob-error').classList.add('show');valid=false;}else{document.getElementById('ob-dob-error').classList.remove('show');}
-  if(!valid)return;
-  userData.name=name;userData.email=email;userData.password=password;userData.dob=dob;showScreen('screen-onboard-gender');
+  const name=document.getElementById('ob-name').value.trim();const email=document.getElementById('ob-email').value.trim();const pw=document.getElementById('ob-password').value;const dob=document.getElementById('ob-dob').value;
+  let v=true;
+  if(!name){document.getElementById('ob-name-error').classList.add('show');v=false;}else document.getElementById('ob-name-error').classList.remove('show');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('ob-email-error').classList.add('show');document.getElementById('ob-email').classList.add('error');v=false;}else{document.getElementById('ob-email-error').classList.remove('show');document.getElementById('ob-email').classList.remove('error');}
+  if(!(pw.length>=6&&/[A-Z]/.test(pw)&&/[0-9]/.test(pw))){document.getElementById('ob-pw-error').classList.add('show');v=false;}else document.getElementById('ob-pw-error').classList.remove('show');
+  if(!dob){document.getElementById('ob-dob-error').classList.add('show');v=false;}else document.getElementById('ob-dob-error').classList.remove('show');
+  if(!v)return;
+  userData.name=name;userData.email=email;userData.password=pw;userData.dob=dob;showScreen('screen-onboard-gender');
 }
-function selectGender(gender){
-  userData.gender=gender;
-  document.getElementById('gender-male').classList.toggle('selected',gender==='male');
-  document.getElementById('gender-female').classList.toggle('selected',gender==='female');
-  document.getElementById('ob-gender-error').textContent='';
-}
-function nextOnboardGender(){
-  if(!userData.gender){document.getElementById('ob-gender-error').textContent='Please select an option.';return;}
-  updateJourneyButtons();showScreen('screen-onboard-2');
-}
+function selectGender(g){userData.gender=g;document.getElementById('gender-male').classList.toggle('selected',g==='male');document.getElementById('gender-female').classList.toggle('selected',g==='female');document.getElementById('ob-gender-error').textContent='';}
+function nextOnboardGender(){if(!userData.gender){document.getElementById('ob-gender-error').textContent='Please select an option.';return;}updateJourneyButtons();showScreen('screen-onboard-2');}
 function selectOption(el,group,val){document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b=>b.classList.remove('selected'));el.classList.add('selected');userData[group]=val;}
 function nextOnboard2(){
   if(!userData.journey){document.getElementById('ob2-error').textContent='Please select an option.';return;}
@@ -849,7 +931,7 @@ function buildFinalStep(stage){
   if(stage==='hafiz'){
     ob4title.textContent='Which Juz do you struggle with most?';ob4sub.textContent='Select all that apply. You can update this later.';
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
-    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';this.style.color='var(--primary-text)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
+    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
   }else if(stage==='just'){
     ob4title.textContent='What is your goal?';ob4sub.textContent='This helps Zaid build the perfect plan for you.';
@@ -868,7 +950,7 @@ function buildFinalStep(stage){
     const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
     const wl=document.createElement('p');wl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:12px 0 8px;';wl.textContent='Which Juz do you struggle with most?';content.appendChild(wl);
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
-    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';this.style.color='var(--primary-text)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';this.style.color='#1a1a1a';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
+    for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
   }
 }
@@ -889,16 +971,15 @@ async function finishOnboarding(){
 }
 
 async function handleLogin(){
-  const email=document.getElementById('login-email').value.trim();const password=document.getElementById('login-password').value;
-  let valid=true;
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('login-email-error').classList.add('show');valid=false;}else{document.getElementById('login-email-error').classList.remove('show');}
-  if(!password){document.getElementById('login-pw-error').classList.add('show');valid=false;}else{document.getElementById('login-pw-error').classList.remove('show');}
-  if(!valid)return;
+  const email=document.getElementById('login-email').value.trim();const pw=document.getElementById('login-password').value;
+  let v=true;
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('login-email-error').classList.add('show');v=false;}else document.getElementById('login-email-error').classList.remove('show');
+  if(!pw){document.getElementById('login-pw-error').classList.add('show');v=false;}else document.getElementById('login-pw-error').classList.remove('show');
+  if(!v)return;
   document.getElementById('login-error').textContent='';
-  try{const{data,error}=await sb.auth.signInWithPassword({email,password});if(error)throw error;const meta=data.user.user_metadata;loadDashboard(meta.full_name,meta.journey,meta.gender);}
+  try{const{data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error)throw error;const m=data.user.user_metadata;loadDashboard(m.full_name,m.journey,m.gender);}
   catch(e){document.getElementById('login-error').textContent='Invalid email or password.';}
 }
-
 async function handleForgotPassword(){
   const email=document.getElementById('forgot-email').value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('forgot-error').classList.add('show');return;}
@@ -906,28 +987,51 @@ async function handleForgotPassword(){
   try{await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';}
   catch(e){document.getElementById('forgot-error').classList.add('show');}
 }
-
 async function handleChangePassword(){
-  const newPw=document.getElementById('new-password').value;const confirmPw=document.getElementById('confirm-password').value;
-  const errorEl=document.getElementById('change-pw-error');const successEl=document.getElementById('change-pw-success');
-  errorEl.textContent='';successEl.textContent='';
-  if(newPw.length<6||!/[A-Z]/.test(newPw)||!/[0-9]/.test(newPw)){errorEl.textContent='New password does not meet requirements.';return;}
-  if(newPw!==confirmPw){errorEl.textContent='Passwords do not match.';return;}
-  try{const{error}=await sb.auth.updateUser({password:newPw});if(error)throw error;successEl.textContent='Password updated successfully.';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}
-  catch(e){errorEl.textContent='Something went wrong. Please try again.';}
+  const np=document.getElementById('new-password').value;const cp=document.getElementById('confirm-password').value;
+  const ee=document.getElementById('change-pw-error');const se=document.getElementById('change-pw-success');
+  ee.textContent='';se.textContent='';
+  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='New password does not meet requirements.';return;}
+  if(np!==cp){ee.textContent='Passwords do not match.';return;}
+  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated successfully.';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}
+  catch(e){ee.textContent='Something went wrong. Please try again.';}
 }
-
 async function handleParentChangePassword(){
-  const newPw=document.getElementById('parent-new-password').value;const confirmPw=document.getElementById('parent-confirm-password').value;
-  const errorEl=document.getElementById('parent-change-pw-error');const successEl=document.getElementById('parent-change-pw-success');
-  errorEl.textContent='';successEl.textContent='';
-  if(newPw.length<6||!/[A-Z]/.test(newPw)||!/[0-9]/.test(newPw)){errorEl.textContent='New password does not meet requirements.';return;}
-  if(newPw!==confirmPw){errorEl.textContent='Passwords do not match.';return;}
-  try{const{error}=await sb.auth.updateUser({password:newPw});if(error)throw error;successEl.textContent='Password updated successfully.';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
-  catch(e){errorEl.textContent='Something went wrong. Please try again.';}
+  const np=document.getElementById('parent-new-password').value;const cp=document.getElementById('parent-confirm-password').value;
+  const ee=document.getElementById('parent-change-pw-error');const se=document.getElementById('parent-change-pw-success');
+  ee.textContent='';se.textContent='';
+  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='New password does not meet requirements.';return;}
+  if(np!==cp){ee.textContent='Passwords do not match.';return;}
+  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated successfully.';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
+  catch(e){ee.textContent='Something went wrong. Please try again.';}
 }
-
 async function handleLogout(){await sb.auth.signOut();pendingDashboardData=null;userData={};showScreen('screen-splash');}
+
+function loadStats(){
+  try{
+    totalSessions=parseInt(localStorage.getItem('zaid-sessions')||'0');
+    totalWords=parseInt(localStorage.getItem('zaid-words')||'0');
+    const streak=parseInt(localStorage.getItem('zaid-streak')||'0');
+    document.getElementById('dash-sessions').textContent=totalSessions;
+    document.getElementById('dash-words').textContent=totalWords;
+    document.getElementById('dash-streak').textContent=streak+' day'+(streak!==1?'s':'');
+  }catch(e){}
+}
+function saveStats(words){
+  try{
+    totalSessions++;totalWords+=words;
+    localStorage.setItem('zaid-sessions',totalSessions);
+    localStorage.setItem('zaid-words',totalWords);
+    const today=new Date().toDateString();
+    const last=localStorage.getItem('zaid-last-session');
+    const yesterday=new Date(Date.now()-86400000).toDateString();
+    let streak=parseInt(localStorage.getItem('zaid-streak')||'0');
+    if(last===today){}else if(last===yesterday)streak++;else streak=1;
+    localStorage.setItem('zaid-streak',streak);
+    localStorage.setItem('zaid-last-session',today);
+    return streak;
+  }catch(e){return 0;}
+}
 
 function populateDashboardData(fullName,journey,gender){
   currentUserJourney=journey;
@@ -936,17 +1040,19 @@ function populateDashboardData(fullName,journey,gender){
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
   sb.auth.getUser().then(({data})=>{
     if(data.user){
-      const u=data.user;const meta=u.user_metadata;const mt=hTitleFromMeta(meta.gender);
+      const u=data.user;const m=u.user_metadata;const mt=hTitleFromMeta(m.gender);
       if(journey==='parent'){
-        document.getElementById('parent-settings-avatar').textContent=initials;document.getElementById('parent-settings-name').textContent=meta.full_name||'';document.getElementById('parent-settings-email').textContent=u.email;
-        document.getElementById('parent-details-avatar').textContent=initials;document.getElementById('parent-details-name').textContent=meta.full_name||'';document.getElementById('parent-details-email').textContent=u.email;
-        document.getElementById('parent-details-name-field').textContent=meta.full_name||'—';document.getElementById('parent-details-email-field').textContent=u.email;document.getElementById('parent-details-dob-field').textContent=meta.dob||'—';
-        document.getElementById('parent-details-role-field').textContent=meta.parent_type==='teacher'?'Teacher / Ustadh':'Parent';
+        ['parent-settings-avatar','parent-details-avatar'].forEach(id=>document.getElementById(id).textContent=initials);
+        document.getElementById('parent-settings-name').textContent=m.full_name||'';document.getElementById('parent-settings-email').textContent=u.email;
+        document.getElementById('parent-details-name').textContent=m.full_name||'';document.getElementById('parent-details-email').textContent=u.email;
+        document.getElementById('parent-details-name-field').textContent=m.full_name||'—';document.getElementById('parent-details-email-field').textContent=u.email;document.getElementById('parent-details-dob-field').textContent=m.dob||'—';
+        document.getElementById('parent-details-role-field').textContent=m.parent_type==='teacher'?'Teacher / Ustadh':'Parent';
       }else{
-        document.getElementById('settings-avatar').textContent=initials;document.getElementById('settings-name').textContent=meta.full_name||'';document.getElementById('settings-email').textContent=u.email;
-        document.getElementById('details-avatar').textContent=initials;document.getElementById('details-name').textContent=meta.full_name||'';document.getElementById('details-email').textContent=u.email;
-        document.getElementById('details-name-field').textContent=meta.full_name||'—';document.getElementById('details-email-field').textContent=u.email;document.getElementById('details-dob-field').textContent=meta.dob||'—';
-        const j=meta.journey;document.getElementById('details-journey-field').textContent=j==='hafiz'?`${mt} / Revision`:j==='learning'?`Learning to become a ${mt}`:'—';
+        ['settings-avatar','details-avatar'].forEach(id=>document.getElementById(id).textContent=initials);
+        document.getElementById('settings-name').textContent=m.full_name||'';document.getElementById('settings-email').textContent=u.email;
+        document.getElementById('details-name').textContent=m.full_name||'';document.getElementById('details-email').textContent=u.email;
+        document.getElementById('details-name-field').textContent=m.full_name||'—';document.getElementById('details-email-field').textContent=u.email;document.getElementById('details-dob-field').textContent=m.dob||'—';
+        const j=m.journey;document.getElementById('details-journey-field').textContent=j==='hafiz'?`${mt} / Revision`:j==='learning'?`Learning to become a ${mt}`:'—';
       }
     }
   });
@@ -959,44 +1065,13 @@ function populateDashboardData(fullName,journey,gender){
     loadStats();buildSchedule();
   }
 }
-
-function loadStats(){
-  try{
-    const sessions=parseInt(localStorage.getItem('zaid-sessions')||'0');
-    const words=parseInt(localStorage.getItem('zaid-words')||'0');
-    const streak=parseInt(localStorage.getItem('zaid-streak')||'0');
-    totalSessions=sessions;totalWords=words;
-    document.getElementById('dash-sessions').textContent=sessions;
-    document.getElementById('dash-words').textContent=words;
-    document.getElementById('dash-streak').textContent=streak+' day'+(streak!==1?'s':'');
-  }catch(e){}
-}
-
-function saveStats(wordsInSession){
-  try{
-    totalSessions++;totalWords+=wordsInSession;
-    localStorage.setItem('zaid-sessions',totalSessions);
-    localStorage.setItem('zaid-words',totalWords);
-    const today=new Date().toDateString();
-    const lastSession=localStorage.getItem('zaid-last-session');
-    const yesterday=new Date(Date.now()-86400000).toDateString();
-    let streak=parseInt(localStorage.getItem('zaid-streak')||'0');
-    if(lastSession===today){/* same day, no change */}
-    else if(lastSession===yesterday){streak++;}
-    else{streak=1;}
-    localStorage.setItem('zaid-streak',streak);
-    localStorage.setItem('zaid-last-session',today);
-    return streak;
-  }catch(e){return 0;}
-}
-
-function renderDashboard(fullName,journey,gender){if(journey==='parent')showScreen('screen-parent-dashboard');else showScreen('screen-dashboard');}
-function loadDashboard(fullName,journey,gender){populateDashboardData(fullName,journey,gender);renderDashboard(fullName,journey,gender);}
-
-function copyCode(){const code=document.getElementById('link-code').textContent;navigator.clipboard.writeText(code).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');btn.textContent='Copied!';setTimeout(()=>{btn.textContent='Copy code';},2000);});}
+function renderDashboard(n,j,g){if(j==='parent')showScreen('screen-parent-dashboard');else showScreen('screen-dashboard');}
+function loadDashboard(n,j,g){populateDashboardData(n,j,g);renderDashboard(n,j,g);}
+function copyCode(){const c=document.getElementById('link-code').textContent;navigator.clipboard.writeText(c).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);});}
 
 function buildSchedule(){
-  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];const surahs=['Surah An-Nas','Surah Al-Falaq','Surah Al-Ikhlas','Surah Al-Masad','Surah An-Nasr','Juz 30 revision','Surah Al-Kafirun'];
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const surahs=['Surah An-Nas','Surah Al-Falaq','Surah Al-Ikhlas','Surah Al-Masad','Surah An-Nasr','Juz 30 revision','Surah Al-Kafirun'];
   const list=document.getElementById('schedule-list');list.innerHTML='';
   days.forEach((day,i)=>{const div=document.createElement('div');div.className='sched-item';div.innerHTML=`<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i<2?'done':''}"></div>`;list.appendChild(div);});
 }
@@ -1006,160 +1081,259 @@ function buildSurahList(){
   SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});
 }
 
+// RECITATION ENGINE — Web Speech API
 function startSurah(index){
-  currentSurah=SURAHS[index];isPeeking=false;wordsRevealed=0;currentWordIndex=0;
+  currentSurah=SURAHS[index];
+  currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];isPeeking=false;
+  sessionStartTime=Date.now();
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
-  const display=document.getElementById('arabic-display');display.innerHTML='';
-  currentSurah.words.forEach((w,i)=>{
-    const span=document.createElement('span');
-    span.className=`word hidden tj-${w.tj}`;
-    span.id=`word-${i}`;
-    span.textContent=w.t+' ';
-    display.appendChild(span);
-  });
-  document.getElementById('session-bar').style.width='0%';
-  document.getElementById('session-count').textContent=`0 of ${currentSurah.words.length} words`;
-  document.getElementById('recite-status').textContent='Press the mic to begin reciting';
-  document.getElementById('recite-status').className='recite-status';
-  document.getElementById('error-flash').classList.remove('show');
+  renderSurahText();
+  updateSessionStats();
+  hideFeedback();
   document.getElementById('peek-btn').textContent='Peek';
+  document.getElementById('mic-btn').classList.remove('listening');
+  if(recognition){try{recognition.stop();}catch(e){}}isListening=false;
   showScreen('screen-recite');
 }
 
+function getRecitableWords(){
+  return currentSurah.words.filter(w=>w.tj!=='marker');
+}
+
+function renderSurahText(){
+  const display=document.getElementById('arabic-display');
+  display.innerHTML='';
+  const recitableIdx=[];
+  let ri=0;
+  currentSurah.words.forEach((w,i)=>{
+    if(w.tj==='marker'){
+      const span=document.createElement('span');
+      span.className='ayah-marker';
+      span.textContent=' ۝'+w.ayah+' ';
+      display.appendChild(span);
+    }else{
+      const span=document.createElement('span');
+      span.id=`rw-${ri}`;
+      span.className=`rword pending tj-${w.tj}`;
+      span.textContent=w.t+' ';
+      display.appendChild(span);
+      recitableIdx.push(ri);
+      ri++;
+    }
+  });
+  highlightCurrentWord();
+}
+
+function highlightCurrentWord(){
+  const recitable=getRecitableWords();
+  recitable.forEach((w,i)=>{
+    const el=document.getElementById(`rw-${i}`);
+    if(!el)return;
+    if(i<currentWordIndex){
+      el.classList.remove('pending','current','mistake');
+      el.classList.add('correct');
+    }else if(i===currentWordIndex){
+      el.classList.remove('pending','correct','mistake');
+      el.classList.add('current');
+      el.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }else{
+      el.classList.remove('correct','current','mistake');
+      el.classList.add('pending');
+      if(!isPeeking)el.style.color='';
+    }
+  });
+}
+
+function normalise(text){
+  return text
+    .replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED]/g,'')
+    .replace(/[أإآٱ]/g,'ا')
+    .replace(/[ىئ]/g,'ي')
+    .replace(/ة/g,'ه')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function toggleMic(){
+  if(isListening)stopListening();
+  else startListening();
+}
+
+function startListening(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('Please use Chrome or Safari for the recitation feature.');return;}
+  recognition=new SR();
+  recognition.lang='ar-SA';
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  recognition.maxAlternatives=3;
+  recognition.onstart=()=>{
+    isListening=true;
+    document.getElementById('mic-btn').classList.add('listening');
+    showFeedback('listening');
+    startWaitingTimer();
+  };
+  recognition.onresult=e=>{
+    clearWaitingTimer();
+    const results=e.results;
+    for(let i=e.resultIndex;i<results.length;i++){
+      if(results[i].isFinal){
+        processFinalResult(results[i]);
+      }else{
+        processInterimResult(results[i][0].transcript);
+      }
+    }
+    startWaitingTimer();
+  };
+  recognition.onerror=e=>{
+    if(e.error!=='no-speech')stopListening();
+  };
+  recognition.onend=()=>{
+    if(isListening)recognition.start();
+  };
+  recognition.start();
+}
+
+function stopListening(){
+  isListening=false;
+  if(recognition){try{recognition.stop();}catch(e){}}
+  document.getElementById('mic-btn').classList.remove('listening');
+  clearWaitingTimer();
+  hideFeedback();
+}
+
+function startWaitingTimer(){
+  clearWaitingTimer();
+  waitingTimer=setTimeout(()=>{
+    if(isListening)showFeedback('waiting');
+  },4000);
+}
+function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
+
+function processInterimResult(transcript){
+  const recitable=getRecitableWords();
+  if(currentWordIndex>=recitable.length)return;
+  const expected=recitable[currentWordIndex];
+  const words=transcript.trim().split(/\s+/);
+  const lastWord=words[words.length-1];
+  if(normalise(lastWord)===normalise(expected.t)||
+     normalise(expected.t).startsWith(normalise(lastWord))||
+     normalise(lastWord).startsWith(normalise(expected.t))){
+    showFeedback('correct');
+  }
+}
+
+function processFinalResult(result){
+  const recitable=getRecitableWords();
+  if(currentWordIndex>=recitable.length)return;
+  const transcripts=[];
+  for(let i=0;i<result.length;i++)transcripts.push(result[i].transcript);
+  const words=transcripts[0].trim().split(/\s+/).filter(w=>w.length>0);
+  words.forEach(spokenWord=>{
+    if(currentWordIndex>=recitable.length)return;
+    const expected=recitable[currentWordIndex];
+    const normSpoken=normalise(spokenWord);
+    const normExpected=normalise(expected.t);
+    // Check across all alternatives for this word
+    let matched=false;
+    for(const t of transcripts){
+      const tw=t.trim().split(/\s+/);
+      for(const tw_word of tw){
+        const n=normalise(tw_word);
+        if(n===normExpected||normExpected.includes(n)||n.includes(normExpected)){matched=true;break;}
+      }
+      if(matched)break;
+    }
+    if(matched||normSpoken===normExpected||normExpected.includes(normSpoken)||normSpoken.includes(normExpected)){
+      // Correct
+      const el=document.getElementById(`rw-${currentWordIndex}`);
+      if(el){el.classList.remove('pending','current','mistake');el.classList.add('correct');}
+      totalCorrect++;currentWordIndex++;
+      highlightCurrentWord();
+      updateSessionStats();
+      showFeedback('correct');
+      if(currentWordIndex>=recitable.length){setTimeout(()=>completeSession(),800);}
+    }else{
+      // Mistake
+      const el=document.getElementById(`rw-${currentWordIndex}`);
+      if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},600);}
+      totalMistakes++;
+      if(!mistakeWords.includes(expected.t))mistakeWords.push(expected.t);
+      updateSessionStats();
+      showFeedback('mistake');
+    }
+  });
+}
+
+function updateSessionStats(){
+  const recitable=getRecitableWords();
+  const pct=recitable.length>0?Math.round((currentWordIndex/recitable.length)*100):0;
+  document.getElementById('session-bar').style.width=pct+'%';
+  document.getElementById('stat-words').textContent=currentWordIndex;
+  document.getElementById('stat-mistakes').textContent=totalMistakes;
+  const attempted=totalCorrect+totalMistakes;
+  const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+  document.getElementById('stat-accuracy').textContent=acc;
+}
+
+function showFeedback(type){
+  ['listening','correct','mistake','waiting'].forEach(t=>{
+    const el=document.getElementById('feedback-'+t);
+    if(el)el.classList.toggle('show',t===type);
+  });
+}
+function hideFeedback(){showFeedback(null);}
+
 function togglePeek(){
   isPeeking=!isPeeking;
-  const words=document.querySelectorAll('.word');
-  words.forEach(w=>{
-    if(isPeeking){w.classList.remove('hidden');}
-    else{if(parseInt(w.id.split('-')[1])>=currentWordIndex)w.classList.add('hidden');}
+  const recitable=getRecitableWords();
+  recitable.forEach((w,i)=>{
+    if(i>=currentWordIndex){
+      const el=document.getElementById(`rw-${i}`);
+      if(el){
+        if(isPeeking){el.style.color='';el.classList.remove('pending');}
+        else{el.style.color='';el.classList.add('pending');}
+      }
+    }
   });
   document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
 }
 
-async function toggleMic(){
-  if(isRecording){stopRecording();}
-  else{await startRecording();}
-}
-
-async function startRecording(){
-  try{
-    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-    mediaRecorder=new MediaRecorder(stream,{mimeType:'audio/webm'});
-    audioChunks=[];
-    mediaRecorder.ondataavailable=e=>{if(e.data.size>0)audioChunks.push(e.data);};
-    mediaRecorder.onstop=async()=>{
-      const blob=new Blob(audioChunks,{type:'audio/webm'});
-      await sendAudioToEngine(blob);
-      if(isRecording){
-        audioChunks=[];
-        mediaRecorder.start();
-        setTimeout(()=>{if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();},3000);
-      }
-    };
-    mediaRecorder.start();
-    setTimeout(()=>{if(mediaRecorder&&mediaRecorder.state==='recording')mediaRecorder.stop();},3000);
-    isRecording=true;sessionStartTime=Date.now();
-    document.getElementById('mic-btn').classList.add('listening');
-    document.getElementById('recite-status').textContent='Listening...';
-    document.getElementById('recite-status').className='recite-status listening';
-    if(!isPeeking){document.querySelectorAll('.word').forEach(w=>w.classList.add('hidden'));}
-  }catch(e){
-    document.getElementById('recite-status').textContent='Microphone access needed';
-    console.error(e);
-  }
-}
-
-function stopRecording(){
-  isRecording=false;
-  if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();
-  if(mediaRecorder&&mediaRecorder.stream)mediaRecorder.stream.getTracks().forEach(t=>t.stop());
-  document.getElementById('mic-btn').classList.remove('listening');
-  document.getElementById('recite-status').textContent='Press the mic to continue';
-  document.getElementById('recite-status').className='recite-status';
-}
-
-async function sendAudioToEngine(blob){
-  if(!isRecording)return;
-  document.getElementById('recite-status').textContent='Processing...';
-  document.getElementById('recite-status').className='recite-status processing';
-  try{
-    const formData=new FormData();formData.append('audio',blob,'audio.webm');
-    const response=await fetch(`${ENGINE_URL}/transcribe`,{method:'POST',body:formData});
-    const data=await response.json();
-    if(data.text){processTranscription(data.text);}
-    if(isRecording){
-      document.getElementById('recite-status').textContent='Listening...';
-      document.getElementById('recite-status').className='recite-status listening';
-    }
-  }catch(e){
-    console.error('Engine error:',e);
-    if(isRecording){
-      document.getElementById('recite-status').textContent='Listening...';
-      document.getElementById('recite-status').className='recite-status listening';
-    }
-  }
-}
-
-function normaliseArabic(text){
-  return text.replace(/[\u064B-\u065F\u0670]/g,'').replace(/أ|إ|آ/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').trim();
-}
-
-function processTranscription(transcript){
-  if(!currentSurah)return;
-  const transcriptWords=transcript.trim().split(/\s+/).filter(w=>w.length>0);
-  let bestMatch=currentWordIndex;
-  for(let t=0;t<transcriptWords.length;t++){
-    const transcriptNorm=normaliseArabic(transcriptWords[t]);
-    for(let s=currentWordIndex;s<Math.min(currentWordIndex+8,currentSurah.words.length);s++){
-      const surahNorm=normaliseArabic(currentSurah.words[s].t);
-      if(transcriptNorm===surahNorm||surahNorm.includes(transcriptNorm)||transcriptNorm.includes(surahNorm)){
-        bestMatch=s+1;break;
-      }
-    }
-  }
-  if(bestMatch>currentWordIndex){
-    for(let i=currentWordIndex;i<bestMatch;i++){
-      const wordEl=document.getElementById(`word-${i}`);
-      if(wordEl){wordEl.classList.remove('hidden','current');wordEl.classList.add('revealed','correct');}
-    }
-    if(bestMatch<currentSurah.words.length){
-      const nextEl=document.getElementById(`word-${bestMatch}`);
-      if(nextEl){nextEl.classList.remove('hidden');nextEl.classList.add('current');}
-    }
-    currentWordIndex=bestMatch;wordsRevealed=bestMatch;
-    const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
-    document.getElementById('session-bar').style.width=pct+'%';
-    document.getElementById('session-count').textContent=`${wordsRevealed} of ${currentSurah.words.length} words`;
-    if(wordsRevealed>=currentSurah.words.length){setTimeout(()=>completeSession(),500);}
-  }
-}
-
 function completeSession(){
-  stopRecording();
-  const elapsed=sessionStartTime?Math.round((Date.now()-sessionStartTime)/1000):0;
+  stopListening();
+  const recitable=getRecitableWords();
+  const elapsed=Math.round((Date.now()-sessionStartTime)/1000);
   const mins=Math.floor(elapsed/60);const secs=elapsed%60;
   const timeStr=mins>0?`${mins}m ${secs}s`:`${secs}s`;
-  const pct=Math.round((wordsRevealed/currentSurah.words.length)*100);
-  const streak=saveStats(wordsRevealed);
-  document.getElementById('summary-title').textContent=pct===100?'MashaAllah! 🌟':'Well done! Keep going';
-  document.getElementById('summary-sub').textContent=`${currentSurah.nameEn} — ${pct}% complete`;
-  document.getElementById('summary-words').textContent=wordsRevealed;
-  document.getElementById('summary-time').textContent=timeStr;
-  document.getElementById('summary-accuracy').textContent=pct+'%';
-  document.getElementById('summary-sessions').textContent=totalSessions;
-  document.getElementById('summary-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
+  const attempted=totalCorrect+totalMistakes;
+  const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+  const streak=saveStats(totalCorrect);
+  document.getElementById('summary-emoji').textContent=acc>=90?'🌟':acc>=70?'✅':'💪';
+  document.getElementById('summary-title').textContent=acc>=90?'MashaAllah!':acc>=70?'Well done!':'Keep practising!';
+  document.getElementById('summary-sub').textContent=`${currentSurah.nameEn} — ${acc}% accuracy`;
+  document.getElementById('sum-words').textContent=currentWordIndex;
+  document.getElementById('sum-accuracy').textContent=acc+'%';
+  document.getElementById('sum-mistakes').textContent=totalMistakes;
+  document.getElementById('sum-time').textContent=timeStr;
+  document.getElementById('sum-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
+  const mw=document.getElementById('mistake-words');
+  const mr=document.getElementById('mistake-review');
+  if(mistakeWords.length>0){
+    mw.innerHTML=mistakeWords.map(w=>`<span class="mistake-word">${w}</span>`).join('');
+    mr.style.display='block';
+  }else{mr.style.display='none';}
   showScreen('screen-summary');
 }
 
 function endSession(){
-  stopRecording();
-  if(wordsRevealed>0){completeSession();}
-  else{showTab('dashboard');}
+  stopListening();
+  if(currentWordIndex>0)completeSession();
+  else showTab('dashboard');
 }
 
 loadSavedTheme();
 sb.auth.onAuthStateChange((event,session)=>{
-  if(session){const meta=session.user.user_metadata;loadDashboard(meta.full_name,meta.journey,meta.gender);}
+  if(session){const m=session.user.user_metadata;loadDashboard(m.full_name,m.journey,m.gender);}
 });
 </script>
 </body>
