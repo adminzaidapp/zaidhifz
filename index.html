@@ -84,20 +84,15 @@
   .surah-name-en { font-size: 14px; font-weight: 600; color: #111; }
   .surah-name-ar { font-size: 16px; color: #666; margin-top: 2px; direction: rtl; }
   .surah-meta { font-size: 11px; color: #aaa; font-weight: 500; }
-
-  /* RECITE */
   .recite-arabic-box { background: #fff; border-radius: 18px; border: 1px solid #edf2ef; min-height: 160px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 12px; direction: rtl; text-align: right; line-height: 2.8; font-size: 22px; font-family: 'Traditional Arabic', 'Arial Unicode MS', serif; }
   .rword { display: inline; margin: 0 2px; transition: all 0.25s ease; }
   .rword.hidden { color: transparent !important; text-shadow: 0 0 8px rgba(0,0,0,0.15); }
   .rword.current { text-shadow: none !important; color: #111 !important; font-weight: 700; text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: 3px; animation: wordPulse 1.2s infinite; }
-  .rword.correct { text-shadow: none !important; opacity: 0.5; }
+  .rword.correct { text-shadow: none !important; opacity: 0.45; }
   .rword.mistake { color: #E53935 !important; text-shadow: none !important; font-weight: 700; animation: mistakeShake 0.4s ease; }
-  .rword.peeked { text-shadow: none !important; }
   @keyframes wordPulse { 0%,100%{text-decoration-color:var(--primary);}50%{text-decoration-color:transparent;} }
   @keyframes mistakeShake { 0%,100%{transform:translateX(0);}25%{transform:translateX(-4px);}75%{transform:translateX(4px);} }
   .ayah-marker { color: var(--primary); font-size: 13px; margin: 0 4px; opacity: 0.9; }
-
-  /* TAJWEED — colours preserved always */
   .rword.hidden.tj-ikhfa { color: transparent !important; text-shadow: 0 0 8px rgba(33,150,243,0.3); }
   .rword.hidden.tj-ghunnah { color: transparent !important; text-shadow: 0 0 8px rgba(255,152,0,0.3); }
   .rword.hidden.tj-qalqalah { color: transparent !important; text-shadow: 0 0 8px rgba(229,57,53,0.3); }
@@ -113,7 +108,6 @@
   .tj-qalqalah { color: #E53935; }
   .tj-qalb { color: #7B1FA2; }
   .tj-idgham-meem { color: #4CAF50; }
-
   .recite-feedback { min-height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
   .feedback-pill { padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; display: none; }
   .feedback-pill.show { display: inline-block; }
@@ -121,7 +115,6 @@
   .feedback-pill.mistake { background: #FFEBEE; color: #E53935; }
   .feedback-pill.waiting { background: #FFF8E1; color: #F57C00; }
   .feedback-pill.listening { background: var(--primary-light); color: var(--primary-dark); }
-
   .mic-area { display: flex; justify-content: center; align-items: center; gap: 20px; margin: 4px 0 14px; }
   .mic-btn { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px var(--primary-shadow); transition: all 0.2s ease; }
   .mic-btn:active { transform: scale(0.93); }
@@ -131,7 +124,6 @@
   .peek-btn { padding: 12px 22px; border: 1.5px solid var(--primary); border-radius: 12px; background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
   .peek-btn:active { background: var(--primary-light); transform: scale(0.96); }
   .end-btn { padding: 12px 22px; border: 1.5px solid #ddd; border-radius: 12px; background: transparent; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; }
-
   .session-progress { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
   .session-progress-label { font-size: 11px; color: #888; margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
   .session-bar-wrap { background: #e0ebe6; border-radius: 6px; height: 6px; }
@@ -139,7 +131,6 @@
   .session-stats-row { display: flex; justify-content: space-between; margin-top: 8px; }
   .session-stat { font-size: 11px; color: #888; font-weight: 500; }
   .session-stat span { color: var(--primary); font-weight: 700; }
-
   .tajweed-key { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
   .tj-badge { font-size: 10px; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
   .tj-badge.ikhfa { background: #E3F2FD; color: #2196F3; }
@@ -149,11 +140,9 @@
   .tj-badge.qalqalah { background: #FFEBEE; color: #E53935; }
   .tj-badge.qalb { background: #F3E5F5; color: #7B1FA2; }
   .tj-badge.idgham-meem { background: #E8F5E9; color: #4CAF50; }
-
   .error-msg { color: #E53935; font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .success-msg { color: var(--primary); font-size: 13px; margin-top: 8px; text-align: center; font-weight: 500; }
   .divider { text-align: center; color: #bbb; font-size: 13px; margin: 16px 0; }
-
   .splash { background: linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%); flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; position: relative; overflow: hidden; }
   .splash::before { content:''; position:absolute; top:-100px; right:-100px; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.04); }
   .splash::after { content:''; position:absolute; bottom:-80px; left:-80px; width:250px; height:250px; border-radius:50%; background:rgba(255,255,255,0.04); }
@@ -213,8 +202,6 @@
   .wt-back-btn { background: none; border: 1.5px solid #e0e0e0; color: #999; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px 20px; border-radius: 12px; }
   .wt-skip-btn { background: none; border: none; color: #bbb; font-size: 14px; font-weight: 600; cursor: pointer; padding: 13px; }
   .wt-next-btn { flex: 1; padding: 16px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px var(--primary-shadow); }
-
-  /* SESSION SUMMARY */
   .summary-hero { text-align: center; padding: 20px 0 16px; }
   .summary-emoji { font-size: 52px; margin-bottom: 10px; }
   .summary-title { font-size: 26px; font-weight: 700; color: #111; letter-spacing: -0.4px; }
@@ -228,13 +215,17 @@
   .mistake-review { background: #fff; border-radius: 14px; padding: 14px 16px; border: 1px solid #edf2ef; margin-bottom: 14px; }
   .mistake-review-title { font-size: 12px; font-weight: 700; color: #E53935; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
   .mistake-word { display: inline-block; background: #FFEBEE; color: #E53935; border-radius: 8px; padding: 4px 10px; font-size: 18px; margin: 3px; direction: rtl; font-family: 'Traditional Arabic', serif; }
-
-  /* AI FEEDBACK */
   .ai-feedback-card { background: linear-gradient(135deg, #f8fff9 0%, #f0fdf4 100%); border-radius: 18px; border: 1.5px solid var(--primary-shadow-light); padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 16px var(--primary-shadow-light); }
-  .ai-feedback-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .ai-feedback-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .ai-feedback-header-left { display: flex; align-items: center; gap: 10px; }
   .ai-feedback-icon { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .ai-feedback-title { font-size: 15px; font-weight: 700; color: #111; }
   .ai-feedback-subtitle { font-size: 12px; color: #888; margin-top: 1px; }
+  .ai-audio-btn { width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; flex-shrink: 0; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); box-shadow: 0 2px 8px var(--primary-shadow); }
+  .ai-audio-btn:active { transform: scale(0.93); }
+  .ai-audio-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .ai-audio-btn.playing { background: linear-gradient(135deg, #E53935, #C62828); box-shadow: 0 2px 8px rgba(229,57,53,0.4); animation: micPulse 1.5s infinite; }
+  .ai-audio-btn svg { width: 18px; height: 18px; }
   .ai-feedback-text { font-size: 14px; color: #333; line-height: 1.8; }
   .ai-feedback-loading { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
   .ai-loading-dots { display: flex; gap: 5px; }
@@ -243,7 +234,6 @@
   .ai-loading-dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes dotPulse { 0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1);} }
   .ai-loading-text { font-size: 13px; color: #888; font-weight: 500; }
-
   .sched-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f4f2; }
   .sched-day { font-size: 11px; color: #aaa; min-width: 32px; font-weight: 600; text-transform: uppercase; }
   .sched-content { flex: 1; }
@@ -274,7 +264,7 @@
       <div class="slides-track" id="slides-track">
         <div class="slide slide-1"><div class="slide-icon">📖</div><div class="slide-title">Welcome to Zaid.</div><div class="slide-text">The Quran never forgets you. Zaid is your daily companion for memorisation and revision — built with care, for those who carry the Quran in their hearts.</div></div>
         <div class="slide slide-2"><div class="slide-icon">🎯</div><div class="slide-title">For every stage of your journey.</div><div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts completely to where you are.</div></div>
-        <div class="slide slide-3"><div class="slide-icon">🤖</div><div class="slide-title">AI that knows the Quran.</div><div class="slide-text">After every session, Zaid's AI gives you personalised feedback — just like an Ustadh would. Know exactly what to improve and how.</div></div>
+        <div class="slide slide-3"><div class="slide-icon">🤖</div><div class="slide-title">AI that knows the Quran.</div><div class="slide-text">After every session, Zaid's AI gives you personalised spoken feedback — just like an Ustadh would. Know exactly what to improve and how.</div></div>
         <div class="slide slide-4"><div class="slide-icon">💚</div><div class="slide-title">Made by a Hafiz, for Huffaz.</div><div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div></div>
       </div>
     </div>
@@ -723,15 +713,24 @@
       <div class="mistake-review-title">Words to review</div>
       <div id="mistake-words"></div>
     </div>
-
-    <!-- AI FEEDBACK -->
     <div class="ai-feedback-card" id="ai-feedback-card">
       <div class="ai-feedback-header">
-        <div class="ai-feedback-icon">🤖</div>
-        <div>
-          <div class="ai-feedback-title">Zaid's Feedback</div>
-          <div class="ai-feedback-subtitle">AI-powered analysis from your session</div>
+        <div class="ai-feedback-header-left">
+          <div class="ai-feedback-icon">🤖</div>
+          <div>
+            <div class="ai-feedback-title">Zaid's Feedback</div>
+            <div class="ai-feedback-subtitle">AI-powered analysis from your session</div>
+          </div>
         </div>
+        <button class="ai-audio-btn" id="ai-audio-btn" onclick="toggleAudio()" disabled title="Listen to feedback">
+          <svg viewBox="0 0 20 20" fill="none">
+            <polygon id="audio-icon-play" points="5,3 17,10 5,17" fill="white"/>
+            <g id="audio-icon-stop" style="display:none">
+              <rect x="4" y="3" width="4" height="14" rx="1" fill="white"/>
+              <rect x="12" y="3" width="4" height="14" rx="1" fill="white"/>
+            </g>
+          </svg>
+        </button>
       </div>
       <div id="ai-feedback-content">
         <div class="ai-feedback-loading">
@@ -744,7 +743,6 @@
         </div>
       </div>
     </div>
-
     <button class="btn-primary" onclick="showTab('recite')" style="margin-bottom:10px;">Recite again</button>
     <button class="btn-secondary" onclick="showTab('dashboard')">Back to home</button>
   </div>
@@ -898,6 +896,7 @@ let recognition=null,isListening=false,isPeeking=false;
 let currentWordIndex=0,totalCorrect=0,totalMistakes=0,mistakeWords=[];
 let sessionStartTime=null,waitingTimer=null;
 let totalSessions=0,totalWords=0;
+let currentFeedbackText='',feedbackAudio=null,isPlayingAudio=false;
 const TOTAL_SLIDES=4;
 
 function isFemale(){return userData.gender==='female';}
@@ -1000,13 +999,13 @@ function buildFinalStep(stage){
     ob4title.textContent='What is your goal?';ob4sub.textContent='This helps Zaid build the perfect plan for you.';
     [{val:'full',label:`Become a full ${t}`},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:16px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
-    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=t.val;};content.appendChild(btn);});
+    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(ti=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=ti.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=ti.val;};content.appendChild(btn);});
   }else if(stage==='halfway'){
     ob4title.textContent='A couple more questions';ob4sub.textContent='Help Zaid understand exactly where you are.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:600;color:#111;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
     const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:12px 0 8px;';tl.textContent='How much time can you dedicate daily?';content.appendChild(tl);
-    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(t=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=t.label;btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=t.val;};content.appendChild(btn);});
+    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(ti=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=ti.label;btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=ti.val;};content.appendChild(btn);});
   }else if(stage==='nearly'){
     ob4title.textContent='Almost there — a couple more questions';ob4sub.textContent='Help Zaid fine tune your plan.';
     const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:600;color:#111;margin-bottom:8px;';jl.textContent='Which Juz are you currently on?';content.appendChild(jl);
@@ -1068,7 +1067,10 @@ async function handleParentChangePassword(){
   try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated successfully.';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
   catch(e){ee.textContent='Something went wrong. Please try again.';}
 }
-async function handleLogout(){await sb.auth.signOut();pendingDashboardData=null;userData={};showScreen('screen-splash');}
+async function handleLogout(){
+  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
+  await sb.auth.signOut();pendingDashboardData=null;userData={};showScreen('screen-splash');
+}
 
 function loadStats(){
   try{
@@ -1116,6 +1118,8 @@ function populateDashboardData(fullName,journey,gender){
         document.getElementById('details-name').textContent=m.full_name||'';document.getElementById('details-email').textContent=u.email;
         document.getElementById('details-name-field').textContent=m.full_name||'—';document.getElementById('details-email-field').textContent=u.email;document.getElementById('details-dob-field').textContent=m.dob||'—';
         const j=m.journey;document.getElementById('details-journey-field').textContent=j==='hafiz'?`${mt} / Revision`:j==='learning'?`Learning to become a ${mt}`:'—';
+        // Store name for AI feedback
+        userData.name=m.full_name||'';
       }
     }
   });
@@ -1149,6 +1153,9 @@ function startSurah(index){
   currentSurah=SURAHS[index];
   currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];
   isPeeking=false;sessionStartTime=Date.now();
+  currentFeedbackText='';
+  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
+  isPlayingAudio=false;
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
   renderSurahText();updateSessionStats();hideFeedback();
   document.getElementById('peek-btn').textContent='Peek';
@@ -1171,32 +1178,14 @@ function renderSurahText(){
     }else{
       const span=document.createElement('span');
       span.id=`rw-${ri}`;
-      // Start hidden — completely invisible, slight glow hint of colour
       span.className=`rword hidden tj-${w.tj}`;
       span.textContent=w.t+' ';
       display.appendChild(span);
       ri++;
     }
   });
-  // Highlight first word
   const first=document.getElementById('rw-0');
   if(first){first.classList.remove('hidden');first.classList.add('current');}
-}
-
-function highlightCurrentWord(){
-  const recitable=getRecitableWords();
-  recitable.forEach((w,i)=>{
-    const el=document.getElementById(`rw-${i}`);if(!el)return;
-    el.classList.remove('hidden','current','correct','mistake');
-    if(i<currentWordIndex){
-      el.classList.add('correct');
-    }else if(i===currentWordIndex){
-      el.classList.add('current');
-      el.scrollIntoView({behavior:'smooth',block:'nearest'});
-    }else{
-      if(!isPeeking)el.classList.add('hidden');
-    }
-  });
 }
 
 function normalise(text){
@@ -1215,7 +1204,6 @@ function wordsMatch(spoken,expected){
   if(ns===ne)return true;
   if(ns.length>=2&&ne.includes(ns))return true;
   if(ne.length>=2&&ns.includes(ne))return true;
-  // Handle common speech API variations
   if(ns.length>=3&&ne.length>=3){
     let matches=0;
     for(let i=0;i<Math.min(ns.length,ne.length);i++){if(ns[i]===ne[i])matches++;}
@@ -1266,14 +1254,12 @@ function processInterimResult(transcript){
 function processFinalResult(result){
   const recitable=getRecitableWords();
   if(currentWordIndex>=recitable.length)return;
-  // Collect all alternatives
   const allTranscripts=[];
   for(let i=0;i<result.length;i++)allTranscripts.push(result[i].transcript);
   const primaryWords=allTranscripts[0].trim().split(/\s+/).filter(w=>w.length>0);
   primaryWords.forEach(spokenWord=>{
     if(currentWordIndex>=recitable.length)return;
     const expected=recitable[currentWordIndex];
-    // Check across all alternatives
     let matched=false;
     for(const t of allTranscripts){
       for(const tw of t.trim().split(/\s+/)){
@@ -1285,7 +1271,6 @@ function processFinalResult(result){
       const el=document.getElementById(`rw-${currentWordIndex}`);
       if(el){el.classList.remove('hidden','current','mistake');el.classList.add('correct');}
       totalCorrect++;currentWordIndex++;
-      // Show next word
       const nextEl=document.getElementById(`rw-${currentWordIndex}`);
       if(nextEl&&!isPeeking){nextEl.classList.remove('hidden');nextEl.classList.add('current');}
       else if(nextEl){nextEl.classList.add('current');}
@@ -1326,8 +1311,8 @@ function togglePeek(){
   recitable.forEach((w,i)=>{
     const el=document.getElementById(`rw-${i}`);if(!el)return;
     if(i>currentWordIndex){
-      if(isPeeking){el.classList.remove('hidden');}
-      else{el.classList.add('hidden');}
+      if(isPeeking)el.classList.remove('hidden');
+      else el.classList.add('hidden');
     }
   });
   document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
@@ -1354,10 +1339,16 @@ function completeSession(){
   const mr=document.getElementById('mistake-review');
   if(mistakeWords.length>0){mw.innerHTML=mistakeWords.map(w=>`<span class="mistake-word">${w}</span>`).join('');mr.style.display='block';}
   else mr.style.display='none';
-  // Reset AI feedback
+  // Reset feedback UI
+  currentFeedbackText='';
+  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
+  isPlayingAudio=false;
+  const audioBtn=document.getElementById('ai-audio-btn');
+  audioBtn.disabled=true;audioBtn.classList.remove('playing');
+  document.getElementById('audio-icon-play').style.display='';
+  document.getElementById('audio-icon-stop').style.display='none';
   document.getElementById('ai-feedback-content').innerHTML=`<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>`;
   showScreen('screen-summary');
-  // Fetch AI feedback
   fetchAIFeedback(acc,timeStr);
 }
 
@@ -1365,6 +1356,7 @@ async function fetchAIFeedback(accuracy,timeTaken){
   try{
     const recitable=getRecitableWords();
     const surahArabic=recitable.map(w=>w.t).join(' ');
+    const firstName=userData.name?userData.name.split(' ')[0]:'';
     const response=await fetch(`${ENGINE_URL}/feedback`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -1376,17 +1368,63 @@ async function fetchAIFeedback(accuracy,timeTaken){
         mistakes:mistakeWords,
         accuracy:accuracy,
         tajweedRules:currentSurah.tajweedRules||[],
-        timeTaken:timeTaken
+        timeTaken:timeTaken,
+        studentName:firstName
       })
     });
     const data=await response.json();
     if(data.feedback){
+      currentFeedbackText=data.feedback;
       document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>`;
+      const audioBtn=document.getElementById('ai-audio-btn');
+      audioBtn.disabled=false;
     }else{
       document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable. Please try again.</p>`;
     }
   }catch(e){
     document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable. Please check your connection.</p>`;
+  }
+}
+
+async function toggleAudio(){
+  if(isPlayingAudio){
+    // Stop
+    if(feedbackAudio){feedbackAudio.pause();feedbackAudio.currentTime=0;}
+    isPlayingAudio=false;
+    const btn=document.getElementById('ai-audio-btn');
+    btn.classList.remove('playing');
+    document.getElementById('audio-icon-play').style.display='';
+    document.getElementById('audio-icon-stop').style.display='none';
+    return;
+  }
+  if(!currentFeedbackText)return;
+  const btn=document.getElementById('ai-audio-btn');
+  btn.disabled=true;
+  try{
+    const response=await fetch(`${ENGINE_URL}/speak`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text:currentFeedbackText})
+    });
+    const blob=await response.blob();
+    const url=URL.createObjectURL(blob);
+    feedbackAudio=new Audio(url);
+    feedbackAudio.onended=()=>{
+      isPlayingAudio=false;
+      btn.classList.remove('playing');
+      document.getElementById('audio-icon-play').style.display='';
+      document.getElementById('audio-icon-stop').style.display='none';
+      btn.disabled=false;
+    };
+    feedbackAudio.play();
+    isPlayingAudio=true;
+    btn.disabled=false;
+    btn.classList.add('playing');
+    document.getElementById('audio-icon-play').style.display='none';
+    document.getElementById('audio-icon-stop').style.display='';
+  }catch(e){
+    btn.disabled=false;
+    alert('Audio unavailable. Please try again.');
   }
 }
 
