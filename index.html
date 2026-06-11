@@ -37,7 +37,7 @@
   .option-btn:active { transform:scale(0.98); }
   .option-btn.selected { border-color:var(--primary); background:var(--primary-light); color:var(--primary-text); font-weight:600; }
   .gender-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
-  .gender-btn { padding:28px 16px; border:1.5px solid #e8ede9; border-radius:18px; background:#fff; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:12px; transition:all 0.2s ease; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .gender-btn { padding:28px 16px; border:1.5px solid #e8ede9; border-radius:18px; background:#fff; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:12px; transition:all 0.2s ease; }
   .gender-btn:active { transform:scale(0.96); }
   .gender-btn.selected { border-color:var(--primary); background:var(--primary-light); }
   .gender-btn .icon { font-size:42px; }
@@ -50,15 +50,13 @@
   .input-error { font-size:12px; color:#E53935; margin-top:5px; display:none; font-weight:500; }
   .input-error.show { display:block; }
   .select-field { width:100%; padding:14px 16px; border:1.5px solid #e8ede9; border-radius:14px; font-size:15px; color:#1a1a1a; margin-bottom:14px; outline:none; background:#fff; }
-  .select-field:focus { border-color:var(--primary); }
   .btn-primary { width:100%; padding:16px; background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:#fff; border:none; border-radius:14px; font-size:16px; font-weight:600; cursor:pointer; margin-top:8px; transition:all 0.2s ease; box-shadow:0 4px 16px var(--primary-shadow); }
   .btn-primary:hover { transform:translateY(-1px); }
   .btn-primary:active { transform:scale(0.97); }
   .btn-primary:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
   .btn-secondary { width:100%; padding:15px; background:transparent; color:var(--primary); border:1.5px solid var(--primary); border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; margin-top:8px; transition:all 0.2s ease; }
   .btn-secondary:active { transform:scale(0.97); background:var(--primary-light); }
-  .btn-danger { width:100%; padding:15px; background:transparent; color:#E53935; border:1.5px solid #E53935; border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; margin-top:8px; transition:all 0.2s ease; }
-  .btn-danger:active { transform:scale(0.97); }
+  .btn-danger { width:100%; padding:15px; background:transparent; color:#E53935; border:1.5px solid #E53935; border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; margin-top:8px; }
   .greeting-name { font-size:27px; font-weight:700; color:#111; letter-spacing:-0.5px; }
   .greeting-sub { font-size:14px; color:#888; margin-top:3px; margin-bottom:22px; }
   .streak-card { background:linear-gradient(135deg,var(--primary-light) 0%,var(--primary-lighter) 100%); border-radius:18px; padding:18px; display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; box-shadow:0 2px 12px var(--primary-shadow-light); border:1px solid var(--primary-shadow-light); }
@@ -81,14 +79,13 @@
   .surah-name-en { font-size:14px; font-weight:600; color:#111; }
   .surah-name-ar { font-size:16px; color:#666; margin-top:2px; direction:rtl; }
   .surah-meta { font-size:11px; color:#aaa; font-weight:500; }
-  .mode-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px; }
-  .mode-btn { padding:14px 8px; border:1.5px solid #e8ede9; border-radius:14px; background:#fff; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:8px; transition:all 0.2s ease; }
-  .mode-btn:active { transform:scale(0.96); }
+  .mode-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:14px; }
+  .mode-btn { padding:10px 6px; border:1.5px solid #e8ede9; border-radius:12px; background:#fff; cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:5px; transition:all 0.2s ease; }
   .mode-btn.selected { border-color:var(--primary); background:var(--primary-light); }
-  .mode-btn .mode-icon { font-size:28px; }
-  .mode-btn .mode-label { font-size:12px; font-weight:600; color:#333; text-align:center; }
+  .mode-btn .mode-icon { font-size:20px; }
+  .mode-btn .mode-label { font-size:11px; font-weight:700; color:#333; }
   .mode-btn.selected .mode-label { color:var(--primary-text); }
-  .mode-btn .mode-desc { font-size:10px; color:#aaa; text-align:center; line-height:1.4; }
+  .mode-btn .mode-desc { font-size:9px; color:#aaa; text-align:center; line-height:1.3; }
   .recite-arabic-box { background:#fff; border-radius:18px; border:1px solid #edf2ef; min-height:160px; padding:20px; box-shadow:0 2px 12px rgba(0,0,0,0.06); margin-bottom:12px; direction:rtl; text-align:right; line-height:2.8; font-size:22px; font-family:'Traditional Arabic','Arial Unicode MS',serif; }
   .rword { display:inline; margin:0 2px; transition:all 0.25s ease; }
   .rword.hidden { color:transparent !important; text-shadow:0 0 8px rgba(0,0,0,0.15); }
@@ -105,14 +102,7 @@
   .rword.hidden.tj-ikhfa-meem { color:transparent !important; text-shadow:0 0 8px rgba(233,30,140,0.3); }
   .rword.hidden.tj-qalb { color:transparent !important; text-shadow:0 0 8px rgba(123,31,162,0.3); }
   .rword.hidden.tj-idgham-meem { color:transparent !important; text-shadow:0 0 8px rgba(76,175,80,0.3); }
-  .tj-normal { color:#1a1a1a; }
-  .tj-ikhfa { color:#2196F3; }
-  .tj-ghunnah { color:#FF9800; }
-  .tj-ikhfa-meem { color:#E91E8C; }
-  .tj-idgham { color:#1B5E20; }
-  .tj-qalqalah { color:#E53935; }
-  .tj-qalb { color:#7B1FA2; }
-  .tj-idgham-meem { color:#4CAF50; }
+  .tj-normal{color:#1a1a1a;} .tj-ikhfa{color:#2196F3;} .tj-ghunnah{color:#FF9800;} .tj-ikhfa-meem{color:#E91E8C;} .tj-idgham{color:#1B5E20;} .tj-qalqalah{color:#E53935;} .tj-qalb{color:#7B1FA2;} .tj-idgham-meem{color:#4CAF50;}
   .recite-feedback { min-height:40px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
   .feedback-pill { padding:8px 18px; border-radius:999px; font-size:13px; font-weight:600; display:none; }
   .feedback-pill.show { display:inline-block; }
@@ -126,8 +116,7 @@
   .mic-btn.listening { background:linear-gradient(135deg,#E53935 0%,#C62828 100%); box-shadow:0 6px 20px rgba(229,57,53,0.5); animation:micPulse 1.5s infinite; }
   @keyframes micPulse { 0%,100%{box-shadow:0 6px 20px rgba(229,57,53,0.4);}50%{box-shadow:0 6px 32px rgba(229,57,53,0.7);} }
   .mic-btn svg { width:30px; height:30px; }
-  .peek-btn { padding:12px 22px; border:1.5px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s ease; }
-  .peek-btn:active { background:var(--primary-light); transform:scale(0.96); }
+  .peek-btn { padding:12px 22px; border:1.5px solid var(--primary); border-radius:12px; background:transparent; color:var(--primary); font-size:14px; font-weight:600; cursor:pointer; }
   .end-btn { padding:12px 22px; border:1.5px solid #ddd; border-radius:12px; background:transparent; color:#999; font-size:14px; font-weight:600; cursor:pointer; }
   .session-progress { background:#fff; border-radius:14px; padding:14px 16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
   .session-progress-label { font-size:11px; color:#888; margin-bottom:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
@@ -138,13 +127,7 @@
   .session-stat span { color:var(--primary); font-weight:700; }
   .tajweed-key { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
   .tj-badge { font-size:10px; padding:4px 10px; border-radius:999px; font-weight:600; }
-  .tj-badge.ikhfa { background:#E3F2FD; color:#2196F3; }
-  .tj-badge.ghunnah { background:#FFF3E0; color:#FF9800; }
-  .tj-badge.ikhfa-meem { background:#FCE4EC; color:#E91E8C; }
-  .tj-badge.idgham { background:#E8F5E9; color:#1B5E20; }
-  .tj-badge.qalqalah { background:#FFEBEE; color:#E53935; }
-  .tj-badge.qalb { background:#F3E5F5; color:#7B1FA2; }
-  .tj-badge.idgham-meem { background:#E8F5E9; color:#4CAF50; }
+  .tj-badge.ikhfa{background:#E3F2FD;color:#2196F3;} .tj-badge.ghunnah{background:#FFF3E0;color:#FF9800;} .tj-badge.ikhfa-meem{background:#FCE4EC;color:#E91E8C;} .tj-badge.idgham{background:#E8F5E9;color:#1B5E20;} .tj-badge.qalqalah{background:#FFEBEE;color:#E53935;} .tj-badge.qalb{background:#F3E5F5;color:#7B1FA2;} .tj-badge.idgham-meem{background:#E8F5E9;color:#4CAF50;}
   .error-msg { color:#E53935; font-size:13px; margin-top:8px; text-align:center; font-weight:500; }
   .success-msg { color:var(--primary); font-size:13px; margin-top:8px; text-align:center; font-weight:500; }
   .divider { text-align:center; color:#bbb; font-size:13px; margin:16px 0; }
@@ -160,7 +143,7 @@
   .link-card { background:#fff; border-radius:18px; border:1px solid #edf2ef; padding:22px; margin-bottom:16px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
   .link-card h3 { font-size:16px; font-weight:700; margin-bottom:8px; color:#111; }
   .link-card p { font-size:13px; color:#888; margin-bottom:16px; line-height:1.6; }
-  .link-code { font-size:30px; font-weight:800; color:var(--primary); letter-spacing:8px; margin:12px 0; }
+  .link-code-display { font-size:32px; font-weight:800; color:var(--primary); letter-spacing:8px; margin:12px 0; font-family:monospace; }
   .settings-row { display:flex; align-items:center; justify-content:space-between; padding:16px 0; border-bottom:1px solid #f0f4f2; cursor:pointer; transition:all 0.15s ease; }
   .settings-row:active { margin:0 -8px; padding:16px 8px; background:var(--primary-light); border-radius:12px; }
   .settings-row-left { display:flex; align-items:center; gap:14px; }
@@ -169,7 +152,7 @@
   .settings-arrow { font-size:18px; color:#ccc; }
   .settings-value { font-size:13px; color:#aaa; font-weight:500; margin-right:6px; }
   .account-avatar { width:70px; height:70px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:700; color:#fff; margin:0 auto 14px; box-shadow:0 4px 16px var(--primary-shadow); }
-  .account-name { font-size:20px; font-weight:700; color:#111; text-align:center; letter-spacing:-0.3px; }
+  .account-name { font-size:20px; font-weight:700; color:#111; text-align:center; }
   .account-email { font-size:14px; color:#aaa; text-align:center; margin-bottom:26px; }
   .detail-card { background:#fff; border-radius:18px; border:1px solid #edf2ef; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.05); }
   .detail-row { padding:15px 18px; border-bottom:1px solid #f0f4f2; }
@@ -184,19 +167,13 @@
   .pw-req span { display:block; font-weight:500; }
   .pw-req span.met { color:var(--primary); }
   .theme-swatch { width:44px; height:44px; border-radius:50%; cursor:pointer; border:3px solid transparent; transition:all 0.2s ease; }
-  .theme-swatch:active { transform:scale(0.9); }
   .theme-swatch.selected { border-color:#111; box-shadow:0 0 0 2px #fff,0 0 0 4px #111; }
-  .theme-swatch.green { background:linear-gradient(135deg,#0D8A6A,#0A7459); }
-  .theme-swatch.purple { background:linear-gradient(135deg,#A855C8,#8B3DAF); }
-  .theme-swatch.gold { background:linear-gradient(135deg,#B8860B,#9A6F09); }
+  .theme-swatch.green{background:linear-gradient(135deg,#0D8A6A,#0A7459);} .theme-swatch.purple{background:linear-gradient(135deg,#A855C8,#8B3DAF);} .theme-swatch.gold{background:linear-gradient(135deg,#B8860B,#9A6F09);}
   .walkthrough-screen { flex:1; display:flex; flex-direction:column; overflow:hidden; }
   .slides-wrapper { flex:1; overflow:hidden; }
   .slides-track { display:flex; height:100%; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); }
   .slide { min-width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 32px; text-align:center; }
-  .slide-1 { background:linear-gradient(160deg,var(--primary-light) 0%,#fafafa 65%); }
-  .slide-2 { background:linear-gradient(160deg,#FFF5E6 0%,#fafafa 65%); }
-  .slide-3 { background:linear-gradient(160deg,#EEF4FF 0%,#fafafa 65%); }
-  .slide-4 { background:linear-gradient(160deg,#F3E5F5 0%,#fafafa 65%); }
+  .slide-1{background:linear-gradient(160deg,var(--primary-light) 0%,#fafafa 65%);} .slide-2{background:linear-gradient(160deg,#FFF5E6 0%,#fafafa 65%);} .slide-3{background:linear-gradient(160deg,#EEF4FF 0%,#fafafa 65%);} .slide-4{background:linear-gradient(160deg,#F3E5F5 0%,#fafafa 65%);}
   .slide-icon { font-size:72px; margin-bottom:28px; }
   .slide-title { font-size:28px; font-weight:700; color:#111; margin-bottom:16px; line-height:1.2; letter-spacing:-0.5px; }
   .slide-text { font-size:16px; color:#666; line-height:1.7; max-width:300px; }
@@ -228,20 +205,18 @@
   .ai-feedback-title { font-size:15px; font-weight:700; color:#111; }
   .ai-feedback-subtitle { font-size:12px; color:#888; margin-top:1px; }
   .ai-audio-btn { width:40px; height:40px; border-radius:50%; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s ease; flex-shrink:0; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); box-shadow:0 2px 8px var(--primary-shadow); }
-  .ai-audio-btn:active { transform:scale(0.93); }
-  .ai-audio-btn:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
-  .ai-audio-btn.playing { background:linear-gradient(135deg,#E53935,#C62828); box-shadow:0 2px 8px rgba(229,57,53,0.4); animation:micPulse 1.5s infinite; }
+  .ai-audio-btn:disabled { opacity:0.4; cursor:not-allowed; }
+  .ai-audio-btn.playing { background:linear-gradient(135deg,#E53935,#C62828); animation:micPulse 1.5s infinite; }
   .ai-audio-btn svg { width:18px; height:18px; }
   .ai-feedback-text { font-size:14px; color:#333; line-height:1.8; }
   .ai-feedback-loading { display:flex; align-items:center; gap:10px; padding:8px 0; }
   .ai-loading-dots { display:flex; gap:5px; }
   .ai-loading-dot { width:8px; height:8px; border-radius:50%; background:var(--primary); animation:dotPulse 1.2s infinite; }
-  .ai-loading-dot:nth-child(2) { animation-delay:0.2s; }
-  .ai-loading-dot:nth-child(3) { animation-delay:0.4s; }
+  .ai-loading-dot:nth-child(2){animation-delay:0.2s;} .ai-loading-dot:nth-child(3){animation-delay:0.4s;}
   @keyframes dotPulse { 0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1);} }
   .ai-loading-text { font-size:13px; color:#888; font-weight:500; }
-  .student-card { background:#fff; border-radius:16px; padding:16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:12px; display:flex; align-items:center; gap:14px; }
-  .student-avatar { width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; color:#fff; flex-shrink:0; }
+  .student-card { background:#fff; border-radius:16px; padding:14px 16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:10px; display:flex; align-items:center; gap:12px; }
+  .student-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex-shrink:0; }
   .student-info { flex:1; }
   .student-name { font-size:15px; font-weight:600; color:#111; }
   .student-meta { font-size:12px; color:#aaa; margin-top:2px; }
@@ -255,6 +230,36 @@
   .mushaf-toggle { display:flex; background:#f0f4f2; border-radius:12px; padding:4px; margin-bottom:16px; }
   .mushaf-btn { flex:1; padding:10px; border:none; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; background:transparent; color:#888; transition:all 0.2s ease; }
   .mushaf-btn.active { background:#fff; color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+
+  /* MY SPACE */
+  .myspace-tabs { display:flex; background:#f0f4f2; border-radius:12px; padding:4px; margin-bottom:20px; }
+  .myspace-tab { flex:1; padding:10px; border:none; border-radius:10px; font-size:13px; font-weight:600; cursor:pointer; background:transparent; color:#888; transition:all 0.2s ease; }
+  .myspace-tab.active { background:#fff; color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+  .myspace-section { display:none; }
+  .myspace-section.active { display:block; }
+  .planner-day { background:#fff; border-radius:14px; border:1px solid #edf2ef; padding:14px 16px; margin-bottom:10px; display:flex; align-items:center; gap:12px; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .planner-day-label { font-size:12px; font-weight:700; color:var(--primary); min-width:36px; text-transform:uppercase; }
+  .planner-day-select { flex:1; border:none; background:transparent; font-size:14px; color:#111; outline:none; cursor:pointer; }
+  .notes-area { width:100%; min-height:300px; border:1.5px solid #e8ede9; border-radius:14px; padding:16px; font-size:15px; color:#1a1a1a; outline:none; background:#fff; resize:none; line-height:1.7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+  .notes-area:focus { border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-shadow-light); }
+  .progress-stat-card { background:#fff; border-radius:16px; padding:16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:12px; }
+  .progress-stat-title { font-size:12px; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px; }
+  .progress-bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .progress-bar-label { font-size:12px; color:#666; min-width:100px; }
+  .progress-bar-track { flex:1; background:#e0ebe6; border-radius:6px; height:8px; }
+  .progress-bar-fill { background:linear-gradient(90deg,var(--primary),var(--primary-dark)); height:8px; border-radius:6px; transition:width 0.6s ease; }
+  .progress-bar-val { font-size:12px; font-weight:700; color:var(--primary); min-width:32px; text-align:right; }
+
+  /* WALKTHROUGH OVERLAY */
+  .walkthrough-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:1000; display:none; align-items:flex-end; justify-content:center; }
+  .walkthrough-overlay.show { display:flex; }
+  .walkthrough-tooltip { background:#fff; border-radius:20px 20px 0 0; padding:28px 24px 40px; width:100%; max-width:430px; }
+  .wt-step-icon { font-size:48px; text-align:center; margin-bottom:12px; }
+  .wt-step-title { font-size:20px; font-weight:700; color:#111; margin-bottom:8px; text-align:center; }
+  .wt-step-text { font-size:15px; color:#666; line-height:1.6; text-align:center; margin-bottom:24px; }
+  .wt-step-progress { display:flex; gap:6px; justify-content:center; margin-bottom:20px; }
+  .wt-step-dot { width:8px; height:8px; border-radius:50%; background:#ddd; }
+  .wt-step-dot.active { background:var(--primary); width:24px; border-radius:4px; }
 </style>
 </head>
 <body>
@@ -276,10 +281,10 @@
   <div class="walkthrough-screen">
     <div class="slides-wrapper">
       <div class="slides-track" id="slides-track">
-        <div class="slide slide-1"><div class="slide-icon">📖</div><div class="slide-title">Welcome to Zaid.</div><div class="slide-text">The Quran never forgets you. Zaid is your daily companion for memorisation and revision — built with care, for those who carry the Quran in their hearts.</div></div>
-        <div class="slide slide-2"><div class="slide-icon">🎯</div><div class="slide-title">For every stage of your journey.</div><div class="slide-text">Whether you're a Hafiz keeping your revision alive, or on the path to becoming one — Zaid adapts completely to where you are.</div></div>
-        <div class="slide slide-3"><div class="slide-icon">🤖</div><div class="slide-title">AI that knows the Quran.</div><div class="slide-text">After every session, Zaid's AI gives you personalised spoken feedback — just like an Ustadh would. Know exactly what to improve and how.</div></div>
-        <div class="slide slide-4"><div class="slide-icon">💚</div><div class="slide-title">Made by a Hafiz, for Huffaz.</div><div class="slide-text">Zaid was built by someone who understands this journey personally. Every feature exists because a Hafiz needed it.</div></div>
+        <div class="slide slide-1"><div class="slide-icon">📖</div><div class="slide-title">Welcome to Zaid.</div><div class="slide-text">The Quran never forgets you. Your daily companion for memorisation and revision.</div></div>
+        <div class="slide slide-2"><div class="slide-icon">🎯</div><div class="slide-title">For every stage of your journey.</div><div class="slide-text">Whether you're a Hafiz keeping revision alive, or on the path to becoming one — Zaid adapts to where you are.</div></div>
+        <div class="slide slide-3"><div class="slide-icon">🤖</div><div class="slide-title">AI that knows the Quran.</div><div class="slide-text">After every session, Zaid's AI gives you personalised spoken feedback — just like an Ustadh would.</div></div>
+        <div class="slide slide-4"><div class="slide-icon">💚</div><div class="slide-title">Made by a Hafiz, for Huffaz.</div><div class="slide-text">Every feature exists because a Hafiz needed it.</div></div>
       </div>
     </div>
     <div class="walkthrough-footer">
@@ -299,7 +304,7 @@
   <div class="screen-body">
     <h2>Welcome back</h2>
     <p class="sub">Sign in to continue your journey.</p>
-    <div class="input-wrap"><input class="input-field" type="email" id="login-email" placeholder="Email address" /><p class="input-error" id="login-email-error">Please enter a valid email address.</p></div>
+    <div class="input-wrap"><input class="input-field" type="email" id="login-email" placeholder="Email address" /><p class="input-error" id="login-email-error">Please enter a valid email.</p></div>
     <div class="input-wrap"><input class="input-field" type="password" id="login-password" placeholder="Password" /><p class="input-error" id="login-pw-error">Please enter your password.</p></div>
     <button class="btn-primary" onclick="handleLogin()">Sign in</button>
     <p class="error-msg" id="login-error"></p>
@@ -315,7 +320,7 @@
   <div class="screen-body">
     <h2>Reset your password</h2>
     <p class="sub">Enter your email and we'll send you a reset link.</p>
-    <div class="input-wrap"><input class="input-field" type="email" id="forgot-email" placeholder="Email address" /><p class="input-error" id="forgot-error">Please enter a valid email address.</p></div>
+    <div class="input-wrap"><input class="input-field" type="email" id="forgot-email" placeholder="Email address" /><p class="input-error" id="forgot-error">Please enter a valid email.</p></div>
     <button class="btn-primary" onclick="handleForgotPassword()">Send reset link</button>
     <p class="success-msg" id="forgot-success"></p>
   </div>
@@ -330,7 +335,7 @@
     <h2>Let's get to know you</h2>
     <p class="sub">This takes less than 2 minutes.</p>
     <div class="input-wrap"><input class="input-field" type="text" id="ob-name" placeholder="Your full name" /><p class="input-error" id="ob-name-error">Please enter your full name.</p></div>
-    <div class="input-wrap"><input class="input-field" type="email" id="ob-email" placeholder="Email address" oninput="checkEmail()" /><p class="input-error" id="ob-email-error">Please enter a valid email address.</p></div>
+    <div class="input-wrap"><input class="input-field" type="email" id="ob-email" placeholder="Email address" oninput="checkEmail()" /><p class="input-error" id="ob-email-error">Please enter a valid email.</p></div>
     <div class="input-wrap">
       <input class="input-field" type="password" id="ob-password" placeholder="Create a password" oninput="checkPassword()" />
       <div class="pw-req"><span id="pw-len">✗ At least 6 characters</span><span id="pw-upper">✗ At least one uppercase letter</span><span id="pw-num">✗ At least one number</span></div>
@@ -367,18 +372,9 @@
     <div class="progress-wrap"><div class="progress-fill" style="width:50%"></div></div>
     <h2>Which Quran did you learn from?</h2>
     <p class="sub">This helps us show you the layout you're familiar with.</p>
-    <button class="option-btn" id="mushaf-13" onclick="selectMushaf('13')">
-      <strong>13 Line (Indo-Pak)</strong><br>
-      <span style="font-size:13px;color:#888;">Most common in UK madrasahs. The layout most South Asian Huffaz learned from.</span>
-    </button>
-    <button class="option-btn" id="mushaf-15" onclick="selectMushaf('15')">
-      <strong>15 Line (Madinah/Uthmani)</strong><br>
-      <span style="font-size:13px;color:#888;">Each page ends at a hizb boundary. Common in Middle Eastern mushafs.</span>
-    </button>
-    <button class="option-btn" id="mushaf-unsure" onclick="selectMushaf('unsure')">
-      <strong>Not sure</strong><br>
-      <span style="font-size:13px;color:#888;">We'll use the 13 line layout by default. You can change this in settings.</span>
-    </button>
+    <button class="option-btn" id="mushaf-13" onclick="selectMushaf('13')"><strong>13 Line (Indo-Pak)</strong><br><span style="font-size:13px;color:#888;">Most common in UK madrasahs.</span></button>
+    <button class="option-btn" id="mushaf-15" onclick="selectMushaf('15')"><strong>15 Line (Madinah/Uthmani)</strong><br><span style="font-size:13px;color:#888;">Each page ends at a hizb boundary.</span></button>
+    <button class="option-btn" id="mushaf-unsure" onclick="selectMushaf('unsure')"><strong>Not sure</strong><br><span style="font-size:13px;color:#888;">We'll use 13 line by default.</span></button>
     <button class="btn-primary" onclick="nextOnboardMushaf()" style="margin-top:16px;">Continue</button>
     <p class="error-msg" id="ob-mushaf-error"></p>
   </div>
@@ -459,7 +455,7 @@
     <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
     <div class="streak-card"><div><div class="streak-label">Current streak</div><div class="streak-num" id="dash-streak">0 days</div></div><div style="font-size:32px;">🔥</div></div>
-    <div class="today-card" id="today-card" onclick="showTab('recite')">
+    <div class="today-card" onclick="showTab('recite')">
       <div class="today-label">Today's revision</div>
       <div class="today-title" id="today-surah">Surah An-Nas</div>
       <div class="today-sub">Tap to begin reciting →</div>
@@ -471,24 +467,82 @@
     <!-- LINK TO PARENT -->
     <div style="background:#fff;border-radius:16px;border:1px solid #edf2ef;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
       <div id="link-parent-section">
-        <p style="font-size:13px;font-weight:600;color:#111;margin-bottom:6px;">Link to parent or teacher</p>
-        <p style="font-size:12px;color:#aaa;margin-bottom:10px;">Enter the ZD code your parent or teacher shared with you.</p>
+        <p style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;">Link to parent or teacher</p>
+        <p style="font-size:12px;color:#aaa;margin-bottom:10px;">Enter your teacher's ZD code to connect your accounts.</p>
         <div style="display:flex;gap:8px;">
-          <input class="input-field" type="text" id="link-code-input" placeholder="ZD-XXXX" style="margin-bottom:0;flex:1;padding:12px 14px;font-size:14px;text-transform:uppercase;" maxlength="7" />
+          <input class="input-field" type="text" id="link-code-input" placeholder="ZD-XXXX" style="margin-bottom:0;flex:1;padding:12px 14px;font-size:14px;text-transform:uppercase;" maxlength="7" oninput="this.value=this.value.toUpperCase()" />
           <button class="btn-primary" onclick="linkToParent()" style="margin-top:0;width:auto;padding:12px 16px;font-size:14px;">Link</button>
         </div>
         <p class="error-msg" id="link-error" style="text-align:left;margin-top:6px;"></p>
         <p class="success-msg" id="link-success" style="text-align:left;margin-top:6px;"></p>
       </div>
       <div id="linked-parent-section" style="display:none;">
-        <p style="font-size:13px;font-weight:600;color:#111;margin-bottom:4px;">✓ Linked to</p>
-        <p style="font-size:15px;font-weight:700;color:var(--primary);" id="linked-parent-name">—</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;font-size:16px;">✓</div>
+          <div><p style="font-size:13px;font-weight:700;color:var(--primary);">Account linked!</p><p style="font-size:12px;color:#aaa;" id="linked-parent-name">Connected to teacher</p></div>
+        </div>
       </div>
     </div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item active" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('myspace')"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>My Space</span></button>
+    <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#bbb"/></svg><span>Recite</span></button>
+    <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
+    <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+  </div>
+</div>
+
+<!-- MY SPACE -->
+<div class="screen" id="screen-myspace">
+  <div class="status-bar"><h1>My Space</h1></div>
+  <div class="screen-body">
+    <div class="myspace-tabs">
+      <button class="myspace-tab active" onclick="switchMySpaceTab('planner')">📅 Planner</button>
+      <button class="myspace-tab" onclick="switchMySpaceTab('notes')">📝 Notes</button>
+      <button class="myspace-tab" onclick="switchMySpaceTab('progress')">📊 Progress</button>
+    </div>
+
+    <!-- PLANNER TAB -->
+    <div class="myspace-section active" id="myspace-planner">
+      <p style="font-size:13px;color:#888;margin-bottom:14px;line-height:1.6;">Plan your revision for the week. Choose which surah to recite each day.</p>
+      <div id="planner-days"></div>
+      <button class="btn-primary" onclick="savePlanner()" style="margin-top:8px;">Save plan</button>
+      <p class="success-msg" id="planner-saved" style="margin-top:8px;"></p>
+    </div>
+
+    <!-- NOTES TAB -->
+    <div class="myspace-section" id="myspace-notes">
+      <p style="font-size:13px;color:#888;margin-bottom:14px;line-height:1.6;">Your personal space. Jot down anything — notes, duas, reminders, reflections.</p>
+      <textarea class="notes-area" id="notes-content" placeholder="Start writing..."></textarea>
+      <button class="btn-primary" onclick="saveNotes()" style="margin-top:12px;">Save notes</button>
+      <p class="success-msg" id="notes-saved" style="margin-top:8px;"></p>
+    </div>
+
+    <!-- PROGRESS TAB -->
+    <div class="myspace-section" id="myspace-progress">
+      <div class="progress-stat-card">
+        <div class="progress-stat-title">Overall stats</div>
+        <div class="tile-grid" style="margin-bottom:0;">
+          <div class="tile"><div class="tile-title">Sessions</div><div class="tile-val" id="prog-sessions">0</div></div>
+          <div class="tile"><div class="tile-title">Words</div><div class="tile-val" id="prog-words">0</div></div>
+          <div class="tile"><div class="tile-title">Streak</div><div class="tile-val" id="prog-streak">0</div><div class="tile-sub">days</div></div>
+          <div class="tile"><div class="tile-title">Avg accuracy</div><div class="tile-val" id="prog-accuracy">—</div></div>
+        </div>
+      </div>
+      <div class="progress-stat-card">
+        <div class="progress-stat-title">Most recited surahs</div>
+        <div id="prog-surahs"><p style="font-size:13px;color:#aaa;">No sessions yet — start reciting to see your progress here.</p></div>
+      </div>
+      <div class="progress-stat-card">
+        <div class="progress-stat-title">Words to review</div>
+        <div id="prog-mistakes"><p style="font-size:13px;color:#aaa;">No mistakes recorded yet.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
+    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1" stroke="var(--primary)" stroke-width="1.5" fill="none"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="var(--primary)" stroke-width="1.5" fill="none"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="var(--primary)" stroke-width="1.5" fill="none"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="var(--primary)" stroke-width="1.5" fill="none"/></svg><span style="color:var(--primary);">My Space</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#bbb"/></svg><span>Recite</span></button>
     <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
     <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
@@ -500,49 +554,32 @@
   <div class="status-bar"><h1>Zaid</h1></div>
   <div class="screen-body">
     <div class="greeting-name" id="parent-dash-name">Assalamu Alaikum</div>
-    <div class="greeting-sub">Supporting the next generation</div>
+    <div class="greeting-sub" id="parent-dash-sub">Supporting the next generation</div>
     <div class="link-card">
       <h3>Your link code</h3>
-      <p>Share this code with your students or children so they can link their accounts to yours.</p>
-      <div class="link-code" id="link-code">ZD-...</div>
-      <button class="btn-primary" style="margin-top:0;" onclick="copyCode()">Copy code</button>
+      <p>Share this code with your students. It never changes.</p>
+      <div class="link-code-display" id="parent-link-code">ZD-...</div>
+      <button class="btn-primary" style="margin-top:0;" onclick="copyParentCode()">Copy code</button>
     </div>
     <h2 style="font-size:18px;margin-bottom:12px;">Linked students</h2>
-    <div id="linked-students-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:20px 0;">No students linked yet. Share your code to get started.</p></div>
+    <div id="parent-students-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:20px 0;">No students linked yet.</p></div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item active" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/></svg><span>Home</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
-    <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Goals</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
 </div>
 
 <!-- PARENT STUDENTS -->
 <div class="screen" id="screen-parent-students">
-  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Students</h1><span></span></div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>My Students</h1><span></span></div>
   <div class="screen-body">
-    <div id="parent-students-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:40px 0;">No students linked yet.</p></div>
+    <div id="parent-students-full-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:40px 0;">No students linked yet. Share your ZD code to get started.</p></div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="var(--primary)" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="var(--primary)" stroke-width="1.5" fill="none"/></svg><span style="color:var(--primary);">Students</span></button>
-    <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Goals</span></button>
-    <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
-  </div>
-</div>
-
-<!-- PARENT GOALS -->
-<div class="screen" id="screen-parent-goals">
-  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>Goals</h1><span></span></div>
-  <div class="screen-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-    <div style="font-size:56px;margin-bottom:20px;">🎯</div><h2>Set goals</h2>
-    <p class="sub">Once students are linked, you'll be able to set revision goals and targets for them here.</p>
-  </div>
-  <div class="bottom-nav">
-    <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
-    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="var(--primary)"/><rect x="2" y="9" width="16" height="2" rx="1" fill="var(--primary)"/><rect x="2" y="14" width="10" height="2" rx="1" fill="var(--primary)"/></svg><span style="color:var(--primary);">Goals</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
 </div>
@@ -562,7 +599,6 @@
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-students')"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>Students</span></button>
-    <button class="nav-item" onclick="showScreen('screen-parent-goals')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Goals</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="var(--primary)" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/></svg><span style="color:var(--primary);">Settings</span></button>
   </div>
 </div>
@@ -576,9 +612,9 @@
     <div class="account-email" id="parent-details-email"></div>
     <div class="detail-card">
       <div class="detail-row"><div class="detail-label">Full name</div><div class="detail-value" id="parent-details-name-field">—</div></div>
-      <div class="detail-row"><div class="detail-label">Email address</div><div class="detail-value" id="parent-details-email-field">—</div></div>
-      <div class="detail-row"><div class="detail-label">Date of birth</div><div class="detail-value" id="parent-details-dob-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Email</div><div class="detail-value" id="parent-details-email-field">—</div></div>
       <div class="detail-row"><div class="detail-label">Role</div><div class="detail-value" id="parent-details-role-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Your ZD code</div><div class="detail-value" id="parent-details-zd-field" style="color:var(--primary);font-weight:700;letter-spacing:3px;">—</div></div>
     </div>
   </div>
 </div>
@@ -613,7 +649,7 @@
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('myspace')"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>My Space</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#bbb"/></svg><span>Recite</span></button>
     <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="var(--primary)" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round"/></svg><span style="color:var(--primary);">Settings</span></button>
@@ -625,32 +661,23 @@
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Mushaf Preference</h1><span></span></div>
   <div class="screen-body">
     <h2>Choose your layout</h2>
-    <p class="sub">This affects how the Quran browser will display pages when it's ready.</p>
+    <p class="sub">This affects how the Quran browser displays pages when it launches.</p>
     <button class="option-btn" id="ms-13" onclick="saveMushafPref('13')"><strong>13 Line (Indo-Pak)</strong><br><span style="font-size:13px;color:#888;">Most common in UK madrasahs.</span></button>
     <button class="option-btn" id="ms-15" onclick="saveMushafPref('15')"><strong>15 Line (Madinah/Uthmani)</strong><br><span style="font-size:13px;color:#888;">Each page ends at a hizb boundary.</span></button>
     <p class="success-msg" id="mushaf-saved" style="margin-top:12px;"></p>
   </div>
 </div>
 
-<!-- THEME SELECTOR -->
+<!-- THEME -->
 <div class="screen" id="screen-theme">
   <div class="status-bar"><button class="back-btn" id="theme-back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>App Theme</h1><span></span></div>
   <div class="screen-body">
     <h2>Choose your theme</h2>
     <p class="sub">Pick a colour theme that feels right for you.</p>
     <div style="background:#fff;border-radius:18px;border:1px solid #edf2ef;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f0f4f2;">
-        <div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#0D8A6A,#0A7459);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Forest Green</div><div style="font-size:12px;color:#aaa;margin-top:2px;">The classic Zaid theme</div></div></div>
-        <div class="theme-swatch green selected" id="swatch-green" onclick="applyTheme('green')"></div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f0f4f2;">
-        <div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#A855C8,#8B3DAF);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Royal Purple</div><div style="font-size:12px;color:#aaa;margin-top:2px;">Elegant and refined</div></div></div>
-        <div class="theme-swatch purple" id="swatch-purple" onclick="applyTheme('purple')"></div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;">
-        <div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#B8860B,#9A6F09);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Warm Gold</div><div style="font-size:12px;color:#aaa;margin-top:2px;">Spiritual and luxurious</div></div></div>
-        <div class="theme-swatch gold" id="swatch-gold" onclick="applyTheme('gold')"></div>
-      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f0f4f2;"><div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#0D8A6A,#0A7459);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Forest Green</div><div style="font-size:12px;color:#aaa;">The classic Zaid theme</div></div></div><div class="theme-swatch green selected" id="swatch-green" onclick="applyTheme('green')"></div></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid #f0f4f2;"><div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#A855C8,#8B3DAF);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Royal Purple</div><div style="font-size:12px;color:#aaa;">Elegant and refined</div></div></div><div class="theme-swatch purple" id="swatch-purple" onclick="applyTheme('purple')"></div></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;"><div style="display:flex;align-items:center;gap:14px;"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#B8860B,#9A6F09);"></div><div><div style="font-size:15px;font-weight:600;color:#111;">Warm Gold</div><div style="font-size:12px;color:#aaa;">Spiritual and luxurious</div></div></div><div class="theme-swatch gold" id="swatch-gold" onclick="applyTheme('gold')"></div></div>
     </div>
   </div>
 </div>
@@ -664,10 +691,10 @@
     <div class="account-email" id="details-email"></div>
     <div class="detail-card">
       <div class="detail-row"><div class="detail-label">Full name</div><div class="detail-value" id="details-name-field">—</div></div>
-      <div class="detail-row"><div class="detail-label">Email address</div><div class="detail-value" id="details-email-field">—</div></div>
-      <div class="detail-row"><div class="detail-label">Date of birth</div><div class="detail-value" id="details-dob-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Email</div><div class="detail-value" id="details-email-field">—</div></div>
       <div class="detail-row"><div class="detail-label">Journey</div><div class="detail-value" id="details-journey-field">—</div></div>
       <div class="detail-row"><div class="detail-label">Mushaf</div><div class="detail-value" id="details-mushaf-field">—</div></div>
+      <div class="detail-row"><div class="detail-label">Your ZD code</div><div class="detail-value" id="details-zd-field" style="color:var(--primary);font-weight:700;letter-spacing:3px;">—</div></div>
     </div>
   </div>
 </div>
@@ -686,7 +713,7 @@
   </div>
 </div>
 
-<!-- TAJWEED GUIDE FROM SETTINGS -->
+<!-- TAJWEED GUIDE -->
 <div class="screen" id="screen-tajweed-guide">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Tajweed Guide</h1><span></span></div>
   <div class="screen-body">
@@ -706,11 +733,11 @@
 <div class="screen" id="screen-tajweed-guide-recite">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-surah-list')">← Back</button><h1>Tajweed Guide</h1><span></span></div>
   <div class="screen-body">
-    <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
-    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
-    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">A nasal humming sound on shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">النَّاسِ</div></div>
-    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">Echoing sound on ق ط ب ج د with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ</div></div>
-    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div><div class="tj-rule-desc">Merging noon sakinah or tanween into the next letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
+    <p class="sub">Colour coding follows the Hafs Tajweed Quran.</p>
+    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Blue</div><div class="tj-rule-desc">Noon sakinah with nasal sound.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
+    <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">Nasal humming on shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">النَّاسِ</div></div>
+    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">Echoing bounce on ق ط ب ج د with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Green</div><div class="tj-rule-desc">Merging noon sakinah into the next letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
     <button class="btn-primary" onclick="showScreen('screen-surah-list')" style="margin-top:8px;">Back to surahs</button>
   </div>
 </div>
@@ -720,18 +747,17 @@
   <div class="status-bar"><button class="back-btn" onclick="showTab('dashboard')">← Back</button><h1>Choose Surah</h1><button class="info-btn" onclick="showScreen('screen-tajweed-guide-recite')">?</button></div>
   <div class="screen-body">
     <div class="tajweed-key"><span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span></div>
-    <!-- RECITATION MODE -->
-    <p style="font-size:13px;font-weight:600;color:#111;margin-bottom:10px;">Choose recitation mode</p>
+    <p style="font-size:12px;font-weight:600;color:#111;margin-bottom:8px;">Recitation mode</p>
     <div class="mode-grid">
-      <button class="mode-btn selected" id="mode-hidden" onclick="selectMode('hidden')"><span class="mode-icon">🫣</span><span class="mode-label">Hidden</span><span class="mode-desc">Words hidden, reveal as you go</span></button>
-      <button class="mode-btn" id="mode-guided" onclick="selectMode('guided')"><span class="mode-icon">👁️</span><span class="mode-label">Guided</span><span class="mode-desc">All words visible, highlights as you recite</span></button>
-      <button class="mode-btn" id="mode-test" onclick="selectMode('test')"><span class="mode-icon">🎯</span><span class="mode-label">Test</span><span class="mode-desc">Completely blank — advanced Huffaz only</span></button>
+      <button class="mode-btn selected" id="mode-hidden" onclick="selectMode('hidden')"><span class="mode-icon">🫣</span><span class="mode-label">Hidden</span><span class="mode-desc">Reveal as you go</span></button>
+      <button class="mode-btn" id="mode-guided" onclick="selectMode('guided')"><span class="mode-icon">👁️</span><span class="mode-label">Guided</span><span class="mode-desc">All visible</span></button>
+      <button class="mode-btn" id="mode-test" onclick="selectMode('test')"><span class="mode-icon">🎯</span><span class="mode-label">Test</span><span class="mode-desc">Completely blank</span></button>
     </div>
     <div id="surah-list"></div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('myspace')"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>My Space</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="var(--primary)" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="var(--primary)"/></svg><span style="color:var(--primary);">Recite</span></button>
     <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
     <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
@@ -740,7 +766,7 @@
 
 <!-- RECITE SCREEN -->
 <div class="screen" id="screen-recite">
-  <div class="status-bar"><button class="back-btn" onclick="endSession()">← Back</button><h1 id="recite-title">Recite</h1><span id="recite-mode-badge" style="font-size:11px;background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:999px;">Hidden</span></div>
+  <div class="status-bar"><button class="back-btn" onclick="endSessionToSurahList()">← Back</button><h1 id="recite-title">Recite</h1><span id="recite-mode-badge" style="font-size:11px;background:rgba(255,255,255,0.2);padding:3px 10px;border-radius:999px;">Hidden</span></div>
   <div class="screen-body">
     <div class="tajweed-key"><span class="tj-badge ikhfa">Ikhfa</span><span class="tj-badge ghunnah">Ghunnah</span><span class="tj-badge ikhfa-meem">Ikhfa Meem</span><span class="tj-badge idgham">Idgham</span><span class="tj-badge qalqalah">Qalqalah</span><span class="tj-badge qalb">Qalb</span><span class="tj-badge idgham-meem">Idgham Meem</span></div>
     <div class="recite-arabic-box" id="arabic-display"></div>
@@ -753,7 +779,7 @@
     <div class="mic-area">
       <button class="peek-btn" id="peek-btn" onclick="togglePeek()">Peek</button>
       <button class="mic-btn" id="mic-btn" onclick="toggleMic()"><svg viewBox="0 0 28 28" fill="none"><rect x="9" y="2" width="10" height="16" rx="5" fill="white"/><path d="M4 14c0 5.52 4.48 10 10 10s10-4.48 10-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/><line x1="14" y1="24" x2="14" y2="28" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg></button>
-      <button class="end-btn" onclick="endSession()">End</button>
+      <button class="end-btn" onclick="endSessionToSurahList()">End</button>
     </div>
     <div class="session-progress">
       <div class="session-progress-label">Progress</div>
@@ -766,8 +792,8 @@
     </div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-item" onclick="endSession()"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="endSessionToSurahList()"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
+    <button class="nav-item" onclick="showTab('myspace')"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>My Space</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="var(--primary)" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="var(--primary)"/></svg><span style="color:var(--primary);">Recite</span></button>
     <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
     <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
@@ -794,27 +820,18 @@
       <div class="mistake-review-title">Words to review</div>
       <div id="mistake-words"></div>
     </div>
-    <div class="ai-feedback-card" id="ai-feedback-card">
+    <div class="ai-feedback-card">
       <div class="ai-feedback-header">
         <div class="ai-feedback-header-left">
           <div class="ai-feedback-icon">🤖</div>
-          <div>
-            <div class="ai-feedback-title">Zaid's Feedback</div>
-            <div class="ai-feedback-subtitle">AI-powered analysis from your session</div>
-          </div>
+          <div><div class="ai-feedback-title">Zaid's Feedback</div><div class="ai-feedback-subtitle">AI-powered analysis</div></div>
         </div>
-        <button class="ai-audio-btn" id="ai-audio-btn" onclick="toggleAudio()" disabled title="Listen to feedback">
-          <svg viewBox="0 0 20 20" fill="none">
-            <polygon id="audio-icon-play" points="5,3 17,10 5,17" fill="white"/>
-            <g id="audio-icon-stop" style="display:none"><rect x="4" y="3" width="4" height="14" rx="1" fill="white"/><rect x="12" y="3" width="4" height="14" rx="1" fill="white"/></g>
-          </svg>
+        <button class="ai-audio-btn" id="ai-audio-btn" onclick="toggleAudio()" disabled>
+          <svg viewBox="0 0 20 20" fill="none"><polygon id="audio-icon-play" points="5,3 17,10 5,17" fill="white"/><g id="audio-icon-stop" style="display:none"><rect x="4" y="3" width="4" height="14" rx="1" fill="white"/><rect x="12" y="3" width="4" height="14" rx="1" fill="white"/></g></svg>
         </button>
       </div>
       <div id="ai-feedback-content">
-        <div class="ai-feedback-loading">
-          <div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div>
-          <span class="ai-loading-text">Zaid is analysing your recitation...</span>
-        </div>
+        <div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>
       </div>
     </div>
     <button class="btn-primary" onclick="showTab('recite')" style="margin-bottom:10px;">Recite again</button>
@@ -833,31 +850,45 @@
       <button class="mushaf-btn active" id="quran-13-btn" onclick="setQuranLayout('13')">13 Line (Indo-Pak)</button>
       <button class="mushaf-btn" id="quran-15-btn" onclick="setQuranLayout('15')">15 Line (Madinah)</button>
     </div>
-    <p style="font-size:12px;color:#bbb;margin-top:12px;">Your preference is saved for when the browser is ready.</p>
+    <p style="font-size:12px;color:#bbb;margin-top:12px;">Your preference is saved for when the browser launches.</p>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item" onclick="showTab('schedule')"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="9" width="16" height="2" rx="1" fill="#bbb"/><rect x="2" y="14" width="10" height="2" rx="1" fill="#bbb"/></svg><span>Schedule</span></button>
+    <button class="nav-item" onclick="showTab('myspace')"><svg viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="3" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="3" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="11" y="11" width="6" height="6" rx="1" stroke="#bbb" stroke-width="1.5" fill="none"/></svg><span>My Space</span></button>
     <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#bbb"/></svg><span>Recite</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="var(--primary)" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="var(--primary)"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="var(--primary)"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="var(--primary)"/></svg><span style="color:var(--primary);">Quran</span></button>
     <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
   </div>
 </div>
 
-<!-- SCHEDULE -->
-<div class="screen" id="screen-schedule">
-  <div class="status-bar"><h1>Schedule</h1></div>
-  <div class="screen-body">
-    <h2>This week</h2>
-    <p class="sub">Your personalised revision plan.</p>
-    <div id="schedule-list"></div>
+<!-- FIRST TIME RECITE WALKTHROUGH OVERLAY -->
+<div class="walkthrough-overlay" id="recite-walkthrough">
+  <div class="walkthrough-tooltip">
+    <div class="wt-step-icon" id="rwt-icon">🎙️</div>
+    <div class="wt-step-title" id="rwt-title">Welcome to Recite</div>
+    <div class="wt-step-text" id="rwt-text">This is where your revision happens. Pick a surah and Zaid will listen as you recite.</div>
+    <div class="wt-step-progress">
+      <div class="wt-step-dot active" id="rwt-dot-0"></div>
+      <div class="wt-step-dot" id="rwt-dot-1"></div>
+      <div class="wt-step-dot" id="rwt-dot-2"></div>
+      <div class="wt-step-dot" id="rwt-dot-3"></div>
+    </div>
+    <button class="wt-next-btn" onclick="nextReciteWT()">Got it →</button>
   </div>
-  <div class="bottom-nav">
-    <button class="nav-item" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
-    <button class="nav-item active"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="2" rx="1" fill="var(--primary)"/><rect x="2" y="9" width="16" height="2" rx="1" fill="var(--primary)"/><rect x="2" y="14" width="10" height="2" rx="1" fill="var(--primary)"/></svg><span>Schedule</span></button>
-    <button class="nav-item" onclick="showTab('recite')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" stroke="#bbb" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="3" fill="#bbb"/></svg><span>Recite</span></button>
-    <button class="nav-item" onclick="showTab('quran')"><svg viewBox="0 0 20 20"><rect x="3" y="2" width="14" height="16" rx="2" stroke="#bbb" stroke-width="1.5" fill="none"/><rect x="6" y="6" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="9" width="8" height="1.5" rx="0.75" fill="#bbb"/><rect x="6" y="12" width="5" height="1.5" rx="0.75" fill="#bbb"/></svg><span>Quran</span></button>
-    <button class="nav-item" onclick="showTab('settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+</div>
+
+<!-- FIRST TIME MYSPACE WALKTHROUGH OVERLAY -->
+<div class="walkthrough-overlay" id="myspace-walkthrough">
+  <div class="walkthrough-tooltip">
+    <div class="wt-step-icon" id="mwt-icon">📅</div>
+    <div class="wt-step-title" id="mwt-title">Welcome to My Space</div>
+    <div class="wt-step-text" id="mwt-text">This is your personal hub. Plan your week, take notes, and track your progress.</div>
+    <div class="wt-step-progress">
+      <div class="wt-step-dot active" id="mwt-dot-0"></div>
+      <div class="wt-step-dot" id="mwt-dot-1"></div>
+      <div class="wt-step-dot" id="mwt-dot-2"></div>
+    </div>
+    <button class="wt-next-btn" onclick="nextMySpaceWT()">Got it →</button>
   </div>
 </div>
 
@@ -869,21 +900,21 @@ const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const ENGINE_URL='https://zaid-engine.onrender.com';
 
 const SURAHS=[
-  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,tajweedRules:['Ghunnah on النَّاسِ (3 times)','Ikhfa on مِن','Ghunnah on الْخَنَّاسِ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:1},{t:'مَلِكِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:2},{t:'إِلَٰهِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'ٱلْوَسْوَاسِ',tj:'normal'},{t:'ٱلْخَنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:4},{t:'ٱلَّذِى',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:5},{t:'مِنَ',tj:'normal'},{t:'ٱلْجِنَّةِ',tj:'ghunnah'},{t:'وَٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:6}]},
-  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,tajweedRules:['Qalqalah on قُلْ','Qalqalah on ٱلْفَلَقِ','Ikhfa on مِن','Ghunnah on ٱلنَّفَّٰثَٰتِ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلْفَلَقِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:1},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'غَاسِقٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'وَقَبَ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'ٱلنَّفَّٰثَٰتِ',tj:'ghunnah'},{t:'فِى',tj:'normal'},{t:'ٱلْعُقَدِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'},{t:'۝',tj:'marker',ayah:5}]},
-  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,tajweedRules:['Qalqalah on قُلْ','Qalqalah on يَلِدْ','Qalqalah on يُولَدْ','Idgham on لَّهُۥ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'ٱللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'ٱللَّهُ',tj:'normal'},{t:'ٱلصَّمَدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},{t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُۥ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌۢ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}]},
-  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,tajweedRules:['Ghunnah on حَمَّالَةَ','Qalqalah on ٱلْحَطَبِ','Ghunnah on مِّن'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'تَبَّتْ',tj:'normal'},{t:'يَدَآ',tj:'normal'},{t:'أَبِى',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'مَآ',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُۥ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'سَيَصْلَىٰ',tj:'normal'},{t:'نَارًا',tj:'normal'},{t:'ذَاتَ',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'وَٱمْرَأَتُهُۥ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'ٱلْحَطَبِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:4},{t:'فِى',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}]},
-  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,tajweedRules:['Ghunnah on ٱلنَّاسَ','Ghunnah on إِنَّهُۥ','Ghunnah on تَوَّابًۢا'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'إِذَا',tj:'normal'},{t:'جَآءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'وَٱلْفَتْحُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'وَرَأَيْتَ',tj:'normal'},{t:'ٱلنَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَٱسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُۥ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًۢا',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3}]},
-  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,tajweedRules:['Qalqalah on قُلْ','Idgham on مَّا'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'يَٰٓأَيُّهَا',tj:'normal'},{t:'ٱلْكَٰفِرُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'لَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'وَلَآ',tj:'normal'},{t:'أَنَا۠',tj:'normal'},{t:'عَابِدٌ',tj:'normal'},{t:'مَّا',tj:'idgham'},{t:'عَبَدتُّمْ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِىَ',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:6}]},
-  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,tajweedRules:['Ghunnah on إِنَّآ','Ghunnah on إِنَّ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'إِنَّآ',tj:'ghunnah'},{t:'أَعْطَيْنَٰكَ',tj:'normal'},{t:'ٱلْكَوْثَرَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'فَصَلِّ',tj:'normal'},{t:'لِرَبِّكَ',tj:'normal'},{t:'وَٱنْحَرْ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'إِنَّ',tj:'ghunnah'},{t:'شَانِئَكَ',tj:'normal'},{t:'هُوَ',tj:'normal'},{t:'ٱلْأَبْتَرُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3}]},
+  {num:114,nameEn:'Surah An-Nas',nameAr:'سورة الناس',ayahs:6,tajweedRules:['Ghunnah on النَّاسِ (3 times)','Ikhfa on مِن'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:1},{t:'مَلِكِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:2},{t:'إِلَٰهِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'ٱلْوَسْوَاسِ',tj:'normal'},{t:'ٱلْخَنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:4},{t:'ٱلَّذِى',tj:'normal'},{t:'يُوَسْوِسُ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'صُدُورِ',tj:'normal'},{t:'ٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:5},{t:'مِنَ',tj:'normal'},{t:'ٱلْجِنَّةِ',tj:'ghunnah'},{t:'وَٱلنَّاسِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:6}]},
+  {num:113,nameEn:'Surah Al-Falaq',nameAr:'سورة الفلق',ayahs:5,tajweedRules:['Qalqalah on قُلْ and ٱلْفَلَقِ','Ghunnah on ٱلنَّفَّٰثَٰتِ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'أَعُوذُ',tj:'normal'},{t:'بِرَبِّ',tj:'normal'},{t:'ٱلْفَلَقِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:1},{t:'مِن',tj:'ikhfa'},{t:'شَرِّ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'خَلَقَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'غَاسِقٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'وَقَبَ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'ٱلنَّفَّٰثَٰتِ',tj:'ghunnah'},{t:'فِى',tj:'normal'},{t:'ٱلْعُقَدِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَمِن',tj:'normal'},{t:'شَرِّ',tj:'normal'},{t:'حَاسِدٍ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'حَسَدَ',tj:'normal'},{t:'۝',tj:'marker',ayah:5}]},
+  {num:112,nameEn:'Surah Al-Ikhlas',nameAr:'سورة الإخلاص',ayahs:4,tajweedRules:['Qalqalah on قُلْ, يَلِدْ, يُولَدْ','Idgham on لَّهُۥ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'هُوَ',tj:'normal'},{t:'ٱللَّهُ',tj:'normal'},{t:'أَحَدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'ٱللَّهُ',tj:'normal'},{t:'ٱلصَّمَدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'لَمْ',tj:'normal'},{t:'يَلِدْ',tj:'qalqalah'},{t:'وَلَمْ',tj:'normal'},{t:'يُولَدْ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:3},{t:'وَلَمْ',tj:'normal'},{t:'يَكُن',tj:'normal'},{t:'لَّهُۥ',tj:'idgham'},{t:'كُفُوًا',tj:'normal'},{t:'أَحَدٌۢ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}]},
+  {num:111,nameEn:'Surah Al-Masad',nameAr:'سورة المسد',ayahs:5,tajweedRules:['Ghunnah on حَمَّالَةَ and مِّن','Qalqalah on ٱلْحَطَبِ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'تَبَّتْ',tj:'normal'},{t:'يَدَآ',tj:'normal'},{t:'أَبِى',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'وَتَبَّ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'مَآ',tj:'normal'},{t:'أَغْنَىٰ',tj:'normal'},{t:'عَنْهُ',tj:'normal'},{t:'مَالُهُۥ',tj:'normal'},{t:'وَمَا',tj:'normal'},{t:'كَسَبَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'سَيَصْلَىٰ',tj:'normal'},{t:'نَارًا',tj:'normal'},{t:'ذَاتَ',tj:'normal'},{t:'لَهَبٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'وَٱمْرَأَتُهُۥ',tj:'normal'},{t:'حَمَّالَةَ',tj:'ghunnah'},{t:'ٱلْحَطَبِ',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:4},{t:'فِى',tj:'normal'},{t:'جِيدِهَا',tj:'normal'},{t:'حَبْلٌ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'مَّسَدٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}]},
+  {num:110,nameEn:'Surah An-Nasr',nameAr:'سورة النصر',ayahs:3,tajweedRules:['Ghunnah on ٱلنَّاسَ and إِنَّهُۥ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'إِذَا',tj:'normal'},{t:'جَآءَ',tj:'normal'},{t:'نَصْرُ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'وَٱلْفَتْحُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'وَرَأَيْتَ',tj:'normal'},{t:'ٱلنَّاسَ',tj:'ghunnah'},{t:'يَدْخُلُونَ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'أَفْوَاجًا',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'فَسَبِّحْ',tj:'normal'},{t:'بِحَمْدِ',tj:'normal'},{t:'رَبِّكَ',tj:'normal'},{t:'وَٱسْتَغْفِرْهُ',tj:'normal'},{t:'إِنَّهُۥ',tj:'ghunnah'},{t:'كَانَ',tj:'normal'},{t:'تَوَّابًۢا',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:3}]},
+  {num:109,nameEn:'Surah Al-Kafirun',nameAr:'سورة الكافرون',ayahs:6,tajweedRules:['Qalqalah on قُلْ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'قُلْ',tj:'qalqalah'},{t:'يَٰٓأَيُّهَا',tj:'normal'},{t:'ٱلْكَٰفِرُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'لَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'تَعْبُدُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'وَلَآ',tj:'normal'},{t:'أَنَا۠',tj:'normal'},{t:'عَابِدٌ',tj:'normal'},{t:'مَّا',tj:'idgham'},{t:'عَبَدتُّمْ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَلَآ',tj:'normal'},{t:'أَنتُمْ',tj:'normal'},{t:'عَٰبِدُونَ',tj:'normal'},{t:'مَآ',tj:'normal'},{t:'أَعْبُدُ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'لَكُمْ',tj:'normal'},{t:'دِينُكُمْ',tj:'normal'},{t:'وَلِىَ',tj:'normal'},{t:'دِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:6}]},
+  {num:108,nameEn:'Surah Al-Kawthar',nameAr:'سورة الكوثر',ayahs:3,tajweedRules:['Ghunnah on إِنَّآ and إِنَّ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'إِنَّآ',tj:'ghunnah'},{t:'أَعْطَيْنَٰكَ',tj:'normal'},{t:'ٱلْكَوْثَرَ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'فَصَلِّ',tj:'normal'},{t:'لِرَبِّكَ',tj:'normal'},{t:'وَٱنْحَرْ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'إِنَّ',tj:'ghunnah'},{t:'شَانِئَكَ',tj:'normal'},{t:'هُوَ',tj:'normal'},{t:'ٱلْأَبْتَرُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3}]},
   {num:107,nameEn:'Surah Al-Maun',nameAr:'سورة الماعون',ayahs:7,tajweedRules:['Idgham on لِّلْمُصَلِّينَ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'أَرَءَيْتَ',tj:'normal'},{t:'ٱلَّذِى',tj:'normal'},{t:'يُكَذِّبُ',tj:'normal'},{t:'بِٱلدِّينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'فَذَٰلِكَ',tj:'normal'},{t:'ٱلَّذِى',tj:'normal'},{t:'يَدُعُّ',tj:'normal'},{t:'ٱلْيَتِيمَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَلَا',tj:'normal'},{t:'يَحُضُّ',tj:'normal'},{t:'عَلَىٰ',tj:'normal'},{t:'طَعَامِ',tj:'normal'},{t:'ٱلْمِسْكِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'فَوَيْلٌ',tj:'normal'},{t:'لِّلْمُصَلِّينَ',tj:'idgham'},{t:'۝',tj:'marker',ayah:4},{t:'ٱلَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'عَن',tj:'normal'},{t:'صَلَاتِهِمْ',tj:'normal'},{t:'سَاهُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'ٱلَّذِينَ',tj:'normal'},{t:'هُمْ',tj:'normal'},{t:'يُرَآءُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'وَيَمْنَعُونَ',tj:'normal'},{t:'ٱلْمَاعُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:7}]},
   {num:106,nameEn:'Surah Quraysh',nameAr:'سورة قريش',ayahs:4,tajweedRules:['Ghunnah on مِّن (twice)'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'لِإِيلَٰفِ',tj:'normal'},{t:'قُرَيْشٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'إِۦلَٰفِهِمْ',tj:'normal'},{t:'رِحْلَةَ',tj:'normal'},{t:'ٱلشِّتَآءِ',tj:'normal'},{t:'وَٱلصَّيْفِ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'فَلْيَعْبُدُوا',tj:'normal'},{t:'رَبَّ',tj:'normal'},{t:'هَٰذَا',tj:'normal'},{t:'ٱلْبَيْتِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'ٱلَّذِىٓ',tj:'normal'},{t:'أَطْعَمَهُم',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'جُوعٍ',tj:'normal'},{t:'وَءَامَنَهُم',tj:'normal'},{t:'مِّنْ',tj:'ghunnah'},{t:'خَوْفٍۭ',tj:'normal'},{t:'۝',tj:'marker',ayah:4}]},
-  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,tajweedRules:['Ghunnah on مِّن','Ghunnah on سِجِّيلٍ','Idgham on مَّأْكُولٍۭ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَٰبِ',tj:'normal'},{t:'ٱلْفِيلِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:4},{t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}]},
-  {num:104,nameEn:'Surah Al-Humazah',nameAr:'سورة الهمزة',ayahs:9,tajweedRules:['Ghunnah on إِنَّهَا','Ghunnah on عَلَيْهِم مُّوصَدَةٌ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'وَيْلٌ',tj:'normal'},{t:'لِّكُلِّ',tj:'idgham'},{t:'هُمَزَةٍ',tj:'normal'},{t:'لُّمَزَةٍ',tj:'idgham'},{t:'۝',tj:'marker',ayah:1},{t:'ٱلَّذِى',tj:'normal'},{t:'جَمَعَ',tj:'normal'},{t:'مَالًا',tj:'normal'},{t:'وَعَدَّدَهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'يَحْسَبُ',tj:'normal'},{t:'أَنَّ',tj:'ghunnah'},{t:'مَالَهُۥٓ',tj:'normal'},{t:'أَخْلَدَهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'كَلَّا',tj:'normal'},{t:'لَيُنۢبَذَنَّ',tj:'ghunnah'},{t:'فِى',tj:'normal'},{t:'ٱلْحُطَمَةِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَمَآ',tj:'normal'},{t:'أَدْرَىٰكَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'ٱلْحُطَمَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'نَارُ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلْمُوقَدَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'ٱلَّتِى',tj:'normal'},{t:'تَطَّلِعُ',tj:'normal'},{t:'عَلَى',tj:'normal'},{t:'ٱلْأَفْـِٔدَةِ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'إِنَّهَا',tj:'ghunnah'},{t:'عَلَيْهِم',tj:'normal'},{t:'مُّؤْصَدَةٌ',tj:'idgham-meem'},{t:'۝',tj:'marker',ayah:8},{t:'فِى',tj:'normal'},{t:'عَمَدٍ',tj:'normal'},{t:'مُّمَدَّدَةٍۭ',tj:'idgham-meem'},{t:'۝',tj:'marker',ayah:9}]},
-  {num:103,nameEn:'Surah Al-Asr',nameAr:'سورة العصر',ayahs:3,tajweedRules:['Ghunnah on إِنَّ','Idgham on وَتَوَاصَوْا۟ بِ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'وَٱلْعَصْرِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'إِنَّ',tj:'ghunnah'},{t:'ٱلْإِنسَٰنَ',tj:'normal'},{t:'لَفِى',tj:'normal'},{t:'خُسْرٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'إِلَّا',tj:'normal'},{t:'ٱلَّذِينَ',tj:'normal'},{t:'ءَامَنُوا۟',tj:'normal'},{t:'وَعَمِلُوا۟',tj:'normal'},{t:'ٱلصَّٰلِحَٰتِ',tj:'normal'},{t:'وَتَوَاصَوْا۟',tj:'normal'},{t:'بِٱلْحَقِّ',tj:'normal'},{t:'وَتَوَاصَوْا۟',tj:'normal'},{t:'بِٱلصَّبْرِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3}]},
-  {num:102,nameEn:'Surah At-Takathur',nameAr:'سورة التكاثر',ayahs:8,tajweedRules:['Ghunnah on ثُمَّ','Qalqalah on لَتَرَوُنَّ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'أَلْهَىٰكُمُ',tj:'normal'},{t:'ٱلتَّكَاثُرُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'حَتَّىٰ',tj:'normal'},{t:'زُرْتُمُ',tj:'normal'},{t:'ٱلْمَقَابِرَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'كَلَّا',tj:'normal'},{t:'سَوْفَ',tj:'normal'},{t:'تَعْلَمُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'ثُمَّ',tj:'ghunnah'},{t:'كَلَّا',tj:'normal'},{t:'سَوْفَ',tj:'normal'},{t:'تَعْلَمُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'كَلَّا',tj:'normal'},{t:'لَوْ',tj:'normal'},{t:'تَعْلَمُونَ',tj:'normal'},{t:'عِلْمَ',tj:'normal'},{t:'ٱلْيَقِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'لَتَرَوُنَّ',tj:'qalqalah'},{t:'ٱلْجَحِيمَ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'ثُمَّ',tj:'ghunnah'},{t:'لَتَرَوُنَّهَا',tj:'normal'},{t:'عَيْنَ',tj:'normal'},{t:'ٱلْيَقِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'ثُمَّ',tj:'ghunnah'},{t:'لَتُسْـَٔلُنَّ',tj:'normal'},{t:'يَوْمَئِذٍ',tj:'normal'},{t:'عَنِ',tj:'normal'},{t:'ٱلنَّعِيمِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:8}]},
-  {num:101,nameEn:'Surah Al-Qariah',nameAr:'سورة القارعة',ayahs:11,tajweedRules:['Qalqalah throughout','Ghunnah on فَأُمُّهُۥ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'ٱلْقَارِعَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'مَا',tj:'normal'},{t:'ٱلْقَارِعَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَمَآ',tj:'normal'},{t:'أَدْرَىٰكَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'ٱلْقَارِعَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'يَوْمَ',tj:'normal'},{t:'يَكُونُ',tj:'normal'},{t:'ٱلنَّاسُ',tj:'ghunnah'},{t:'كَٱلْفَرَاشِ',tj:'normal'},{t:'ٱلْمَبْثُوثِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَتَكُونُ',tj:'normal'},{t:'ٱلْجِبَالُ',tj:'normal'},{t:'كَٱلْعِهْنِ',tj:'normal'},{t:'ٱلْمَنفُوشِ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'فَأَمَّا',tj:'ghunnah'},{t:'مَن',tj:'ikhfa'},{t:'ثَقُلَتْ',tj:'normal'},{t:'مَوَٰزِينُهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'فَهُوَ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'عِيشَةٍ',tj:'normal'},{t:'رَّاضِيَةٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'وَأَمَّا',tj:'ghunnah'},{t:'مَنْ',tj:'ikhfa'},{t:'خَفَّتْ',tj:'normal'},{t:'مَوَٰزِينُهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:8},{t:'فَأُمُّهُۥ',tj:'ghunnah'},{t:'هَاوِيَةٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:9},{t:'وَمَآ',tj:'normal'},{t:'أَدْرَىٰكَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'هِيَهْ',tj:'normal'},{t:'۝',tj:'marker',ayah:10},{t:'نَارٌ',tj:'normal'},{t:'حَامِيَةٌۢ',tj:'normal'},{t:'۝',tj:'marker',ayah:11}]},
-  {num:100,nameEn:'Surah Al-Adiyat',nameAr:'سورة العاديات',ayahs:11,tajweedRules:['Qalqalah on وَٱلْعَٰدِيَٰتِ','Ghunnah on إِنَّهُۥ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'وَٱلْعَٰدِيَٰتِ',tj:'normal'},{t:'ضَبْحًا',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:1},{t:'فَٱلْمُورِيَٰتِ',tj:'normal'},{t:'قَدْحًا',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:2},{t:'فَٱلْمُغِيرَٰتِ',tj:'normal'},{t:'صُبْحًا',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'فَأَثَرْنَ',tj:'normal'},{t:'بِهِۦ',tj:'normal'},{t:'نَقْعًا',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'فَوَسَطْنَ',tj:'normal'},{t:'بِهِۦ',tj:'normal'},{t:'جَمْعًا',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'إِنَّ',tj:'ghunnah'},{t:'ٱلْإِنسَٰنَ',tj:'normal'},{t:'لِرَبِّهِۦ',tj:'normal'},{t:'لَكَنُودٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'وَإِنَّهُۥ',tj:'ghunnah'},{t:'عَلَىٰ',tj:'normal'},{t:'ذَٰلِكَ',tj:'normal'},{t:'لَشَهِيدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'وَإِنَّهُۥ',tj:'ghunnah'},{t:'لِحُبِّ',tj:'normal'},{t:'ٱلْخَيْرِ',tj:'normal'},{t:'لَشَدِيدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:8},{t:'أَفَلَا',tj:'normal'},{t:'يَعْلَمُ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'بُعْثِرَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'فِى',tj:'normal'},{t:'ٱلْقُبُورِ',tj:'normal'},{t:'۝',tj:'marker',ayah:9},{t:'وَحُصِّلَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'فِى',tj:'normal'},{t:'ٱلصُّدُورِ',tj:'normal'},{t:'۝',tj:'marker',ayah:10},{t:'إِنَّ',tj:'ghunnah'},{t:'رَبَّهُم',tj:'normal'},{t:'بِهِمْ',tj:'normal'},{t:'يَوْمَئِذٍ',tj:'normal'},{t:'لَّخَبِيرٌۢ',tj:'idgham'},{t:'۝',tj:'marker',ayah:11}]}
+  {num:105,nameEn:'Surah Al-Fil',nameAr:'سورة الفيل',ayahs:5,tajweedRules:['Ghunnah on مِّن and سِجِّيلٍ','Idgham on مَّأْكُولٍۭ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'أَلَمْ',tj:'normal'},{t:'تَرَ',tj:'normal'},{t:'كَيْفَ',tj:'normal'},{t:'فَعَلَ',tj:'normal'},{t:'رَبُّكَ',tj:'normal'},{t:'بِأَصْحَٰبِ',tj:'normal'},{t:'ٱلْفِيلِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'أَلَمْ',tj:'normal'},{t:'يَجْعَلْ',tj:'normal'},{t:'كَيْدَهُمْ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'تَضْلِيلٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَأَرْسَلَ',tj:'normal'},{t:'عَلَيْهِمْ',tj:'normal'},{t:'طَيْرًا',tj:'normal'},{t:'أَبَابِيلَ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'تَرْمِيهِم',tj:'normal'},{t:'بِحِجَارَةٍ',tj:'normal'},{t:'مِّن',tj:'ghunnah'},{t:'سِجِّيلٍ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:4},{t:'فَجَعَلَهُمْ',tj:'normal'},{t:'كَعَصْفٍ',tj:'normal'},{t:'مَّأْكُولٍۭ',tj:'idgham'},{t:'۝',tj:'marker',ayah:5}]},
+  {num:104,nameEn:'Surah Al-Humazah',nameAr:'سورة الهمزة',ayahs:9,tajweedRules:['Ghunnah on إِنَّهَا','Idgham Meem on مُّؤْصَدَةٌ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'وَيْلٌ',tj:'normal'},{t:'لِّكُلِّ',tj:'idgham'},{t:'هُمَزَةٍ',tj:'normal'},{t:'لُّمَزَةٍ',tj:'idgham'},{t:'۝',tj:'marker',ayah:1},{t:'ٱلَّذِى',tj:'normal'},{t:'جَمَعَ',tj:'normal'},{t:'مَالًا',tj:'normal'},{t:'وَعَدَّدَهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'يَحْسَبُ',tj:'normal'},{t:'أَنَّ',tj:'ghunnah'},{t:'مَالَهُۥٓ',tj:'normal'},{t:'أَخْلَدَهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'كَلَّا',tj:'normal'},{t:'لَيُنۢبَذَنَّ',tj:'ghunnah'},{t:'فِى',tj:'normal'},{t:'ٱلْحُطَمَةِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَمَآ',tj:'normal'},{t:'أَدْرَىٰكَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'ٱلْحُطَمَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'نَارُ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلْمُوقَدَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'ٱلَّتِى',tj:'normal'},{t:'تَطَّلِعُ',tj:'normal'},{t:'عَلَى',tj:'normal'},{t:'ٱلْأَفْـِٔدَةِ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'إِنَّهَا',tj:'ghunnah'},{t:'عَلَيْهِم',tj:'normal'},{t:'مُّؤْصَدَةٌ',tj:'idgham-meem'},{t:'۝',tj:'marker',ayah:8},{t:'فِى',tj:'normal'},{t:'عَمَدٍ',tj:'normal'},{t:'مُّمَدَّدَةٍۭ',tj:'idgham-meem'},{t:'۝',tj:'marker',ayah:9}]},
+  {num:103,nameEn:'Surah Al-Asr',nameAr:'سورة العصر',ayahs:3,tajweedRules:['Ghunnah on إِنَّ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'وَٱلْعَصْرِ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'إِنَّ',tj:'ghunnah'},{t:'ٱلْإِنسَٰنَ',tj:'normal'},{t:'لَفِى',tj:'normal'},{t:'خُسْرٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'إِلَّا',tj:'normal'},{t:'ٱلَّذِينَ',tj:'normal'},{t:'ءَامَنُوا۟',tj:'normal'},{t:'وَعَمِلُوا۟',tj:'normal'},{t:'ٱلصَّٰلِحَٰتِ',tj:'normal'},{t:'وَتَوَاصَوْا۟',tj:'normal'},{t:'بِٱلْحَقِّ',tj:'normal'},{t:'وَتَوَاصَوْا۟',tj:'normal'},{t:'بِٱلصَّبْرِ',tj:'normal'},{t:'۝',tj:'marker',ayah:3}]},
+  {num:102,nameEn:'Surah At-Takathur',nameAr:'سورة التكاثر',ayahs:8,tajweedRules:['Ghunnah on ثُمَّ (3 times)'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'أَلْهَىٰكُمُ',tj:'normal'},{t:'ٱلتَّكَاثُرُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'حَتَّىٰ',tj:'normal'},{t:'زُرْتُمُ',tj:'normal'},{t:'ٱلْمَقَابِرَ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'كَلَّا',tj:'normal'},{t:'سَوْفَ',tj:'normal'},{t:'تَعْلَمُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'ثُمَّ',tj:'ghunnah'},{t:'كَلَّا',tj:'normal'},{t:'سَوْفَ',tj:'normal'},{t:'تَعْلَمُونَ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'كَلَّا',tj:'normal'},{t:'لَوْ',tj:'normal'},{t:'تَعْلَمُونَ',tj:'normal'},{t:'عِلْمَ',tj:'normal'},{t:'ٱلْيَقِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'لَتَرَوُنَّ',tj:'qalqalah'},{t:'ٱلْجَحِيمَ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'ثُمَّ',tj:'ghunnah'},{t:'لَتَرَوُنَّهَا',tj:'normal'},{t:'عَيْنَ',tj:'normal'},{t:'ٱلْيَقِينِ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'ثُمَّ',tj:'ghunnah'},{t:'لَتُسْـَٔلُنَّ',tj:'normal'},{t:'يَوْمَئِذٍ',tj:'normal'},{t:'عَنِ',tj:'normal'},{t:'ٱلنَّعِيمِ',tj:'ghunnah'},{t:'۝',tj:'marker',ayah:8}]},
+  {num:101,nameEn:'Surah Al-Qariah',nameAr:'سورة القارعة',ayahs:11,tajweedRules:['Ghunnah on ٱلنَّاسُ and فَأَمَّا'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'ٱلْقَارِعَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:1},{t:'مَا',tj:'normal'},{t:'ٱلْقَارِعَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:2},{t:'وَمَآ',tj:'normal'},{t:'أَدْرَىٰكَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'ٱلْقَارِعَةُ',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'يَوْمَ',tj:'normal'},{t:'يَكُونُ',tj:'normal'},{t:'ٱلنَّاسُ',tj:'ghunnah'},{t:'كَٱلْفَرَاشِ',tj:'normal'},{t:'ٱلْمَبْثُوثِ',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'وَتَكُونُ',tj:'normal'},{t:'ٱلْجِبَالُ',tj:'normal'},{t:'كَٱلْعِهْنِ',tj:'normal'},{t:'ٱلْمَنفُوشِ',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'فَأَمَّا',tj:'ghunnah'},{t:'مَن',tj:'ikhfa'},{t:'ثَقُلَتْ',tj:'normal'},{t:'مَوَٰزِينُهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'فَهُوَ',tj:'normal'},{t:'فِى',tj:'normal'},{t:'عِيشَةٍ',tj:'normal'},{t:'رَّاضِيَةٍ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'وَأَمَّا',tj:'ghunnah'},{t:'مَنْ',tj:'ikhfa'},{t:'خَفَّتْ',tj:'normal'},{t:'مَوَٰزِينُهُۥ',tj:'normal'},{t:'۝',tj:'marker',ayah:8},{t:'فَأُمُّهُۥ',tj:'ghunnah'},{t:'هَاوِيَةٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:9},{t:'وَمَآ',tj:'normal'},{t:'أَدْرَىٰكَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'هِيَهْ',tj:'normal'},{t:'۝',tj:'marker',ayah:10},{t:'نَارٌ',tj:'normal'},{t:'حَامِيَةٌۢ',tj:'normal'},{t:'۝',tj:'marker',ayah:11}]},
+  {num:100,nameEn:'Surah Al-Adiyat',nameAr:'سورة العاديات',ayahs:11,tajweedRules:['Ghunnah on إِنَّ (twice)','Idgham on لَّخَبِيرٌۢ'],words:[{t:'بِسْمِ',tj:'normal'},{t:'ٱللَّهِ',tj:'normal'},{t:'ٱلرَّحْمَٰنِ',tj:'normal'},{t:'ٱلرَّحِيمِ',tj:'normal'},{t:'۝',tj:'marker',ayah:0},{t:'وَٱلْعَٰدِيَٰتِ',tj:'normal'},{t:'ضَبْحًا',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:1},{t:'فَٱلْمُورِيَٰتِ',tj:'normal'},{t:'قَدْحًا',tj:'qalqalah'},{t:'۝',tj:'marker',ayah:2},{t:'فَٱلْمُغِيرَٰتِ',tj:'normal'},{t:'صُبْحًا',tj:'normal'},{t:'۝',tj:'marker',ayah:3},{t:'فَأَثَرْنَ',tj:'normal'},{t:'بِهِۦ',tj:'normal'},{t:'نَقْعًا',tj:'normal'},{t:'۝',tj:'marker',ayah:4},{t:'فَوَسَطْنَ',tj:'normal'},{t:'بِهِۦ',tj:'normal'},{t:'جَمْعًا',tj:'normal'},{t:'۝',tj:'marker',ayah:5},{t:'إِنَّ',tj:'ghunnah'},{t:'ٱلْإِنسَٰنَ',tj:'normal'},{t:'لِرَبِّهِۦ',tj:'normal'},{t:'لَكَنُودٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:6},{t:'وَإِنَّهُۥ',tj:'ghunnah'},{t:'عَلَىٰ',tj:'normal'},{t:'ذَٰلِكَ',tj:'normal'},{t:'لَشَهِيدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:7},{t:'وَإِنَّهُۥ',tj:'ghunnah'},{t:'لِحُبِّ',tj:'normal'},{t:'ٱلْخَيْرِ',tj:'normal'},{t:'لَشَدِيدٌ',tj:'normal'},{t:'۝',tj:'marker',ayah:8},{t:'أَفَلَا',tj:'normal'},{t:'يَعْلَمُ',tj:'normal'},{t:'إِذَا',tj:'normal'},{t:'بُعْثِرَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'فِى',tj:'normal'},{t:'ٱلْقُبُورِ',tj:'normal'},{t:'۝',tj:'marker',ayah:9},{t:'وَحُصِّلَ',tj:'normal'},{t:'مَا',tj:'normal'},{t:'فِى',tj:'normal'},{t:'ٱلصُّدُورِ',tj:'normal'},{t:'۝',tj:'marker',ayah:10},{t:'إِنَّ',tj:'ghunnah'},{t:'رَبَّهُم',tj:'normal'},{t:'بِهِمْ',tj:'normal'},{t:'يَوْمَئِذٍ',tj:'normal'},{t:'لَّخَبِيرٌۢ',tj:'idgham'},{t:'۝',tj:'marker',ayah:11}]}
 ];
 
 let userData={},currentSurah=null,currentUserJourney='';
@@ -895,11 +926,71 @@ let totalSessions=0,totalWords=0;
 let currentFeedbackText='',feedbackAudio=null,isPlayingAudio=false;
 let currentRecitationMode='hidden';
 let currentUserId=null;
+let reciteWTStep=0,myspaceWTStep=0;
 const TOTAL_SLIDES=4;
 
-function isFemale(){return userData.gender==='female';}
-function hTitleFromMeta(g){return g==='female'?'Hafiza':'Hafiz';}
+// ── WALKTHROUGH STEPS ──────────────────────────────────────────────
+const reciteWTSteps=[
+  {icon:'🎙️',title:'Welcome to Recite',text:'This is where your revision happens. Choose a surah from the list below.'},
+  {icon:'👆',title:'Pick a surah',text:'Tap any surah to open it. You can also choose your recitation mode — Hidden, Guided, or Test.'},
+  {icon:'🔴',title:'Press the mic to start',text:'When you\'re ready, press the big red button and start reciting. Zaid listens in real time.'},
+  {icon:'🤖',title:'Get AI feedback',text:'After you finish, Zaid\'s AI gives you personal feedback — just like an Ustadh. You can even listen to it.'}
+];
+const myspaceWTSteps=[
+  {icon:'📅',title:'Plan your week',text:'Use the Planner tab to choose which surah you\'ll recite each day. Set your week up for success.'},
+  {icon:'📝',title:'Your notes',text:'The Notes tab is your personal space. Jot down anything — reminders, reflections, duas.'},
+  {icon:'📊',title:'Track your progress',text:'The Progress tab shows your sessions, accuracy, streak and which surahs you recite most.'}
+];
 
+function showReciteWT(){
+  const key=getUserKey()+'-recite-wt';
+  if(localStorage.getItem(key))return;
+  reciteWTStep=0;updateReciteWT();
+  document.getElementById('recite-walkthrough').classList.add('show');
+}
+function nextReciteWT(){
+  reciteWTStep++;
+  if(reciteWTStep>=reciteWTSteps.length){
+    document.getElementById('recite-walkthrough').classList.remove('show');
+    localStorage.setItem(getUserKey()+'-recite-wt','done');
+    return;
+  }
+  updateReciteWT();
+}
+function updateReciteWT(){
+  const s=reciteWTSteps[reciteWTStep];
+  document.getElementById('rwt-icon').textContent=s.icon;
+  document.getElementById('rwt-title').textContent=s.title;
+  document.getElementById('rwt-text').textContent=s.text;
+  document.querySelectorAll('[id^="rwt-dot-"]').forEach((d,i)=>d.classList.toggle('active',i===reciteWTStep));
+  document.querySelector('#recite-walkthrough .wt-next-btn').textContent=reciteWTStep===reciteWTSteps.length-1?'Let\'s go! →':'Got it →';
+}
+
+function showMySpaceWT(){
+  const key=getUserKey()+'-myspace-wt';
+  if(localStorage.getItem(key))return;
+  myspaceWTStep=0;updateMySpaceWT();
+  document.getElementById('myspace-walkthrough').classList.add('show');
+}
+function nextMySpaceWT(){
+  myspaceWTStep++;
+  if(myspaceWTStep>=myspaceWTSteps.length){
+    document.getElementById('myspace-walkthrough').classList.remove('show');
+    localStorage.setItem(getUserKey()+'-myspace-wt','done');
+    return;
+  }
+  updateMySpaceWT();
+}
+function updateMySpaceWT(){
+  const s=myspaceWTSteps[myspaceWTStep];
+  document.getElementById('mwt-icon').textContent=s.icon;
+  document.getElementById('mwt-title').textContent=s.title;
+  document.getElementById('mwt-text').textContent=s.text;
+  document.querySelectorAll('[id^="mwt-dot-"]').forEach((d,i)=>d.classList.toggle('active',i===myspaceWTStep));
+  document.querySelector('#myspace-walkthrough .wt-next-btn').textContent=myspaceWTStep===myspaceWTSteps.length-1?'Let\'s go! →':'Got it →';
+}
+
+// ── THEME ──────────────────────────────────────────────────────────
 function applyTheme(theme){
   currentTheme=theme;
   const app=document.getElementById('app');
@@ -914,29 +1005,32 @@ function applyTheme(theme){
 }
 function loadSavedTheme(){try{const s=localStorage.getItem('zaid-theme');if(s)applyTheme(s);}catch(e){}}
 
+// ── NAVIGATION ────────────────────────────────────────────────────
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','fade-in'));
+  const el=document.getElementById(id);el.classList.add('active','fade-in');window.scrollTo(0,0);
+}
+function showTab(tab){
+  if(tab==='recite'){buildSurahList();showScreen('screen-surah-list');setTimeout(showReciteWT,400);return;}
+  if(tab==='myspace'){loadMySpace();showScreen('screen-myspace');setTimeout(showMySpaceWT,400);return;}
+  const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
+  showScreen(map[tab]||'screen-dashboard');
+}
+
 function selectMode(mode){
   currentRecitationMode=mode;
-  ['hidden','guided','test'].forEach(m=>{
-    document.getElementById('mode-'+m).classList.toggle('selected',m===mode);
-  });
+  ['hidden','guided','test'].forEach(m=>document.getElementById('mode-'+m).classList.toggle('selected',m===mode));
 }
 
 function selectMushaf(val){
   userData.mushaf=val==='unsure'?'13':val;
-  ['13','15','unsure'].forEach(v=>{
-    const el=document.getElementById('mushaf-'+v);
-    if(el)el.classList.toggle('selected',v===val);
-  });
+  ['13','15','unsure'].forEach(v=>{const el=document.getElementById('mushaf-'+v);if(el)el.classList.toggle('selected',v===val);});
 }
 
 function saveMushafPref(val){
   userData.mushaf=val;
-  ['13','15'].forEach(v=>{
-    const el=document.getElementById('ms-'+v);
-    if(el)el.classList.toggle('selected',v===val);
-  });
-  const sv=document.getElementById('settings-mushaf-val');
-  if(sv)sv.textContent=val+' Line';
+  ['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===val);});
+  const sv=document.getElementById('settings-mushaf-val');if(sv)sv.textContent=val+' Line';
   document.getElementById('mushaf-saved').textContent='Saved!';
   setTimeout(()=>{document.getElementById('mushaf-saved').textContent='';},2000);
   sb.auth.updateUser({data:{mushaf:val}}).catch(()=>{});
@@ -949,24 +1043,7 @@ function setQuranLayout(val){
   sb.auth.updateUser({data:{mushaf:val}}).catch(()=>{});
 }
 
-function updateJourneyButtons(){
-  const f=isFemale();
-  const h=document.getElementById('journey-hafiz-btn');
-  const l=document.getElementById('journey-learning-btn');
-  if(h)h.textContent=f?'I am already a Hafiza':'I am already a Hafiz';
-  if(l)l.textContent=f?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
-}
-
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active','fade-in'));
-  const el=document.getElementById(id);el.classList.add('active','fade-in');window.scrollTo(0,0);
-}
-function showTab(tab){
-  const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',schedule:'screen-schedule',recite:'screen-surah-list',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
-  if(tab==='recite')buildSurahList();
-  showScreen(map[tab]||'screen-dashboard');
-}
-
+// ── WALKTHROUGH SLIDES ────────────────────────────────────────────
 function resetWalkthrough(){
   currentSlide=0;document.getElementById('slides-track').style.transform='translateX(0)';
   document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
@@ -988,10 +1065,18 @@ function prevSlide(){
 }
 function goToDashboard(){if(pendingDashboardData)renderDashboard(pendingDashboardData.name,pendingDashboardData.journey,pendingDashboardData.gender);}
 
+// ── ONBOARDING ────────────────────────────────────────────────────
 function checkEmail(){const e=document.getElementById('ob-email').value;const v=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);document.getElementById('ob-email').classList.toggle('error',e.length>0&&!v);document.getElementById('ob-email-error').classList.toggle('show',e.length>0&&!v);}
 function checkPassword(){const p=document.getElementById('ob-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('pw-len',p.length>=6,'At least 6 characters');u('pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('pw-num',/[0-9]/.test(p),'At least one number');}
 function checkNewPassword(){const p=document.getElementById('new-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('new-pw-len',p.length>=6,'At least 6 characters');u('new-pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('new-pw-num',/[0-9]/.test(p),'At least one number');}
 function checkParentNewPassword(){const p=document.getElementById('parent-new-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('parent-new-pw-len',p.length>=6,'At least 6 characters');u('parent-new-pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('parent-new-pw-num',/[0-9]/.test(p),'At least one number');}
+
+function updateJourneyButtons(){
+  const f=userData.gender==='female';
+  const h=document.getElementById('journey-hafiz-btn');const l=document.getElementById('journey-learning-btn');
+  if(h)h.textContent=f?'I am already a Hafiza':'I am already a Hafiz';
+  if(l)l.textContent=f?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
+}
 
 function nextOnboard1(){
   const name=document.getElementById('ob-name').value.trim();const email=document.getElementById('ob-email').value.trim();const pw=document.getElementById('ob-password').value;const dob=document.getElementById('ob-dob').value;
@@ -1005,18 +1090,14 @@ function nextOnboard1(){
 }
 function selectGender(g){userData.gender=g;document.getElementById('gender-male').classList.toggle('selected',g==='male');document.getElementById('gender-female').classList.toggle('selected',g==='female');document.getElementById('ob-gender-error').textContent='';}
 function nextOnboardGender(){if(!userData.gender){document.getElementById('ob-gender-error').textContent='Please select an option.';return;}showScreen('screen-onboard-mushaf');}
-function nextOnboardMushaf(){
-  if(!userData.mushaf){document.getElementById('ob-mushaf-error').textContent='Please select an option.';return;}
-  document.getElementById('ob-mushaf-error').textContent='';
-  updateJourneyButtons();showScreen('screen-onboard-2');
-}
+function nextOnboardMushaf(){if(!userData.mushaf){document.getElementById('ob-mushaf-error').textContent='Please select an option.';return;}document.getElementById('ob-mushaf-error').textContent='';updateJourneyButtons();showScreen('screen-onboard-2');}
 function selectOption(el,group,val){document.querySelectorAll(`[onclick*="'${group}'"]`).forEach(b=>b.classList.remove('selected'));el.classList.add('selected');userData[group]=val;}
 function nextOnboard2(){
   if(!userData.journey){document.getElementById('ob2-error').textContent='Please select an option.';return;}
   document.getElementById('ob2-error').textContent='';
   if(userData.journey==='parent'){showScreen('screen-onboard-parent');return;}
   if(userData.journey==='hafiz'){document.getElementById('ob3-title').textContent='When did you complete your Hifz?';document.getElementById('ob3-sub').textContent='This helps Zaid understand where to start.';document.getElementById('ob3-hafiz').style.display='block';document.getElementById('ob3-learning').style.display='none';}
-  else{document.getElementById('ob3-title').textContent='Where are you in your memorisation?';document.getElementById('ob3-sub').textContent='This helps Zaid build the right plan for you.';document.getElementById('ob3-hafiz').style.display='none';document.getElementById('ob3-learning').style.display='block';}
+  else{document.getElementById('ob3-title').textContent='Where are you in your memorisation?';document.getElementById('ob3-sub').textContent='This helps Zaid build the right plan.';document.getElementById('ob3-hafiz').style.display='none';document.getElementById('ob3-learning').style.display='block';}
   showScreen('screen-onboard-3');
 }
 function nextOnboard3(){
@@ -1026,25 +1107,26 @@ function nextOnboard3(){
 }
 function buildFinalStep(stage){
   const content=document.getElementById('ob4-content');content.innerHTML='';
-  const t=isFemale()?'Hafiza':'Hafiz';
+  const t=userData.gender==='female'?'Hafiza':'Hafiz';
   const ob4title=document.getElementById('ob4-title');const ob4sub=document.getElementById('ob4-sub');
   if(stage==='hafiz'){
     ob4title.textContent='Which Juz do you struggle with most?';ob4sub.textContent='Select all that apply.';
     const grid=document.createElement('div');grid.style.cssText='display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px;';
     for(let i=1;i<=30;i++){const btn=document.createElement('button');btn.textContent=i;btn.style.cssText='padding:10px 4px;border:1.5px solid #e8ede9;border-radius:10px;background:#fff;font-size:13px;cursor:pointer;font-weight:600;';btn.onclick=function(){this.classList.toggle('selected');if(this.classList.contains('selected')){this.style.borderColor='var(--primary)';this.style.background='var(--primary-light)';}else{this.style.background='#fff';this.style.borderColor='#e8ede9';}userData['weak-juz']=Array.from(grid.querySelectorAll('button.selected')).map(b=>b.textContent);};grid.appendChild(btn);}
     content.appendChild(grid);
-  }else if(stage==='just'){
+  }else{
     ob4title.textContent='What is your goal?';ob4sub.textContent='This helps Zaid build the perfect plan.';
     [{val:'full',label:`Become a full ${t}`},{val:'juz30',label:'Memorise Juz 30 to start'},{val:'surahs',label:'Memorise specific surahs'}].forEach(g=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=g.label;btn.onclick=function(){content.querySelectorAll('.goal-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','goal-btn');userData['learning-goal']=g.val;};content.appendChild(btn);});
     const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:16px 0 8px;';tl.textContent='Daily time available?';content.appendChild(tl);
     [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(ti=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=ti.label;btn.onclick=function(){content.querySelectorAll('.time-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected','time-btn');userData['daily-time']=ti.val;};content.appendChild(btn);});
-  }else{
-    ob4title.textContent='A couple more questions';ob4sub.textContent='Help Zaid understand where you are.';
-    const jl=document.createElement('p');jl.style.cssText='font-size:14px;font-weight:600;color:#111;margin-bottom:8px;';jl.textContent='Which Juz are you on?';content.appendChild(jl);
-    const sel=document.createElement('select');sel.className='select-field';sel.innerHTML='<option value="">Select Juz</option>';for(let i=1;i<=30;i++){const opt=document.createElement('option');opt.value=i;opt.textContent=`Juz ${i}`;sel.appendChild(opt);}sel.onchange=function(){userData['current-juz']=this.value;};content.appendChild(sel);
-    const tl=document.createElement('p');tl.style.cssText='font-size:14px;font-weight:600;color:#111;margin:12px 0 8px;';tl.textContent='Daily time available?';content.appendChild(tl);
-    [{val:'15',label:'15 minutes'},{val:'30',label:'30 minutes'},{val:'60',label:'1 hour or more'}].forEach(ti=>{const btn=document.createElement('button');btn.className='option-btn';btn.textContent=ti.label;btn.onclick=function(){content.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');userData['daily-time']=ti.val;};content.appendChild(btn);});
   }
+}
+
+// ── ZD CODE GENERATION ────────────────────────────────────────────
+function generateZDCode(){
+  const chars='0123456789';
+  let num='';for(let i=0;i<4;i++)num+=chars[Math.floor(Math.random()*chars.length)];
+  return'ZD-'+num;
 }
 
 async function finishOnboarding(){
@@ -1054,40 +1136,51 @@ async function finishOnboarding(){
   const btns=document.querySelectorAll('#screen-onboard-4 .btn-primary,#screen-onboard-parent .btn-primary');
   btns.forEach(b=>{b.disabled=true;b.textContent='Creating your account...';});
   try{
-    const{data,error}=await sb.auth.signUp({email:userData.email,password:userData.password,options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,mushaf:userData.mushaf||'13',learning_stage:userData['learning-stage']||null,learning_goal:userData['learning-goal']||null,daily_time:userData['daily-time']||null,current_juz:userData['current-juz']||null,parent_type:userData['parent-type']||null,weak_juz:userData['weak-juz']||[]}}});
+    // Generate ZD code for ALL users
+    const zdCode=generateZDCode();
+    const{data,error}=await sb.auth.signUp({email:userData.email,password:userData.password,options:{data:{full_name:userData.name,dob:userData.dob,gender:userData.gender,journey:userData.journey,mushaf:userData.mushaf||'13',zd_code:zdCode,learning_stage:userData['learning-stage']||null,learning_goal:userData['learning-goal']||null,daily_time:userData['daily-time']||null,current_juz:userData['current-juz']||null,parent_type:userData['parent-type']||null,weak_juz:userData['weak-juz']||[]}}});
     if(error)throw error;
     currentUserId=data.user.id;
-    if(isParent)await generateAndSaveLinkCode(data.user.id,userData.name);
+    userData.zdCode=zdCode;
+    // If parent/teacher, save ZD code to link_codes table
+    if(isParent){
+      await sb.from('link_codes').insert({parent_id:data.user.id,code:zdCode});
+    }
     pendingDashboardData={name:userData.name,journey:userData.journey,gender:userData.gender};
     populateDashboardData(userData.name,userData.journey,userData.gender);
     resetWalkthrough();showScreen('screen-walkthrough');
-  }catch(e){errorEl.textContent=e.message||'Something went wrong.';btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});}
+  }catch(e){
+    errorEl.textContent=e.message||'Something went wrong.';
+    btns.forEach(b=>{b.disabled=false;b.textContent='Create my account';});
+  }
 }
 
-async function generateAndSaveLinkCode(userId,name){
-  const code='ZD-'+Math.floor(1000+Math.random()*9000);
-  try{
-    await sb.from('link_codes').upsert({parent_id:userId,code:code},{onConflict:'parent_id'});
-    document.getElementById('link-code').textContent=code;
-  }catch(e){document.getElementById('link-code').textContent=code;}
-  return code;
-}
-
+// ── PARENT LINK CODE ──────────────────────────────────────────────
 async function loadParentLinkCode(userId){
   try{
-    const{data}=await sb.from('link_codes').select('code').eq('parent_id',userId).single();
-    if(data){document.getElementById('link-code').textContent=data.code;}
-    else{await generateAndSaveLinkCode(userId,userData.name);}
-  }catch(e){await generateAndSaveLinkCode(userId,userData.name);}
+    const{data,error}=await sb.from('link_codes').select('code').eq('parent_id',userId).single();
+    if(data&&data.code){
+      document.getElementById('parent-link-code').textContent=data.code;
+      const pdZd=document.getElementById('parent-details-zd-field');if(pdZd)pdZd.textContent=data.code;
+    }
+  }catch(e){
+    // No code found — generate one (for accounts created before this update)
+    const newCode=generateZDCode();
+    try{
+      await sb.from('link_codes').insert({parent_id:userId,code:newCode});
+      document.getElementById('parent-link-code').textContent=newCode;
+      const pdZd=document.getElementById('parent-details-zd-field');if(pdZd)pdZd.textContent=newCode;
+    }catch(e2){}
+  }
 }
 
 async function loadLinkedStudents(parentId){
   try{
     const{data}=await sb.from('student_links').select('*').eq('parent_id',parentId);
     if(data&&data.length>0){
-      const html=data.map(s=>`<div class="student-card"><div class="student-avatar">${s.student_name?s.student_name[0].toUpperCase():'S'}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Linked student</div></div></div>`).join('');
-      document.getElementById('linked-students-list').innerHTML=html;
+      const html=data.map(s=>`<div class="student-card"><div class="student-avatar">${(s.student_name||'S')[0].toUpperCase()}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Linked student</div></div></div>`).join('');
       document.getElementById('parent-students-list').innerHTML=html;
+      document.getElementById('parent-students-full-list').innerHTML=html;
     }
   }catch(e){}
 }
@@ -1097,33 +1190,43 @@ async function linkToParent(){
   const errorEl=document.getElementById('link-error');
   const successEl=document.getElementById('link-success');
   errorEl.textContent='';successEl.textContent='';
-  if(!code.startsWith('ZD-')||code.length!==7){errorEl.textContent='Please enter a valid ZD-XXXX code.';return;}
+  if(code.length<7||!code.startsWith('ZD-')){errorEl.textContent='Please enter a valid ZD-XXXX code.';return;}
   try{
-    const{data:codeData,error:codeError}=await sb.from('link_codes').select('parent_id').eq('code',code).single();
-    if(codeError||!codeData){errorEl.textContent='Code not found. Please check and try again.';return;}
+    const{data:codeData,error:codeError}=await sb.from('link_codes').select('parent_id').eq('code',code).maybeSingle();
+    if(codeError){errorEl.textContent='Something went wrong. Please try again.';return;}
+    if(!codeData){errorEl.textContent='Code not found. Please check and try again.';return;}
     const{data:{user}}=await sb.auth.getUser();
     if(!user){errorEl.textContent='Please log in again.';return;}
     if(codeData.parent_id===user.id){errorEl.textContent='You cannot link to your own account.';return;}
-    const{error:linkError}=await sb.from('student_links').insert({parent_id:codeData.parent_id,student_id:user.id,student_name:user.user_metadata.full_name||'Student',parent_name:''});
-    if(linkError&&!linkError.message.includes('duplicate')){errorEl.textContent='Something went wrong. Please try again.';return;}
-    successEl.textContent='Successfully linked!';
+    const{error:linkError}=await sb.from('student_links').upsert({parent_id:codeData.parent_id,student_id:user.id,student_name:user.user_metadata.full_name||'Student',student_gender:user.user_metadata.gender||'male'},{onConflict:'parent_id,student_id',ignoreDuplicates:true});
+    if(linkError&&!linkError.code?.includes('23505')){errorEl.textContent='Something went wrong. Please try again.';return;}
+    successEl.textContent='Successfully linked! Your teacher can now see your progress.';
     document.getElementById('link-parent-section').style.display='none';
     document.getElementById('linked-parent-section').style.display='block';
-    document.getElementById('linked-parent-name').textContent='Parent/Teacher account';
+    document.getElementById('linked-parent-name').textContent='Connected to teacher/parent';
   }catch(e){errorEl.textContent='Something went wrong. Please try again.';}
 }
 
 async function checkIfLinked(userId){
   try{
-    const{data}=await sb.from('student_links').select('parent_name').eq('student_id',userId).single();
+    const{data}=await sb.from('student_links').select('parent_name').eq('student_id',userId).maybeSingle();
     if(data){
       document.getElementById('link-parent-section').style.display='none';
       document.getElementById('linked-parent-section').style.display='block';
-      document.getElementById('linked-parent-name').textContent='Parent/Teacher account';
+      document.getElementById('linked-parent-name').textContent='Connected to teacher/parent';
     }
   }catch(e){}
 }
 
+function copyParentCode(){
+  const c=document.getElementById('parent-link-code').textContent;
+  navigator.clipboard.writeText(c).then(()=>{
+    const btn=document.querySelector('#screen-parent-dashboard .btn-primary');
+    if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);}
+  });
+}
+
+// ── AUTH ──────────────────────────────────────────────────────────
 async function handleLogin(){
   const email=document.getElementById('login-email').value.trim();const pw=document.getElementById('login-password').value;
   let v=true;
@@ -1131,7 +1234,7 @@ async function handleLogin(){
   if(!pw){document.getElementById('login-pw-error').classList.add('show');v=false;}else document.getElementById('login-pw-error').classList.remove('show');
   if(!v)return;
   document.getElementById('login-error').textContent='';
-  try{const{data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error)throw error;const m=data.user.user_metadata;currentUserId=data.user.id;loadDashboard(m.full_name,m.journey,m.gender);}
+  try{const{data,error}=await sb.auth.signInWithPassword({email,password:pw});if(error)throw error;const m=data.user.user_metadata;currentUserId=data.user.id;userData.email=email;loadDashboard(m.full_name,m.journey,m.gender);}
   catch(e){document.getElementById('login-error').textContent='Invalid email or password.';}
 }
 async function handleForgotPassword(){
@@ -1145,26 +1248,26 @@ async function handleChangePassword(){
   const np=document.getElementById('new-password').value;const cp=document.getElementById('confirm-password').value;
   const ee=document.getElementById('change-pw-error');const se=document.getElementById('change-pw-success');
   ee.textContent='';se.textContent='';
-  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='New password does not meet requirements.';return;}
+  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}
   if(np!==cp){ee.textContent='Passwords do not match.';return;}
-  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated successfully.';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}
-  catch(e){ee.textContent='Something went wrong. Please try again.';}
+  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}
+  catch(e){ee.textContent='Something went wrong.';}
 }
 async function handleParentChangePassword(){
   const np=document.getElementById('parent-new-password').value;const cp=document.getElementById('parent-confirm-password').value;
   const ee=document.getElementById('parent-change-pw-error');const se=document.getElementById('parent-change-pw-success');
   ee.textContent='';se.textContent='';
-  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='New password does not meet requirements.';return;}
+  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}
   if(np!==cp){ee.textContent='Passwords do not match.';return;}
-  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated successfully.';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
-  catch(e){ee.textContent='Something went wrong. Please try again.';}
+  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
+  catch(e){ee.textContent='Something went wrong.';}
 }
 async function handleLogout(){
   if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
   await sb.auth.signOut();pendingDashboardData=null;userData={};currentUserId=null;showScreen('screen-splash');
 }
 
-// ── STATS — per user ──────────────────────────────────────────────
+// ── STATS ─────────────────────────────────────────────────────────
 function getUserKey(){return userData.email?'zaid-user-'+userData.email:'zaid-user-anon';}
 
 function loadStats(){
@@ -1175,13 +1278,8 @@ function loadStats(){
     document.getElementById('dash-sessions').textContent=totalSessions;
     document.getElementById('dash-words').textContent=totalWords;
     document.getElementById('dash-streak').textContent=streak+' day'+(streak!==1?'s':'');
-    // Suggest next surah based on history
     const lastSurah=saved.lastSurah;
-    if(lastSurah){
-      const idx=SURAHS.findIndex(s=>s.nameEn===lastSurah);
-      const nextIdx=idx>=0&&idx<SURAHS.length-1?idx+1:0;
-      document.getElementById('today-surah').textContent=SURAHS[nextIdx].nameEn;
-    }
+    if(lastSurah){const idx=SURAHS.findIndex(s=>s.nameEn===lastSurah);const ni=idx>=0&&idx<SURAHS.length-1?idx+1:0;document.getElementById('today-surah').textContent=SURAHS[ni].nameEn;}
   }catch(e){}
 }
 
@@ -1192,73 +1290,166 @@ function saveStats(words,surahName){
     saved.sessions=(saved.sessions||0)+1;
     saved.words=(saved.words||0)+words;
     saved.lastSurah=surahName;
+    // Track surah counts
+    if(!saved.surahCounts)saved.surahCounts={};
+    saved.surahCounts[surahName]=(saved.surahCounts[surahName]||0)+1;
+    // Track all mistakes
+    if(!saved.allMistakes)saved.allMistakes={};
+    mistakeWords.forEach(w=>{saved.allMistakes[w]=(saved.allMistakes[w]||0)+1;});
+    // Track accuracy history
+    if(!saved.accuracyHistory)saved.accuracyHistory=[];
+    const attempted=totalCorrect+totalMistakes;
+    const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+    saved.accuracyHistory.push(acc);
+    if(saved.accuracyHistory.length>20)saved.accuracyHistory.shift();
     const today=new Date().toDateString();
     const yesterday=new Date(Date.now()-86400000).toDateString();
-    if(saved.lastSession===today){}
-    else if(saved.lastSession===yesterday)saved.streak=(saved.streak||0)+1;
-    else saved.streak=1;
+    if(saved.lastSession===today){}else if(saved.lastSession===yesterday)saved.streak=(saved.streak||0)+1;else saved.streak=1;
     saved.lastSession=today;
     localStorage.setItem(key,JSON.stringify(saved));
     totalSessions=saved.sessions;totalWords=saved.words;
-    // Also save streak to Supabase
     sb.auth.updateUser({data:{streak:saved.streak,last_session:today}}).catch(()=>{});
     return saved.streak;
   }catch(e){return 0;}
 }
 
+// ── MY SPACE ──────────────────────────────────────────────────────
+function switchMySpaceTab(tab){
+  document.querySelectorAll('.myspace-tab').forEach((t,i)=>t.classList.toggle('active',['planner','notes','progress'][i]===tab));
+  document.querySelectorAll('.myspace-section').forEach((s,i)=>s.classList.toggle('active',['myspace-planner','myspace-notes','myspace-progress'][i]==='myspace-'+tab));
+  if(tab==='progress')loadProgressData();
+}
+
+function loadMySpace(){
+  buildPlannerDays();
+  const key=getUserKey();
+  try{
+    const saved=JSON.parse(localStorage.getItem(key)||'{}');
+    if(saved.notes)document.getElementById('notes-content').value=saved.notes;
+    if(saved.planner){
+      const days=['mon','tue','wed','thu','fri','sat','sun'];
+      days.forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});
+    }
+  }catch(e){}
+}
+
+function buildPlannerDays(){
+  const days=[{key:'mon',label:'Mon'},{key:'tue',label:'Tue'},{key:'wed',label:'Wed'},{key:'thu',label:'Thu'},{key:'fri',label:'Fri'},{key:'sat',label:'Sat'},{key:'sun',label:'Sun'}];
+  const container=document.getElementById('planner-days');container.innerHTML='';
+  days.forEach(d=>{
+    const div=document.createElement('div');div.className='planner-day';
+    div.innerHTML=`<span class="planner-day-label">${d.label}</span><select class="planner-day-select" id="planner-${d.key}"><option value="">Rest day</option>${SURAHS.map(s=>`<option value="${s.nameEn}">${s.nameEn}</option>`).join('')}</select>`;
+    container.appendChild(div);
+  });
+}
+
+function savePlanner(){
+  const key=getUserKey();
+  try{
+    const saved=JSON.parse(localStorage.getItem(key)||'{}');
+    saved.planner={};
+    ['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{
+      const sel=document.getElementById('planner-'+day);
+      if(sel)saved.planner[day]=sel.value;
+    });
+    localStorage.setItem(key,JSON.stringify(saved));
+    document.getElementById('planner-saved').textContent='Plan saved!';
+    setTimeout(()=>document.getElementById('planner-saved').textContent='',2000);
+  }catch(e){}
+}
+
+function saveNotes(){
+  const key=getUserKey();
+  try{
+    const saved=JSON.parse(localStorage.getItem(key)||'{}');
+    saved.notes=document.getElementById('notes-content').value;
+    localStorage.setItem(key,JSON.stringify(saved));
+    document.getElementById('notes-saved').textContent='Notes saved!';
+    setTimeout(()=>document.getElementById('notes-saved').textContent='',2000);
+  }catch(e){}
+}
+
+function loadProgressData(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');
+    document.getElementById('prog-sessions').textContent=saved.sessions||0;
+    document.getElementById('prog-words').textContent=saved.words||0;
+    document.getElementById('prog-streak').textContent=saved.streak||0;
+    if(saved.accuracyHistory&&saved.accuracyHistory.length>0){
+      const avg=Math.round(saved.accuracyHistory.reduce((a,b)=>a+b,0)/saved.accuracyHistory.length);
+      document.getElementById('prog-accuracy').textContent=avg+'%';
+    }
+    // Most recited surahs
+    if(saved.surahCounts){
+      const sorted=Object.entries(saved.surahCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+      const max=sorted[0]?sorted[0][1]:1;
+      document.getElementById('prog-surahs').innerHTML=sorted.map(([name,count])=>`<div class="progress-bar-row"><span class="progress-bar-label" style="font-size:11px;">${name.replace('Surah ','')}</span><div class="progress-bar-track"><div class="progress-bar-fill" style="width:${Math.round((count/max)*100)}%"></div></div><span class="progress-bar-val">${count}x</span></div>`).join('');
+    }
+    // Words to review
+    if(saved.allMistakes){
+      const sorted=Object.entries(saved.allMistakes).sort((a,b)=>b[1]-a[1]).slice(0,10);
+      if(sorted.length>0)document.getElementById('prog-mistakes').innerHTML=sorted.map(([word,count])=>`<span class="mistake-word">${word}</span>`).join('');
+    }
+  }catch(e){}
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────
 function populateDashboardData(fullName,journey,gender){
   currentUserJourney=journey;
   const firstName=fullName?fullName.split(' ')[0]:'there';
-  const t=hTitleFromMeta(gender);
+  const t=gender==='female'?'Hafiza':'Hafiz';
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
   userData.name=fullName||'';
   sb.auth.getUser().then(({data})=>{
     if(data.user){
-      const u=data.user;const m=u.user_metadata;const mt=hTitleFromMeta(m.gender);
-      currentUserId=u.id;
+      const u=data.user;const m=u.user_metadata;
+      currentUserId=u.id;userData.email=u.email;userData.gender=m.gender;
       userData.mushaf=m.mushaf||'13';
-      const svEl=document.getElementById('settings-mushaf-val');
-      if(svEl)svEl.textContent=(userData.mushaf||'13')+' Line';
-      // Update mushaf settings selection
+      const svEl=document.getElementById('settings-mushaf-val');if(svEl)svEl.textContent=(userData.mushaf||'13')+' Line';
       ['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===userData.mushaf);});
+      // Show student ZD code
+      if(m.zd_code){
+        const zdEl=document.getElementById('details-zd-field');if(zdEl)zdEl.textContent=m.zd_code;
+        userData.zdCode=m.zd_code;
+      }
       if(journey==='parent'){
-        ['parent-settings-avatar','parent-details-avatar'].forEach(id=>document.getElementById(id).textContent=initials);
-        document.getElementById('parent-settings-name').textContent=m.full_name||'';document.getElementById('parent-settings-email').textContent=u.email;
-        document.getElementById('parent-details-name').textContent=m.full_name||'';document.getElementById('parent-details-email').textContent=u.email;
-        document.getElementById('parent-details-name-field').textContent=m.full_name||'—';document.getElementById('parent-details-email-field').textContent=u.email;document.getElementById('parent-details-dob-field').textContent=m.dob||'—';
-        document.getElementById('parent-details-role-field').textContent=m.parent_type==='teacher'?'Teacher / Ustadh':'Parent';
+        ['parent-settings-avatar','parent-details-avatar'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=initials;});
+        const psn=document.getElementById('parent-settings-name');if(psn)psn.textContent=m.full_name||'';
+        const pse=document.getElementById('parent-settings-email');if(pse)pse.textContent=u.email;
+        const pdn=document.getElementById('parent-details-name');if(pdn)pdn.textContent=m.full_name||'';
+        const pde=document.getElementById('parent-details-email');if(pde)pde.textContent=u.email;
+        const pdnf=document.getElementById('parent-details-name-field');if(pdnf)pdnf.textContent=m.full_name||'—';
+        const pdef=document.getElementById('parent-details-email-field');if(pdef)pdef.textContent=u.email;
+        const pdrf=document.getElementById('parent-details-role-field');if(pdrf)pdrf.textContent=m.parent_type==='teacher'?'Teacher / Ustadh':'Parent';
+        const pdd=document.getElementById('parent-dash-sub');if(pdd)pdd.textContent=m.parent_type==='teacher'?'Teacher Dashboard':'Parent Dashboard';
         loadParentLinkCode(u.id);
         loadLinkedStudents(u.id);
       }else{
-        ['settings-avatar','details-avatar'].forEach(id=>document.getElementById(id).textContent=initials);
-        document.getElementById('settings-name').textContent=m.full_name||'';document.getElementById('settings-email').textContent=u.email;
-        document.getElementById('details-name').textContent=m.full_name||'';document.getElementById('details-email').textContent=u.email;
-        document.getElementById('details-name-field').textContent=m.full_name||'—';document.getElementById('details-email-field').textContent=u.email;document.getElementById('details-dob-field').textContent=m.dob||'—';
-        document.getElementById('details-mushaf-field').textContent=(userData.mushaf||'13')+' Line';
-        const j=m.journey;document.getElementById('details-journey-field').textContent=j==='hafiz'?`${mt} / Revision`:j==='learning'?`Learning to become a ${mt}`:'—';
+        ['settings-avatar','details-avatar'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=initials;});
+        const sn=document.getElementById('settings-name');if(sn)sn.textContent=m.full_name||'';
+        const se=document.getElementById('settings-email');if(se)se.textContent=u.email;
+        const dn=document.getElementById('details-name');if(dn)dn.textContent=m.full_name||'';
+        const de=document.getElementById('details-email');if(de)de.textContent=u.email;
+        const dnf=document.getElementById('details-name-field');if(dnf)dnf.textContent=m.full_name||'—';
+        const def=document.getElementById('details-email-field');if(def)def.textContent=u.email;
+        const dmf=document.getElementById('details-mushaf-field');if(dmf)dmf.textContent=(userData.mushaf||'13')+' Line';
+        const djf=document.getElementById('details-journey-field');if(djf){const mt=gender==='female'?'Hafiza':'Hafiz';djf.textContent=m.journey==='hafiz'?`${mt} / Revision`:m.journey==='learning'?`Learning to become a ${mt}`:'—';}
         checkIfLinked(u.id);
       }
     }
   });
   if(journey==='parent'){
-    document.getElementById('parent-dash-name').textContent=`Assalamu Alaikum, ${firstName}`;
+    const pdn=document.getElementById('parent-dash-name');if(pdn)pdn.textContent=`Assalamu Alaikum, ${firstName}`;
   }else{
-    document.getElementById('dash-name').textContent=`Assalamu Alaikum, ${t} ${firstName}`;
-    document.getElementById('dash-sub').textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;
-    loadStats();buildSchedule();
+    const dn=document.getElementById('dash-name');if(dn)dn.textContent=`Assalamu Alaikum, ${t} ${firstName}`;
+    const ds=document.getElementById('dash-sub');if(ds)ds.textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;
+    loadStats();
   }
 }
 function renderDashboard(n,j,g){if(j==='parent')showScreen('screen-parent-dashboard');else showScreen('screen-dashboard');}
 function loadDashboard(n,j,g){populateDashboardData(n,j,g);renderDashboard(n,j,g);}
-function copyCode(){const c=document.getElementById('link-code').textContent;navigator.clipboard.writeText(c).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);});}
 
-function buildSchedule(){
-  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-  const surahs=SURAHS.slice(0,7).map(s=>s.nameEn);
-  const list=document.getElementById('schedule-list');list.innerHTML='';
-  days.forEach((day,i)=>{const div=document.createElement('div');div.className='sched-item';div.innerHTML=`<div class="sched-day">${day}</div><div class="sched-content"><div class="sched-name">${surahs[i]||'Revision'}</div><div class="sched-detail">After Fajr · ~10 mins</div></div><div class="sched-status ${i<2?'done':''}"></div>`;list.appendChild(div);});
-}
-
+// ── SURAH LIST ────────────────────────────────────────────────────
 function buildSurahList(){
   const list=document.getElementById('surah-list');list.innerHTML='';
   SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});
@@ -1290,28 +1481,17 @@ function renderSurahText(){
     if(w.tj==='marker'){
       const span=document.createElement('span');span.className='ayah-marker';span.textContent=w.ayah>0?' ۝'+w.ayah+' ':' ۝ ';display.appendChild(span);
     }else{
-      const span=document.createElement('span');
-      span.id=`rw-${ri}`;
-      // Apply mode
-      if(currentRecitationMode==='test'){
-        span.className=`rword tj-${w.tj}`;span.style.color='transparent';span.style.textShadow='none';
-      }else if(currentRecitationMode==='guided'){
-        span.className=`rword tj-${w.tj}`;
-      }else{
-        span.className=`rword hidden tj-${w.tj}`;
-      }
+      const span=document.createElement('span');span.id=`rw-${ri}`;
+      if(currentRecitationMode==='test'){span.className=`rword tj-${w.tj}`;span.style.color='transparent';span.style.textShadow='none';}
+      else if(currentRecitationMode==='guided'){span.className=`rword tj-${w.tj}`;}
+      else{span.className=`rword hidden tj-${w.tj}`;}
       span.textContent=w.t+' ';display.appendChild(span);ri++;
     }
   });
-  if(currentRecitationMode!=='test'){
-    const first=document.getElementById('rw-0');
-    if(first){first.classList.remove('hidden');first.classList.add('current');}
-  }
+  if(currentRecitationMode!=='test'){const first=document.getElementById('rw-0');if(first){first.classList.remove('hidden');first.classList.add('current');}}
 }
 
-function normalise(text){
-  return text.replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/[ىئ]/g,'ي').replace(/ة/g,'ه').replace(/[ۥۦ]/g,'').replace(/\s+/g,' ').trim();
-}
+function normalise(text){return text.replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/[ىئ]/g,'ي').replace(/ة/g,'ه').replace(/[ۥۦ]/g,'').replace(/\s+/g,' ').trim();}
 
 function wordsMatch(spoken,expected){
   const ns=normalise(spoken);const ne=normalise(expected);
@@ -1325,8 +1505,7 @@ function toggleMic(){if(isListening)stopListening();else startListening();}
 function startListening(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){alert('Please use Chrome or Safari for the recitation feature.');return;}
-  recognition=new SR();
-  recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=5;
+  recognition=new SR();recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=5;
   recognition.onstart=()=>{isListening=true;document.getElementById('mic-btn').classList.add('listening');showFeedback('listening');startWaitingTimer();};
   recognition.onresult=e=>{clearWaitingTimer();for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)processFinalResult(e.results[i]);else processInterimResult(e.results[i][0].transcript);}startWaitingTimer();};
   recognition.onerror=e=>{if(e.error!=='no-speech')stopListening();};
@@ -1362,10 +1541,7 @@ function processFinalResult(result){
       if(el){el.classList.remove('hidden','current','mistake');el.style.color='';el.style.textShadow='';el.classList.add('correct');}
       totalCorrect++;currentWordIndex++;
       const nextEl=document.getElementById(`rw-${currentWordIndex}`);
-      if(nextEl){
-        if(currentRecitationMode==='hidden'&&!isPeeking){nextEl.classList.remove('hidden');nextEl.style.color='';}
-        nextEl.classList.add('current');
-      }
+      if(nextEl){if(currentRecitationMode==='hidden'&&!isPeeking){nextEl.classList.remove('hidden');nextEl.style.color='';}nextEl.classList.add('current');}
       updateSessionStats();showFeedback('correct');
       if(currentWordIndex>=recitable.length)setTimeout(()=>completeSession(),800);
     }else{
@@ -1395,16 +1571,12 @@ function togglePeek(){
   isPeeking=!isPeeking;
   if(currentRecitationMode==='test')return;
   const recitable=getRecitableWords();
-  recitable.forEach((w,i)=>{
-    const el=document.getElementById(`rw-${i}`);if(!el)return;
-    if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}
-  });
+  recitable.forEach((w,i)=>{const el=document.getElementById(`rw-${i}`);if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});
   document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
 }
 
 function completeSession(){
   stopListening();
-  const recitable=getRecitableWords();
   const elapsed=Math.round((Date.now()-sessionStartTime)/1000);
   const mins=Math.floor(elapsed/60);const secs=elapsed%60;
   const timeStr=mins>0?`${mins}m ${secs}s`:`${secs}s`;
@@ -1435,16 +1607,15 @@ function completeSession(){
 async function fetchAIFeedback(accuracy,timeTaken){
   try{
     const recitable=getRecitableWords();
-    const surahArabic=recitable.map(w=>w.t).join(' ');
     const firstName=userData.name?userData.name.split(' ')[0]:'';
-    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:currentSurah.nameEn,surahArabic:surahArabic,wordsRecited:currentWordIndex,totalWords:recitable.length,mistakes:mistakeWords,accuracy:accuracy,tajweedRules:currentSurah.tajweedRules||[],timeTaken:timeTaken,studentName:firstName})});
+    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:currentSurah.nameEn,surahArabic:recitable.map(w=>w.t).join(' '),wordsRecited:currentWordIndex,totalWords:recitable.length,mistakes:mistakeWords,accuracy:accuracy,tajweedRules:currentSurah.tajweedRules||[],timeTaken:timeTaken,studentName:firstName})});
     const data=await response.json();
     if(data.feedback){
       currentFeedbackText=data.feedback;
       document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>`;
       document.getElementById('ai-audio-btn').disabled=false;
     }else{document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>`;}
-  }catch(e){document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable. Check your connection.</p>`;}
+  }catch(e){document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>`;}
 }
 
 async function toggleAudio(){
@@ -1464,11 +1635,14 @@ async function toggleAudio(){
     feedbackAudio.onended=()=>{isPlayingAudio=false;btn.classList.remove('playing');document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';btn.disabled=false;};
     feedbackAudio.play();isPlayingAudio=true;btn.disabled=false;btn.classList.add('playing');
     document.getElementById('audio-icon-play').style.display='none';document.getElementById('audio-icon-stop').style.display='';
-  }catch(e){btn.disabled=false;alert('Audio unavailable. Please try again.');}
+  }catch(e){btn.disabled=false;}
 }
 
-function endSession(){
-  stopListening();if(currentWordIndex>0)completeSession();else showTab('dashboard');
+// End session — if words recited go to summary, otherwise back to surah list
+function endSessionToSurahList(){
+  stopListening();
+  if(currentWordIndex>0){completeSession();}
+  else{buildSurahList();showScreen('screen-surah-list');}
 }
 
 loadSavedTheme();
