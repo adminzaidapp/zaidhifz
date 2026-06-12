@@ -8,7 +8,7 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f2; color: #1a1a1a; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; }
-  .app { width: 100%; max-width: 430px; min-height: 100vh; background: #fafafa; display: flex; flex-direction: column; }
+  .app { width: 100%; max-width: 430px; min-height: 100vh; background: #fafafa; display: flex; flex-direction: column; position: relative; }
   .screen { display: none; flex-direction: column; flex: 1; }
   .screen.active { display: flex; animation: fadeIn 0.3s ease forwards; }
   @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
@@ -20,6 +20,9 @@
   .status-bar span { color:rgba(255,255,255,0.75); font-size:13px; }
   .back-btn { background:none; border:none; color:rgba(255,255,255,0.9); font-size:14px; cursor:pointer; padding:0; }
   .info-btn { background:none; border:none; color:rgba(255,255,255,0.9); font-size:18px; cursor:pointer; padding:0; }
+  .msg-icon-btn { background:none; border:none; color:rgba(255,255,255,0.9); cursor:pointer; padding:0; position:relative; }
+  .msg-badge { position:absolute; top:-4px; right:-4px; background:#E53935; border-radius:50%; width:16px; height:16px; font-size:10px; font-weight:700; color:#fff; display:flex; align-items:center; justify-content:center; display:none; }
+  .msg-badge.show { display:flex; }
   .screen-body { flex:1; padding:24px 20px; overflow-y:auto; }
   .bottom-nav { border-top:0.5px solid #e8ede9; display:flex; background:#fff; flex-shrink:0; box-shadow:0 -4px 20px rgba(0,0,0,0.06); }
   .nav-item { flex:1; padding:10px 4px; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; border:none; background:none; transition:transform 0.15s ease; }
@@ -220,7 +223,8 @@
   .ai-loading-dot:nth-child(3){animation-delay:0.4s;}
   @keyframes dotPulse{0%,100%{opacity:0.3;transform:scale(0.8);}50%{opacity:1;transform:scale(1);}}
   .ai-loading-text { font-size:13px; color:#888; font-weight:500; }
-  .student-card { background:#fff; border-radius:16px; padding:14px 16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:10px; display:flex; align-items:center; gap:12px; }
+  .student-card { background:#fff; border-radius:16px; padding:14px 16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:10px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:all 0.15s ease; }
+  .student-card:active { transform:scale(0.98); }
   .student-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex-shrink:0; }
   .student-info { flex:1; }
   .student-name { font-size:15px; font-weight:600; color:#111; }
@@ -254,6 +258,48 @@
   .wt-step-progress { display:flex; gap:6px; justify-content:center; margin-bottom:20px; }
   .wt-step-dot { width:8px; height:8px; border-radius:50%; background:#ddd; transition:all 0.3s ease; }
   .wt-step-dot.active { background:var(--primary); width:24px; border-radius:4px; }
+  /* SESSION HISTORY */
+  .session-history-item { background:#fff; border-radius:14px; padding:14px 16px; border:1px solid #edf2ef; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .session-history-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+  .session-history-surah { font-size:14px; font-weight:700; color:#111; }
+  .session-history-date { font-size:11px; color:#aaa; font-weight:500; }
+  .session-history-stats { display:flex; gap:12px; }
+  .session-history-stat { font-size:12px; color:#666; }
+  .session-history-stat strong { color:var(--primary); }
+  .session-accuracy-bar { background:#e0ebe6; border-radius:4px; height:4px; margin-top:8px; }
+  .session-accuracy-fill { background:linear-gradient(90deg,var(--primary),var(--primary-dark)); height:4px; border-radius:4px; transition:width 0.5s ease; }
+  /* MESSENGER */
+  .chat-list-item { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid #f0f4f2; cursor:pointer; transition:all 0.15s ease; }
+  .chat-list-item:active { background:var(--primary-light); margin:0 -20px; padding:14px 20px; border-radius:12px; }
+  .chat-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; color:#fff; flex-shrink:0; position:relative; }
+  .chat-online-dot { position:absolute; bottom:0; right:0; width:12px; height:12px; background:#4CAF50; border-radius:50%; border:2px solid #fff; }
+  .chat-info { flex:1; min-width:0; }
+  .chat-name { font-size:15px; font-weight:600; color:#111; }
+  .chat-preview { font-size:13px; color:#aaa; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .chat-meta { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
+  .chat-time { font-size:11px; color:#aaa; }
+  .chat-unread { background:var(--primary); color:#fff; border-radius:50%; width:18px; height:18px; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .messages-wrap { flex:1; overflow-y:auto; padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+  .msg-bubble { max-width:75%; padding:10px 14px; border-radius:18px; font-size:14px; line-height:1.5; }
+  .msg-bubble.sent { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; border-bottom-right-radius:4px; align-self:flex-end; }
+  .msg-bubble.received { background:#fff; color:#1a1a1a; border-bottom-left-radius:4px; align-self:flex-start; border:1px solid #edf2ef; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .msg-time { font-size:10px; opacity:0.6; margin-top:4px; }
+  .msg-input-area { padding:12px 20px; background:#fff; border-top:0.5px solid #e8ede9; display:flex; gap:10px; align-items:flex-end; }
+  .msg-input { flex:1; padding:10px 14px; border:1.5px solid #e8ede9; border-radius:20px; font-size:15px; outline:none; background:#fff; resize:none; max-height:100px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+  .msg-input:focus { border-color:var(--primary); }
+  .msg-send-btn { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px var(--primary-shadow); }
+  .msg-send-btn:active { transform:scale(0.93); }
+  .msg-date-divider { text-align:center; font-size:11px; color:#aaa; font-weight:600; margin:8px 0; }
+  .new-chat-search { margin-bottom:16px; }
+  .ai-summary-card { background:linear-gradient(135deg,var(--primary-light),var(--primary-lighter)); border-radius:18px; padding:20px; margin-bottom:16px; border:1px solid var(--primary-shadow-light); }
+  .ai-summary-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .ai-summary-icon { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .ai-summary-title { font-size:15px; font-weight:700; color:var(--primary-text); }
+  .ai-summary-text { font-size:14px; color:#333; line-height:1.7; }
+  .student-stat-row { display:flex; gap:10px; margin-bottom:14px; }
+  .student-stat-pill { flex:1; background:#fff; border-radius:12px; padding:12px; text-align:center; border:1px solid #edf2ef; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .student-stat-pill-val { font-size:22px; font-weight:700; color:var(--primary); }
+  .student-stat-pill-label { font-size:10px; color:#888; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; margin-top:2px; }
 </style>
 </head>
 <body>
@@ -444,7 +490,13 @@
 
 <!-- STUDENT DASHBOARD -->
 <div class="screen" id="screen-dashboard">
-  <div class="status-bar"><h1>Zaid</h1></div>
+  <div class="status-bar">
+    <h1>Zaid</h1>
+    <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C6.03 2 2 5.69 2 10.2c0 2.5 1.24 4.73 3.2 6.22V20l3.7-2.03C10 18.1 10.49 18.2 11 18.2c4.97 0 9-3.69 9-8.2S15.97 2 11 2z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <div class="msg-badge" id="msg-badge">0</div>
+    </button>
+  </div>
   <div class="screen-body">
     <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
@@ -488,7 +540,7 @@
 
 <!-- MY SPACE -->
 <div class="screen" id="screen-myspace">
-  <div class="status-bar"><h1>My Space</h1></div>
+  <div class="status-bar"><h1>My Space</h1><button class="msg-icon-btn" onclick="showScreen('screen-messenger')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C6.03 2 2 5.69 2 10.2c0 2.5 1.24 4.73 3.2 6.22V20l3.7-2.03C10 18.1 10.49 18.2 11 18.2c4.97 0 9-3.69 9-8.2S15.97 2 11 2z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><div class="msg-badge" id="msg-badge-2">0</div></button></div>
   <div class="screen-body">
     <div class="myspace-tabs">
       <button class="myspace-tab active" onclick="switchMySpaceTab('planner')">📅 Planner</button>
@@ -538,7 +590,7 @@
 
 <!-- PARENT DASHBOARD -->
 <div class="screen" id="screen-parent-dashboard">
-  <div class="status-bar"><h1>Zaid</h1></div>
+  <div class="status-bar"><h1>Zaid</h1><button class="msg-icon-btn" onclick="showScreen('screen-messenger')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C6.03 2 2 5.69 2 10.2c0 2.5 1.24 4.73 3.2 6.22V20l3.7-2.03C10 18.1 10.49 18.2 11 18.2c4.97 0 9-3.69 9-8.2S15.97 2 11 2z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><div class="msg-badge" id="msg-badge-parent">0</div></button></div>
   <div class="screen-body">
     <div class="greeting-name" id="parent-dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="parent-dash-sub">Supporting the next generation</div>
@@ -558,16 +610,44 @@
   </div>
 </div>
 
-<!-- PARENT STUDENTS -->
+<!-- PARENT STUDENTS LIST -->
 <div class="screen" id="screen-parent-students">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-dashboard')">← Back</button><h1>My Students</h1><span></span></div>
   <div class="screen-body">
-    <div id="parent-students-full-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:40px 0;">No students linked yet. Share your ZD code to get started.</p></div>
+    <div id="parent-students-full-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:40px 0;">No students linked yet.</p></div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#bbb"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#bbb"/></svg><span>Home</span></button>
     <button class="nav-item active"><svg viewBox="0 0 20 20"><circle cx="7" cy="7" r="4" stroke="var(--primary)" stroke-width="1.5" fill="none"/><path d="M1 17c0-3 2.5-5 6-5s6 2 6 5" stroke="var(--primary)" stroke-width="1.5" fill="none"/></svg><span style="color:var(--primary);">Students</span></button>
     <button class="nav-item" onclick="showScreen('screen-parent-settings')"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" stroke="#bbb" stroke-width="1.5" fill="none"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg><span>Settings</span></button>
+  </div>
+</div>
+
+<!-- STUDENT DETAIL (parent view) -->
+<div class="screen" id="screen-student-detail">
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-students')">← Back</button><h1 id="student-detail-name">Student</h1><span></span></div>
+  <div class="screen-body">
+    <!-- AI SUMMARY -->
+    <div class="ai-summary-card" id="student-ai-summary">
+      <div class="ai-summary-header">
+        <div class="ai-summary-icon">🤖</div>
+        <div><div class="ai-summary-title">Zaid's Weekly Summary</div></div>
+      </div>
+      <div class="ai-summary-text" id="student-ai-summary-text">
+        <div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Generating summary...</span></div>
+      </div>
+    </div>
+    <!-- QUICK STATS -->
+    <div class="student-stat-row" id="student-stats-row">
+      <div class="student-stat-pill"><div class="student-stat-pill-val" id="sd-sessions">0</div><div class="student-stat-pill-label">Sessions</div></div>
+      <div class="student-stat-pill"><div class="student-stat-pill-val" id="sd-accuracy">—</div><div class="student-stat-pill-label">Avg accuracy</div></div>
+      <div class="student-stat-pill"><div class="student-stat-pill-val" id="sd-streak">0</div><div class="student-stat-pill-label">Streak</div></div>
+    </div>
+    <!-- MESSAGE BUTTON -->
+    <button class="btn-primary" id="msg-student-btn" onclick="openChatWithStudent()" style="margin-bottom:16px;">💬 Send a message</button>
+    <!-- SESSION HISTORY -->
+    <p style="font-size:13px;font-weight:700;color:#111;margin-bottom:10px;">Recent sessions</p>
+    <div id="student-session-history"><p style="font-size:13px;color:#aaa;">No sessions yet.</p></div>
   </div>
 </div>
 
@@ -686,7 +766,7 @@
   </div>
 </div>
 
-<!-- STUDENT CHANGE PASSWORD -->
+<!-- CHANGE PASSWORD -->
 <div class="screen" id="screen-change-password">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Change Password</h1><span></span></div>
   <div class="screen-body">
@@ -705,13 +785,13 @@
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-settings')">← Back</button><h1>Tajweed Guide</h1><span></span></div>
   <div class="screen-body">
     <p class="sub">The colour coding follows the standard Hafs Tajweed Quran.</p>
-    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound when followed by one of 15 letters.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
+    <div class="tj-rule-card" style="background:#E3F2FD;border-color:#2196F3;"><div class="tj-rule-title" style="color:#2196F3;">Ikhfa — Light Blue</div><div class="tj-rule-desc">Hiding the noon sakinah or tanween with a nasal sound.</div><div class="tj-rule-example" style="color:#2196F3;">مِن شَرِّ</div></div>
     <div class="tj-rule-card" style="background:#FFF3E0;border-color:#FF9800;"><div class="tj-rule-title" style="color:#FF9800;">Ghunnah — Orange</div><div class="tj-rule-desc">A nasal humming sound held for two counts on a shaddah over noon or meem.</div><div class="tj-rule-example" style="color:#FF9800;">إِنَّ — النَّاسِ</div></div>
-    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;"><div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div><div class="tj-rule-desc">When meem saakin is followed by ba, the meem is hidden with a nasal sound.</div><div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div></div>
+    <div class="tj-rule-card" style="background:#FCE4EC;border-color:#E91E8C;"><div class="tj-rule-title" style="color:#E91E8C;">Ikhfa Meem Saakin — Pink</div><div class="tj-rule-desc">When meem saakin is followed by ba, hidden with a nasal sound.</div><div class="tj-rule-example" style="color:#E91E8C;">هُم بِهِ</div></div>
     <div class="tj-rule-card" style="background:#E8F5E9;border-color:#1B5E20;"><div class="tj-rule-title" style="color:#1B5E20;">Idgham — Dark Green</div><div class="tj-rule-desc">Merging the noon sakinah or tanween into the following letter.</div><div class="tj-rule-example" style="color:#1B5E20;">مِن نَّعِيمٍ</div></div>
-    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د when they appear with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
-    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">When noon sakinah or tanween is followed by ba, the noon converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
-    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">When meem saakin is followed by another meem, they merge with a ghunnah.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
+    <div class="tj-rule-card" style="background:#FFEBEE;border-color:#E53935;"><div class="tj-rule-title" style="color:#E53935;">Qalqalah — Red</div><div class="tj-rule-desc">A slight echoing sound on the letters ق ط ب ج د with sukoon.</div><div class="tj-rule-example" style="color:#E53935;">قُلْ — الْفَلَقِ</div></div>
+    <div class="tj-rule-card" style="background:#F3E5F5;border-color:#7B1FA2;"><div class="tj-rule-title" style="color:#7B1FA2;">Qalb — Purple</div><div class="tj-rule-desc">Noon sakinah followed by ba converts to a meem sound.</div><div class="tj-rule-example" style="color:#7B1FA2;">مِنۢ بَعْدِ</div></div>
+    <div class="tj-rule-card" style="background:#E8F5E9;border-color:#4CAF50;"><div class="tj-rule-title" style="color:#4CAF50;">Idgham Meem Saakin — Light Green</div><div class="tj-rule-desc">Meem saakin followed by meem merge with ghunnah.</div><div class="tj-rule-example" style="color:#4CAF50;">لَهُم مَّا</div></div>
     <button class="btn-primary" onclick="showScreen('screen-settings')" style="margin-top:8px;">Back to settings</button>
   </div>
 </div>
@@ -848,7 +928,39 @@
   </div>
 </div>
 
-<!-- WALKTHROUGHS -->
+<!-- MESSENGER — CONVERSATION LIST -->
+<div class="screen" id="screen-messenger">
+  <div class="status-bar"><button class="back-btn" id="messenger-back-btn" onclick="goBackFromMessenger()">← Back</button><h1>Messages</h1><button class="info-btn" onclick="showScreen('screen-new-chat')" style="font-size:22px;">✏️</button></div>
+  <div class="screen-body">
+    <div id="conversation-list"><div style="text-align:center;padding:60px 20px;"><div style="font-size:48px;margin-bottom:16px;">💬</div><p style="font-size:16px;font-weight:600;color:#111;margin-bottom:8px;">No messages yet</p><p style="font-size:14px;color:#aaa;line-height:1.6;">Start a conversation with your teacher, parent, or a fellow Hafiz.</p><button class="btn-primary" onclick="showScreen('screen-new-chat')" style="margin-top:20px;max-width:200px;">Start a chat</button></div></div>
+  </div>
+</div>
+
+<!-- NEW CHAT SCREEN -->
+<div class="screen" id="screen-new-chat">
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger')">← Back</button><h1>New Message</h1><span></span></div>
+  <div class="screen-body">
+    <p style="font-size:13px;color:#888;margin-bottom:12px;line-height:1.6;">Enter the ZD code of the person you want to message. You can only message people of the same gender.</p>
+    <div class="input-wrap">
+      <input class="input-field" type="text" id="new-chat-zd" placeholder="ZD-XXXX" maxlength="7" oninput="this.value=this.value.toUpperCase()" style="font-size:18px;font-weight:700;letter-spacing:4px;text-align:center;"/>
+    </div>
+    <button class="btn-primary" onclick="startNewChat()">Find person</button>
+    <p class="error-msg" id="new-chat-error" style="margin-top:8px;"></p>
+    <div id="new-chat-result" style="display:none;margin-top:16px;"></div>
+  </div>
+</div>
+
+<!-- INDIVIDUAL CHAT SCREEN -->
+<div class="screen" id="screen-chat">
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger')">← Back</button><h1 id="chat-title">Chat</h1><span id="chat-subtitle" style="font-size:11px;"></span></div>
+  <div class="messages-wrap" id="messages-wrap"></div>
+  <div class="msg-input-area">
+    <textarea class="msg-input" id="msg-input" placeholder="Type a message..." rows="1" oninput="autoResize(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
+    <button class="msg-send-btn" onclick="sendMessage()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M18 10L2 3l4 7-4 7 16-7z" fill="white"/></svg></button>
+  </div>
+</div>
+
+<!-- WALKTHROUGH OVERLAYS -->
 <div class="walkthrough-overlay" id="recite-walkthrough">
   <div class="walkthrough-tooltip">
     <div class="wt-step-icon" id="rwt-icon">🎙️</div>
@@ -904,6 +1016,9 @@ let currentRecitationMode='hidden';
 let currentUserId=null;
 let reciteWTStep=0,myspaceWTStep=0;
 let dashboardInitialised=false;
+let currentChatReceiverId=null,currentChatReceiverName='';
+let messageSubscription=null;
+let viewingStudentId=null,viewingStudentName='';
 const TOTAL_SLIDES=4;
 
 const reciteWTSteps=[
@@ -982,6 +1097,11 @@ function showTab(tab){
   if(tab==='myspace'){loadMySpace();showScreen('screen-myspace');setTimeout(showMySpaceWT,500);return;}
   const map={dashboard:currentUserJourney==='parent'?'screen-parent-dashboard':'screen-dashboard',quran:'screen-quran',settings:currentUserJourney==='parent'?'screen-parent-settings':'screen-settings'};
   showScreen(map[tab]||'screen-dashboard');
+}
+
+function goBackFromMessenger(){
+  if(currentUserJourney==='parent')showScreen('screen-parent-dashboard');
+  else showTab('dashboard');
 }
 
 function selectMode(mode){
@@ -1086,6 +1206,13 @@ function buildFinalStep(stage){
 
 function generateZDCode(){let n='';for(let i=0;i<4;i++)n+='0123456789'[Math.floor(Math.random()*10)];return'ZD-'+n;}
 
+async function ensureZDCode(user){
+  if(user.user_metadata.zd_code)return user.user_metadata.zd_code;
+  const newCode=generateZDCode();
+  await sb.auth.updateUser({data:{zd_code:newCode}}).catch(()=>{});
+  return newCode;
+}
+
 async function finishOnboarding(){
   const isParent=userData.journey==='parent';
   const errorEl=isParent?document.getElementById('ob-parent-error'):document.getElementById('ob4-error');
@@ -1126,11 +1253,76 @@ async function loadLinkedStudents(parentId){
   try{
     const{data}=await sb.from('student_links').select('*').eq('parent_id',parentId);
     if(data&&data.length>0){
-      const html=data.map(s=>`<div class="student-card"><div class="student-avatar">${(s.student_name||'S')[0].toUpperCase()}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Linked student</div></div></div>`).join('');
+      const makeCard=(s,target)=>`<div class="student-card" onclick="openStudentDetail('${s.student_id}','${s.student_name||'Student'}')"><div class="student-avatar">${(s.student_name||'S')[0].toUpperCase()}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Tap to view progress</div></div><span style="font-size:18px;color:#ccc;">›</span></div>`;
+      const html=data.map(s=>makeCard(s)).join('');
       document.getElementById('parent-students-list').innerHTML=html;
       document.getElementById('parent-students-full-list').innerHTML=html;
     }
   }catch(e){}
+}
+
+async function openStudentDetail(studentId,studentName){
+  viewingStudentId=studentId;viewingStudentName=studentName;
+  document.getElementById('student-detail-name').textContent=studentName;
+  document.getElementById('student-ai-summary-text').innerHTML=`<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Generating summary...</span></div>`;
+  document.getElementById('student-session-history').innerHTML='<p style="font-size:13px;color:#aaa;">Loading...</p>';
+  showScreen('screen-student-detail');
+  try{
+    const{data:sessions}=await sb.from('sessions').select('*').eq('user_id',studentId).order('created_at',{ascending:false}).limit(20);
+    if(sessions&&sessions.length>0){
+      const totalSess=sessions.length;
+      const avgAcc=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length);
+      const streak=0;
+      document.getElementById('sd-sessions').textContent=totalSess;
+      document.getElementById('sd-accuracy').textContent=avgAcc+'%';
+      document.getElementById('sd-streak').textContent=streak;
+      document.getElementById('student-session-history').innerHTML=sessions.map(s=>{
+        const d=new Date(s.created_at);
+        const dateStr=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+        const timeStr=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+        const mins=Math.floor(s.duration_seconds/60);const secs=s.duration_seconds%60;
+        const dur=mins>0?`${mins}m ${secs}s`:`${secs}s`;
+        return`<div class="session-history-item"><div class="session-history-top"><span class="session-history-surah">${s.surah_name}</span><span class="session-history-date">${dateStr} · ${timeStr}</span></div><div class="session-history-stats"><span class="session-history-stat"><strong>${s.accuracy}%</strong> accuracy</span><span class="session-history-stat"><strong>${s.words_recited}</strong> words</span><span class="session-history-stat"><strong>${s.mistakes}</strong> mistakes</span><span class="session-history-stat"><strong>${dur}</strong></span></div><div class="session-accuracy-bar"><div class="session-accuracy-fill" style="width:${s.accuracy}%"></div></div></div>`;
+      }).join('');
+      generateStudentAISummary(studentName,sessions);
+    }else{
+      document.getElementById('sd-sessions').textContent='0';
+      document.getElementById('sd-accuracy').textContent='—';
+      document.getElementById('sd-streak').textContent='0';
+      document.getElementById('student-session-history').innerHTML='<p style="font-size:13px;color:#aaa;">No sessions recorded yet.</p>';
+      document.getElementById('student-ai-summary-text').textContent=`${studentName.split(' ')[0]} hasn't recited any sessions yet. Once they start using Zaid, you'll see a full summary here.`;
+    }
+  }catch(e){document.getElementById('student-session-history').innerHTML='<p style="font-size:13px;color:#aaa;">Could not load sessions.</p>';}
+}
+
+async function generateStudentAISummary(studentName,sessions){
+  try{
+    const firstName=studentName.split(' ')[0];
+    const totalSess=sessions.length;
+    const avgAcc=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length);
+    const surahCounts={};sessions.forEach(s=>{surahCounts[s.surah_name]=(surahCounts[s.surah_name]||0)+1;});
+    const topSurah=Object.entries(surahCounts).sort((a,b)=>b[1]-a[1])[0];
+    const recentSessions=sessions.slice(0,7);
+    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:'Weekly Progress',surahArabic:'',wordsRecited:sessions.reduce((a,b)=>a+b.words_recited,0),totalWords:sessions.reduce((a,b)=>a+b.total_words,0),mistakes:[],accuracy:avgAcc,tajweedRules:[],timeTaken:`${totalSess} sessions`,studentName:firstName,customPrompt:`You are Zaid, an AI Quran teacher. Write a warm 60-word weekly progress summary for a parent/teacher about their student ${firstName}. They completed ${totalSess} sessions this week with an average accuracy of ${avgAcc}%. Their most recited surah was ${topSurah?topSurah[0]:'various surahs'}. Be encouraging and specific. Address it as a summary for the parent. No bullet points.`})});
+    const data=await response.json();
+    if(data.feedback){document.getElementById('student-ai-summary-text').textContent=data.feedback;}
+    else{document.getElementById('student-ai-summary-text').textContent=`${firstName} completed ${totalSess} session${totalSess!==1?'s':''} with an average accuracy of ${avgAcc}%. ${topSurah?`Most recited: ${topSurah[0]}.`:''} Keep encouraging them!`;}
+  }catch(e){
+    const firstName=studentName.split(' ')[0];
+    const avgAcc=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length);
+    document.getElementById('student-ai-summary-text').textContent=`${firstName} completed ${sessions.length} session${sessions.length!==1?'s':''} with an average accuracy of ${avgAcc}%. Keep encouraging them!`;
+  }
+}
+
+function openChatWithStudent(){
+  currentChatReceiverId=viewingStudentId;
+  currentChatReceiverName=viewingStudentName;
+  document.getElementById('chat-title').textContent=viewingStudentName.split(' ')[0];
+  document.getElementById('chat-subtitle').textContent='Student';
+  document.getElementById('messages-wrap').innerHTML='';
+  showScreen('screen-chat');
+  loadMessages();
+  subscribeToMessages();
 }
 
 async function linkToParent(){
@@ -1171,6 +1363,121 @@ function copyParentCode(){
   });
 }
 
+// ── MESSENGER ──────────────────────────────────────────────────────
+async function loadConversations(){
+  if(!currentUserId)return;
+  try{
+    const{data}=await sb.from('messages').select('*').or(`sender_id.eq.${currentUserId},receiver_id.eq.${currentUserId}`).order('created_at',{ascending:false});
+    if(!data||data.length===0)return;
+    const convMap={};
+    data.forEach(msg=>{
+      const otherId=msg.sender_id===currentUserId?msg.receiver_id:msg.sender_id;
+      const otherName=msg.sender_id===currentUserId?msg.receiver_name:msg.sender_name;
+      if(!convMap[otherId]){convMap[otherId]={id:otherId,name:otherName,lastMsg:msg.content,lastTime:msg.created_at,unread:0};}
+      if(msg.receiver_id===currentUserId&&!msg.read)convMap[otherId].unread++;
+    });
+    const convs=Object.values(convMap);
+    const totalUnread=convs.reduce((a,b)=>a+b.unread,0);
+    ['msg-badge','msg-badge-2','msg-badge-parent'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){el.textContent=totalUnread>0?totalUnread:'';el.classList.toggle('show',totalUnread>0);}
+    });
+    if(convs.length>0){
+      document.getElementById('conversation-list').innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}')"><div class="chat-avatar">${c.name[0].toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');
+    }
+  }catch(e){}
+}
+
+function formatTime(ts){
+  const d=new Date(ts);const now=new Date();
+  if(d.toDateString()===now.toDateString())return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+}
+
+function openChat(receiverId,receiverName){
+  currentChatReceiverId=receiverId;
+  currentChatReceiverName=receiverName;
+  document.getElementById('chat-title').textContent=receiverName.split(' ')[0];
+  document.getElementById('chat-subtitle').textContent='';
+  document.getElementById('messages-wrap').innerHTML='';
+  showScreen('screen-chat');
+  loadMessages();
+  subscribeToMessages();
+}
+
+async function loadMessages(){
+  if(!currentUserId||!currentChatReceiverId)return;
+  try{
+    const{data}=await sb.from('messages').select('*').or(`and(sender_id.eq.${currentUserId},receiver_id.eq.${currentChatReceiverId}),and(sender_id.eq.${currentChatReceiverId},receiver_id.eq.${currentUserId})`).order('created_at',{ascending:true});
+    renderMessages(data||[]);
+    // Mark as read
+    await sb.from('messages').update({read:true}).eq('receiver_id',currentUserId).eq('sender_id',currentChatReceiverId).eq('read',false).catch(()=>{});
+  }catch(e){}
+}
+
+function renderMessages(msgs){
+  const wrap=document.getElementById('messages-wrap');
+  if(msgs.length===0){wrap.innerHTML='<div style="text-align:center;padding:40px 20px;"><p style="font-size:14px;color:#aaa;">No messages yet. Say Assalamu Alaikum! 👋</p></div>';return;}
+  let lastDate='';
+  wrap.innerHTML=msgs.map(m=>{
+    const d=new Date(m.created_at);
+    const dateStr=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+    const timeStr=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const isSent=m.sender_id===currentUserId;
+    let dateDivider='';
+    if(dateStr!==lastDate){lastDate=dateStr;dateDivider=`<div class="msg-date-divider">${dateStr}</div>`;}
+    return`${dateDivider}<div style="display:flex;justify-content:${isSent?'flex-end':'flex-start'};"><div><div class="msg-bubble ${isSent?'sent':'received'}">${m.content}</div><div class="msg-time" style="text-align:${isSent?'right':'left'};padding:0 4px;">${timeStr}</div></div></div>`;
+  }).join('');
+  wrap.scrollTop=wrap.scrollHeight;
+}
+
+function subscribeToMessages(){
+  if(messageSubscription)messageSubscription.unsubscribe();
+  messageSubscription=sb.channel('messages-'+currentUserId).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},payload=>{
+    const msg=payload.new;
+    if((msg.sender_id===currentUserId&&msg.receiver_id===currentChatReceiverId)||(msg.sender_id===currentChatReceiverId&&msg.receiver_id===currentUserId)){loadMessages();}
+    loadConversations();
+  }).subscribe();
+}
+
+async function sendMessage(){
+  const input=document.getElementById('msg-input');
+  const content=input.value.trim();
+  if(!content||!currentChatReceiverId)return;
+  input.value='';input.style.height='auto';
+  try{
+    await sb.from('messages').insert({sender_id:currentUserId,receiver_id:currentChatReceiverId,sender_name:userData.name||'',receiver_name:currentChatReceiverName,sender_gender:userData.gender||'male',receiver_gender:'',content:content,read:false});
+    loadMessages();
+  }catch(e){}
+}
+
+async function startNewChat(){
+  const code=document.getElementById('new-chat-zd').value.trim().toUpperCase();
+  const errorEl=document.getElementById('new-chat-error');
+  const resultEl=document.getElementById('new-chat-result');
+  errorEl.textContent='';resultEl.style.display='none';
+  if(code.length<7||!code.startsWith('ZD-')){errorEl.textContent='Please enter a valid ZD-XXXX code.';return;}
+  try{
+    // Search all users by zd_code in metadata - we'll search link_codes first (parents) then user metadata
+    // For now search link_codes for parent codes
+    const{data:linkData}=await sb.from('link_codes').select('parent_id,code').eq('code',code).maybeSingle();
+    if(linkData){
+      // It's a parent code — get their name from student_links or just use the ID
+      if(linkData.parent_id===currentUserId){errorEl.textContent='You cannot message yourself.';return;}
+      const{data:{user}}=await sb.auth.getUser();
+      // Gender check — parents can message anyone linked to them
+      // For student-to-student we enforce gender
+      resultEl.style.display='block';
+      resultEl.innerHTML=`<div class="student-card"><div class="student-avatar">👤</div><div class="student-info"><div class="student-name">Teacher/Parent</div><div class="student-meta">${code}</div></div><button class="btn-primary" onclick="openChat('${linkData.parent_id}','Teacher')" style="margin-top:0;width:auto;padding:10px 16px;font-size:14px;">Message</button></div>`;
+      return;
+    }
+    errorEl.textContent='Code not found. Ask the person for their ZD code from their Account Details.';
+  }catch(e){errorEl.textContent='Something went wrong.';}
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
+
+// ── AUTH ──────────────────────────────────────────────────────────
 async function handleLogin(){
   const email=document.getElementById('login-email').value.trim();const pw=document.getElementById('login-password').value;
   let v=true;
@@ -1212,6 +1519,7 @@ async function handleParentChangePassword(){
 }
 async function handleLogout(){
   if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
+  if(messageSubscription){messageSubscription.unsubscribe();messageSubscription=null;}
   dashboardInitialised=false;
   await sb.auth.signOut();
   pendingDashboardData=null;userData={};currentUserId=null;
@@ -1258,6 +1566,13 @@ function saveStats(words,surahName){
     sb.auth.updateUser({data:{streak:saved.streak,last_session:today}}).catch(()=>{});
     return saved.streak;
   }catch(e){return 0;}
+}
+
+async function saveSessionToSupabase(acc,timeStr,durationSecs){
+  if(!currentUserId||!currentSurah)return;
+  try{
+    await sb.from('sessions').insert({user_id:currentUserId,surah_name:currentSurah.nameEn,words_recited:currentWordIndex,total_words:getRecitableWords().length,accuracy:acc,mistakes:totalMistakes,duration_seconds:durationSecs,mode:currentRecitationMode});
+  }catch(e){}
 }
 
 function switchMySpaceTab(tab){
@@ -1334,17 +1649,20 @@ function populateDashboardData(fullName,journey,gender){
   const t=gender==='female'?'Hafiza':'Hafiz';
   const initials=fullName?fullName.split(' ').map(n=>n[0]).join('').substring(0,2).toUpperCase():'U';
   userData.name=fullName||'';
-  sb.auth.getUser().then(({data})=>{
+  sb.auth.getUser().then(async({data})=>{
     if(!data.user)return;
     const u=data.user;const m=u.user_metadata;
     currentUserId=u.id;userData.email=u.email;userData.gender=m.gender;
     userData.mushaf=m.mushaf||'13';
+    // Ensure ZD code exists
+    const zdCode=await ensureZDCode(u);
+    userData.zdCode=zdCode;
     const svEl=document.getElementById('settings-mushaf-val');if(svEl)svEl.textContent=(userData.mushaf||'13')+' Line';
     ['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===userData.mushaf);});
     const q13=document.getElementById('quran-13-btn');const q15=document.getElementById('quran-15-btn');
     if(q13)q13.classList.toggle('active',userData.mushaf==='13');
     if(q15)q15.classList.toggle('active',userData.mushaf==='15');
-    if(m.zd_code){const zdEl=document.getElementById('details-zd-field');if(zdEl)zdEl.textContent=m.zd_code;userData.zdCode=m.zd_code;}
+    const zdEl=document.getElementById('details-zd-field');if(zdEl)zdEl.textContent=zdCode;
     if(journey==='parent'){
       ['parent-settings-avatar','parent-details-avatar'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=initials;});
       const psn=document.getElementById('parent-settings-name');if(psn)psn.textContent=m.full_name||'';
@@ -1368,6 +1686,7 @@ function populateDashboardData(fullName,journey,gender){
       const djf=document.getElementById('details-journey-field');if(djf){const mt=gender==='female'?'Hafiza':'Hafiz';djf.textContent=m.journey==='hafiz'?`${mt} / Revision`:m.journey==='learning'?`Learning to become a ${mt}`:'—';}
       checkIfLinked(u.id);
     }
+    loadConversations();
   });
   if(journey==='parent'){
     const pdn=document.getElementById('parent-dash-name');if(pdn)pdn.textContent=`Assalamu Alaikum, ${firstName}`;
@@ -1449,153 +1768,142 @@ function startListening(){
 
 function stopListening(){
   isListening=false;if(recognition){try{recognition.stop();}catch(e){}}
-  document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();
+  document.getElementById('mic-btn').classList.remove('listening');clearWaiting
+ Timer();hideFeedback();
 }
-
 function startWaitingTimer(){clearWaitingTimer();waitingTimer=setTimeout(()=>{if(isListening)showFeedback('waiting');},4000);}
 function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
-
 function processInterimResult(transcript){
-  const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
-  const words=transcript.trim().split(/\s+/);const lastWord=words[words.length-1];
-  if(wordsMatch(lastWord,recitable[currentWordIndex].t))showFeedback('correct');
+const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
+const words=transcript.trim().split(/\s+/);const lastWord=words[words.length-1];
+if(wordsMatch(lastWord,recitable[currentWordIndex].t))showFeedback('correct');
 }
-
 function processFinalResult(result){
-  const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
-  const allTranscripts=[];for(let i=0;i<result.length;i++)allTranscripts.push(result[i].transcript);
-  const primaryWords=allTranscripts[0].trim().split(/\s+/).filter(w=>w.length>0);
-  primaryWords.forEach(spokenWord=>{
-    if(currentWordIndex>=recitable.length)return;
-    const expected=recitable[currentWordIndex];
-    let matched=false;
-    for(const t of allTranscripts){for(const tw of t.trim().split(/\s+/)){if(wordsMatch(tw,expected.t)){matched=true;break;}}if(matched)break;}
-    if(matched){
-      const el=document.getElementById(`rw-${currentWordIndex}`);
-      if(el){el.classList.remove('hidden','current','mistake');el.style.color='';el.style.textShadow='';el.classList.add('correct');}
-      totalCorrect++;currentWordIndex++;
-      const nextEl=document.getElementById(`rw-${currentWordIndex}`);
-      if(nextEl){if(currentRecitationMode==='hidden'&&!isPeeking){nextEl.classList.remove('hidden');nextEl.style.color='';}nextEl.classList.add('current');}
-      updateSessionStats();showFeedback('correct');
-      if(currentWordIndex>=recitable.length)setTimeout(()=>completeSession(),800);
-    }else{
-      const el=document.getElementById(`rw-${currentWordIndex}`);
-      if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},500);}
-      totalMistakes++;if(!mistakeWords.includes(expected.t))mistakeWords.push(expected.t);
-      updateSessionStats();showFeedback('mistake');
-    }
-  });
+const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
+const allTranscripts=[];for(let i=0;i<result.length;i++)allTranscripts.push(result[i].transcript);
+const primaryWords=allTranscripts[0].trim().split(/\s+/).filter(w=>w.length>0);
+primaryWords.forEach(spokenWord=>{
+if(currentWordIndex>=recitable.length)return;
+const expected=recitable[currentWordIndex];
+let matched=false;
+for(const t of allTranscripts){for(const tw of t.trim().split(/\s+/)){if(wordsMatch(tw,expected.t)){matched=true;break;}}if(matched)break;}
+if(matched){
+const el=document.getElementById(rw-${currentWordIndex});
+if(el){el.classList.remove('hidden','current','mistake');el.style.color='';el.style.textShadow='';el.classList.add('correct');}
+totalCorrect++;currentWordIndex++;
+const nextEl=document.getElementById(rw-${currentWordIndex});
+if(nextEl){if(currentRecitationMode==='hidden'&&!isPeeking){nextEl.classList.remove('hidden');nextEl.style.color='';}nextEl.classList.add('current');}
+updateSessionStats();showFeedback('correct');
+if(currentWordIndex>=recitable.length)setTimeout(()=>completeSession(),800);
+}else{
+const el=document.getElementById(rw-${currentWordIndex});
+if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},500);}
+totalMistakes++;if(!mistakeWords.includes(expected.t))mistakeWords.push(expected.t);
+updateSessionStats();showFeedback('mistake');
 }
-
+});
+}
 function updateSessionStats(){
-  const recitable=getRecitableWords();
-  const pct=recitable.length>0?Math.round((currentWordIndex/recitable.length)*100):0;
-  document.getElementById('session-bar').style.width=pct+'%';
-  document.getElementById('stat-words').textContent=currentWordIndex;
-  document.getElementById('stat-mistakes').textContent=totalMistakes;
-  const attempted=totalCorrect+totalMistakes;
-  const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
-  document.getElementById('stat-accuracy').textContent=acc;
+const recitable=getRecitableWords();
+const pct=recitable.length>0?Math.round((currentWordIndex/recitable.length)*100):0;
+document.getElementById('session-bar').style.width=pct+'%';
+document.getElementById('stat-words').textContent=currentWordIndex;
+document.getElementById('stat-mistakes').textContent=totalMistakes;
+const attempted=totalCorrect+totalMistakes;
+const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+document.getElementById('stat-accuracy').textContent=acc;
 }
-
 function showFeedback(type){['listening','correct','mistake','waiting'].forEach(t=>{const el=document.getElementById('feedback-'+t);if(el)el.classList.toggle('show',t===type);});}
 function hideFeedback(){showFeedback(null);}
-
 function togglePeek(){
-  isPeeking=!isPeeking;
-  if(currentRecitationMode==='test')return;
-  const recitable=getRecitableWords();
-  recitable.forEach((w,i)=>{const el=document.getElementById(`rw-${i}`);if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});
-  document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
+isPeeking=!isPeeking;
+if(currentRecitationMode==='test')return;
+const recitable=getRecitableWords();
+recitable.forEach((w,i)=>{const el=document.getElementById(rw-${i});if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});
+document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
 }
-
 function completeSession(){
-  stopListening();
-  const elapsed=Math.round((Date.now()-sessionStartTime)/1000);
-  const mins=Math.floor(elapsed/60);const secs=elapsed%60;
-  const timeStr=mins>0?`${mins}m ${secs}s`:`${secs}s`;
-  const attempted=totalCorrect+totalMistakes;
-  const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
-  const streak=saveStats(totalCorrect,currentSurah.nameEn);
-  document.getElementById('summary-emoji').textContent=acc>=90?'🌟':acc>=70?'✅':'💪';
-  document.getElementById('summary-title').textContent=acc>=90?'MashaAllah!':acc>=70?'Well done!':'Keep practising!';
-  document.getElementById('summary-sub').textContent=`${currentSurah.nameEn} — ${acc}% accuracy`;
-  document.getElementById('sum-words').textContent=currentWordIndex;
-  document.getElementById('sum-accuracy').textContent=acc+'%';
-  document.getElementById('sum-mistakes').textContent=totalMistakes;
-  document.getElementById('sum-time').textContent=timeStr;
-  document.getElementById('sum-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
-  const mw=document.getElementById('mistake-words');const mr=document.getElementById('mistake-review');
-  if(mistakeWords.length>0){mw.innerHTML=mistakeWords.map(w=>`<span class="mistake-word">${w}</span>`).join('');mr.style.display='block';}
-  else mr.style.display='none';
-  currentFeedbackText='';
-  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
-  isPlayingAudio=false;
-  const audioBtn=document.getElementById('ai-audio-btn');
-  audioBtn.disabled=true;audioBtn.classList.remove('playing');
-  document.getElementById('audio-icon-play').style.display='';
-  document.getElementById('audio-icon-stop').style.display='none';
-  document.getElementById('ai-feedback-content').innerHTML=`<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>`;
-  // CRITICAL FIX: directly show summary screen
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-summary').classList.add('active');
-  window.scrollTo(0,0);
-  fetchAIFeedback(acc,timeStr);
+stopListening();
+const elapsed=Math.round((Date.now()-sessionStartTime)/1000);
+const mins=Math.floor(elapsed/60);const secs=elapsed%60;
+const timeStr=mins>0?${mins}m ${secs}s:${secs}s;
+const attempted=totalCorrect+totalMistakes;
+const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+const streak=saveStats(totalCorrect,currentSurah.nameEn);
+saveSessionToSupabase(acc,timeStr,elapsed);
+document.getElementById('summary-emoji').textContent=acc>=90?'🌟':acc>=70?'✅':'💪';
+document.getElementById('summary-title').textContent=acc>=90?'MashaAllah!':acc>=70?'Well done!':'Keep practising!';
+document.getElementById('summary-sub').textContent=${currentSurah.nameEn} — ${acc}% accuracy;
+document.getElementById('sum-words').textContent=currentWordIndex;
+document.getElementById('sum-accuracy').textContent=acc+'%';
+document.getElementById('sum-mistakes').textContent=totalMistakes;
+document.getElementById('sum-time').textContent=timeStr;
+document.getElementById('sum-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
+const mw=document.getElementById('mistake-words');const mr=document.getElementById('mistake-review');
+if(mistakeWords.length>0){mw.innerHTML=mistakeWords.map(w=><span class="mistake-word">${w}</span>).join('');mr.style.display='block';}
+else mr.style.display='none';
+currentFeedbackText='';
+if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
+isPlayingAudio=false;
+const audioBtn=document.getElementById('ai-audio-btn');
+audioBtn.disabled=true;audioBtn.classList.remove('playing');
+document.getElementById('audio-icon-play').style.display='';
+document.getElementById('audio-icon-stop').style.display='none';
+document.getElementById('ai-feedback-content').innerHTML=<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>;
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById('screen-summary').classList.add('active');
+window.scrollTo(0,0);
+fetchAIFeedback(acc,timeStr);
 }
-
 async function fetchAIFeedback(accuracy,timeTaken){
-  try{
-    const recitable=getRecitableWords();
-    const firstName=userData.name?userData.name.split(' ')[0]:'';
-    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:currentSurah.nameEn,surahArabic:recitable.map(w=>w.t).join(' '),wordsRecited:currentWordIndex,totalWords:recitable.length,mistakes:mistakeWords,accuracy:accuracy,tajweedRules:currentSurah.tajweedRules||[],timeTaken:timeTaken,studentName:firstName})});
-    const data=await response.json();
-    if(data.feedback){
-      currentFeedbackText=data.feedback;
-      document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>`;
-      document.getElementById('ai-audio-btn').disabled=false;
-    }else{document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>`;}
-  }catch(e){document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable. Check your connection.</p>`;}
+try{
+const recitable=getRecitableWords();
+const firstName=userData.name?userData.name.split(' ')[0]:'';
+const response=await fetch(${ENGINE_URL}/feedback,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:currentSurah.nameEn,surahArabic:recitable.map(w=>w.t).join(' '),wordsRecited:currentWordIndex,totalWords:recitable.length,mistakes:mistakeWords,accuracy:accuracy,tajweedRules:currentSurah.tajweedRules||[],timeTaken:timeTaken,studentName:firstName})});
+const data=await response.json();
+if(data.feedback){
+currentFeedbackText=data.feedback;
+document.getElementById('ai-feedback-content').innerHTML=<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>;
+document.getElementById('ai-audio-btn').disabled=false;
+}else{document.getElementById('ai-feedback-content').innerHTML=<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>;}
+}catch(e){document.getElementById('ai-feedback-content').innerHTML=<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>;}
 }
-
 async function toggleAudio(){
-  if(isPlayingAudio){
-    if(feedbackAudio){feedbackAudio.pause();feedbackAudio.currentTime=0;}
-    isPlayingAudio=false;
-    const btn=document.getElementById('ai-audio-btn');btn.classList.remove('playing');
-    document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';
-    return;
-  }
-  if(!currentFeedbackText)return;
-  const btn=document.getElementById('ai-audio-btn');btn.disabled=true;
-  try{
-    const response=await fetch(`${ENGINE_URL}/speak`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:currentFeedbackText,gender:userData.gender||'male'})});
-    const blob=await response.blob();const url=URL.createObjectURL(blob);
-    feedbackAudio=new Audio(url);
-    feedbackAudio.onended=()=>{isPlayingAudio=false;btn.classList.remove('playing');document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';btn.disabled=false;};
-    feedbackAudio.play();isPlayingAudio=true;btn.disabled=false;btn.classList.add('playing');
-    document.getElementById('audio-icon-play').style.display='none';document.getElementById('audio-icon-stop').style.display='';
-  }catch(e){btn.disabled=false;}
+if(isPlayingAudio){
+if(feedbackAudio){feedbackAudio.pause();feedbackAudio.currentTime=0;}
+isPlayingAudio=false;
+const btn=document.getElementById('ai-audio-btn');btn.classList.remove('playing');
+document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';
+return;
 }
-
+if(!currentFeedbackText)return;
+const btn=document.getElementById('ai-audio-btn');btn.disabled=true;
+try{
+const response=await fetch(${ENGINE_URL}/speak,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:currentFeedbackText,gender:userData.gender||'male'})});
+const blob=await response.blob();const url=URL.createObjectURL(blob);
+feedbackAudio=new Audio(url);
+feedbackAudio.onended=()=>{isPlayingAudio=false;btn.classList.remove('playing');document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';btn.disabled=false;};
+feedbackAudio.play();isPlayingAudio=true;btn.disabled=false;btn.classList.add('playing');
+document.getElementById('audio-icon-play').style.display='none';document.getElementById('audio-icon-stop').style.display='';
+}catch(e){btn.disabled=false;}
+}
 function endSessionToSurahList(){
-  stopListening();
-  if(currentWordIndex>0){completeSession();}
-  else{buildSurahList();showScreen('screen-surah-list');}
+stopListening();
+if(currentWordIndex>0){completeSession();}
+else{buildSurahList();showScreen('screen-surah-list');}
 }
-
 loadSavedTheme();
-
-// CRITICAL FIX: only trigger dashboard on actual sign in, never on metadata updates
 sb.auth.onAuthStateChange((event,session)=>{
-  if(event==='SIGNED_IN'&&session&&!dashboardInitialised){
-    dashboardInitialised=true;
-    const m=session.user.user_metadata;
-    currentUserId=session.user.id;
-    userData.email=session.user.email;
-    loadDashboard(m.full_name,m.journey,m.gender);
-  }
-  if(event==='SIGNED_OUT'){dashboardInitialised=false;}
+if(event==='SIGNED_IN'&&session&&!dashboardInitialised){
+dashboardInitialised=true;
+const m=session.user.user_metadata;
+currentUserId=session.user.id;
+userData.email=session.user.email;
+loadDashboard(m.full_name,m.journey,m.gender);
+}
+if(event==='SIGNED_OUT'){dashboardInitialised=false;}
 });
 </script>
 </body>
 </html>
+```
