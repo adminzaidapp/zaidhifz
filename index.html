@@ -21,7 +21,7 @@
   .back-btn { background:none; border:none; color:rgba(255,255,255,0.9); font-size:14px; cursor:pointer; padding:0; }
   .info-btn { background:none; border:none; color:rgba(255,255,255,0.9); font-size:18px; cursor:pointer; padding:0; }
   .msg-icon-btn { background:none; border:none; color:rgba(255,255,255,0.9); cursor:pointer; padding:0; position:relative; }
-  .msg-badge { position:absolute; top:-4px; right:-4px; background:#E53935; border-radius:50%; width:16px; height:16px; font-size:10px; font-weight:700; color:#fff; display:flex; align-items:center; justify-content:center; display:none; }
+  .msg-badge { position:absolute; top:-4px; right:-4px; background:#E53935; border-radius:50%; width:16px; height:16px; font-size:10px; font-weight:700; color:#fff; display:none; align-items:center; justify-content:center; }
   .msg-badge.show { display:flex; }
   .screen-body { flex:1; padding:24px 20px; overflow-y:auto; }
   .bottom-nav { border-top:0.5px solid #e8ede9; display:flex; background:#fff; flex-shrink:0; box-shadow:0 -4px 20px rgba(0,0,0,0.06); }
@@ -258,21 +258,18 @@
   .wt-step-progress { display:flex; gap:6px; justify-content:center; margin-bottom:20px; }
   .wt-step-dot { width:8px; height:8px; border-radius:50%; background:#ddd; transition:all 0.3s ease; }
   .wt-step-dot.active { background:var(--primary); width:24px; border-radius:4px; }
-  /* SESSION HISTORY */
   .session-history-item { background:#fff; border-radius:14px; padding:14px 16px; border:1px solid #edf2ef; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
   .session-history-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
   .session-history-surah { font-size:14px; font-weight:700; color:#111; }
   .session-history-date { font-size:11px; color:#aaa; font-weight:500; }
-  .session-history-stats { display:flex; gap:12px; }
+  .session-history-stats { display:flex; gap:12px; flex-wrap:wrap; }
   .session-history-stat { font-size:12px; color:#666; }
   .session-history-stat strong { color:var(--primary); }
   .session-accuracy-bar { background:#e0ebe6; border-radius:4px; height:4px; margin-top:8px; }
-  .session-accuracy-fill { background:linear-gradient(90deg,var(--primary),var(--primary-dark)); height:4px; border-radius:4px; transition:width 0.5s ease; }
-  /* MESSENGER */
+  .session-accuracy-fill { background:linear-gradient(90deg,var(--primary),var(--primary-dark)); height:4px; border-radius:4px; }
   .chat-list-item { display:flex; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid #f0f4f2; cursor:pointer; transition:all 0.15s ease; }
   .chat-list-item:active { background:var(--primary-light); margin:0 -20px; padding:14px 20px; border-radius:12px; }
-  .chat-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; color:#fff; flex-shrink:0; position:relative; }
-  .chat-online-dot { position:absolute; bottom:0; right:0; width:12px; height:12px; background:#4CAF50; border-radius:50%; border:2px solid #fff; }
+  .chat-avatar { width:46px; height:46px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; color:#fff; flex-shrink:0; }
   .chat-info { flex:1; min-width:0; }
   .chat-name { font-size:15px; font-weight:600; color:#111; }
   .chat-preview { font-size:13px; color:#aaa; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -290,7 +287,6 @@
   .msg-send-btn { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px var(--primary-shadow); }
   .msg-send-btn:active { transform:scale(0.93); }
   .msg-date-divider { text-align:center; font-size:11px; color:#aaa; font-weight:600; margin:8px 0; }
-  .new-chat-search { margin-bottom:16px; }
   .ai-summary-card { background:linear-gradient(135deg,var(--primary-light),var(--primary-lighter)); border-radius:18px; padding:20px; margin-bottom:16px; border:1px solid var(--primary-shadow-light); }
   .ai-summary-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
   .ai-summary-icon { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:18px; }
@@ -494,7 +490,7 @@
     <h1>Zaid</h1>
     <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="msg-badge" id="msg-badge">0</div>
+      <div class="msg-badge" id="msg-badge"></div>
     </button>
   </div>
   <div class="screen-body">
@@ -540,7 +536,13 @@
 
 <!-- MY SPACE -->
 <div class="screen" id="screen-myspace">
-  <div class="status-bar"><h1>My Space</h1><button class="msg-icon-btn" onclick="showScreen('screen-messenger')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="msg-badge" id="msg-badge-2">0</div></button></div>
+  <div class="status-bar">
+    <h1>My Space</h1>
+    <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="msg-badge" id="msg-badge-2"></div>
+    </button>
+  </div>
   <div class="screen-body">
     <div class="myspace-tabs">
       <button class="myspace-tab active" onclick="switchMySpaceTab('planner')">📅 Planner</button>
@@ -590,7 +592,13 @@
 
 <!-- PARENT DASHBOARD -->
 <div class="screen" id="screen-parent-dashboard">
-  <div class="status-bar"><h1>Zaid</h1><button class="msg-icon-btn" onclick="showScreen('screen-messenger')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="msg-badge" id="msg-badge-parent">0</div></button></div>
+  <div class="status-bar">
+    <h1>Zaid</h1>
+    <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="msg-badge" id="msg-badge-parent"></div>
+    </button>
+  </div>
   <div class="screen-body">
     <div class="greeting-name" id="parent-dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="parent-dash-sub">Supporting the next generation</div>
@@ -623,29 +631,20 @@
   </div>
 </div>
 
-<!-- STUDENT DETAIL (parent view) -->
+<!-- STUDENT DETAIL -->
 <div class="screen" id="screen-student-detail">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-parent-students')">← Back</button><h1 id="student-detail-name">Student</h1><span></span></div>
   <div class="screen-body">
-    <!-- AI SUMMARY -->
-    <div class="ai-summary-card" id="student-ai-summary">
-      <div class="ai-summary-header">
-        <div class="ai-summary-icon">🤖</div>
-        <div><div class="ai-summary-title">Zaid's Weekly Summary</div></div>
-      </div>
-      <div class="ai-summary-text" id="student-ai-summary-text">
-        <div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Generating summary...</span></div>
-      </div>
+    <div class="ai-summary-card">
+      <div class="ai-summary-header"><div class="ai-summary-icon">🤖</div><div><div class="ai-summary-title">Zaid's Weekly Summary</div></div></div>
+      <div class="ai-summary-text" id="student-ai-summary-text"><div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Generating summary...</span></div></div>
     </div>
-    <!-- QUICK STATS -->
-    <div class="student-stat-row" id="student-stats-row">
+    <div class="student-stat-row">
       <div class="student-stat-pill"><div class="student-stat-pill-val" id="sd-sessions">0</div><div class="student-stat-pill-label">Sessions</div></div>
       <div class="student-stat-pill"><div class="student-stat-pill-val" id="sd-accuracy">—</div><div class="student-stat-pill-label">Avg accuracy</div></div>
       <div class="student-stat-pill"><div class="student-stat-pill-val" id="sd-streak">0</div><div class="student-stat-pill-label">Streak</div></div>
     </div>
-    <!-- MESSAGE BUTTON -->
-    <button class="btn-primary" id="msg-student-btn" onclick="openChatWithStudent()" style="margin-bottom:16px;">💬 Send a message</button>
-    <!-- SESSION HISTORY -->
+    <button class="btn-primary" onclick="openChatWithStudent()" style="margin-bottom:16px;">💬 Send a message</button>
     <p style="font-size:13px;font-weight:700;color:#111;margin-bottom:10px;">Recent sessions</p>
     <div id="student-session-history"><p style="font-size:13px;color:#aaa;">No sessions yet.</p></div>
   </div>
@@ -928,29 +927,27 @@
   </div>
 </div>
 
-<!-- MESSENGER — CONVERSATION LIST -->
+<!-- MESSENGER -->
 <div class="screen" id="screen-messenger">
-  <div class="status-bar"><button class="back-btn" id="messenger-back-btn" onclick="goBackFromMessenger()">← Back</button><h1>Messages</h1><button class="info-btn" onclick="showScreen('screen-new-chat')" style="font-size:22px;">✏️</button></div>
+  <div class="status-bar"><button class="back-btn" onclick="goBackFromMessenger()">← Back</button><h1>Messages</h1><button class="info-btn" onclick="showScreen('screen-new-chat')" style="font-size:22px;">✏️</button></div>
   <div class="screen-body">
-    <div id="conversation-list"><div style="text-align:center;padding:60px 20px;"><div style="font-size:48px;margin-bottom:16px;">💬</div><p style="font-size:16px;font-weight:600;color:#111;margin-bottom:8px;">No messages yet</p><p style="font-size:14px;color:#aaa;line-height:1.6;">Start a conversation with your teacher, parent, or a fellow Hafiz.</p><button class="btn-primary" onclick="showScreen('screen-new-chat')" style="margin-top:20px;max-width:200px;">Start a chat</button></div></div>
+    <div id="conversation-list"><div style="text-align:center;padding:60px 20px;"><div style="font-size:48px;margin-bottom:16px;">💬</div><p style="font-size:16px;font-weight:600;color:#111;margin-bottom:8px;">No messages yet</p><p style="font-size:14px;color:#aaa;line-height:1.6;">Start a conversation with a linked student or teacher.</p><button class="btn-primary" onclick="showScreen('screen-new-chat')" style="margin-top:20px;max-width:200px;">Start a chat</button></div></div>
   </div>
 </div>
 
-<!-- NEW CHAT SCREEN -->
+<!-- NEW CHAT -->
 <div class="screen" id="screen-new-chat">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger')">← Back</button><h1>New Message</h1><span></span></div>
   <div class="screen-body">
-    <p style="font-size:13px;color:#888;margin-bottom:12px;line-height:1.6;">Enter the ZD code of the person you want to message. You can only message people of the same gender.</p>
-    <div class="input-wrap">
-      <input class="input-field" type="text" id="new-chat-zd" placeholder="ZD-XXXX" maxlength="7" oninput="this.value=this.value.toUpperCase()" style="font-size:18px;font-weight:700;letter-spacing:4px;text-align:center;"/>
-    </div>
+    <p style="font-size:13px;color:#888;margin-bottom:12px;line-height:1.6;">Enter the ZD code of the person you want to message.</p>
+    <div class="input-wrap"><input class="input-field" type="text" id="new-chat-zd" placeholder="ZD-XXXX" maxlength="7" oninput="this.value=this.value.toUpperCase()" style="font-size:18px;font-weight:700;letter-spacing:4px;text-align:center;"/></div>
     <button class="btn-primary" onclick="startNewChat()">Find person</button>
     <p class="error-msg" id="new-chat-error" style="margin-top:8px;"></p>
     <div id="new-chat-result" style="display:none;margin-top:16px;"></div>
   </div>
 </div>
 
-<!-- INDIVIDUAL CHAT SCREEN -->
+<!-- CHAT -->
 <div class="screen" id="screen-chat">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger')">← Back</button><h1 id="chat-title">Chat</h1><span id="chat-subtitle" style="font-size:11px;"></span></div>
   <div class="messages-wrap" id="messages-wrap"></div>
@@ -960,7 +957,7 @@
   </div>
 </div>
 
-<!-- WALKTHROUGH OVERLAYS -->
+<!-- WALKTHROUGHS -->
 <div class="walkthrough-overlay" id="recite-walkthrough">
   <div class="walkthrough-tooltip">
     <div class="wt-step-icon" id="rwt-icon">🎙️</div>
@@ -1033,64 +1030,17 @@ const myspaceWTSteps=[
   {icon:'📊',title:'Track your progress',text:'The Progress tab shows your sessions, accuracy, streak and most recited surahs.'}
 ];
 
-function showReciteWT(){
-  if(!userData.email)return;
-  if(localStorage.getItem(getUserKey()+'-recite-wt'))return;
-  reciteWTStep=0;updateReciteWT();
-  document.getElementById('recite-walkthrough').classList.add('show');
-}
-function nextReciteWT(){
-  reciteWTStep++;
-  if(reciteWTStep>=reciteWTSteps.length){document.getElementById('recite-walkthrough').classList.remove('show');localStorage.setItem(getUserKey()+'-recite-wt','done');return;}
-  updateReciteWT();
-}
-function updateReciteWT(){
-  const s=reciteWTSteps[reciteWTStep];
-  document.getElementById('rwt-icon').textContent=s.icon;
-  document.getElementById('rwt-title').textContent=s.title;
-  document.getElementById('rwt-text').textContent=s.text;
-  document.querySelectorAll('[id^="rwt-dot-"]').forEach((d,i)=>d.classList.toggle('active',i===reciteWTStep));
-  document.querySelector('#recite-walkthrough .wt-next-btn').textContent=reciteWTStep===reciteWTSteps.length-1?'Let\'s go! →':'Got it →';
-}
-function showMySpaceWT(){
-  if(!userData.email)return;
-  if(localStorage.getItem(getUserKey()+'-myspace-wt'))return;
-  myspaceWTStep=0;updateMySpaceWT();
-  document.getElementById('myspace-walkthrough').classList.add('show');
-}
-function nextMySpaceWT(){
-  myspaceWTStep++;
-  if(myspaceWTStep>=myspaceWTSteps.length){document.getElementById('myspace-walkthrough').classList.remove('show');localStorage.setItem(getUserKey()+'-myspace-wt','done');return;}
-  updateMySpaceWT();
-}
-function updateMySpaceWT(){
-  const s=myspaceWTSteps[myspaceWTStep];
-  document.getElementById('mwt-icon').textContent=s.icon;
-  document.getElementById('mwt-title').textContent=s.title;
-  document.getElementById('mwt-text').textContent=s.text;
-  document.querySelectorAll('[id^="mwt-dot-"]').forEach((d,i)=>d.classList.toggle('active',i===myspaceWTStep));
-  document.querySelector('#myspace-walkthrough .wt-next-btn').textContent=myspaceWTStep===myspaceWTSteps.length-1?'Let\'s go! →':'Got it →';
-}
+function showReciteWT(){if(!userData.email)return;if(localStorage.getItem(getUserKey()+'-recite-wt'))return;reciteWTStep=0;updateReciteWT();document.getElementById('recite-walkthrough').classList.add('show');}
+function nextReciteWT(){reciteWTStep++;if(reciteWTStep>=reciteWTSteps.length){document.getElementById('recite-walkthrough').classList.remove('show');localStorage.setItem(getUserKey()+'-recite-wt','done');return;}updateReciteWT();}
+function updateReciteWT(){const s=reciteWTSteps[reciteWTStep];document.getElementById('rwt-icon').textContent=s.icon;document.getElementById('rwt-title').textContent=s.title;document.getElementById('rwt-text').textContent=s.text;document.querySelectorAll('[id^="rwt-dot-"]').forEach((d,i)=>d.classList.toggle('active',i===reciteWTStep));document.querySelector('#recite-walkthrough .wt-next-btn').textContent=reciteWTStep===reciteWTSteps.length-1?'Let\'s go! →':'Got it →';}
+function showMySpaceWT(){if(!userData.email)return;if(localStorage.getItem(getUserKey()+'-myspace-wt'))return;myspaceWTStep=0;updateMySpaceWT();document.getElementById('myspace-walkthrough').classList.add('show');}
+function nextMySpaceWT(){myspaceWTStep++;if(myspaceWTStep>=myspaceWTSteps.length){document.getElementById('myspace-walkthrough').classList.remove('show');localStorage.setItem(getUserKey()+'-myspace-wt','done');return;}updateMySpaceWT();}
+function updateMySpaceWT(){const s=myspaceWTSteps[myspaceWTStep];document.getElementById('mwt-icon').textContent=s.icon;document.getElementById('mwt-title').textContent=s.title;document.getElementById('mwt-text').textContent=s.text;document.querySelectorAll('[id^="mwt-dot-"]').forEach((d,i)=>d.classList.toggle('active',i===myspaceWTStep));document.querySelector('#myspace-walkthrough .wt-next-btn').textContent=myspaceWTStep===myspaceWTSteps.length-1?'Let\'s go! →':'Got it →';}
 
-function applyTheme(theme){
-  currentTheme=theme;
-  const app=document.getElementById('app');
-  app.classList.remove('theme-purple','theme-gold');
-  if(theme==='purple')app.classList.add('theme-purple');
-  if(theme==='gold')app.classList.add('theme-gold');
-  document.querySelectorAll('.theme-swatch').forEach(s=>s.classList.remove('selected'));
-  const el=document.getElementById('swatch-'+theme);if(el)el.classList.add('selected');
-  const bb=document.getElementById('theme-back-btn');
-  if(bb)bb.onclick=()=>showScreen(currentUserJourney==='parent'?'screen-parent-settings':'screen-settings');
-  try{localStorage.setItem('zaid-theme',theme);}catch(e){}
-}
+function applyTheme(theme){currentTheme=theme;const app=document.getElementById('app');app.classList.remove('theme-purple','theme-gold');if(theme==='purple')app.classList.add('theme-purple');if(theme==='gold')app.classList.add('theme-gold');document.querySelectorAll('.theme-swatch').forEach(s=>s.classList.remove('selected'));const el=document.getElementById('swatch-'+theme);if(el)el.classList.add('selected');const bb=document.getElementById('theme-back-btn');if(bb)bb.onclick=()=>showScreen(currentUserJourney==='parent'?'screen-parent-settings':'screen-settings');try{localStorage.setItem('zaid-theme',theme);}catch(e){}}
 function loadSavedTheme(){try{const s=localStorage.getItem('zaid-theme');if(s)applyTheme(s);}catch(e){}}
 
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
 function showTab(tab){
   if(tab==='recite'){buildSurahList();showScreen('screen-surah-list');setTimeout(showReciteWT,500);return;}
@@ -1099,67 +1049,25 @@ function showTab(tab){
   showScreen(map[tab]||'screen-dashboard');
 }
 
-function goBackFromMessenger(){
-  if(currentUserJourney==='parent')showScreen('screen-parent-dashboard');
-  else showTab('dashboard');
-}
+function goBackFromMessenger(){if(currentUserJourney==='parent')showScreen('screen-parent-dashboard');else showTab('dashboard');}
 
-function selectMode(mode){
-  currentRecitationMode=mode;
-  ['hidden','guided','test'].forEach(m=>document.getElementById('mode-'+m).classList.toggle('selected',m===mode));
-}
-function selectMushaf(val){
-  userData.mushaf=val==='unsure'?'13':val;
-  ['13','15','unsure'].forEach(v=>{const el=document.getElementById('mushaf-'+v);if(el)el.classList.toggle('selected',v===val);});
-}
-function saveMushafPref(val){
-  userData.mushaf=val;
-  ['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===val);});
-  const sv=document.getElementById('settings-mushaf-val');if(sv)sv.textContent=val+' Line';
-  const saved=document.getElementById('mushaf-saved');
-  if(saved){saved.textContent='Saved!';setTimeout(()=>{saved.textContent='';},2000);}
-  sb.auth.updateUser({data:{mushaf:val}}).catch(()=>{});
-}
-function setQuranLayout(val){
-  userData.mushaf=val;
-  document.getElementById('quran-13-btn').classList.toggle('active',val==='13');
-  document.getElementById('quran-15-btn').classList.toggle('active',val==='15');
-  const el=document.getElementById('quran-pref-saved');
-  if(el){el.textContent='Preference saved!';setTimeout(()=>{el.textContent='Your preference is saved for when the browser launches.';},2000);}
-  sb.auth.updateUser({data:{mushaf:val}}).catch(()=>{});
-}
+function selectMode(mode){currentRecitationMode=mode;['hidden','guided','test'].forEach(m=>document.getElementById('mode-'+m).classList.toggle('selected',m===mode));}
+function selectMushaf(val){userData.mushaf=val==='unsure'?'13':val;['13','15','unsure'].forEach(v=>{const el=document.getElementById('mushaf-'+v);if(el)el.classList.toggle('selected',v===val);});}
+function saveMushafPref(val){userData.mushaf=val;['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===val);});const sv=document.getElementById('settings-mushaf-val');if(sv)sv.textContent=val+' Line';const saved=document.getElementById('mushaf-saved');if(saved){saved.textContent='Saved!';setTimeout(()=>{saved.textContent='';},2000);}sb.auth.updateUser({data:{mushaf:val}}).catch(()=>{});}
+function setQuranLayout(val){userData.mushaf=val;document.getElementById('quran-13-btn').classList.toggle('active',val==='13');document.getElementById('quran-15-btn').classList.toggle('active',val==='15');const el=document.getElementById('quran-pref-saved');if(el){el.textContent='Preference saved!';setTimeout(()=>{el.textContent='Your preference is saved for when the browser launches.';},2000);}sb.auth.updateUser({data:{mushaf:val}}).catch(()=>{});}
 
-function resetWalkthrough(){
-  currentSlide=0;document.getElementById('slides-track').style.transform='translateX(0)';
-  document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));
-  document.getElementById('wt-back-btn').style.display='none';
-  document.getElementById('wt-skip-btn').style.display='inline-block';
-  document.getElementById('wt-next-btn').textContent='Next';
-}
-function updateWalkthroughButtons(){
-  document.getElementById('wt-back-btn').style.display=currentSlide>0?'inline-block':'none';
-  document.getElementById('wt-skip-btn').style.display=currentSlide<TOTAL_SLIDES-1?'inline-block':'none';
-  document.getElementById('wt-next-btn').textContent=currentSlide===TOTAL_SLIDES-1?'Go to my dashboard':'Next';
-}
-function nextSlide(){
-  if(currentSlide<TOTAL_SLIDES-1){currentSlide++;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}
-  else goToDashboard();
-}
-function prevSlide(){
-  if(currentSlide>0){currentSlide--;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}
-}
+function resetWalkthrough(){currentSlide=0;document.getElementById('slides-track').style.transform='translateX(0)';document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===0));document.getElementById('wt-back-btn').style.display='none';document.getElementById('wt-skip-btn').style.display='inline-block';document.getElementById('wt-next-btn').textContent='Next';}
+function updateWalkthroughButtons(){document.getElementById('wt-back-btn').style.display=currentSlide>0?'inline-block':'none';document.getElementById('wt-skip-btn').style.display=currentSlide<TOTAL_SLIDES-1?'inline-block':'none';document.getElementById('wt-next-btn').textContent=currentSlide===TOTAL_SLIDES-1?'Go to my dashboard':'Next';}
+function nextSlide(){if(currentSlide<TOTAL_SLIDES-1){currentSlide++;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}else goToDashboard();}
+function prevSlide(){if(currentSlide>0){currentSlide--;document.getElementById('slides-track').style.transform=`translateX(-${currentSlide*100}%)`;document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide));updateWalkthroughButtons();}}
 function goToDashboard(){if(pendingDashboardData)renderDashboard(pendingDashboardData.name,pendingDashboardData.journey,pendingDashboardData.gender);}
 
 function checkEmail(){const e=document.getElementById('ob-email').value;const v=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);document.getElementById('ob-email').classList.toggle('error',e.length>0&&!v);document.getElementById('ob-email-error').classList.toggle('show',e.length>0&&!v);}
 function checkPassword(){const p=document.getElementById('ob-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('pw-len',p.length>=6,'At least 6 characters');u('pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('pw-num',/[0-9]/.test(p),'At least one number');}
 function checkNewPassword(){const p=document.getElementById('new-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('new-pw-len',p.length>=6,'At least 6 characters');u('new-pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('new-pw-num',/[0-9]/.test(p),'At least one number');}
 function checkParentNewPassword(){const p=document.getElementById('parent-new-password').value;const u=(id,ok,t)=>{const el=document.getElementById(id);el.textContent=(ok?'✓':'✗')+' '+t;el.className=ok?'met':'';};u('parent-new-pw-len',p.length>=6,'At least 6 characters');u('parent-new-pw-upper',/[A-Z]/.test(p),'At least one uppercase letter');u('parent-new-pw-num',/[0-9]/.test(p),'At least one number');}
-function updateJourneyButtons(){
-  const f=userData.gender==='female';
-  const h=document.getElementById('journey-hafiz-btn');const l=document.getElementById('journey-learning-btn');
-  if(h)h.textContent=f?'I am already a Hafiza':'I am already a Hafiz';
-  if(l)l.textContent=f?'I am learning to become a Hafiza':'I am learning to become a Hafiz';
-}
+function updateJourneyButtons(){const f=userData.gender==='female';const h=document.getElementById('journey-hafiz-btn');const l=document.getElementById('journey-learning-btn');if(h)h.textContent=f?'I am already a Hafiza':'I am already a Hafiz';if(l)l.textContent=f?'I am learning to become a Hafiza':'I am learning to become a Hafiz';}
+
 function nextOnboard1(){
   const name=document.getElementById('ob-name').value.trim();const email=document.getElementById('ob-email').value.trim();const pw=document.getElementById('ob-password').value;const dob=document.getElementById('ob-dob').value;
   let v=true;
@@ -1237,15 +1145,8 @@ async function finishOnboarding(){
 async function loadParentLinkCode(userId){
   try{
     const{data}=await sb.from('link_codes').select('code').eq('parent_id',userId).maybeSingle();
-    if(data&&data.code){
-      document.getElementById('parent-link-code').textContent=data.code;
-      const el=document.getElementById('parent-details-zd-field');if(el)el.textContent=data.code;
-    }else{
-      const newCode=generateZDCode();
-      await sb.from('link_codes').insert({parent_id:userId,code:newCode}).catch(()=>{});
-      document.getElementById('parent-link-code').textContent=newCode;
-      const el=document.getElementById('parent-details-zd-field');if(el)el.textContent=newCode;
-    }
+    if(data&&data.code){document.getElementById('parent-link-code').textContent=data.code;const el=document.getElementById('parent-details-zd-field');if(el)el.textContent=data.code;}
+    else{const newCode=generateZDCode();await sb.from('link_codes').insert({parent_id:userId,code:newCode}).catch(()=>{});document.getElementById('parent-link-code').textContent=newCode;const el=document.getElementById('parent-details-zd-field');if(el)el.textContent=newCode;}
   }catch(e){}
 }
 
@@ -1253,8 +1154,7 @@ async function loadLinkedStudents(parentId){
   try{
     const{data}=await sb.from('student_links').select('*').eq('parent_id',parentId);
     if(data&&data.length>0){
-      const makeCard=(s,target)=>`<div class="student-card" onclick="openStudentDetail('${s.student_id}','${s.student_name||'Student'}')"><div class="student-avatar">${(s.student_name||'S')[0].toUpperCase()}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Tap to view progress</div></div><span style="font-size:18px;color:#ccc;">›</span></div>`;
-      const html=data.map(s=>makeCard(s)).join('');
+      const html=data.map(s=>`<div class="student-card" onclick="openStudentDetail('${s.student_id}','${s.student_name||'Student'}')"><div class="student-avatar">${(s.student_name||'S')[0].toUpperCase()}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Tap to view progress</div></div><span style="font-size:18px;color:#ccc;">›</span></div>`).join('');
       document.getElementById('parent-students-list').innerHTML=html;
       document.getElementById('parent-students-full-list').innerHTML=html;
     }
@@ -1270,12 +1170,9 @@ async function openStudentDetail(studentId,studentName){
   try{
     const{data:sessions}=await sb.from('sessions').select('*').eq('user_id',studentId).order('created_at',{ascending:false}).limit(20);
     if(sessions&&sessions.length>0){
-      const totalSess=sessions.length;
-      const avgAcc=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length);
-      const streak=0;
-      document.getElementById('sd-sessions').textContent=totalSess;
-      document.getElementById('sd-accuracy').textContent=avgAcc+'%';
-      document.getElementById('sd-streak').textContent=streak;
+      document.getElementById('sd-sessions').textContent=sessions.length;
+      document.getElementById('sd-accuracy').textContent=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length)+'%';
+      document.getElementById('sd-streak').textContent='0';
       document.getElementById('student-session-history').innerHTML=sessions.map(s=>{
         const d=new Date(s.created_at);
         const dateStr=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
@@ -1286,9 +1183,7 @@ async function openStudentDetail(studentId,studentName){
       }).join('');
       generateStudentAISummary(studentName,sessions);
     }else{
-      document.getElementById('sd-sessions').textContent='0';
-      document.getElementById('sd-accuracy').textContent='—';
-      document.getElementById('sd-streak').textContent='0';
+      document.getElementById('sd-sessions').textContent='0';document.getElementById('sd-accuracy').textContent='—';document.getElementById('sd-streak').textContent='0';
       document.getElementById('student-session-history').innerHTML='<p style="font-size:13px;color:#aaa;">No sessions recorded yet.</p>';
       document.getElementById('student-ai-summary-text').textContent=`${studentName.split(' ')[0]} hasn't recited any sessions yet. Once they start using Zaid, you'll see a full summary here.`;
     }
@@ -1302,8 +1197,7 @@ async function generateStudentAISummary(studentName,sessions){
     const avgAcc=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length);
     const surahCounts={};sessions.forEach(s=>{surahCounts[s.surah_name]=(surahCounts[s.surah_name]||0)+1;});
     const topSurah=Object.entries(surahCounts).sort((a,b)=>b[1]-a[1])[0];
-    const recentSessions=sessions.slice(0,7);
-    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:'Weekly Progress',surahArabic:'',wordsRecited:sessions.reduce((a,b)=>a+b.words_recited,0),totalWords:sessions.reduce((a,b)=>a+b.total_words,0),mistakes:[],accuracy:avgAcc,tajweedRules:[],timeTaken:`${totalSess} sessions`,studentName:firstName,customPrompt:`You are Zaid, an AI Quran teacher. Write a warm 60-word weekly progress summary for a parent/teacher about their student ${firstName}. They completed ${totalSess} sessions this week with an average accuracy of ${avgAcc}%. Their most recited surah was ${topSurah?topSurah[0]:'various surahs'}. Be encouraging and specific. Address it as a summary for the parent. No bullet points.`})});
+    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:'Weekly Progress',surahArabic:'',wordsRecited:sessions.reduce((a,b)=>a+b.words_recited,0),totalWords:sessions.reduce((a,b)=>a+b.total_words,0),mistakes:[],accuracy:avgAcc,tajweedRules:[],timeTaken:`${totalSess} sessions`,studentName:firstName,customPrompt:`You are Zaid, an AI Quran teacher. Write a warm 60-word weekly progress summary for a parent/teacher about their student ${firstName}. They completed ${totalSess} sessions with an average accuracy of ${avgAcc}%. Their most recited surah was ${topSurah?topSurah[0]:'various surahs'}. Be encouraging and specific. Address it as a summary for the parent. No bullet points.`})});
     const data=await response.json();
     if(data.feedback){document.getElementById('student-ai-summary-text').textContent=data.feedback;}
     else{document.getElementById('student-ai-summary-text').textContent=`${firstName} completed ${totalSess} session${totalSess!==1?'s':''} with an average accuracy of ${avgAcc}%. ${topSurah?`Most recited: ${topSurah[0]}.`:''} Keep encouraging them!`;}
@@ -1314,16 +1208,7 @@ async function generateStudentAISummary(studentName,sessions){
   }
 }
 
-function openChatWithStudent(){
-  currentChatReceiverId=viewingStudentId;
-  currentChatReceiverName=viewingStudentName;
-  document.getElementById('chat-title').textContent=viewingStudentName.split(' ')[0];
-  document.getElementById('chat-subtitle').textContent='Student';
-  document.getElementById('messages-wrap').innerHTML='';
-  showScreen('screen-chat');
-  loadMessages();
-  subscribeToMessages();
-}
+function openChatWithStudent(){currentChatReceiverId=viewingStudentId;currentChatReceiverName=viewingStudentName;document.getElementById('chat-title').textContent=viewingStudentName.split(' ')[0];document.getElementById('chat-subtitle').textContent='Student';document.getElementById('messages-wrap').innerHTML='';showScreen('screen-chat');loadMessages();subscribeToMessages();}
 
 async function linkToParent(){
   const code=document.getElementById('link-code-input').value.trim().toUpperCase();
@@ -1347,70 +1232,35 @@ async function linkToParent(){
 async function checkIfLinked(userId){
   try{
     const{data}=await sb.from('student_links').select('parent_name').eq('student_id',userId).maybeSingle();
-    if(data){
-      document.getElementById('link-parent-section').style.display='none';
-      document.getElementById('linked-parent-section').style.display='block';
-      document.getElementById('linked-parent-name').textContent='Connected to teacher/parent';
-    }
+    if(data){document.getElementById('link-parent-section').style.display='none';document.getElementById('linked-parent-section').style.display='block';document.getElementById('linked-parent-name').textContent='Connected to teacher/parent';}
   }catch(e){}
 }
 
-function copyParentCode(){
-  const c=document.getElementById('parent-link-code').textContent;
-  navigator.clipboard.writeText(c).then(()=>{
-    const btn=document.querySelector('#screen-parent-dashboard .btn-primary');
-    if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);}
-  });
-}
+function copyParentCode(){const c=document.getElementById('parent-link-code').textContent;navigator.clipboard.writeText(c).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);}});}
 
-// ── MESSENGER ──────────────────────────────────────────────────────
 async function loadConversations(){
   if(!currentUserId)return;
   try{
     const{data}=await sb.from('messages').select('*').or(`sender_id.eq.${currentUserId},receiver_id.eq.${currentUserId}`).order('created_at',{ascending:false});
     if(!data||data.length===0)return;
     const convMap={};
-    data.forEach(msg=>{
-      const otherId=msg.sender_id===currentUserId?msg.receiver_id:msg.sender_id;
-      const otherName=msg.sender_id===currentUserId?msg.receiver_name:msg.sender_name;
-      if(!convMap[otherId]){convMap[otherId]={id:otherId,name:otherName,lastMsg:msg.content,lastTime:msg.created_at,unread:0};}
-      if(msg.receiver_id===currentUserId&&!msg.read)convMap[otherId].unread++;
-    });
+    data.forEach(msg=>{const otherId=msg.sender_id===currentUserId?msg.receiver_id:msg.sender_id;const otherName=msg.sender_id===currentUserId?msg.receiver_name:msg.sender_name;if(!convMap[otherId]){convMap[otherId]={id:otherId,name:otherName,lastMsg:msg.content,lastTime:msg.created_at,unread:0};}if(msg.receiver_id===currentUserId&&!msg.read)convMap[otherId].unread++;});
     const convs=Object.values(convMap);
     const totalUnread=convs.reduce((a,b)=>a+b.unread,0);
-    ['msg-badge','msg-badge-2','msg-badge-parent'].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el){el.textContent=totalUnread>0?totalUnread:'';el.classList.toggle('show',totalUnread>0);}
-    });
-    if(convs.length>0){
-      document.getElementById('conversation-list').innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}')"><div class="chat-avatar">${c.name[0].toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');
-    }
+    ['msg-badge','msg-badge-2','msg-badge-parent'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=totalUnread>0?totalUnread:'';el.classList.toggle('show',totalUnread>0);}});
+    if(convs.length>0){document.getElementById('conversation-list').innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}')"><div class="chat-avatar">${c.name[0].toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');}
   }catch(e){}
 }
 
-function formatTime(ts){
-  const d=new Date(ts);const now=new Date();
-  if(d.toDateString()===now.toDateString())return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-}
+function formatTime(ts){const d=new Date(ts);const now=new Date();if(d.toDateString()===now.toDateString())return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});}
 
-function openChat(receiverId,receiverName){
-  currentChatReceiverId=receiverId;
-  currentChatReceiverName=receiverName;
-  document.getElementById('chat-title').textContent=receiverName.split(' ')[0];
-  document.getElementById('chat-subtitle').textContent='';
-  document.getElementById('messages-wrap').innerHTML='';
-  showScreen('screen-chat');
-  loadMessages();
-  subscribeToMessages();
-}
+function openChat(receiverId,receiverName){currentChatReceiverId=receiverId;currentChatReceiverName=receiverName;document.getElementById('chat-title').textContent=receiverName.split(' ')[0];document.getElementById('chat-subtitle').textContent='';document.getElementById('messages-wrap').innerHTML='';showScreen('screen-chat');loadMessages();subscribeToMessages();}
 
 async function loadMessages(){
   if(!currentUserId||!currentChatReceiverId)return;
   try{
     const{data}=await sb.from('messages').select('*').or(`and(sender_id.eq.${currentUserId},receiver_id.eq.${currentChatReceiverId}),and(sender_id.eq.${currentChatReceiverId},receiver_id.eq.${currentUserId})`).order('created_at',{ascending:true});
     renderMessages(data||[]);
-    // Mark as read
     await sb.from('messages').update({read:true}).eq('receiver_id',currentUserId).eq('sender_id',currentChatReceiverId).eq('read',false).catch(()=>{});
   }catch(e){}
 }
@@ -1441,43 +1291,31 @@ function subscribeToMessages(){
 }
 
 async function sendMessage(){
-  const input=document.getElementById('msg-input');
-  const content=input.value.trim();
+  const input=document.getElementById('msg-input');const content=input.value.trim();
   if(!content||!currentChatReceiverId)return;
   input.value='';input.style.height='auto';
-  try{
-    await sb.from('messages').insert({sender_id:currentUserId,receiver_id:currentChatReceiverId,sender_name:userData.name||'',receiver_name:currentChatReceiverName,sender_gender:userData.gender||'male',receiver_gender:'',content:content,read:false});
-    loadMessages();
-  }catch(e){}
+  try{await sb.from('messages').insert({sender_id:currentUserId,receiver_id:currentChatReceiverId,sender_name:userData.name||'',receiver_name:currentChatReceiverName,sender_gender:userData.gender||'male',receiver_gender:'',content:content,read:false});loadMessages();}catch(e){}
 }
 
 async function startNewChat(){
   const code=document.getElementById('new-chat-zd').value.trim().toUpperCase();
-  const errorEl=document.getElementById('new-chat-error');
-  const resultEl=document.getElementById('new-chat-result');
+  const errorEl=document.getElementById('new-chat-error');const resultEl=document.getElementById('new-chat-result');
   errorEl.textContent='';resultEl.style.display='none';
   if(code.length<7||!code.startsWith('ZD-')){errorEl.textContent='Please enter a valid ZD-XXXX code.';return;}
   try{
-    // Search all users by zd_code in metadata - we'll search link_codes first (parents) then user metadata
-    // For now search link_codes for parent codes
     const{data:linkData}=await sb.from('link_codes').select('parent_id,code').eq('code',code).maybeSingle();
     if(linkData){
-      // It's a parent code — get their name from student_links or just use the ID
       if(linkData.parent_id===currentUserId){errorEl.textContent='You cannot message yourself.';return;}
-      const{data:{user}}=await sb.auth.getUser();
-      // Gender check — parents can message anyone linked to them
-      // For student-to-student we enforce gender
       resultEl.style.display='block';
-      resultEl.innerHTML=`<div class="student-card"><div class="student-avatar">👤</div><div class="student-info"><div class="student-name">Teacher/Parent</div><div class="student-meta">${code}</div></div><button class="btn-primary" onclick="openChat('${linkData.parent_id}','Teacher')" style="margin-top:0;width:auto;padding:10px 16px;font-size:14px;">Message</button></div>`;
+      resultEl.innerHTML=`<div class="student-card"><div class="student-avatar">👤</div><div class="student-info"><div class="student-name">Teacher / Parent</div><div class="student-meta">${code}</div></div><button class="btn-primary" onclick="openChat('${linkData.parent_id}','Teacher')" style="margin-top:0;width:auto;padding:10px 16px;font-size:14px;">Message</button></div>`;
       return;
     }
-    errorEl.textContent='Code not found. Ask the person for their ZD code from their Account Details.';
+    errorEl.textContent='Code not found. Ask the person for their ZD code from Account Details.';
   }catch(e){errorEl.textContent='Something went wrong.';}
 }
 
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
 
-// ── AUTH ──────────────────────────────────────────────────────────
 async function handleLogin(){
   const email=document.getElementById('login-email').value.trim();const pw=document.getElementById('login-password').value;
   let v=true;
@@ -1492,47 +1330,17 @@ async function handleLogin(){
     loadDashboard(m.full_name,m.journey,m.gender);
   }catch(e){document.getElementById('login-error').textContent='Invalid email or password.';}
 }
-async function handleForgotPassword(){
-  const email=document.getElementById('forgot-email').value.trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('forgot-error').classList.add('show');return;}
-  document.getElementById('forgot-error').classList.remove('show');
-  try{await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';}
-  catch(e){document.getElementById('forgot-error').classList.add('show');}
-}
-async function handleChangePassword(){
-  const np=document.getElementById('new-password').value;const cp=document.getElementById('confirm-password').value;
-  const ee=document.getElementById('change-pw-error');const se=document.getElementById('change-pw-success');
-  ee.textContent='';se.textContent='';
-  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}
-  if(np!==cp){ee.textContent='Passwords do not match.';return;}
-  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}
-  catch(e){ee.textContent='Something went wrong.';}
-}
-async function handleParentChangePassword(){
-  const np=document.getElementById('parent-new-password').value;const cp=document.getElementById('parent-confirm-password').value;
-  const ee=document.getElementById('parent-change-pw-error');const se=document.getElementById('parent-change-pw-success');
-  ee.textContent='';se.textContent='';
-  if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}
-  if(np!==cp){ee.textContent='Passwords do not match.';return;}
-  try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}
-  catch(e){ee.textContent='Something went wrong.';}
-}
-async function handleLogout(){
-  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
-  if(messageSubscription){messageSubscription.unsubscribe();messageSubscription=null;}
-  dashboardInitialised=false;
-  await sb.auth.signOut();
-  pendingDashboardData=null;userData={};currentUserId=null;
-  showScreen('screen-splash');
-}
+async function handleForgotPassword(){const email=document.getElementById('forgot-email').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('forgot-error').classList.add('show');return;}document.getElementById('forgot-error').classList.remove('show');try{await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';}catch(e){document.getElementById('forgot-error').classList.add('show');}}
+async function handleChangePassword(){const np=document.getElementById('new-password').value;const cp=document.getElementById('confirm-password').value;const ee=document.getElementById('change-pw-error');const se=document.getElementById('change-pw-success');ee.textContent='';se.textContent='';if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}if(np!==cp){ee.textContent='Passwords do not match.';return;}try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}catch(e){ee.textContent='Something went wrong.';}}
+async function handleParentChangePassword(){const np=document.getElementById('parent-new-password').value;const cp=document.getElementById('parent-confirm-password').value;const ee=document.getElementById('parent-change-pw-error');const se=document.getElementById('parent-change-pw-success');ee.textContent='';se.textContent='';if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}if(np!==cp){ee.textContent='Passwords do not match.';return;}try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}catch(e){ee.textContent='Something went wrong.';}}
+async function handleLogout(){if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}if(messageSubscription){messageSubscription.unsubscribe();messageSubscription=null;}dashboardInitialised=false;await sb.auth.signOut();pendingDashboardData=null;userData={};currentUserId=null;showScreen('screen-splash');}
 
 function getUserKey(){return userData.email?'zaid-user-'+userData.email:'zaid-user-anon';}
 
 function loadStats(){
   try{
     const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');
-    totalSessions=saved.sessions||0;totalWords=saved.words||0;
-    const streak=saved.streak||0;
+    totalSessions=saved.sessions||0;totalWords=saved.words||0;const streak=saved.streak||0;
     document.getElementById('dash-sessions').textContent=totalSessions;
     document.getElementById('dash-words').textContent=totalWords;
     document.getElementById('dash-streak').textContent=streak+' day'+(streak!==1?'s':'');
@@ -1543,25 +1351,16 @@ function loadStats(){
 
 function saveStats(words,surahName){
   try{
-    const key=getUserKey();
-    const saved=JSON.parse(localStorage.getItem(key)||'{}');
-    saved.sessions=(saved.sessions||0)+1;
-    saved.words=(saved.words||0)+words;
-    saved.lastSurah=surahName;
-    if(!saved.surahCounts)saved.surahCounts={};
-    saved.surahCounts[surahName]=(saved.surahCounts[surahName]||0)+1;
-    if(!saved.allMistakes)saved.allMistakes={};
-    mistakeWords.forEach(w=>{saved.allMistakes[w]=(saved.allMistakes[w]||0)+1;});
+    const key=getUserKey();const saved=JSON.parse(localStorage.getItem(key)||'{}');
+    saved.sessions=(saved.sessions||0)+1;saved.words=(saved.words||0)+words;saved.lastSurah=surahName;
+    if(!saved.surahCounts)saved.surahCounts={};saved.surahCounts[surahName]=(saved.surahCounts[surahName]||0)+1;
+    if(!saved.allMistakes)saved.allMistakes={};mistakeWords.forEach(w=>{saved.allMistakes[w]=(saved.allMistakes[w]||0)+1;});
     if(!saved.accuracyHistory)saved.accuracyHistory=[];
-    const attempted=totalCorrect+totalMistakes;
-    const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
-    saved.accuracyHistory.push(acc);
-    if(saved.accuracyHistory.length>20)saved.accuracyHistory.shift();
-    const today=new Date().toDateString();
-    const yesterday=new Date(Date.now()-86400000).toDateString();
+    const attempted=totalCorrect+totalMistakes;const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+    saved.accuracyHistory.push(acc);if(saved.accuracyHistory.length>20)saved.accuracyHistory.shift();
+    const today=new Date().toDateString();const yesterday=new Date(Date.now()-86400000).toDateString();
     if(saved.lastSession===today){}else if(saved.lastSession===yesterday)saved.streak=(saved.streak||0)+1;else saved.streak=1;
-    saved.lastSession=today;
-    localStorage.setItem(key,JSON.stringify(saved));
+    saved.lastSession=today;localStorage.setItem(key,JSON.stringify(saved));
     totalSessions=saved.sessions;totalWords=saved.words;
     sb.auth.updateUser({data:{streak:saved.streak,last_session:today}}).catch(()=>{});
     return saved.streak;
@@ -1570,76 +1369,32 @@ function saveStats(words,surahName){
 
 async function saveSessionToSupabase(acc,timeStr,durationSecs){
   if(!currentUserId||!currentSurah)return;
-  try{
-    await sb.from('sessions').insert({user_id:currentUserId,surah_name:currentSurah.nameEn,words_recited:currentWordIndex,total_words:getRecitableWords().length,accuracy:acc,mistakes:totalMistakes,duration_seconds:durationSecs,mode:currentRecitationMode});
-  }catch(e){}
+  try{await sb.from('sessions').insert({user_id:currentUserId,surah_name:currentSurah.nameEn,words_recited:currentWordIndex,total_words:getRecitableWords().length,accuracy:acc,mistakes:totalMistakes,duration_seconds:durationSecs,mode:currentRecitationMode});}catch(e){}
 }
 
-function switchMySpaceTab(tab){
-  document.querySelectorAll('.myspace-tab').forEach((t,i)=>t.classList.toggle('active',['planner','notes','progress'][i]===tab));
-  document.querySelectorAll('.myspace-section').forEach((s,i)=>s.classList.toggle('active',['myspace-planner','myspace-notes','myspace-progress'][i]==='myspace-'+tab));
-  if(tab==='progress')loadProgressData();
-}
+function switchMySpaceTab(tab){document.querySelectorAll('.myspace-tab').forEach((t,i)=>t.classList.toggle('active',['planner','notes','progress'][i]===tab));document.querySelectorAll('.myspace-section').forEach((s,i)=>s.classList.toggle('active',['myspace-planner','myspace-notes','myspace-progress'][i]==='myspace-'+tab));if(tab==='progress')loadProgressData();}
 
 function loadMySpace(){
   buildPlannerDays();
-  try{
-    const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');
-    if(saved.notes)document.getElementById('notes-content').value=saved.notes;
-    if(saved.planner)['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});
-  }catch(e){}
+  try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');if(saved.notes)document.getElementById('notes-content').value=saved.notes;if(saved.planner)['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});}catch(e){}
 }
 
 function buildPlannerDays(){
   const days=[{key:'mon',label:'Mon'},{key:'tue',label:'Tue'},{key:'wed',label:'Wed'},{key:'thu',label:'Thu'},{key:'fri',label:'Fri'},{key:'sat',label:'Sat'},{key:'sun',label:'Sun'}];
   const container=document.getElementById('planner-days');container.innerHTML='';
-  days.forEach(d=>{
-    const div=document.createElement('div');div.className='planner-day';
-    div.innerHTML=`<span class="planner-day-label">${d.label}</span><select class="planner-day-select" id="planner-${d.key}"><option value="">Rest day</option>${SURAHS.map(s=>`<option value="${s.nameEn}">${s.nameEn}</option>`).join('')}</select>`;
-    container.appendChild(div);
-  });
+  days.forEach(d=>{const div=document.createElement('div');div.className='planner-day';div.innerHTML=`<span class="planner-day-label">${d.label}</span><select class="planner-day-select" id="planner-${d.key}"><option value="">Rest day</option>${SURAHS.map(s=>`<option value="${s.nameEn}">${s.nameEn}</option>`).join('')}</select>`;container.appendChild(div);});
 }
 
-function savePlanner(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');
-    saved.planner={};
-    ['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel)saved.planner[day]=sel.value;});
-    localStorage.setItem(getUserKey(),JSON.stringify(saved));
-    document.getElementById('planner-saved').textContent='Plan saved!';
-    setTimeout(()=>document.getElementById('planner-saved').textContent='',2000);
-  }catch(e){}
-}
-
-function saveNotes(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');
-    saved.notes=document.getElementById('notes-content').value;
-    localStorage.setItem(getUserKey(),JSON.stringify(saved));
-    document.getElementById('notes-saved').textContent='Notes saved!';
-    setTimeout(()=>document.getElementById('notes-saved').textContent='',2000);
-  }catch(e){}
-}
+function savePlanner(){try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');saved.planner={};['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel)saved.planner[day]=sel.value;});localStorage.setItem(getUserKey(),JSON.stringify(saved));document.getElementById('planner-saved').textContent='Plan saved!';setTimeout(()=>document.getElementById('planner-saved').textContent='',2000);}catch(e){}}
+function saveNotes(){try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');saved.notes=document.getElementById('notes-content').value;localStorage.setItem(getUserKey(),JSON.stringify(saved));document.getElementById('notes-saved').textContent='Notes saved!';setTimeout(()=>document.getElementById('notes-saved').textContent='',2000);}catch(e){}}
 
 function loadProgressData(){
   try{
     const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');
-    document.getElementById('prog-sessions').textContent=saved.sessions||0;
-    document.getElementById('prog-words').textContent=saved.words||0;
-    document.getElementById('prog-streak').textContent=saved.streak||0;
-    if(saved.accuracyHistory&&saved.accuracyHistory.length>0){
-      const avg=Math.round(saved.accuracyHistory.reduce((a,b)=>a+b,0)/saved.accuracyHistory.length);
-      document.getElementById('prog-accuracy').textContent=avg+'%';
-    }
-    if(saved.surahCounts){
-      const sorted=Object.entries(saved.surahCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
-      const max=sorted[0]?sorted[0][1]:1;
-      document.getElementById('prog-surahs').innerHTML=sorted.length?sorted.map(([name,count])=>`<div class="progress-bar-row"><span class="progress-bar-label" style="font-size:11px;">${name.replace('Surah ','')}</span><div class="progress-bar-track"><div class="progress-bar-fill" style="width:${Math.round((count/max)*100)}%"></div></div><span class="progress-bar-val">${count}x</span></div>`).join(''):'<p style="font-size:13px;color:#aaa;">Start reciting to see your stats here.</p>';
-    }
-    if(saved.allMistakes){
-      const sorted=Object.entries(saved.allMistakes).sort((a,b)=>b[1]-a[1]).slice(0,10);
-      if(sorted.length>0)document.getElementById('prog-mistakes').innerHTML=sorted.map(([word])=>`<span class="mistake-word">${word}</span>`).join('');
-    }
+    document.getElementById('prog-sessions').textContent=saved.sessions||0;document.getElementById('prog-words').textContent=saved.words||0;document.getElementById('prog-streak').textContent=saved.streak||0;
+    if(saved.accuracyHistory&&saved.accuracyHistory.length>0){const avg=Math.round(saved.accuracyHistory.reduce((a,b)=>a+b,0)/saved.accuracyHistory.length);document.getElementById('prog-accuracy').textContent=avg+'%';}
+    if(saved.surahCounts){const sorted=Object.entries(saved.surahCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);const max=sorted[0]?sorted[0][1]:1;document.getElementById('prog-surahs').innerHTML=sorted.length?sorted.map(([name,count])=>`<div class="progress-bar-row"><span class="progress-bar-label" style="font-size:11px;">${name.replace('Surah ','')}</span><div class="progress-bar-track"><div class="progress-bar-fill" style="width:${Math.round((count/max)*100)}%"></div></div><span class="progress-bar-val">${count}x</span></div>`).join(''):'<p style="font-size:13px;color:#aaa;">Start reciting to see your stats here.</p>';}
+    if(saved.allMistakes){const sorted=Object.entries(saved.allMistakes).sort((a,b)=>b[1]-a[1]).slice(0,10);if(sorted.length>0)document.getElementById('prog-mistakes').innerHTML=sorted.map(([word])=>`<span class="mistake-word">${word}</span>`).join('');}
   }catch(e){}
 }
 
@@ -1652,16 +1407,12 @@ function populateDashboardData(fullName,journey,gender){
   sb.auth.getUser().then(async({data})=>{
     if(!data.user)return;
     const u=data.user;const m=u.user_metadata;
-    currentUserId=u.id;userData.email=u.email;userData.gender=m.gender;
-    userData.mushaf=m.mushaf||'13';
-    // Ensure ZD code exists
-    const zdCode=await ensureZDCode(u);
-    userData.zdCode=zdCode;
+    currentUserId=u.id;userData.email=u.email;userData.gender=m.gender;userData.mushaf=m.mushaf||'13';
+    const zdCode=await ensureZDCode(u);userData.zdCode=zdCode;
     const svEl=document.getElementById('settings-mushaf-val');if(svEl)svEl.textContent=(userData.mushaf||'13')+' Line';
     ['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===userData.mushaf);});
     const q13=document.getElementById('quran-13-btn');const q15=document.getElementById('quran-15-btn');
-    if(q13)q13.classList.toggle('active',userData.mushaf==='13');
-    if(q15)q15.classList.toggle('active',userData.mushaf==='15');
+    if(q13)q13.classList.toggle('active',userData.mushaf==='13');if(q15)q15.classList.toggle('active',userData.mushaf==='15');
     const zdEl=document.getElementById('details-zd-field');if(zdEl)zdEl.textContent=zdCode;
     if(journey==='parent'){
       ['parent-settings-avatar','parent-details-avatar'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=initials;});
@@ -1688,13 +1439,8 @@ function populateDashboardData(fullName,journey,gender){
     }
     loadConversations();
   });
-  if(journey==='parent'){
-    const pdn=document.getElementById('parent-dash-name');if(pdn)pdn.textContent=`Assalamu Alaikum, ${firstName}`;
-  }else{
-    const dn=document.getElementById('dash-name');if(dn)dn.textContent=`Assalamu Alaikum, ${t} ${firstName}`;
-    const ds=document.getElementById('dash-sub');if(ds)ds.textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;
-    loadStats();
-  }
+  if(journey==='parent'){const pdn=document.getElementById('parent-dash-name');if(pdn)pdn.textContent=`Assalamu Alaikum, ${firstName}`;}
+  else{const dn=document.getElementById('dash-name');if(dn)dn.textContent=`Assalamu Alaikum, ${t} ${firstName}`;const ds=document.getElementById('dash-sub');if(ds)ds.textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;loadStats();}
 }
 
 function renderDashboard(n,j,g){if(j==='parent')showScreen('screen-parent-dashboard');else showScreen('screen-dashboard');}
@@ -1702,20 +1448,13 @@ function loadDashboard(n,j,g){populateDashboardData(n,j,g);renderDashboard(n,j,g
 
 function buildSurahList(){
   const list=document.getElementById('surah-list');list.innerHTML='';
-  SURAHS.forEach((s,i)=>{
-    const div=document.createElement('div');div.className='surah-list-item';
-    div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;
-    div.onclick=()=>startSurah(i);list.appendChild(div);
-  });
+  SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});
 }
 
 function startSurah(index){
-  currentSurah=SURAHS[index];
-  currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];
-  isPeeking=false;sessionStartTime=Date.now();
-  currentFeedbackText='';
-  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
-  isPlayingAudio=false;
+  currentSurah=SURAHS[index];currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];
+  isPeeking=false;sessionStartTime=Date.now();currentFeedbackText='';
+  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}isPlayingAudio=false;
   document.getElementById('recite-title').textContent=currentSurah.nameEn;
   document.getElementById('recite-mode-badge').textContent=currentRecitationMode==='hidden'?'Hidden':currentRecitationMode==='guided'?'Guided':'Test';
   renderSurahText();updateSessionStats();hideFeedback();
@@ -1728,18 +1467,10 @@ function startSurah(index){
 function getRecitableWords(){return currentSurah.words.filter(w=>w.tj!=='marker');}
 
 function renderSurahText(){
-  const display=document.getElementById('arabic-display');display.innerHTML='';
-  let ri=0;
+  const display=document.getElementById('arabic-display');display.innerHTML='';let ri=0;
   currentSurah.words.forEach(w=>{
-    if(w.tj==='marker'){
-      const span=document.createElement('span');span.className='ayah-marker';span.textContent=w.ayah>0?' ۝'+w.ayah+' ':' ۝ ';display.appendChild(span);
-    }else{
-      const span=document.createElement('span');span.id=`rw-${ri}`;
-      if(currentRecitationMode==='test'){span.className=`rword tj-${w.tj}`;span.style.color='transparent';span.style.textShadow='none';}
-      else if(currentRecitationMode==='guided'){span.className=`rword tj-${w.tj}`;}
-      else{span.className=`rword hidden tj-${w.tj}`;}
-      span.textContent=w.t+' ';display.appendChild(span);ri++;
-    }
+    if(w.tj==='marker'){const span=document.createElement('span');span.className='ayah-marker';span.textContent=w.ayah>0?' ۝'+w.ayah+' ':' ۝ ';display.appendChild(span);}
+    else{const span=document.createElement('span');span.id=`rw-${ri}`;if(currentRecitationMode==='test'){span.className=`rword tj-${w.tj}`;span.style.color='transparent';span.style.textShadow='none';}else if(currentRecitationMode==='guided'){span.className=`rword tj-${w.tj}`;}else{span.className=`rword hidden tj-${w.tj}`;}span.textContent=w.t+' ';display.appendChild(span);ri++;}
   });
   if(currentRecitationMode!=='test'){const first=document.getElementById('rw-0');if(first){first.classList.remove('hidden');first.classList.add('current');}}
 }
@@ -1768,141 +1499,115 @@ function startListening(){
 
 function stopListening(){
   isListening=false;if(recognition){try{recognition.stop();}catch(e){}}
-document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();
+  document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();
 }
+
 function startWaitingTimer(){clearWaitingTimer();waitingTimer=setTimeout(()=>{if(isListening)showFeedback('waiting');},4000);}
 function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
-function processInterimResult(transcript){
-const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
-const words=transcript.trim().split(/\s+/);const lastWord=words[words.length-1];
-if(wordsMatch(lastWord,recitable[currentWordIndex].t))showFeedback('correct');
-}
+
+function processInterimResult(transcript){const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;const words=transcript.trim().split(/\s+/);const lastWord=words[words.length-1];if(wordsMatch(lastWord,recitable[currentWordIndex].t))showFeedback('correct');}
+
 function processFinalResult(result){
-const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
-const allTranscripts=[];for(let i=0;i<result.length;i++)allTranscripts.push(result[i].transcript);
-const primaryWords=allTranscripts[0].trim().split(/\s+/).filter(w=>w.length>0);
-primaryWords.forEach(spokenWord=>{
-if(currentWordIndex>=recitable.length)return;
-const expected=recitable[currentWordIndex];
-let matched=false;
-for(const t of allTranscripts){for(const tw of t.trim().split(/\s+/)){if(wordsMatch(tw,expected.t)){matched=true;break;}}if(matched)break;}
-if(matched){
-const el=document.getElementById(rw-${currentWordIndex});
-if(el){el.classList.remove('hidden','current','mistake');el.style.color='';el.style.textShadow='';el.classList.add('correct');}
-totalCorrect++;currentWordIndex++;
-const nextEl=document.getElementById(rw-${currentWordIndex});
-if(nextEl){if(currentRecitationMode==='hidden'&&!isPeeking){nextEl.classList.remove('hidden');nextEl.style.color='';}nextEl.classList.add('current');}
-updateSessionStats();showFeedback('correct');
-if(currentWordIndex>=recitable.length)setTimeout(()=>completeSession(),800);
-}else{
-const el=document.getElementById(rw-${currentWordIndex});
-if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},500);}
-totalMistakes++;if(!mistakeWords.includes(expected.t))mistakeWords.push(expected.t);
-updateSessionStats();showFeedback('mistake');
+  const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;
+  const allTranscripts=[];for(let i=0;i<result.length;i++)allTranscripts.push(result[i].transcript);
+  const primaryWords=allTranscripts[0].trim().split(/\s+/).filter(w=>w.length>0);
+  primaryWords.forEach(spokenWord=>{
+    if(currentWordIndex>=recitable.length)return;
+    const expected=recitable[currentWordIndex];let matched=false;
+    for(const t of allTranscripts){for(const tw of t.trim().split(/\s+/)){if(wordsMatch(tw,expected.t)){matched=true;break;}}if(matched)break;}
+    if(matched){
+      const el=document.getElementById(`rw-${currentWordIndex}`);
+      if(el){el.classList.remove('hidden','current','mistake');el.style.color='';el.style.textShadow='';el.classList.add('correct');}
+      totalCorrect++;currentWordIndex++;
+      const nextEl=document.getElementById(`rw-${currentWordIndex}`);
+      if(nextEl){if(currentRecitationMode==='hidden'&&!isPeeking){nextEl.classList.remove('hidden');nextEl.style.color='';}nextEl.classList.add('current');}
+      updateSessionStats();showFeedback('correct');
+      if(currentWordIndex>=recitable.length)setTimeout(()=>completeSession(),800);
+    }else{
+      const el=document.getElementById(`rw-${currentWordIndex}`);
+      if(el){el.classList.add('mistake');setTimeout(()=>{if(el.classList.contains('mistake'))el.classList.remove('mistake');},500);}
+      totalMistakes++;if(!mistakeWords.includes(expected.t))mistakeWords.push(expected.t);
+      updateSessionStats();showFeedback('mistake');
+    }
+  });
 }
-});
-}
-function updateSessionStats(){
-const recitable=getRecitableWords();
-const pct=recitable.length>0?Math.round((currentWordIndex/recitable.length)*100):0;
-document.getElementById('session-bar').style.width=pct+'%';
-document.getElementById('stat-words').textContent=currentWordIndex;
-document.getElementById('stat-mistakes').textContent=totalMistakes;
-const attempted=totalCorrect+totalMistakes;
-const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
-document.getElementById('stat-accuracy').textContent=acc;
-}
+
+function updateSessionStats(){const recitable=getRecitableWords();const pct=recitable.length>0?Math.round((currentWordIndex/recitable.length)*100):0;document.getElementById('session-bar').style.width=pct+'%';document.getElementById('stat-words').textContent=currentWordIndex;document.getElementById('stat-mistakes').textContent=totalMistakes;const attempted=totalCorrect+totalMistakes;const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;document.getElementById('stat-accuracy').textContent=acc;}
 function showFeedback(type){['listening','correct','mistake','waiting'].forEach(t=>{const el=document.getElementById('feedback-'+t);if(el)el.classList.toggle('show',t===type);});}
 function hideFeedback(){showFeedback(null);}
+
 function togglePeek(){
-isPeeking=!isPeeking;
-if(currentRecitationMode==='test')return;
-const recitable=getRecitableWords();
-recitable.forEach((w,i)=>{const el=document.getElementById(rw-${i});if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});
-document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
+  isPeeking=!isPeeking;if(currentRecitationMode==='test')return;
+  const recitable=getRecitableWords();
+  recitable.forEach((w,i)=>{const el=document.getElementById(`rw-${i}`);if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});
+  document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
 }
+
 function completeSession(){
-stopListening();
-const elapsed=Math.round((Date.now()-sessionStartTime)/1000);
-const mins=Math.floor(elapsed/60);const secs=elapsed%60;
-const timeStr=mins>0?${mins}m ${secs}s:${secs}s;
-const attempted=totalCorrect+totalMistakes;
-const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
-const streak=saveStats(totalCorrect,currentSurah.nameEn);
-saveSessionToSupabase(acc,timeStr,elapsed);
-document.getElementById('summary-emoji').textContent=acc>=90?'🌟':acc>=70?'✅':'💪';
-document.getElementById('summary-title').textContent=acc>=90?'MashaAllah!':acc>=70?'Well done!':'Keep practising!';
-document.getElementById('summary-sub').textContent=${currentSurah.nameEn} — ${acc}% accuracy;
-document.getElementById('sum-words').textContent=currentWordIndex;
-document.getElementById('sum-accuracy').textContent=acc+'%';
-document.getElementById('sum-mistakes').textContent=totalMistakes;
-document.getElementById('sum-time').textContent=timeStr;
-document.getElementById('sum-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
-const mw=document.getElementById('mistake-words');const mr=document.getElementById('mistake-review');
-if(mistakeWords.length>0){mw.innerHTML=mistakeWords.map(w=><span class="mistake-word">${w}</span>).join('');mr.style.display='block';}
-else mr.style.display='none';
-currentFeedbackText='';
-if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
-isPlayingAudio=false;
-const audioBtn=document.getElementById('ai-audio-btn');
-audioBtn.disabled=true;audioBtn.classList.remove('playing');
-document.getElementById('audio-icon-play').style.display='';
-document.getElementById('audio-icon-stop').style.display='none';
-document.getElementById('ai-feedback-content').innerHTML=<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>;
-document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-document.getElementById('screen-summary').classList.add('active');
-window.scrollTo(0,0);
-fetchAIFeedback(acc,timeStr);
+  stopListening();
+  const elapsed=Math.round((Date.now()-sessionStartTime)/1000);
+  const mins=Math.floor(elapsed/60);const secs=elapsed%60;const timeStr=mins>0?`${mins}m ${secs}s`:`${secs}s`;
+  const attempted=totalCorrect+totalMistakes;const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
+  const streak=saveStats(totalCorrect,currentSurah.nameEn);
+  saveSessionToSupabase(acc,timeStr,elapsed);
+  document.getElementById('summary-emoji').textContent=acc>=90?'🌟':acc>=70?'✅':'💪';
+  document.getElementById('summary-title').textContent=acc>=90?'MashaAllah!':acc>=70?'Well done!':'Keep practising!';
+  document.getElementById('summary-sub').textContent=`${currentSurah.nameEn} — ${acc}% accuracy`;
+  document.getElementById('sum-words').textContent=currentWordIndex;
+  document.getElementById('sum-accuracy').textContent=acc+'%';
+  document.getElementById('sum-mistakes').textContent=totalMistakes;
+  document.getElementById('sum-time').textContent=timeStr;
+  document.getElementById('sum-streak').textContent=streak+' day'+(streak!==1?'s':'')+' streak';
+  const mw=document.getElementById('mistake-words');const mr=document.getElementById('mistake-review');
+  if(mistakeWords.length>0){mw.innerHTML=mistakeWords.map(w=>`<span class="mistake-word">${w}</span>`).join('');mr.style.display='block';}else mr.style.display='none';
+  currentFeedbackText='';if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}isPlayingAudio=false;
+  const audioBtn=document.getElementById('ai-audio-btn');audioBtn.disabled=true;audioBtn.classList.remove('playing');
+  document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';
+  document.getElementById('ai-feedback-content').innerHTML=`<div class="ai-feedback-loading"><div class="ai-loading-dots"><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div><div class="ai-loading-dot"></div></div><span class="ai-loading-text">Zaid is analysing your recitation...</span></div>`;
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-summary').classList.add('active');
+  window.scrollTo(0,0);
+  fetchAIFeedback(acc,timeStr);
 }
+
 async function fetchAIFeedback(accuracy,timeTaken){
-try{
-const recitable=getRecitableWords();
-const firstName=userData.name?userData.name.split(' ')[0]:'';
-const response=await fetch(${ENGINE_URL}/feedback,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:currentSurah.nameEn,surahArabic:recitable.map(w=>w.t).join(' '),wordsRecited:currentWordIndex,totalWords:recitable.length,mistakes:mistakeWords,accuracy:accuracy,tajweedRules:currentSurah.tajweedRules||[],timeTaken:timeTaken,studentName:firstName})});
-const data=await response.json();
-if(data.feedback){
-currentFeedbackText=data.feedback;
-document.getElementById('ai-feedback-content').innerHTML=<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>;
-document.getElementById('ai-audio-btn').disabled=false;
-}else{document.getElementById('ai-feedback-content').innerHTML=<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>;}
-}catch(e){document.getElementById('ai-feedback-content').innerHTML=<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>;}
+  try{
+    const recitable=getRecitableWords();const firstName=userData.name?userData.name.split(' ')[0]:'';
+    const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:currentSurah.nameEn,surahArabic:recitable.map(w=>w.t).join(' '),wordsRecited:currentWordIndex,totalWords:recitable.length,mistakes:mistakeWords,accuracy:accuracy,tajweedRules:currentSurah.tajweedRules||[],timeTaken:timeTaken,studentName:firstName})});
+    const data=await response.json();
+    if(data.feedback){currentFeedbackText=data.feedback;document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text">${data.feedback.replace(/\n/g,'<br>')}</p>`;document.getElementById('ai-audio-btn').disabled=false;}
+    else{document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>`;}
+  }catch(e){document.getElementById('ai-feedback-content').innerHTML=`<p class="ai-feedback-text" style="color:#888;">Feedback unavailable.</p>`;}
 }
+
 async function toggleAudio(){
-if(isPlayingAudio){
-if(feedbackAudio){feedbackAudio.pause();feedbackAudio.currentTime=0;}
-isPlayingAudio=false;
-const btn=document.getElementById('ai-audio-btn');btn.classList.remove('playing');
-document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';
-return;
+  if(isPlayingAudio){if(feedbackAudio){feedbackAudio.pause();feedbackAudio.currentTime=0;}isPlayingAudio=false;const btn=document.getElementById('ai-audio-btn');btn.classList.remove('playing');document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';return;}
+  if(!currentFeedbackText)return;
+  const btn=document.getElementById('ai-audio-btn');btn.disabled=true;
+  try{
+    const response=await fetch(`${ENGINE_URL}/speak`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:currentFeedbackText,gender:userData.gender||'male'})});
+    const blob=await response.blob();const url=URL.createObjectURL(blob);
+    feedbackAudio=new Audio(url);
+    feedbackAudio.onended=()=>{isPlayingAudio=false;btn.classList.remove('playing');document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';btn.disabled=false;};
+    feedbackAudio.play();isPlayingAudio=true;btn.disabled=false;btn.classList.add('playing');
+    document.getElementById('audio-icon-play').style.display='none';document.getElementById('audio-icon-stop').style.display='';
+  }catch(e){btn.disabled=false;}
 }
-if(!currentFeedbackText)return;
-const btn=document.getElementById('ai-audio-btn');btn.disabled=true;
-try{
-const response=await fetch(${ENGINE_URL}/speak,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:currentFeedbackText,gender:userData.gender||'male'})});
-const blob=await response.blob();const url=URL.createObjectURL(blob);
-feedbackAudio=new Audio(url);
-feedbackAudio.onended=()=>{isPlayingAudio=false;btn.classList.remove('playing');document.getElementById('audio-icon-play').style.display='';document.getElementById('audio-icon-stop').style.display='none';btn.disabled=false;};
-feedbackAudio.play();isPlayingAudio=true;btn.disabled=false;btn.classList.add('playing');
-document.getElementById('audio-icon-play').style.display='none';document.getElementById('audio-icon-stop').style.display='';
-}catch(e){btn.disabled=false;}
-}
-function endSessionToSurahList(){
-stopListening();
-if(currentWordIndex>0){completeSession();}
-else{buildSurahList();showScreen('screen-surah-list');}
-}
+
+function endSessionToSurahList(){stopListening();if(currentWordIndex>0){completeSession();}else{buildSurahList();showScreen('screen-surah-list');}}
+
 loadSavedTheme();
+
 sb.auth.onAuthStateChange((event,session)=>{
-if(event==='SIGNED_IN'&&session&&!dashboardInitialised){
-dashboardInitialised=true;
-const m=session.user.user_metadata;
-currentUserId=session.user.id;
-userData.email=session.user.email;
-loadDashboard(m.full_name,m.journey,m.gender);
-}
-if(event==='SIGNED_OUT'){dashboardInitialised=false;}
+  if(event==='SIGNED_IN'&&session&&!dashboardInitialised){
+    dashboardInitialised=true;
+    const m=session.user.user_metadata;
+    currentUserId=session.user.id;
+    userData.email=session.user.email;
+    loadDashboard(m.full_name,m.journey,m.gender);
+  }
+  if(event==='SIGNED_OUT'){dashboardInitialised=false;}
 });
 </script>
 </body>
 </html>
-```
