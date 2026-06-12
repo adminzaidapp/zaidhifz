@@ -1768,8 +1768,7 @@ function startListening(){
 
 function stopListening(){
   isListening=false;if(recognition){try{recognition.stop();}catch(e){}}
-  document.getElementById('mic-btn').classList.remove('listening');clearWaiting
- Timer();hideFeedback();
+document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();
 }
 function startWaitingTimer(){clearWaitingTimer();waitingTimer=setTimeout(()=>{if(isListening)showFeedback('waiting');},4000);}
 function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
