@@ -59,7 +59,7 @@
   .btn-secondary:active { transform:scale(0.97); background:var(--primary-light); }
   .btn-danger { width:100%; padding:15px; background:transparent; color:#E53935; border:1.5px solid #E53935; border-radius:14px; font-size:15px; font-weight:600; cursor:pointer; margin-top:8px; }
   .greeting-name { font-size:27px; font-weight:700; color:#111; letter-spacing:-0.5px; }
-  .greeting-sub { font-size:14px; color:#888; margin-top:3px; margin-bottom:22px; }
+  .greeting-sub { font-size:14px; color:#888; margin-top:3px; margin-bottom:16px; }
   .streak-card { background:linear-gradient(135deg,var(--primary-light) 0%,var(--primary-lighter) 100%); border-radius:18px; padding:18px; display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; box-shadow:0 2px 12px var(--primary-shadow-light); border:1px solid var(--primary-shadow-light); }
   .streak-num { font-size:34px; font-weight:700; color:var(--primary-dark); letter-spacing:-1px; }
   .streak-label { font-size:12px; color:var(--primary); font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
@@ -73,6 +73,15 @@
   .tile-title { font-size:11px; font-weight:600; color:#888; margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
   .tile-val { font-size:28px; font-weight:700; color:var(--primary); letter-spacing:-0.5px; }
   .tile-sub { font-size:11px; color:#aaa; margin-top:2px; }
+  .last-session-card { background:#fff; border-radius:16px; padding:14px 16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:14px; display:flex; align-items:center; gap:12px; }
+  .last-session-icon { width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg,var(--primary-light),var(--primary-lighter)); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .last-session-info { flex:1; }
+  .last-session-surah { font-size:14px; font-weight:600; color:#111; }
+  .last-session-meta { font-size:12px; color:#aaa; margin-top:2px; }
+  .streak-warning { background:linear-gradient(135deg,#FFF3E0,#FFF8E1); border-radius:14px; padding:12px 16px; margin-bottom:14px; border:1px solid #FFE0B2; display:flex; align-items:center; gap:10px; }
+  .streak-warning-text { font-size:13px; color:#E65100; font-weight:500; line-height:1.4; }
+  .zd-badge { text-align:center; padding:8px; margin-top:8px; margin-bottom:4px; }
+  .zd-badge-text { font-size:12px; color:rgba(0,0,0,0.2); font-weight:600; letter-spacing:3px; font-family:monospace; }
   .surah-list-item { display:flex; align-items:center; gap:14px; padding:14px 0; border-bottom:1px solid #f0f4f2; cursor:pointer; transition:all 0.15s ease; }
   .surah-list-item:active { background:var(--primary-light); margin:0 -20px; padding:14px 20px; border-radius:12px; }
   .surah-num { width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg,var(--primary-light),var(--primary-lighter)); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--primary-dark); flex-shrink:0; }
@@ -239,8 +248,14 @@
   .planner-day { background:#fff; border-radius:14px; border:1px solid #edf2ef; padding:14px 16px; margin-bottom:10px; display:flex; align-items:center; gap:12px; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
   .planner-day-label { font-size:12px; font-weight:700; color:var(--primary); min-width:36px; text-transform:uppercase; }
   .planner-day-select { flex:1; border:none; background:transparent; font-size:14px; color:#111; outline:none; cursor:pointer; }
-  .notes-area { width:100%; min-height:300px; border:1.5px solid #e8ede9; border-radius:14px; padding:16px; font-size:15px; color:#1a1a1a; outline:none; background:#fff; resize:none; line-height:1.7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+  .notes-area { width:100%; min-height:120px; border:1.5px solid #e8ede9; border-radius:14px; padding:16px; font-size:15px; color:#1a1a1a; outline:none; background:#fff; resize:none; line-height:1.7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; margin-bottom:10px; }
   .notes-area:focus { border-color:var(--primary); box-shadow:0 0 0 4px var(--primary-shadow-light); }
+  .note-entry { background:#fff; border-radius:14px; border:1px solid #edf2ef; padding:14px 16px; margin-bottom:10px; box-shadow:0 1px 4px rgba(0,0,0,0.04); position:relative; }
+  .note-entry-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .note-entry-date { font-size:11px; color:#aaa; font-weight:500; }
+  .note-entry-delete { background:none; border:none; color:#ddd; font-size:16px; cursor:pointer; padding:0; line-height:1; transition:color 0.15s; }
+  .note-entry-delete:hover { color:#E53935; }
+  .note-entry-text { font-size:14px; color:#333; line-height:1.6; white-space:pre-wrap; }
   .progress-stat-card { background:#fff; border-radius:16px; padding:16px; border:1px solid #edf2ef; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin-bottom:12px; }
   .progress-stat-title { font-size:12px; font-weight:700; color:#888; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px; }
   .progress-bar-row { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
@@ -279,9 +294,12 @@
   .msg-row { display:flex; flex-direction:column; }
   .msg-row.sent { align-items:flex-end; }
   .msg-row.received { align-items:flex-start; }
-  .msg-bubble { max-width:75%; padding:10px 14px; border-radius:18px; font-size:14px; line-height:1.5; }
+  .msg-bubble-wrap { position:relative; max-width:75%; }
+  .msg-bubble { padding:10px 14px; border-radius:18px; font-size:14px; line-height:1.5; }
   .msg-bubble.sent { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; border-bottom-right-radius:4px; }
   .msg-bubble.received { background:#fff; color:#1a1a1a; border-bottom-left-radius:4px; border:1px solid #edf2ef; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .msg-delete-btn { position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%; background:#E53935; border:none; color:#fff; font-size:12px; cursor:pointer; display:none; align-items:center; justify-content:center; line-height:1; }
+  .msg-bubble-wrap:hover .msg-delete-btn { display:flex; }
   .msg-meta { display:flex; align-items:center; gap:4px; margin-top:3px; padding:0 2px; }
   .msg-time-small { font-size:10px; color:#aaa; }
   .msg-seen { font-size:10px; color:#aaa; font-style:italic; }
@@ -308,6 +326,7 @@
   .student-stat-pill { flex:1; background:#fff; border-radius:12px; padding:12px; text-align:center; border:1px solid #edf2ef; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
   .student-stat-pill-val { font-size:22px; font-weight:700; color:var(--primary); }
   .student-stat-pill-label { font-size:10px; color:#888; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; margin-top:2px; }
+  .pull-refresh { text-align:center; padding:12px; font-size:13px; color:var(--primary); font-weight:500; display:none; }
 </style>
 </head>
 <body>
@@ -505,10 +524,13 @@
       <div class="msg-badge" id="msg-badge"></div>
     </button>
   </div>
-  <div class="screen-body">
+  <div class="screen-body" id="dashboard-body">
+    <div class="pull-refresh" id="pull-refresh">↓ Refreshing...</div>
     <div class="greeting-name" id="dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="dash-sub">Welcome to Zaid</div>
+    <div id="streak-warning" style="display:none;" class="streak-warning"><span style="font-size:20px;">🔥</span><span class="streak-warning-text">Don't break your streak! Recite something today.</span></div>
     <div class="streak-card"><div><div class="streak-label">Current streak</div><div class="streak-num" id="dash-streak">0 days</div></div><div style="font-size:32px;">🔥</div></div>
+    <div id="last-session-card" style="display:none;" class="last-session-card"><div class="last-session-icon">📖</div><div class="last-session-info"><div class="last-session-surah" id="last-session-surah">—</div><div class="last-session-meta" id="last-session-meta">—</div></div></div>
     <div class="today-card" onclick="showTab('recite')">
       <div class="today-label">Today's revision</div>
       <div class="today-title" id="today-surah">Surah An-Nas</div>
@@ -536,6 +558,7 @@
         </div>
       </div>
     </div>
+    <div class="zd-badge"><span class="zd-badge-text" id="dash-zd-code"></span></div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item active" onclick="showTab('dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/></svg><span>Home</span></button>
@@ -568,10 +591,10 @@
       <p class="success-msg" id="planner-saved" style="margin-top:8px;"></p>
     </div>
     <div class="myspace-section" id="myspace-notes">
-      <p style="font-size:13px;color:#888;margin-bottom:14px;line-height:1.6;">Your personal space. Notes, duas, reminders — anything you want.</p>
-      <textarea class="notes-area" id="notes-content" placeholder="Start writing..."></textarea>
-      <button class="btn-primary" onclick="saveNotes()" style="margin-top:12px;">Save notes</button>
-      <p class="success-msg" id="notes-saved" style="margin-top:8px;"></p>
+      <p style="font-size:13px;color:#888;margin-bottom:10px;line-height:1.6;">Write a note, save it, and it'll appear below with the date and time.</p>
+      <textarea class="notes-area" id="notes-input" placeholder="Write something..."></textarea>
+      <button class="btn-primary" onclick="saveNote()" style="margin-top:0;margin-bottom:16px;">Save note</button>
+      <div id="notes-list"></div>
     </div>
     <div class="myspace-section" id="myspace-progress">
       <div class="progress-stat-card">
@@ -614,6 +637,7 @@
   <div class="screen-body">
     <div class="greeting-name" id="parent-dash-name">Assalamu Alaikum</div>
     <div class="greeting-sub" id="parent-dash-sub">Supporting the next generation</div>
+    <div id="parent-week-stats" style="display:none;" class="streak-card"><div><div class="streak-label">This week</div><div class="streak-num" id="parent-week-sessions">0</div></div><div style="font-size:32px;">📚</div></div>
     <div class="link-card">
       <h3>Your link code</h3>
       <p>Share this with your students. It never changes.</p>
@@ -621,7 +645,7 @@
       <button class="btn-primary" style="margin-top:0;" onclick="copyParentCode()">Copy code</button>
     </div>
     <h2 style="font-size:18px;margin-bottom:12px;">Linked students</h2>
-    <div id="parent-students-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:20px 0;">No students linked yet.</p></div>
+    <div id="parent-students-list"><p style="font-size:14px;color:#aaa;text-align:center;padding:20px 0;">No students linked yet. Share your ZD code to get started.</p></div>
   </div>
   <div class="bottom-nav">
     <button class="nav-item active" onclick="showScreen('screen-parent-dashboard')"><svg viewBox="0 0 20 20"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="var(--primary)"/></svg><span>Home</span></button>
@@ -964,7 +988,7 @@
 <div class="screen" id="screen-chat">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger');loadMessengerScreen();">← Back</button><h1 id="chat-title">Chat</h1><span id="chat-subtitle" style="font-size:11px;opacity:0.75;"></span></div>
   <div class="messages-wrap" id="messages-wrap"></div>
-  <div id="typing-indicator-wrap" style="padding:0 20px 8px;display:none;">
+  <div id="typing-indicator-wrap" style="padding:0 20px 8px;display:none;flex-shrink:0;">
     <div class="typing-indicator"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div><span class="typing-name" id="typing-name-text"></span></div>
   </div>
   <div class="msg-input-area">
@@ -1031,6 +1055,7 @@ let reciteWTStep=0,myspaceWTStep=0;
 let dashboardInitialised=false;
 let currentChatReceiverId=null,currentChatReceiverName='',currentChatReceiverGender='';
 let globalMessageSubscription=null,typingSubscription=null,typingTimeout=null;
+let messagePollInterval=null,conversationPollInterval=null;
 let viewingStudentId=null,viewingStudentName='';
 let linkedContactId=null,linkedContactName='',linkedContactGender='';
 const TOTAL_SLIDES=4;
@@ -1066,7 +1091,11 @@ function showTab(tab){
   showScreen(map[tab]||'screen-dashboard');
 }
 
-function goBackFromMessenger(){if(currentUserJourney==='parent')showScreen('screen-parent-dashboard');else showTab('dashboard');}
+function goBackFromMessenger(){
+  stopPolling();
+  if(currentUserJourney==='parent')showScreen('screen-parent-dashboard');
+  else showTab('dashboard');
+}
 
 function selectMode(mode){currentRecitationMode=mode;['hidden','guided','test'].forEach(m=>document.getElementById('mode-'+m).classList.toggle('selected',m===mode));}
 function selectMushaf(val){userData.mushaf=val==='unsure'?'13':val;['13','15','unsure'].forEach(v=>{const el=document.getElementById('mushaf-'+v);if(el)el.classList.toggle('selected',v===val);});}
@@ -1174,7 +1203,22 @@ async function loadLinkedStudents(parentId){
       const html=data.map(s=>`<div class="student-card" onclick="openStudentDetail('${s.student_id}','${s.student_name||'Student'}')"><div class="student-avatar">${(s.student_name||'S')[0].toUpperCase()}</div><div class="student-info"><div class="student-name">${s.student_name||'Student'}</div><div class="student-meta">Tap to view progress</div></div><span style="font-size:18px;color:#ccc;">›</span></div>`).join('');
       document.getElementById('parent-students-list').innerHTML=html;
       document.getElementById('parent-students-full-list').innerHTML=html;
+      // Load this week's total sessions across all students
+      loadParentWeekStats(data.map(s=>s.student_id));
     }
+  }catch(e){}
+}
+
+async function loadParentWeekStats(studentIds){
+  try{
+    const weekAgo=new Date(Date.now()-7*24*60*60*1000).toISOString();
+    let total=0;
+    for(const id of studentIds){
+      const{data}=await sb.from('sessions').select('id').eq('user_id',id).gte('created_at',weekAgo);
+      if(data)total+=data.length;
+    }
+    const el=document.getElementById('parent-week-sessions');const card=document.getElementById('parent-week-stats');
+    if(el&&card){el.textContent=total;card.style.display='flex';}
   }catch(e){}
 }
 
@@ -1232,9 +1276,11 @@ function openChatWithStudent(){
   document.getElementById('chat-title').textContent=viewingStudentName.split(' ')[0];
   document.getElementById('chat-subtitle').textContent='Student';
   document.getElementById('messages-wrap').innerHTML='';
+  document.getElementById('typing-indicator-wrap').style.display='none';
   showScreen('screen-chat');
   loadMessages();
   subscribeToChat();
+  startMessagePolling();
 }
 
 async function linkToParent(){
@@ -1271,47 +1317,64 @@ async function checkIfLinked(userId){
 
 function copyParentCode(){const c=document.getElementById('parent-link-code').textContent;navigator.clipboard.writeText(c).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);}});}
 
-// ── GLOBAL REALTIME — runs from login on any screen ──────────────
+// ── POLLING — fallback for live messages ────────────────────────
+function startMessagePolling(){
+  stopPolling();
+  if(!currentUserId||!currentChatReceiverId)return;
+  messagePollInterval=setInterval(()=>{
+    const chatActive=document.getElementById('screen-chat').classList.contains('active');
+    if(chatActive)loadMessages();
+    else stopPolling();
+  },3000);
+}
+
+function startConversationPolling(){
+  if(conversationPollInterval)clearInterval(conversationPollInterval);
+  conversationPollInterval=setInterval(()=>{
+    updateBadges();
+    const messengerActive=document.getElementById('screen-messenger').classList.contains('active');
+    if(messengerActive)loadConversations();
+  },4000);
+}
+
+function stopPolling(){
+  if(messagePollInterval){clearInterval(messagePollInterval);messagePollInterval=null;}
+}
+
+// ── GLOBAL REALTIME + VISIBILITY RECONNECT ──────────────────────
 function startGlobalMessageListener(){
-  if(globalMessageSubscription){globalMessageSubscription.unsubscribe();globalMessageSubscription=null;}
+  if(globalMessageSubscription){try{globalMessageSubscription.unsubscribe();}catch(e){}globalMessageSubscription=null;}
   if(!currentUserId)return;
   globalMessageSubscription=sb.channel('global-msgs-'+currentUserId)
     .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:`receiver_id=eq.${currentUserId}`},payload=>{
       updateBadges();
-      const msg=payload.new;
-      const activeChatScreen=document.getElementById('screen-chat').classList.contains('active');
-      if(activeChatScreen&&msg.sender_id===currentChatReceiverId){
-        loadMessages();
-      }else{
-        const messengerScreen=document.getElementById('screen-messenger').classList.contains('active');
-        if(messengerScreen)loadConversations();
-      }
+      const chatActive=document.getElementById('screen-chat').classList.contains('active');
+      if(chatActive&&payload.new.sender_id===currentChatReceiverId){loadMessages();}
+      const messengerActive=document.getElementById('screen-messenger').classList.contains('active');
+      if(messengerActive)loadConversations();
     })
     .on('postgres_changes',{event:'UPDATE',schema:'public',table:'messages'},()=>{
       updateBadges();
-      const messengerScreen=document.getElementById('screen-messenger').classList.contains('active');
-      if(messengerScreen)loadConversations();
     })
     .subscribe();
+  startConversationPolling();
 }
 
-// Reconnect on visibility change (tab comes back into focus on mobile)
 document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState==='visible'&&currentUserId){
     startGlobalMessageListener();
     updateBadges();
-    const activeChatScreen=document.getElementById('screen-chat').classList.contains('active');
-    if(activeChatScreen&&currentChatReceiverId)loadMessages();
-    const messengerScreen=document.getElementById('screen-messenger').classList.contains('active');
-    if(messengerScreen)loadConversations();
+    const chatActive=document.getElementById('screen-chat').classList.contains('active');
+    if(chatActive&&currentChatReceiverId){loadMessages();startMessagePolling();}
+    const messengerActive=document.getElementById('screen-messenger').classList.contains('active');
+    if(messengerActive)loadConversations();
   }
 });
 
 async function updateBadges(){
   if(!currentUserId)return;
   try{
-    const{data,error}=await sb.from('messages').select('id').eq('receiver_id',currentUserId).eq('read',false);
-    if(error)return;
+    const{data}=await sb.from('messages').select('id').eq('receiver_id',currentUserId).eq('read',false);
     const count=data?data.length:0;
     ['msg-badge','msg-badge-2','msg-badge-parent'].forEach(id=>{
       const el=document.getElementById(id);
@@ -1336,7 +1399,7 @@ async function loadConversations(){
     const convs=Object.values(convMap);
     const listEl=document.getElementById('conversation-list');
     if(convs.length>0){
-      listEl.innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}')"><div class="chat-avatar">${(c.name[0]||'?').toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview" style="font-weight:${c.unread>0?'600':'400'};color:${c.unread>0?'#111':'#aaa'}">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');
+      listEl.innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}','')"><div class="chat-avatar">${(c.name[0]||'?').toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview" style="font-weight:${c.unread>0?'600':'400'};color:${c.unread>0?'#111':'#aaa'}">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');
     }else{
       listEl.innerHTML='<div style="text-align:center;padding:40px 20px 20px;"><p style="font-size:14px;color:#aaa;line-height:1.6;">No conversations yet.<br>Use ✏️ above to start one.</p></div>';
     }
@@ -1345,11 +1408,9 @@ async function loadConversations(){
 
 async function loadMessengerScreen(){
   await loadConversations();
-  // Show linked contacts at top
   const contactsEl=document.getElementById('messenger-contacts');
   contactsEl.innerHTML='';
   if(currentUserJourney==='parent'){
-    // Show linked students
     try{
       const{data}=await sb.from('student_links').select('*').eq('parent_id',currentUserId);
       if(data&&data.length>0){
@@ -1357,7 +1418,7 @@ async function loadMessengerScreen(){
         data.forEach(s=>{
           const div=document.createElement('div');div.className='linked-contact-card';
           div.innerHTML=`<div class="chat-avatar" style="width:38px;height:38px;font-size:13px;">${(s.student_name||'S')[0].toUpperCase()}</div><div class="chat-info"><div class="chat-name">${s.student_name||'Student'}</div><div style="font-size:12px;color:var(--primary-text);">Tap to start a conversation</div></div><span style="font-size:18px;color:var(--primary);">›</span>`;
-          div.onclick=()=>openChat(s.student_id,s.student_name||'Student');
+          div.onclick=()=>openChat(s.student_id,s.student_name||'Student','');
           contactsEl.appendChild(div);
         });
         const divider=document.createElement('div');divider.style.cssText='height:1px;background:#edf2ef;margin:14px 0;';contactsEl.appendChild(divider);
@@ -1367,7 +1428,7 @@ async function loadMessengerScreen(){
     const header=document.createElement('p');header.style.cssText='font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;';header.textContent='Your teacher/parent';contactsEl.appendChild(header);
     const div=document.createElement('div');div.className='linked-contact-card';
     div.innerHTML=`<div class="chat-avatar" style="width:38px;height:38px;font-size:13px;">👤</div><div class="chat-info"><div class="chat-name">Teacher / Parent</div><div style="font-size:12px;color:var(--primary-text);">Tap to start a conversation</div></div><span style="font-size:18px;color:var(--primary);">›</span>`;
-    div.onclick=()=>openChat(linkedContactId,'Teacher/Parent');
+    div.onclick=()=>openChat(linkedContactId,'Teacher/Parent','');
     contactsEl.appendChild(div);
     const divider=document.createElement('div');divider.style.cssText='height:1px;background:#edf2ef;margin:14px 0;';contactsEl.appendChild(divider);
   }
@@ -1386,6 +1447,7 @@ function openChat(receiverId,receiverName,receiverGender){
   showScreen('screen-chat');
   loadMessages();
   subscribeToChat();
+  startMessagePolling();
 }
 
 async function loadMessages(){
@@ -1393,7 +1455,6 @@ async function loadMessages(){
   try{
     const{data}=await sb.from('messages').select('*').or(`and(sender_id.eq.${currentUserId},receiver_id.eq.${currentChatReceiverId}),and(sender_id.eq.${currentChatReceiverId},receiver_id.eq.${currentUserId})`).order('created_at',{ascending:true});
     renderMessages(data||[]);
-    // Mark as read
     await sb.from('messages').update({read:true}).eq('receiver_id',currentUserId).eq('sender_id',currentChatReceiverId).eq('read',false);
     updateBadges();
   }catch(e){}
@@ -1401,6 +1462,7 @@ async function loadMessages(){
 
 function renderMessages(msgs){
   const wrap=document.getElementById('messages-wrap');
+  const wasAtBottom=wrap.scrollHeight-wrap.scrollTop-wrap.clientHeight<60;
   if(msgs.length===0){wrap.innerHTML='<div style="text-align:center;padding:40px 20px;"><p style="font-size:14px;color:#aaa;">No messages yet. Say Assalamu Alaikum! 👋</p></div>';return;}
   let lastDate='';
   const html=msgs.map((m,idx)=>{
@@ -1410,24 +1472,34 @@ function renderMessages(msgs){
     const isSent=m.sender_id===currentUserId;
     let dateDivider='';
     if(dateStr!==lastDate){lastDate=dateStr;dateDivider=`<div class="msg-date-divider">${dateStr}</div>`;}
-    // Show "Seen" under last sent message that has been read
     const isLastSent=isSent&&msgs.slice(idx+1).every(mm=>mm.sender_id!==currentUserId);
     const seenText=isLastSent&&m.read?'<span class="msg-seen">Seen</span>':'';
-    return`${dateDivider}<div class="msg-row ${isSent?'sent':'received'}"><div class="msg-bubble ${isSent?'sent':'received'}">${m.content}</div><div class="msg-meta" style="justify-content:${isSent?'flex-end':'flex-start'};"><span class="msg-time-small">${timeStr}</span>${seenText}</div></div>`;
+    const deleteBtn=isSent?`<button class="msg-delete-btn" onclick="deleteMessage(${m.id},event)" title="Delete">×</button>`:'';
+    return`${dateDivider}<div class="msg-row ${isSent?'sent':'received'}"><div class="msg-bubble-wrap"><div class="msg-bubble ${isSent?'sent':'received'}">${m.content}</div>${deleteBtn}</div><div class="msg-meta" style="justify-content:${isSent?'flex-end':'flex-start'};"><span class="msg-time-small">${timeStr}</span>${seenText}</div></div>`;
   }).join('');
   wrap.innerHTML=html;
-  wrap.scrollTop=wrap.scrollHeight;
+  if(wasAtBottom||msgs[msgs.length-1]?.sender_id===currentUserId)wrap.scrollTop=wrap.scrollHeight;
+}
+
+async function deleteMessage(msgId,event){
+  event.stopPropagation();
+  if(!confirm('Delete this message?'))return;
+  try{
+    await sb.from('messages').delete().eq('id',msgId).eq('sender_id',currentUserId);
+    loadMessages();
+  }catch(e){}
 }
 
 function subscribeToChat(){
-  if(typingSubscription){typingSubscription.unsubscribe();typingSubscription=null;}
+  if(typingSubscription){try{typingSubscription.unsubscribe();}catch(e){}typingSubscription=null;}
   const channelName=`chat-${[currentUserId,currentChatReceiverId].sort().join('-')}`;
   typingSubscription=sb.channel(channelName)
     .on('broadcast',{event:'typing'},payload=>{
       if(payload.payload.userId===currentChatReceiverId){
         const gender=payload.payload.gender||'male';
+        const senderName=payload.payload.name||currentChatReceiverName;
         const title=gender==='female'?'Hafiza':'Hafiz';
-        const firstName=(currentChatReceiverName||'').split(' ')[0];
+        const firstName=senderName.split(' ')[0];
         document.getElementById('typing-name-text').textContent=`${title} ${firstName} is typing...`;
         document.getElementById('typing-indicator-wrap').style.display='block';
         const wrap=document.getElementById('messages-wrap');wrap.scrollTop=wrap.scrollHeight;
@@ -1441,13 +1513,14 @@ function subscribeToChat(){
 function handleTyping(){
   if(!currentChatReceiverId||!currentUserId)return;
   const channelName=`chat-${[currentUserId,currentChatReceiverId].sort().join('-')}`;
-  sb.channel(channelName).send({type:'broadcast',event:'typing',payload:{userId:currentUserId,gender:userData.gender||'male'}}).catch(()=>{});
+  sb.channel(channelName).send({type:'broadcast',event:'typing',payload:{userId:currentUserId,gender:userData.gender||'male',name:userData.name||''}}).catch(()=>{});
 }
 
 async function sendMessage(){
   const input=document.getElementById('msg-input');const content=input.value.trim();
   if(!content||!currentChatReceiverId)return;
   input.value='';input.style.height='auto';
+  if(navigator.vibrate)navigator.vibrate(10);
   try{
     await sb.from('messages').insert({sender_id:currentUserId,receiver_id:currentChatReceiverId,sender_name:userData.name||'',receiver_name:currentChatReceiverName,sender_gender:userData.gender||'male',receiver_gender:currentChatReceiverGender||'',content:content,read:false});
     loadMessages();
@@ -1461,24 +1534,59 @@ async function startNewChat(){
   if(code.length<7||!code.startsWith('ZD-')){errorEl.textContent='Please enter a valid ZD-XXXX code.';return;}
   if(code===userData.zdCode){errorEl.textContent='That\'s your own ZD code!';return;}
   try{
-    // Check parent codes first
     const{data:linkData}=await sb.from('link_codes').select('parent_id').eq('code',code).maybeSingle();
     if(linkData){
       if(linkData.parent_id===currentUserId){errorEl.textContent='You cannot message yourself.';return;}
-      // Parents/teachers can message anyone — no gender restriction
       resultEl.style.display='block';
       resultEl.innerHTML=`<div class="student-card"><div class="student-avatar">👤</div><div class="student-info"><div class="student-name">Teacher / Parent</div><div class="student-meta">${code}</div></div><button class="btn-primary" onclick="openChat('${linkData.parent_id}','Teacher/Parent','')" style="margin-top:0;width:auto;padding:10px 16px;font-size:14px;">Message</button></div>`;
       return;
     }
-    // Check student ZD codes — need to look up by user metadata
-    // We'll search student_links to find students, or use the link_codes table
-    // For student-to-student: enforce same gender
     errorEl.textContent='Code not found. Ask the person for their ZD code from Account Details.';
   }catch(e){errorEl.textContent='Something went wrong.';}
 }
 
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
 
+// ── NOTES ────────────────────────────────────────────────────────
+function saveNote(){
+  const input=document.getElementById('notes-input');
+  const text=input.value.trim();
+  if(!text)return;
+  try{
+    const key=getUserKey()+'-notes';
+    const notes=JSON.parse(localStorage.getItem(key)||'[]');
+    notes.unshift({id:Date.now(),text:text,ts:new Date().toISOString()});
+    localStorage.setItem(key,JSON.stringify(notes));
+    input.value='';
+    renderNotes();
+  }catch(e){}
+}
+
+function deleteNote(id){
+  try{
+    const key=getUserKey()+'-notes';
+    const notes=JSON.parse(localStorage.getItem(key)||'[]');
+    localStorage.setItem(key,JSON.stringify(notes.filter(n=>n.id!==id)));
+    renderNotes();
+  }catch(e){}
+}
+
+function renderNotes(){
+  try{
+    const key=getUserKey()+'-notes';
+    const notes=JSON.parse(localStorage.getItem(key)||'[]');
+    const container=document.getElementById('notes-list');
+    if(notes.length===0){container.innerHTML='<p style="font-size:13px;color:#aaa;text-align:center;padding:20px 0;">No notes yet. Write one above!</p>';return;}
+    container.innerHTML=notes.map(n=>{
+      const d=new Date(n.ts);
+      const dateStr=d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+      const timeStr=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      return`<div class="note-entry"><div class="note-entry-header"><span class="note-entry-date">${dateStr} · ${timeStr}</span><button class="note-entry-delete" onclick="deleteNote(${n.id})">×</button></div><div class="note-entry-text">${n.text}</div></div>`;
+    }).join('');
+  }catch(e){}
+}
+
+// ── AUTH ─────────────────────────────────────────────────────────
 async function handleLogin(){
   const email=document.getElementById('login-email').value.trim();const pw=document.getElementById('login-password').value;
   let v=true;
@@ -1496,7 +1604,17 @@ async function handleLogin(){
 async function handleForgotPassword(){const email=document.getElementById('forgot-email').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('forgot-error').classList.add('show');return;}document.getElementById('forgot-error').classList.remove('show');try{await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';}catch(e){document.getElementById('forgot-error').classList.add('show');}}
 async function handleChangePassword(){const np=document.getElementById('new-password').value;const cp=document.getElementById('confirm-password').value;const ee=document.getElementById('change-pw-error');const se=document.getElementById('change-pw-success');ee.textContent='';se.textContent='';if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}if(np!==cp){ee.textContent='Passwords do not match.';return;}try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}catch(e){ee.textContent='Something went wrong.';}}
 async function handleParentChangePassword(){const np=document.getElementById('parent-new-password').value;const cp=document.getElementById('parent-confirm-password').value;const ee=document.getElementById('parent-change-pw-error');const se=document.getElementById('parent-change-pw-success');ee.textContent='';se.textContent='';if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}if(np!==cp){ee.textContent='Passwords do not match.';return;}try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}catch(e){ee.textContent='Something went wrong.';}}
-async function handleLogout(){if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}if(globalMessageSubscription){globalMessageSubscription.unsubscribe();globalMessageSubscription=null;}if(typingSubscription){typingSubscription.unsubscribe();typingSubscription=null;}dashboardInitialised=false;linkedContactId=null;await sb.auth.signOut();pendingDashboardData=null;userData={};currentUserId=null;showScreen('screen-splash');}
+async function handleLogout(){
+  if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}
+  if(globalMessageSubscription){try{globalMessageSubscription.unsubscribe();}catch(e){}globalMessageSubscription=null;}
+  if(typingSubscription){try{typingSubscription.unsubscribe();}catch(e){}typingSubscription=null;}
+  stopPolling();
+  if(conversationPollInterval){clearInterval(conversationPollInterval);conversationPollInterval=null;}
+  dashboardInitialised=false;linkedContactId=null;
+  await sb.auth.signOut();
+  pendingDashboardData=null;userData={};currentUserId=null;
+  showScreen('screen-splash');
+}
 
 function getUserKey(){return userData.email?'zaid-user-'+userData.email:'zaid-user-anon';}
 
@@ -1507,9 +1625,35 @@ function loadStats(){
     document.getElementById('dash-sessions').textContent=totalSessions;
     document.getElementById('dash-words').textContent=totalWords;
     document.getElementById('dash-streak').textContent=streak+' day'+(streak!==1?'s':'');
+    // Streak warning — show after 6pm if no session today
+    const hour=new Date().getHours();
+    const today=new Date().toDateString();
+    const lastSession=saved.lastSession;
+    const streakWarning=document.getElementById('streak-warning');
+    if(streakWarning){streakWarning.style.display=(hour>=18&&lastSession!==today&&streak>0)?'flex':'none';}
+    // Last session card
+    if(saved.lastSurahData){
+      const lsc=document.getElementById('last-session-card');
+      const lss=document.getElementById('last-session-surah');
+      const lsm=document.getElementById('last-session-meta');
+      if(lsc&&lss&&lsm){
+        lsc.style.display='flex';
+        lss.textContent=saved.lastSurahData.name;
+        const ago=timeAgo(saved.lastSurahData.time);
+        lsm.textContent=`${saved.lastSurahData.accuracy}% accuracy · ${ago}`;
+      }
+    }
     const lastSurah=saved.lastSurah;
     if(lastSurah){const idx=SURAHS.findIndex(s=>s.nameEn===lastSurah);const ni=idx>=0&&idx<SURAHS.length-1?idx+1:0;document.getElementById('today-surah').textContent=SURAHS[ni].nameEn;}
   }catch(e){}
+}
+
+function timeAgo(ts){
+  const diff=Date.now()-new Date(ts).getTime();
+  const mins=Math.floor(diff/60000);
+  if(mins<1)return'just now';if(mins<60)return`${mins}m ago`;
+  const hrs=Math.floor(mins/60);if(hrs<24)return`${hrs}h ago`;
+  const days=Math.floor(hrs/24);return`${days}d ago`;
 }
 
 function saveStats(words,surahName){
@@ -1521,6 +1665,7 @@ function saveStats(words,surahName){
     if(!saved.accuracyHistory)saved.accuracyHistory=[];
     const attempted=totalCorrect+totalMistakes;const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;
     saved.accuracyHistory.push(acc);if(saved.accuracyHistory.length>20)saved.accuracyHistory.shift();
+    saved.lastSurahData={name:surahName,accuracy:acc,time:new Date().toISOString()};
     const today=new Date().toDateString();const yesterday=new Date(Date.now()-86400000).toDateString();
     if(saved.lastSession===today){}else if(saved.lastSession===yesterday)saved.streak=(saved.streak||0)+1;else saved.streak=1;
     saved.lastSession=today;localStorage.setItem(key,JSON.stringify(saved));
@@ -1532,9 +1677,13 @@ function saveStats(words,surahName){
 
 async function saveSessionToSupabase(acc,timeStr,durationSecs){if(!currentUserId||!currentSurah)return;try{await sb.from('sessions').insert({user_id:currentUserId,surah_name:currentSurah.nameEn,words_recited:currentWordIndex,total_words:getRecitableWords().length,accuracy:acc,mistakes:totalMistakes,duration_seconds:durationSecs,mode:currentRecitationMode});}catch(e){}}
 
-function switchMySpaceTab(tab){document.querySelectorAll('.myspace-tab').forEach((t,i)=>t.classList.toggle('active',['planner','notes','progress'][i]===tab));document.querySelectorAll('.myspace-section').forEach((s,i)=>s.classList.toggle('active',['myspace-planner','myspace-notes','myspace-progress'][i]==='myspace-'+tab));if(tab==='progress')loadProgressData();}
+function switchMySpaceTab(tab){document.querySelectorAll('.myspace-tab').forEach((t,i)=>t.classList.toggle('active',['planner','notes','progress'][i]===tab));document.querySelectorAll('.myspace-section').forEach((s,i)=>s.classList.toggle('active',['myspace-planner','myspace-notes','myspace-progress'][i]==='myspace-'+tab));if(tab==='progress')loadProgressData();if(tab==='notes')renderNotes();}
 
-function loadMySpace(){buildPlannerDays();try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');if(saved.notes)document.getElementById('notes-content').value=saved.notes;if(saved.planner)['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});}catch(e){}}
+function loadMySpace(){
+  buildPlannerDays();
+  renderNotes();
+  try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');if(saved.planner)['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});}catch(e){}
+}
 
 function buildPlannerDays(){
   const days=[{key:'mon',label:'Mon'},{key:'tue',label:'Tue'},{key:'wed',label:'Wed'},{key:'thu',label:'Thu'},{key:'fri',label:'Fri'},{key:'sat',label:'Sat'},{key:'sun',label:'Sun'}];
@@ -1543,7 +1692,6 @@ function buildPlannerDays(){
 }
 
 function savePlanner(){try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');saved.planner={};['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel)saved.planner[day]=sel.value;});localStorage.setItem(getUserKey(),JSON.stringify(saved));document.getElementById('planner-saved').textContent='Plan saved!';setTimeout(()=>document.getElementById('planner-saved').textContent='',2000);}catch(e){}}
-function saveNotes(){try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');saved.notes=document.getElementById('notes-content').value;localStorage.setItem(getUserKey(),JSON.stringify(saved));document.getElementById('notes-saved').textContent='Notes saved!';setTimeout(()=>document.getElementById('notes-saved').textContent='',2000);}catch(e){}}
 
 function loadProgressData(){
   try{
@@ -1566,6 +1714,8 @@ function populateDashboardData(fullName,journey,gender){
     const u=data.user;const m=u.user_metadata;
     currentUserId=u.id;userData.email=u.email;userData.gender=m.gender;userData.mushaf=m.mushaf||'13';
     const zdCode=await ensureZDCode(u);userData.zdCode=zdCode;
+    // ZD code on dashboard
+    const zdBadge=document.getElementById('dash-zd-code');if(zdBadge)zdBadge.textContent=zdCode;
     const svEl=document.getElementById('settings-mushaf-val');if(svEl)svEl.textContent=(userData.mushaf||'13')+' Line';
     ['13','15'].forEach(v=>{const el=document.getElementById('ms-'+v);if(el)el.classList.toggle('selected',v===userData.mushaf);});
     const q13=document.getElementById('quran-13-btn');const q15=document.getElementById('quran-15-btn');
@@ -1631,14 +1781,13 @@ function renderSurahText(){
 }
 
 function normalise(text){return text.replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/[ىئ]/g,'ي').replace(/ة/g,'ه').replace(/[ۥۦ]/g,'').replace(/\s+/g,' ').trim();}
-
 function wordsMatch(spoken,expected){const ns=normalise(spoken);const ne=normalise(expected);if(ns===ne)return true;if(ns.length>=2&&ne.includes(ns))return true;if(ne.length>=2&&ns.includes(ne))return true;if(ns.length>=3&&ne.length>=3){let m=0;for(let i=0;i<Math.min(ns.length,ne.length);i++){if(ns[i]===ne[i])m++;}if(m/Math.max(ns.length,ne.length)>=0.7)return true;}return false;}
-
 function toggleMic(){if(isListening)stopListening();else startListening();}
 
 function startListening(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(!SR){alert('Please use Chrome or Safari for the recitation feature.');return;}
+  if(navigator.vibrate)navigator.vibrate(20);
   recognition=new SR();recognition.lang='ar-SA';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=5;
   recognition.onstart=()=>{isListening=true;document.getElementById('mic-btn').classList.add('listening');showFeedback('listening');startWaitingTimer();};
   recognition.onresult=e=>{clearWaitingTimer();for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)processFinalResult(e.results[i]);else processInterimResult(e.results[i][0].transcript);}startWaitingTimer();};
@@ -1650,7 +1799,6 @@ function startListening(){
 function stopListening(){isListening=false;if(recognition){try{recognition.stop();}catch(e){}}document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();}
 function startWaitingTimer(){clearWaitingTimer();waitingTimer=setTimeout(()=>{if(isListening)showFeedback('waiting');},4000);}
 function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
-
 function processInterimResult(transcript){const recitable=getRecitableWords();if(currentWordIndex>=recitable.length)return;const words=transcript.trim().split(/\s+/);const lastWord=words[words.length-1];if(wordsMatch(lastWord,recitable[currentWordIndex].t))showFeedback('correct');}
 
 function processFinalResult(result){
@@ -1681,7 +1829,6 @@ function processFinalResult(result){
 function updateSessionStats(){const recitable=getRecitableWords();const pct=recitable.length>0?Math.round((currentWordIndex/recitable.length)*100):0;document.getElementById('session-bar').style.width=pct+'%';document.getElementById('stat-words').textContent=currentWordIndex;document.getElementById('stat-mistakes').textContent=totalMistakes;const attempted=totalCorrect+totalMistakes;const acc=attempted>0?Math.round((totalCorrect/attempted)*100):100;document.getElementById('stat-accuracy').textContent=acc;}
 function showFeedback(type){['listening','correct','mistake','waiting'].forEach(t=>{const el=document.getElementById('feedback-'+t);if(el)el.classList.toggle('show',t===type);});}
 function hideFeedback(){showFeedback(null);}
-
 function togglePeek(){isPeeking=!isPeeking;if(currentRecitationMode==='test')return;const recitable=getRecitableWords();recitable.forEach((w,i)=>{const el=document.getElementById(`rw-${i}`);if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';}
 
 function completeSession(){
