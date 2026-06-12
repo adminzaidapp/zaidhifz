@@ -51,7 +51,6 @@
   .input-field.error { border-color:#E53935; }
   .input-error { font-size:12px; color:#E53935; margin-top:5px; display:none; font-weight:500; }
   .input-error.show { display:block; }
-  .select-field { width:100%; padding:14px 16px; border:1.5px solid #e8ede9; border-radius:14px; font-size:15px; color:#1a1a1a; margin-bottom:14px; outline:none; background:#fff; }
   .btn-primary { width:100%; padding:16px; background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%); color:#fff; border:none; border-radius:14px; font-size:16px; font-weight:600; cursor:pointer; margin-top:8px; transition:all 0.2s ease; box-shadow:0 4px 16px var(--primary-shadow); }
   .btn-primary:hover { transform:translateY(-1px); }
   .btn-primary:active { transform:scale(0.97); }
@@ -277,16 +276,29 @@
   .chat-time { font-size:11px; color:#aaa; }
   .chat-unread { background:var(--primary); color:#fff; border-radius:50%; width:18px; height:18px; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
   .messages-wrap { flex:1; overflow-y:auto; padding:16px 20px; display:flex; flex-direction:column; gap:10px; }
+  .msg-row { display:flex; flex-direction:column; }
+  .msg-row.sent { align-items:flex-end; }
+  .msg-row.received { align-items:flex-start; }
   .msg-bubble { max-width:75%; padding:10px 14px; border-radius:18px; font-size:14px; line-height:1.5; }
-  .msg-bubble.sent { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; border-bottom-right-radius:4px; align-self:flex-end; }
-  .msg-bubble.received { background:#fff; color:#1a1a1a; border-bottom-left-radius:4px; align-self:flex-start; border:1px solid #edf2ef; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
-  .msg-time { font-size:10px; opacity:0.6; margin-top:4px; }
-  .msg-input-area { padding:12px 20px; background:#fff; border-top:0.5px solid #e8ede9; display:flex; gap:10px; align-items:flex-end; }
+  .msg-bubble.sent { background:linear-gradient(135deg,var(--primary),var(--primary-dark)); color:#fff; border-bottom-right-radius:4px; }
+  .msg-bubble.received { background:#fff; color:#1a1a1a; border-bottom-left-radius:4px; border:1px solid #edf2ef; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .msg-meta { display:flex; align-items:center; gap:4px; margin-top:3px; padding:0 2px; }
+  .msg-time-small { font-size:10px; color:#aaa; }
+  .msg-seen { font-size:10px; color:#aaa; font-style:italic; }
+  .msg-date-divider { text-align:center; font-size:11px; color:#aaa; font-weight:600; margin:8px 0; background:rgba(0,0,0,0.04); border-radius:999px; padding:4px 14px; align-self:center; }
+  .typing-indicator { display:flex; align-items:center; gap:8px; padding:8px 14px; background:#fff; border-radius:18px; border-bottom-left-radius:4px; border:1px solid #edf2ef; width:fit-content; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .typing-dots { display:flex; gap:4px; }
+  .typing-dot { width:6px; height:6px; border-radius:50%; background:#bbb; animation:dotPulse 1.2s infinite; }
+  .typing-dot:nth-child(2){animation-delay:0.2s;}
+  .typing-dot:nth-child(3){animation-delay:0.4s;}
+  .typing-name { font-size:12px; color:#888; }
+  .msg-input-area { padding:12px 20px; background:#fff; border-top:0.5px solid #e8ede9; display:flex; gap:10px; align-items:flex-end; flex-shrink:0; }
   .msg-input { flex:1; padding:10px 14px; border:1.5px solid #e8ede9; border-radius:20px; font-size:15px; outline:none; background:#fff; resize:none; max-height:100px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
   .msg-input:focus { border-color:var(--primary); }
   .msg-send-btn { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px var(--primary-shadow); }
   .msg-send-btn:active { transform:scale(0.93); }
-  .msg-date-divider { text-align:center; font-size:11px; color:#aaa; font-weight:600; margin:8px 0; }
+  .linked-contact-card { background:var(--primary-light); border-radius:14px; padding:14px 16px; border:1px solid var(--primary-shadow-light); margin-bottom:10px; display:flex; align-items:center; gap:12px; cursor:pointer; transition:all 0.15s ease; }
+  .linked-contact-card:active { transform:scale(0.98); }
   .ai-summary-card { background:linear-gradient(135deg,var(--primary-light),var(--primary-lighter)); border-radius:18px; padding:20px; margin-bottom:16px; border:1px solid var(--primary-shadow-light); }
   .ai-summary-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
   .ai-summary-icon { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-dark)); display:flex; align-items:center; justify-content:center; font-size:18px; }
@@ -488,7 +500,7 @@
 <div class="screen" id="screen-dashboard">
   <div class="status-bar">
     <h1>Zaid</h1>
-    <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
+    <button class="msg-icon-btn" onclick="showScreen('screen-messenger');loadMessengerScreen();">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div class="msg-badge" id="msg-badge"></div>
     </button>
@@ -538,7 +550,7 @@
 <div class="screen" id="screen-myspace">
   <div class="status-bar">
     <h1>My Space</h1>
-    <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
+    <button class="msg-icon-btn" onclick="showScreen('screen-messenger');loadMessengerScreen();">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div class="msg-badge" id="msg-badge-2"></div>
     </button>
@@ -594,7 +606,7 @@
 <div class="screen" id="screen-parent-dashboard">
   <div class="status-bar">
     <h1>Zaid</h1>
-    <button class="msg-icon-btn" onclick="showScreen('screen-messenger')">
+    <button class="msg-icon-btn" onclick="showScreen('screen-messenger');loadMessengerScreen();">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div class="msg-badge" id="msg-badge-parent"></div>
     </button>
@@ -931,7 +943,8 @@
 <div class="screen" id="screen-messenger">
   <div class="status-bar"><button class="back-btn" onclick="goBackFromMessenger()">← Back</button><h1>Messages</h1><button class="info-btn" onclick="showScreen('screen-new-chat')" style="font-size:22px;">✏️</button></div>
   <div class="screen-body">
-    <div id="conversation-list"><div style="text-align:center;padding:60px 20px;"><div style="font-size:48px;margin-bottom:16px;">💬</div><p style="font-size:16px;font-weight:600;color:#111;margin-bottom:8px;">No messages yet</p><p style="font-size:14px;color:#aaa;line-height:1.6;">Start a conversation with a linked student or teacher.</p><button class="btn-primary" onclick="showScreen('screen-new-chat')" style="margin-top:20px;max-width:200px;">Start a chat</button></div></div>
+    <div id="messenger-contacts"></div>
+    <div id="conversation-list"></div>
   </div>
 </div>
 
@@ -939,7 +952,7 @@
 <div class="screen" id="screen-new-chat">
   <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger')">← Back</button><h1>New Message</h1><span></span></div>
   <div class="screen-body">
-    <p style="font-size:13px;color:#888;margin-bottom:12px;line-height:1.6;">Enter the ZD code of the person you want to message.</p>
+    <p style="font-size:13px;color:#888;margin-bottom:12px;line-height:1.6;">Enter the ZD code of the person you want to message. You can only message people of the same gender.</p>
     <div class="input-wrap"><input class="input-field" type="text" id="new-chat-zd" placeholder="ZD-XXXX" maxlength="7" oninput="this.value=this.value.toUpperCase()" style="font-size:18px;font-weight:700;letter-spacing:4px;text-align:center;"/></div>
     <button class="btn-primary" onclick="startNewChat()">Find person</button>
     <p class="error-msg" id="new-chat-error" style="margin-top:8px;"></p>
@@ -949,10 +962,13 @@
 
 <!-- CHAT -->
 <div class="screen" id="screen-chat">
-  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger')">← Back</button><h1 id="chat-title">Chat</h1><span id="chat-subtitle" style="font-size:11px;"></span></div>
+  <div class="status-bar"><button class="back-btn" onclick="showScreen('screen-messenger');loadMessengerScreen();">← Back</button><h1 id="chat-title">Chat</h1><span id="chat-subtitle" style="font-size:11px;opacity:0.75;"></span></div>
   <div class="messages-wrap" id="messages-wrap"></div>
+  <div id="typing-indicator-wrap" style="padding:0 20px 8px;display:none;">
+    <div class="typing-indicator"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div><span class="typing-name" id="typing-name-text"></span></div>
+  </div>
   <div class="msg-input-area">
-    <textarea class="msg-input" id="msg-input" placeholder="Type a message..." rows="1" oninput="autoResize(this)" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
+    <textarea class="msg-input" id="msg-input" placeholder="Type a message..." rows="1" oninput="autoResize(this);handleTyping();" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
     <button class="msg-send-btn" onclick="sendMessage()"><svg viewBox="0 0 20 20" fill="none" width="18" height="18"><path d="M18 10L2 3l4 7-4 7 16-7z" fill="white"/></svg></button>
   </div>
 </div>
@@ -1013,9 +1029,10 @@ let currentRecitationMode='hidden';
 let currentUserId=null;
 let reciteWTStep=0,myspaceWTStep=0;
 let dashboardInitialised=false;
-let currentChatReceiverId=null,currentChatReceiverName='';
-let messageSubscription=null;
+let currentChatReceiverId=null,currentChatReceiverName='',currentChatReceiverGender='';
+let globalMessageSubscription=null,typingSubscription=null,typingTimeout=null;
 let viewingStudentId=null,viewingStudentName='';
+let linkedContactId=null,linkedContactName='',linkedContactGender='';
 const TOTAL_SLIDES=4;
 
 const reciteWTSteps=[
@@ -1200,7 +1217,7 @@ async function generateStudentAISummary(studentName,sessions){
     const response=await fetch(`${ENGINE_URL}/feedback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({surahName:'Weekly Progress',surahArabic:'',wordsRecited:sessions.reduce((a,b)=>a+b.words_recited,0),totalWords:sessions.reduce((a,b)=>a+b.total_words,0),mistakes:[],accuracy:avgAcc,tajweedRules:[],timeTaken:`${totalSess} sessions`,studentName:firstName,customPrompt:`You are Zaid, an AI Quran teacher. Write a warm 60-word weekly progress summary for a parent/teacher about their student ${firstName}. They completed ${totalSess} sessions with an average accuracy of ${avgAcc}%. Their most recited surah was ${topSurah?topSurah[0]:'various surahs'}. Be encouraging and specific. Address it as a summary for the parent. No bullet points.`})});
     const data=await response.json();
     if(data.feedback){document.getElementById('student-ai-summary-text').textContent=data.feedback;}
-    else{document.getElementById('student-ai-summary-text').textContent=`${firstName} completed ${totalSess} session${totalSess!==1?'s':''} with an average accuracy of ${avgAcc}%. ${topSurah?`Most recited: ${topSurah[0]}.`:''} Keep encouraging them!`;}
+    else{document.getElementById('student-ai-summary-text').textContent=`${firstName} completed ${totalSess} session${totalSess!==1?'s':''} with an average accuracy of ${avgAcc}%. Keep encouraging them!`;}
   }catch(e){
     const firstName=studentName.split(' ')[0];
     const avgAcc=Math.round(sessions.reduce((a,b)=>a+b.accuracy,0)/sessions.length);
@@ -1208,7 +1225,17 @@ async function generateStudentAISummary(studentName,sessions){
   }
 }
 
-function openChatWithStudent(){currentChatReceiverId=viewingStudentId;currentChatReceiverName=viewingStudentName;document.getElementById('chat-title').textContent=viewingStudentName.split(' ')[0];document.getElementById('chat-subtitle').textContent='Student';document.getElementById('messages-wrap').innerHTML='';showScreen('screen-chat');loadMessages();subscribeToMessages();}
+function openChatWithStudent(){
+  currentChatReceiverId=viewingStudentId;
+  currentChatReceiverName=viewingStudentName;
+  currentChatReceiverGender='';
+  document.getElementById('chat-title').textContent=viewingStudentName.split(' ')[0];
+  document.getElementById('chat-subtitle').textContent='Student';
+  document.getElementById('messages-wrap').innerHTML='';
+  showScreen('screen-chat');
+  loadMessages();
+  subscribeToChat();
+}
 
 async function linkToParent(){
   const code=document.getElementById('link-code-input').value.trim().toUpperCase();
@@ -1222,6 +1249,7 @@ async function linkToParent(){
     if(!user){errorEl.textContent='Please log in again.';return;}
     if(codeData.parent_id===user.id){errorEl.textContent='You cannot link to your own account.';return;}
     await sb.from('student_links').upsert({parent_id:codeData.parent_id,student_id:user.id,student_name:user.user_metadata.full_name||'Student',student_gender:user.user_metadata.gender||'male'},{onConflict:'parent_id,student_id',ignoreDuplicates:true});
+    linkedContactId=codeData.parent_id;linkedContactName='Teacher/Parent';linkedContactGender='';
     successEl.textContent='Successfully linked! Your teacher can now see your progress.';
     document.getElementById('link-parent-section').style.display='none';
     document.getElementById('linked-parent-section').style.display='block';
@@ -1231,37 +1259,143 @@ async function linkToParent(){
 
 async function checkIfLinked(userId){
   try{
-    const{data}=await sb.from('student_links').select('parent_name').eq('student_id',userId).maybeSingle();
-    if(data){document.getElementById('link-parent-section').style.display='none';document.getElementById('linked-parent-section').style.display='block';document.getElementById('linked-parent-name').textContent='Connected to teacher/parent';}
+    const{data}=await sb.from('student_links').select('parent_id').eq('student_id',userId).maybeSingle();
+    if(data){
+      linkedContactId=data.parent_id;linkedContactName='Teacher/Parent';linkedContactGender='';
+      document.getElementById('link-parent-section').style.display='none';
+      document.getElementById('linked-parent-section').style.display='block';
+      document.getElementById('linked-parent-name').textContent='Connected to teacher/parent';
+    }
   }catch(e){}
 }
 
 function copyParentCode(){const c=document.getElementById('parent-link-code').textContent;navigator.clipboard.writeText(c).then(()=>{const btn=document.querySelector('#screen-parent-dashboard .btn-primary');if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy code',2000);}});}
 
+// ── GLOBAL REALTIME — runs from login on any screen ──────────────
+function startGlobalMessageListener(){
+  if(globalMessageSubscription){globalMessageSubscription.unsubscribe();globalMessageSubscription=null;}
+  if(!currentUserId)return;
+  globalMessageSubscription=sb.channel('global-msgs-'+currentUserId)
+    .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:`receiver_id=eq.${currentUserId}`},payload=>{
+      updateBadges();
+      const msg=payload.new;
+      const activeChatScreen=document.getElementById('screen-chat').classList.contains('active');
+      if(activeChatScreen&&msg.sender_id===currentChatReceiverId){
+        loadMessages();
+      }else{
+        const messengerScreen=document.getElementById('screen-messenger').classList.contains('active');
+        if(messengerScreen)loadConversations();
+      }
+    })
+    .on('postgres_changes',{event:'UPDATE',schema:'public',table:'messages'},()=>{
+      updateBadges();
+      const messengerScreen=document.getElementById('screen-messenger').classList.contains('active');
+      if(messengerScreen)loadConversations();
+    })
+    .subscribe();
+}
+
+// Reconnect on visibility change (tab comes back into focus on mobile)
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible'&&currentUserId){
+    startGlobalMessageListener();
+    updateBadges();
+    const activeChatScreen=document.getElementById('screen-chat').classList.contains('active');
+    if(activeChatScreen&&currentChatReceiverId)loadMessages();
+    const messengerScreen=document.getElementById('screen-messenger').classList.contains('active');
+    if(messengerScreen)loadConversations();
+  }
+});
+
+async function updateBadges(){
+  if(!currentUserId)return;
+  try{
+    const{data,error}=await sb.from('messages').select('id').eq('receiver_id',currentUserId).eq('read',false);
+    if(error)return;
+    const count=data?data.length:0;
+    ['msg-badge','msg-badge-2','msg-badge-parent'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){el.textContent=count>0?count:'';el.classList.toggle('show',count>0);}
+    });
+  }catch(e){}
+}
+
 async function loadConversations(){
   if(!currentUserId)return;
   try{
     const{data}=await sb.from('messages').select('*').or(`sender_id.eq.${currentUserId},receiver_id.eq.${currentUserId}`).order('created_at',{ascending:false});
-    if(!data||data.length===0)return;
     const convMap={};
-    data.forEach(msg=>{const otherId=msg.sender_id===currentUserId?msg.receiver_id:msg.sender_id;const otherName=msg.sender_id===currentUserId?msg.receiver_name:msg.sender_name;if(!convMap[otherId]){convMap[otherId]={id:otherId,name:otherName,lastMsg:msg.content,lastTime:msg.created_at,unread:0};}if(msg.receiver_id===currentUserId&&!msg.read)convMap[otherId].unread++;});
+    if(data){
+      data.forEach(msg=>{
+        const otherId=msg.sender_id===currentUserId?msg.receiver_id:msg.sender_id;
+        const otherName=msg.sender_id===currentUserId?msg.receiver_name:msg.sender_name;
+        if(!convMap[otherId]){convMap[otherId]={id:otherId,name:otherName||'Unknown',lastMsg:msg.content,lastTime:msg.created_at,unread:0};}
+        if(msg.receiver_id===currentUserId&&!msg.read)convMap[otherId].unread++;
+      });
+    }
     const convs=Object.values(convMap);
-    const totalUnread=convs.reduce((a,b)=>a+b.unread,0);
-    ['msg-badge','msg-badge-2','msg-badge-parent'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=totalUnread>0?totalUnread:'';el.classList.toggle('show',totalUnread>0);}});
-    if(convs.length>0){document.getElementById('conversation-list').innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}')"><div class="chat-avatar">${c.name[0].toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');}
+    const listEl=document.getElementById('conversation-list');
+    if(convs.length>0){
+      listEl.innerHTML=convs.map(c=>`<div class="chat-list-item" onclick="openChat('${c.id}','${c.name}')"><div class="chat-avatar">${(c.name[0]||'?').toUpperCase()}</div><div class="chat-info"><div class="chat-name">${c.name}</div><div class="chat-preview" style="font-weight:${c.unread>0?'600':'400'};color:${c.unread>0?'#111':'#aaa'}">${c.lastMsg}</div></div><div class="chat-meta"><span class="chat-time">${formatTime(c.lastTime)}</span>${c.unread>0?`<span class="chat-unread">${c.unread}</span>`:''}</div></div>`).join('');
+    }else{
+      listEl.innerHTML='<div style="text-align:center;padding:40px 20px 20px;"><p style="font-size:14px;color:#aaa;line-height:1.6;">No conversations yet.<br>Use ✏️ above to start one.</p></div>';
+    }
   }catch(e){}
+}
+
+async function loadMessengerScreen(){
+  await loadConversations();
+  // Show linked contacts at top
+  const contactsEl=document.getElementById('messenger-contacts');
+  contactsEl.innerHTML='';
+  if(currentUserJourney==='parent'){
+    // Show linked students
+    try{
+      const{data}=await sb.from('student_links').select('*').eq('parent_id',currentUserId);
+      if(data&&data.length>0){
+        const header=document.createElement('p');header.style.cssText='font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;';header.textContent='Linked students';contactsEl.appendChild(header);
+        data.forEach(s=>{
+          const div=document.createElement('div');div.className='linked-contact-card';
+          div.innerHTML=`<div class="chat-avatar" style="width:38px;height:38px;font-size:13px;">${(s.student_name||'S')[0].toUpperCase()}</div><div class="chat-info"><div class="chat-name">${s.student_name||'Student'}</div><div style="font-size:12px;color:var(--primary-text);">Tap to start a conversation</div></div><span style="font-size:18px;color:var(--primary);">›</span>`;
+          div.onclick=()=>openChat(s.student_id,s.student_name||'Student');
+          contactsEl.appendChild(div);
+        });
+        const divider=document.createElement('div');divider.style.cssText='height:1px;background:#edf2ef;margin:14px 0;';contactsEl.appendChild(divider);
+      }
+    }catch(e){}
+  }else if(linkedContactId){
+    const header=document.createElement('p');header.style.cssText='font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;';header.textContent='Your teacher/parent';contactsEl.appendChild(header);
+    const div=document.createElement('div');div.className='linked-contact-card';
+    div.innerHTML=`<div class="chat-avatar" style="width:38px;height:38px;font-size:13px;">👤</div><div class="chat-info"><div class="chat-name">Teacher / Parent</div><div style="font-size:12px;color:var(--primary-text);">Tap to start a conversation</div></div><span style="font-size:18px;color:var(--primary);">›</span>`;
+    div.onclick=()=>openChat(linkedContactId,'Teacher/Parent');
+    contactsEl.appendChild(div);
+    const divider=document.createElement('div');divider.style.cssText='height:1px;background:#edf2ef;margin:14px 0;';contactsEl.appendChild(divider);
+  }
 }
 
 function formatTime(ts){const d=new Date(ts);const now=new Date();if(d.toDateString()===now.toDateString())return d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});}
 
-function openChat(receiverId,receiverName){currentChatReceiverId=receiverId;currentChatReceiverName=receiverName;document.getElementById('chat-title').textContent=receiverName.split(' ')[0];document.getElementById('chat-subtitle').textContent='';document.getElementById('messages-wrap').innerHTML='';showScreen('screen-chat');loadMessages();subscribeToMessages();}
+function openChat(receiverId,receiverName,receiverGender){
+  currentChatReceiverId=receiverId;
+  currentChatReceiverName=receiverName;
+  currentChatReceiverGender=receiverGender||'';
+  document.getElementById('chat-title').textContent=receiverName.split(' ')[0];
+  document.getElementById('chat-subtitle').textContent='';
+  document.getElementById('messages-wrap').innerHTML='';
+  document.getElementById('typing-indicator-wrap').style.display='none';
+  showScreen('screen-chat');
+  loadMessages();
+  subscribeToChat();
+}
 
 async function loadMessages(){
   if(!currentUserId||!currentChatReceiverId)return;
   try{
     const{data}=await sb.from('messages').select('*').or(`and(sender_id.eq.${currentUserId},receiver_id.eq.${currentChatReceiverId}),and(sender_id.eq.${currentChatReceiverId},receiver_id.eq.${currentUserId})`).order('created_at',{ascending:true});
     renderMessages(data||[]);
-    await sb.from('messages').update({read:true}).eq('receiver_id',currentUserId).eq('sender_id',currentChatReceiverId).eq('read',false).catch(()=>{});
+    // Mark as read
+    await sb.from('messages').update({read:true}).eq('receiver_id',currentUserId).eq('sender_id',currentChatReceiverId).eq('read',false);
+    updateBadges();
   }catch(e){}
 }
 
@@ -1269,32 +1403,55 @@ function renderMessages(msgs){
   const wrap=document.getElementById('messages-wrap');
   if(msgs.length===0){wrap.innerHTML='<div style="text-align:center;padding:40px 20px;"><p style="font-size:14px;color:#aaa;">No messages yet. Say Assalamu Alaikum! 👋</p></div>';return;}
   let lastDate='';
-  wrap.innerHTML=msgs.map(m=>{
+  const html=msgs.map((m,idx)=>{
     const d=new Date(m.created_at);
     const dateStr=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
     const timeStr=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
     const isSent=m.sender_id===currentUserId;
     let dateDivider='';
     if(dateStr!==lastDate){lastDate=dateStr;dateDivider=`<div class="msg-date-divider">${dateStr}</div>`;}
-    return`${dateDivider}<div style="display:flex;justify-content:${isSent?'flex-end':'flex-start'};"><div><div class="msg-bubble ${isSent?'sent':'received'}">${m.content}</div><div class="msg-time" style="text-align:${isSent?'right':'left'};padding:0 4px;">${timeStr}</div></div></div>`;
+    // Show "Seen" under last sent message that has been read
+    const isLastSent=isSent&&msgs.slice(idx+1).every(mm=>mm.sender_id!==currentUserId);
+    const seenText=isLastSent&&m.read?'<span class="msg-seen">Seen</span>':'';
+    return`${dateDivider}<div class="msg-row ${isSent?'sent':'received'}"><div class="msg-bubble ${isSent?'sent':'received'}">${m.content}</div><div class="msg-meta" style="justify-content:${isSent?'flex-end':'flex-start'};"><span class="msg-time-small">${timeStr}</span>${seenText}</div></div>`;
   }).join('');
+  wrap.innerHTML=html;
   wrap.scrollTop=wrap.scrollHeight;
 }
 
-function subscribeToMessages(){
-  if(messageSubscription)messageSubscription.unsubscribe();
-  messageSubscription=sb.channel('messages-'+currentUserId).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages'},payload=>{
-    const msg=payload.new;
-    if((msg.sender_id===currentUserId&&msg.receiver_id===currentChatReceiverId)||(msg.sender_id===currentChatReceiverId&&msg.receiver_id===currentUserId)){loadMessages();}
-    loadConversations();
-  }).subscribe();
+function subscribeToChat(){
+  if(typingSubscription){typingSubscription.unsubscribe();typingSubscription=null;}
+  const channelName=`chat-${[currentUserId,currentChatReceiverId].sort().join('-')}`;
+  typingSubscription=sb.channel(channelName)
+    .on('broadcast',{event:'typing'},payload=>{
+      if(payload.payload.userId===currentChatReceiverId){
+        const gender=payload.payload.gender||'male';
+        const title=gender==='female'?'Hafiza':'Hafiz';
+        const firstName=(currentChatReceiverName||'').split(' ')[0];
+        document.getElementById('typing-name-text').textContent=`${title} ${firstName} is typing...`;
+        document.getElementById('typing-indicator-wrap').style.display='block';
+        const wrap=document.getElementById('messages-wrap');wrap.scrollTop=wrap.scrollHeight;
+        clearTimeout(typingTimeout);
+        typingTimeout=setTimeout(()=>{document.getElementById('typing-indicator-wrap').style.display='none';},3000);
+      }
+    })
+    .subscribe();
+}
+
+function handleTyping(){
+  if(!currentChatReceiverId||!currentUserId)return;
+  const channelName=`chat-${[currentUserId,currentChatReceiverId].sort().join('-')}`;
+  sb.channel(channelName).send({type:'broadcast',event:'typing',payload:{userId:currentUserId,gender:userData.gender||'male'}}).catch(()=>{});
 }
 
 async function sendMessage(){
   const input=document.getElementById('msg-input');const content=input.value.trim();
   if(!content||!currentChatReceiverId)return;
   input.value='';input.style.height='auto';
-  try{await sb.from('messages').insert({sender_id:currentUserId,receiver_id:currentChatReceiverId,sender_name:userData.name||'',receiver_name:currentChatReceiverName,sender_gender:userData.gender||'male',receiver_gender:'',content:content,read:false});loadMessages();}catch(e){}
+  try{
+    await sb.from('messages').insert({sender_id:currentUserId,receiver_id:currentChatReceiverId,sender_name:userData.name||'',receiver_name:currentChatReceiverName,sender_gender:userData.gender||'male',receiver_gender:currentChatReceiverGender||'',content:content,read:false});
+    loadMessages();
+  }catch(e){}
 }
 
 async function startNewChat(){
@@ -1302,14 +1459,20 @@ async function startNewChat(){
   const errorEl=document.getElementById('new-chat-error');const resultEl=document.getElementById('new-chat-result');
   errorEl.textContent='';resultEl.style.display='none';
   if(code.length<7||!code.startsWith('ZD-')){errorEl.textContent='Please enter a valid ZD-XXXX code.';return;}
+  if(code===userData.zdCode){errorEl.textContent='That\'s your own ZD code!';return;}
   try{
-    const{data:linkData}=await sb.from('link_codes').select('parent_id,code').eq('code',code).maybeSingle();
+    // Check parent codes first
+    const{data:linkData}=await sb.from('link_codes').select('parent_id').eq('code',code).maybeSingle();
     if(linkData){
       if(linkData.parent_id===currentUserId){errorEl.textContent='You cannot message yourself.';return;}
+      // Parents/teachers can message anyone — no gender restriction
       resultEl.style.display='block';
-      resultEl.innerHTML=`<div class="student-card"><div class="student-avatar">👤</div><div class="student-info"><div class="student-name">Teacher / Parent</div><div class="student-meta">${code}</div></div><button class="btn-primary" onclick="openChat('${linkData.parent_id}','Teacher')" style="margin-top:0;width:auto;padding:10px 16px;font-size:14px;">Message</button></div>`;
+      resultEl.innerHTML=`<div class="student-card"><div class="student-avatar">👤</div><div class="student-info"><div class="student-name">Teacher / Parent</div><div class="student-meta">${code}</div></div><button class="btn-primary" onclick="openChat('${linkData.parent_id}','Teacher/Parent','')" style="margin-top:0;width:auto;padding:10px 16px;font-size:14px;">Message</button></div>`;
       return;
     }
+    // Check student ZD codes — need to look up by user metadata
+    // We'll search student_links to find students, or use the link_codes table
+    // For student-to-student: enforce same gender
     errorEl.textContent='Code not found. Ask the person for their ZD code from Account Details.';
   }catch(e){errorEl.textContent='Something went wrong.';}
 }
@@ -1333,7 +1496,7 @@ async function handleLogin(){
 async function handleForgotPassword(){const email=document.getElementById('forgot-email').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('forgot-error').classList.add('show');return;}document.getElementById('forgot-error').classList.remove('show');try{await sb.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin});document.getElementById('forgot-success').textContent='Reset link sent! Check your email.';}catch(e){document.getElementById('forgot-error').classList.add('show');}}
 async function handleChangePassword(){const np=document.getElementById('new-password').value;const cp=document.getElementById('confirm-password').value;const ee=document.getElementById('change-pw-error');const se=document.getElementById('change-pw-success');ee.textContent='';se.textContent='';if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}if(np!==cp){ee.textContent='Passwords do not match.';return;}try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('new-password').value='';document.getElementById('confirm-password').value='';}catch(e){ee.textContent='Something went wrong.';}}
 async function handleParentChangePassword(){const np=document.getElementById('parent-new-password').value;const cp=document.getElementById('parent-confirm-password').value;const ee=document.getElementById('parent-change-pw-error');const se=document.getElementById('parent-change-pw-success');ee.textContent='';se.textContent='';if(np.length<6||!/[A-Z]/.test(np)||!/[0-9]/.test(np)){ee.textContent='Password does not meet requirements.';return;}if(np!==cp){ee.textContent='Passwords do not match.';return;}try{const{error}=await sb.auth.updateUser({password:np});if(error)throw error;se.textContent='Password updated!';document.getElementById('parent-new-password').value='';document.getElementById('parent-confirm-password').value='';}catch(e){ee.textContent='Something went wrong.';}}
-async function handleLogout(){if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}if(messageSubscription){messageSubscription.unsubscribe();messageSubscription=null;}dashboardInitialised=false;await sb.auth.signOut();pendingDashboardData=null;userData={};currentUserId=null;showScreen('screen-splash');}
+async function handleLogout(){if(feedbackAudio){feedbackAudio.pause();feedbackAudio=null;}if(globalMessageSubscription){globalMessageSubscription.unsubscribe();globalMessageSubscription=null;}if(typingSubscription){typingSubscription.unsubscribe();typingSubscription=null;}dashboardInitialised=false;linkedContactId=null;await sb.auth.signOut();pendingDashboardData=null;userData={};currentUserId=null;showScreen('screen-splash');}
 
 function getUserKey(){return userData.email?'zaid-user-'+userData.email:'zaid-user-anon';}
 
@@ -1367,17 +1530,11 @@ function saveStats(words,surahName){
   }catch(e){return 0;}
 }
 
-async function saveSessionToSupabase(acc,timeStr,durationSecs){
-  if(!currentUserId||!currentSurah)return;
-  try{await sb.from('sessions').insert({user_id:currentUserId,surah_name:currentSurah.nameEn,words_recited:currentWordIndex,total_words:getRecitableWords().length,accuracy:acc,mistakes:totalMistakes,duration_seconds:durationSecs,mode:currentRecitationMode});}catch(e){}
-}
+async function saveSessionToSupabase(acc,timeStr,durationSecs){if(!currentUserId||!currentSurah)return;try{await sb.from('sessions').insert({user_id:currentUserId,surah_name:currentSurah.nameEn,words_recited:currentWordIndex,total_words:getRecitableWords().length,accuracy:acc,mistakes:totalMistakes,duration_seconds:durationSecs,mode:currentRecitationMode});}catch(e){}}
 
 function switchMySpaceTab(tab){document.querySelectorAll('.myspace-tab').forEach((t,i)=>t.classList.toggle('active',['planner','notes','progress'][i]===tab));document.querySelectorAll('.myspace-section').forEach((s,i)=>s.classList.toggle('active',['myspace-planner','myspace-notes','myspace-progress'][i]==='myspace-'+tab));if(tab==='progress')loadProgressData();}
 
-function loadMySpace(){
-  buildPlannerDays();
-  try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');if(saved.notes)document.getElementById('notes-content').value=saved.notes;if(saved.planner)['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});}catch(e){}
-}
+function loadMySpace(){buildPlannerDays();try{const saved=JSON.parse(localStorage.getItem(getUserKey())||'{}');if(saved.notes)document.getElementById('notes-content').value=saved.notes;if(saved.planner)['mon','tue','wed','thu','fri','sat','sun'].forEach(day=>{const sel=document.getElementById('planner-'+day);if(sel&&saved.planner[day])sel.value=saved.planner[day];});}catch(e){}}
 
 function buildPlannerDays(){
   const days=[{key:'mon',label:'Mon'},{key:'tue',label:'Tue'},{key:'wed',label:'Wed'},{key:'thu',label:'Thu'},{key:'fri',label:'Fri'},{key:'sat',label:'Sat'},{key:'sun',label:'Sun'}];
@@ -1437,7 +1594,8 @@ function populateDashboardData(fullName,journey,gender){
       const djf=document.getElementById('details-journey-field');if(djf){const mt=gender==='female'?'Hafiza':'Hafiz';djf.textContent=m.journey==='hafiz'?`${mt} / Revision`:m.journey==='learning'?`Learning to become a ${mt}`:'—';}
       checkIfLinked(u.id);
     }
-    loadConversations();
+    startGlobalMessageListener();
+    updateBadges();
   });
   if(journey==='parent'){const pdn=document.getElementById('parent-dash-name');if(pdn)pdn.textContent=`Assalamu Alaikum, ${firstName}`;}
   else{const dn=document.getElementById('dash-name');if(dn)dn.textContent=`Assalamu Alaikum, ${t} ${firstName}`;const ds=document.getElementById('dash-sub');if(ds)ds.textContent=journey==='hafiz'?`${t} · Ready to revise`:`On the path to becoming a ${t}`;loadStats();}
@@ -1446,10 +1604,7 @@ function populateDashboardData(fullName,journey,gender){
 function renderDashboard(n,j,g){if(j==='parent')showScreen('screen-parent-dashboard');else showScreen('screen-dashboard');}
 function loadDashboard(n,j,g){populateDashboardData(n,j,g);renderDashboard(n,j,g);}
 
-function buildSurahList(){
-  const list=document.getElementById('surah-list');list.innerHTML='';
-  SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});
-}
+function buildSurahList(){const list=document.getElementById('surah-list');list.innerHTML='';SURAHS.forEach((s,i)=>{const div=document.createElement('div');div.className='surah-list-item';div.innerHTML=`<div class="surah-num">${s.num}</div><div class="surah-info"><div class="surah-name-en">${s.nameEn}</div><div class="surah-name-ar">${s.nameAr}</div></div><div class="surah-meta">${s.ayahs} ayahs</div>`;div.onclick=()=>startSurah(i);list.appendChild(div);});}
 
 function startSurah(index){
   currentSurah=SURAHS[index];currentWordIndex=0;totalCorrect=0;totalMistakes=0;mistakeWords=[];
@@ -1477,12 +1632,7 @@ function renderSurahText(){
 
 function normalise(text){return text.replace(/[\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/[ىئ]/g,'ي').replace(/ة/g,'ه').replace(/[ۥۦ]/g,'').replace(/\s+/g,' ').trim();}
 
-function wordsMatch(spoken,expected){
-  const ns=normalise(spoken);const ne=normalise(expected);
-  if(ns===ne)return true;if(ns.length>=2&&ne.includes(ns))return true;if(ne.length>=2&&ns.includes(ne))return true;
-  if(ns.length>=3&&ne.length>=3){let m=0;for(let i=0;i<Math.min(ns.length,ne.length);i++){if(ns[i]===ne[i])m++;}if(m/Math.max(ns.length,ne.length)>=0.7)return true;}
-  return false;
-}
+function wordsMatch(spoken,expected){const ns=normalise(spoken);const ne=normalise(expected);if(ns===ne)return true;if(ns.length>=2&&ne.includes(ns))return true;if(ne.length>=2&&ns.includes(ne))return true;if(ns.length>=3&&ne.length>=3){let m=0;for(let i=0;i<Math.min(ns.length,ne.length);i++){if(ns[i]===ne[i])m++;}if(m/Math.max(ns.length,ne.length)>=0.7)return true;}return false;}
 
 function toggleMic(){if(isListening)stopListening();else startListening();}
 
@@ -1497,11 +1647,7 @@ function startListening(){
   recognition.start();
 }
 
-function stopListening(){
-  isListening=false;if(recognition){try{recognition.stop();}catch(e){}}
-  document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();
-}
-
+function stopListening(){isListening=false;if(recognition){try{recognition.stop();}catch(e){}}document.getElementById('mic-btn').classList.remove('listening');clearWaitingTimer();hideFeedback();}
 function startWaitingTimer(){clearWaitingTimer();waitingTimer=setTimeout(()=>{if(isListening)showFeedback('waiting');},4000);}
 function clearWaitingTimer(){if(waitingTimer){clearTimeout(waitingTimer);waitingTimer=null;}}
 
@@ -1536,12 +1682,7 @@ function updateSessionStats(){const recitable=getRecitableWords();const pct=reci
 function showFeedback(type){['listening','correct','mistake','waiting'].forEach(t=>{const el=document.getElementById('feedback-'+t);if(el)el.classList.toggle('show',t===type);});}
 function hideFeedback(){showFeedback(null);}
 
-function togglePeek(){
-  isPeeking=!isPeeking;if(currentRecitationMode==='test')return;
-  const recitable=getRecitableWords();
-  recitable.forEach((w,i)=>{const el=document.getElementById(`rw-${i}`);if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});
-  document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';
-}
+function togglePeek(){isPeeking=!isPeeking;if(currentRecitationMode==='test')return;const recitable=getRecitableWords();recitable.forEach((w,i)=>{const el=document.getElementById(`rw-${i}`);if(!el)return;if(i>currentWordIndex){if(isPeeking){el.classList.remove('hidden');el.style.color='';}else el.classList.add('hidden');}});document.getElementById('peek-btn').textContent=isPeeking?'Hide':'Peek';}
 
 function completeSession(){
   stopListening();
@@ -1606,7 +1747,7 @@ sb.auth.onAuthStateChange((event,session)=>{
     userData.email=session.user.email;
     loadDashboard(m.full_name,m.journey,m.gender);
   }
-  if(event==='SIGNED_OUT'){dashboardInitialised=false;}
+  if(event==='SIGNED_OUT'){dashboardInitialised=false;linkedContactId=null;}
 });
 </script>
 </body>
